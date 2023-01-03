@@ -1,0 +1,1841 @@
+#+TITLE: ~glorifiedgluer
+#+AUTHOR: ~glorifiedgluer
+
+#+HUGO_BASE_DIR: ../
+
+* Pages
+:PROPERTIES:
+:EXPORT_HUGO_SECTION: /
+:END:
+** About
+:PROPERTIES:
+:EXPORT_TITLE: About
+:EXPORT_FILE_NAME: about
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :description About this site and me.
+:END:
+*** About me
+I'm *Victor Freire*, a student and software developer based in *Guarulhos,
+Brazil*, currently working at [[https://divisionsmg.com][Divisions Maintenance Group]] as a
+software engineer writing [[https://fsharp.org/][F#]] and [[https://nixos.org][Nix]].
+
+I've taught myself coding, cloud computing and linux for years, out of passion.
+At the moment I'm mostly interested in learning about highly scalable systems.
+
+My projects live at [[https://git.sr.ht/~glorifiedgluer][sourcehut]] and [[https://github.com/ratsclub][GitHub]], you can also contact me via [[mailto:victor@freire.dev.br][email]].
+
+*** About this site
+
+**** Why?
+This site was built for the only reason of sharing and documenting most of my
+interests.
+
+**** How?
+I intend to use as much [[https://www.gnu.org/philosophy/floss-and-foss.html][FOSS]] as possible while producing its content.
+
+***** Software
+
+- Icons made by my beloved nana
+- Generated using [[https://hugo.io][Hugo]], theme inspired by [[https://harelang.org][The Hare programming language website]]
+- Source code at [[https://git.sr.ht/~glorifiedgluer/glorifiedgluercom][sourcehut]]
+- Built with [[https://nixos.org][Nix]] and [[https://builds.sr.ht/~glorifiedgluer/monorepo][builds.sr.ht]]
+- Hosted at [[https://srht.site/][pages.sr.ht]]
+
+***** Hardware
+
+- Pictures taken with a Fujifilm Instax Mini 90 or Nikon D3100
+- Analog pictures scanned with a Canon CanoScan LiDE 300
+
+** Blogroll
+:PROPERTIES:
+:EXPORT_TITLE: Blogroll
+:EXPORT_FILE_NAME: blogroll
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :description A rendered version of my OPML file. :layout blogroll
+:END:
+This page is a rendered version of my [[https://en.wikipedia.org/wiki/OPML][OPML]] file.
+
+** Home
+:PROPERTIES:
+:EXPORT_TITLE: ~glorifiedgluer
+:EXPORT_FILE_NAME: _index
+:EXPORT_HUGO_TYPE: homepage
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :description ~glorifiedgluer's personal website.
+:END:
+This page is empty because I didn't find anything interesting to put here yet.
+
+Feel free to check out the navigation links above and enjoy the picture below.
+
+#+attr_html: :title Drawing by @psicochurroz. :alt A capybara giving a ride to a gopher.
+[[/img/capybara-gopher.png]]
+
+* Blog :@blog:
+:PROPERTIES:
+:EXPORT_HUGO_SECTION: blog
+:END:
+** Index
+:PROPERTIES:
+:EXPORT_TITLE: ~glorifiedgluer blog
+:EXPORT_FILE_NAME: _index
+:EXPORT_DATE: 1970-01-01
+:END:
+#+begin_description
+Scattered thoughts, ideas and experiences.
+#+end_description
+** This will deteriorate quickly
+:PROPERTIES:
+:EXPORT_FILE_NAME: this-will-deteriorate-quickly
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :slug this-will-deteriorate-quickly
+:EXPORT_DATE: 2020-03-01
+:END:
+#+begin_description
+Thoughts about the current state of the web, content consuming and its longevity.
+#+end_description
+
+In my teenager years I was a member of my school's student council. Part of our
+job was to propose changes to our current infrastructure, organize study groups
+and plan social projects. We were a bunch of youngsters without much experience
+-- or no experience at all -- in the education field, therefore we resorted to
+know from those who had it over the Internet. At the time there wasn't a lot of
+content about it on social media, the majority was writing at Blogspot (now
+[[https://blogger.com][Blogger]]) or forums.
+
+Here comes [[https://pt.wikipedia.org/wiki/RSS][RSS]]. Blogspot offered a *RSS Feed* by default so it was rather simple
+to follow dozens of blogs. Every member of the council used a RSS reader they
+liked the most and it worked great.
+
+Years passed and I found the list of blogs I used to read at that time. While
+diving through the links I found out most of them didn't receive an update since
+my highschool (or have just disappeared). However, they always had a link to the
+author's social media (Twitter, Facebook or LinkedIn) and you could see those
+profiles were being updated regularly. A lot of the educators continued to write
+posts about their field of interest, but now on social media.
+
+In the meantime, I observed a pattern between profiles. They tended to reference
+their old posts from the Blogger platform instead of publishing them again on
+the new platform. Why so? You could see some of them tried to do that but
+formatting was awkward as Facebook doesn't provide the same tools Blogger
+offered and Twitter's posts are too short. So I feel they just couldn't retrieve
+their posts and they were long gone from their hands.
+
+So how would an individual escape this madness? It's quite simple, a blog post
+is nothing but static content. Text, images videos and audios. Use this in your
+favor. Write text on known formats such as Markdown[fn:1], [[https://pt.wikipedia.org/wiki/ReStructuredText][ReStructuredText]] or
+even plain-text. Store all files in a [[https://git-scm.com][Git]] repository, external hard drive,
+Dropbox... whatever. Just stick to the simplest file formats and reliable
+storage. Services like [[https://medium.com][Medium]], [[https://substack.com][Substack]] and [[https://tumblr.com][Tumblr]] can die and take all your
+posts with them at any time.
+
+At the moment I'm using [[https://neovim.io][Neovim]] to edit my blog posts in Markdown and hosting
+them in [[https://mataroa.blog][mataroa]][fn:2]. Alternatives are: [[https://gohugo.io][Hugo]], [[https://getzola.org][Zola]] and more. All you need to setup a
+web site is one of these programs, a bunch of Markdown files and a web server.
+You'll also find a lot of places to host your content for free such as [[https://gitlab.com][GitLab]],
+[[https://github.com][GitHub]] or [[https://netlify.com][Netlify]].
+
+Although this approach brings some advantages, it has some shortcomings too. In
+a static website you won't have a comments section without a third-party
+service; basic tech knowledge is needed to know where to put files in your web
+server provider of choice and if you want a custom domain such as this one
+you'll have to do some configuration. A quick YouTube tutorial might be
+sufficient to teach you how to do all of the above in minutes.
+
+** Burning out and finding out
+:PROPERTIES:
+:EXPORT_DATE: 2021-08-31
+:EXPORT_FILE_NAME: burning-out-and-finding-out
+:END:
+#+begin_description
+On being burnout for the first time.
+#+end_description
+
+#+attr_html: :title São Paulo's República subway station. (2022-08-03)
+[[/img/2022-08-03-republica-station.jpg]]
+
+At the time of this writing I'm burned out. I had no doubt it was a thing and
+that it could happen to anyone. However, I couldn't see myself suffering from
+this. At least not so soon.
+
+#+begin_quote
+Burnout is caused when you repeatedly make large amounts of sacrifice and or
+effort into high-risk problems that fail. It's the result of a negative
+prediction error in the nucleus accumbens. You effectively condition your brain
+to associate work with failure. --- [[https://news.ycombinator.com/item?id=5630618][Source]]
+#+end_quote
+
+I've been pretty active for the past 4 to 5 years due to college, courses, work
+and other activities. Yet all of this haven't bothered me in the slightest,
+until now. I couldn't take control of basic chores, missed the point of meetings
+after a few moments, had no will to leave the bed and many other things.
+Moreover, It's a strange feeling with predefined steps:
+
+1. You know what you have to do;
+2. You know it's within your capabilities;
+3. You get excited to do the task;
+4. Your body just /will not do it/.
+
+There you go, you now have the recipe to fight against yourself for a whole day.
+This will be a excruciating battle until you hit the bed and repeat it the next
+morning. That is, if you aren't already going to sleep late due to forcing
+yourself to be productive throughout the day. Realizing I was battling my own
+was really important to improve my situation. I started by cleaning my room,
+then exercising, putting a alarm to tell me when to eat and so on. My next step
+was to change my whole environment by looking after a new job.
+
+Currently I'm not in position to take a sabbatical period of time to discover
+new hobbies or a new career - and I don't want to, as I love my current
+profession. So, what's left to ponder to change this situation, I may ask
+myself? To be honest, I have no clue. While I'm in the process to land a new job
+I feel that this might be the response I needed to this feeling. New challenges,
+new people, new technologies and new everything.
+
+** write: broken pipe
+:PROPERTIES:
+:EXPORT_FILE_NAME: write-broken-pipe
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :slug write-broken-pipe
+:EXPORT_DATE: 2022-04-06
+:END:
+#+begin_description
+The adventure of figuring out the "tcp: write: broken pipe" error.
+#+end_description
+
+*tl;dr*: [[https://docs.konghq.com/kubernetes-ingress-controller/][Kong Ingress Controller]] was the culprit. Its timeout setting was
+closing the connection before the file could be sent. /If you're facing this
+issue in a long-lasting request, check your reverse proxy configuration, as it
+may have a different configuration than your application./ ;-)
+
+At Grupo SBF we have an HTTP server written in [[https://go.dev/][Go]] that queries [[https://cloud.google.com/bigquery][BigQuery]] and
+returns the result as a *big* csv file. However, after some time we sent a
+request and instead of a file, we received this error message:
+
+#+begin_src
+write tcp 10.0.0.1:8080->10.0.0.2:38302: write: broken pipe
+#+end_src
+
+Well, this is quite a surprise as we haven't seen this error message before...
+After all, what does it even mean? A quick Google search returned this:
+
+#+begin_quote
+A condition in programming (also known in POSIX as EPIPE error code and SIGPIPE
+signal), when a process requests an output to pipe or socket, which was closed
+by peer. -- [[https://en.wikipedia.org/wiki/Broken_pipe][Wikipedia]]
+#+end_quote
+
+Hmm, this /definitely/ shed some light on the problem. Considering that the HTTP
+server is provided by the powerful [[https://pkg.go.dev/net/http][net/http]] package in Go's standard library, we
+might have some obvious places to check out.
+
+Cloudflare has a [[https://blog.cloudflare.com/exposing-go-on-the-internet/][great article]] talking about the default configuration on Go's
+HTTP server and how to avoid making mistakes with them. We jumped straight to
+the article's timeout section and checked if we didn't forget to configure them.
+
+#+begin_src go
+srv := &http.Server{
+    ReadTimeout:  10 * time.Minute, // 10 minutes
+    WriteTimeout: 10 * time.Minute,
+    Addr:         ":8080",
+    Handler:      r,
+}
+#+end_src
+
+For context, our application takes about 2 minutes to send a response so this
+isn't a problem for us as we have 10 minutes until a [[https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504][504 server error]] is
+returned.
+
+To our amazement, sending the request to a local server returned no error
+whatsoever. Comparing our local environment with production we also noticed that
+our request was /dropped/ at exactly 1 minute of execution in production.
+Therefore it must be something between our client and server!
+
+Knowing that we deploy to a Kubernetes cluster with a [[https://docs.konghq.com/kubernetes-ingress-controller/][Kong Ingress Controller]]
+_{controlling} taking care of our reverse proxy, we checked its documentation
+and... Bingo! This is the root of our problem, as per the [[https://docs.konghq.com/gateway/1.1.x/reference/proxy/#3-proxying-and-upstream-timeouts][Kong Ingress
+Controller Documentation]] the default timeout is =60_000= milliseconds -- in
+other words, 1 minute!
+
+*** Replicating the behavior
+   :PROPERTIES:
+   :CUSTOM_ID: replicating-the-behavior
+   :END:
+Before trying something on our servers, why don't we replicate this behavior
+locally? For this purpose we can run a =nginx= container and a simple Go HTTP
+server with a similar functionality of our service.
+
+The idea behind the test is to setup an endpoint that takes a lot of time
+writing on the buffer while our reverse proxy has a timeout of only 2 seconds.
+
+**** Go server and Dockerfile
+    :PROPERTIES:
+    :CUSTOM_ID: go-server-and-dockerfile
+    :END:
+#+begin_src go
+func main() {
+    mux := http.NewServeMux()
+    mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+        time.Sleep(time.Second * 10)
+
+        // creating a large data size
+        // that will take a long time to be written
+        size := 900 * 1000 * 1000
+        tpl := make([]byte, size)
+        t, err := template.New("page").Parse(string(tpl))
+        if err != nil {
+            log.Printf("error parsing template: %s", err)
+            return
+        }
+
+        if err := t.Execute(w, nil); err != nil {
+            log.Printf("error writing: %s", err)
+            return
+        }
+    })
+
+    srv := &http.Server{
+        ReadTimeout: 10 * time.Minute,
+        WriteTimeout: 10 * time.Minute,
+        Addr: ":8080",
+        Handler: mux,
+    }
+
+    log.Println("server is running!")
+    log.Println(srv.ListenAndServe())
+}
+#+end_src
+
+And then the Dockerfile:
+
+#+begin_src Dockerfile
+# server.Dockerfile
+FROM golang:alpine AS build
+RUN apk --no-cache add gcc g++ make git
+WORKDIR /go/src/app
+COPY . .
+RUN go mod init server
+RUN go mod tidy
+RUN GOOS=linux go build -ldflags="-s -w" -o ./bin/web-app ./server.go
+
+FROM alpine:3.13
+RUN apk --no-cache add ca-certificates
+WORKDIR /usr/bin
+COPY --from=build /go/src/app/bin /go/bin
+EXPOSE 8080
+ENTRYPOINT /go/bin/web-app --port 8080
+#+end_src
+
+**** nginx configuration and Dockerfile
+    :PROPERTIES:
+    :CUSTOM_ID: nginx-configuration-and-dockerfile
+    :END:
+#+begin_src conf
+# nginx.conf
+events {
+    worker_connections 1024;
+}
+
+http {
+  server_tokens off;
+  server {
+    listen 80;
+
+    location / {
+      proxy_set_header X-Forwarded-For $remote_addr;
+      proxy_set_header Host            $http_host;
+
+      # timeout set to 2 seconds
+      proxy_read_timeout 2s;
+      proxy_connect_timeout 2s;
+      proxy_send_timeout 2s;
+
+      proxy_pass http://goservice:8080/;
+    }
+  }
+}
+#+end_src
+
+And then the Dockerfile:
+
+#+begin_src Dockerfile
+# nginx.Dockerfile
+FROM nginx:latest
+EXPOSE 80
+COPY nginx.conf /etc/nginx/nginx.conf
+#+end_src
+
+**** Docker Compose
+    :PROPERTIES:
+    :CUSTOM_ID: docker-compose
+    :END:
+The last piece missing is a [[https://docs.docker.com/compose/][Docker
+Compose]] file to help us run these containers:
+
+#+begin_src yaml
+# docker-compose.yaml
+version: "3.6"
+services:
+  goservice:
+    build: "server.Dockerfile"
+    ports:
+      - "8080"
+  nginx:
+    build: "nginx.Dockerfile"
+    ports:
+      - "80:80"
+    depends_on:
+      - "goservice"
+#+end_src
+
+**** Running and testing
+    :PROPERTIES:
+    :CUSTOM_ID: running-and-testing
+    :END:
+After setting up our environment we can test it by running the commands below:
+
+- =docker-compose up --build= to run our containers
+- =curl localhost= to make a request to our server
+
+Voilá! The error shows up confirming our theory!
+
+#+begin_src
+goservice_1  | 2022/04/07 01:12:14 error writing: write tcp 172.18.0.2:8080->172.18.0.3:56768: write: broken pipe
+#+end_src
+
+*** Conclusion
+  :PROPERTIES:
+  :CUSTOM_ID: conclusion
+  :END:
+This was a lot of fun to figure it! As noted by our tests the timeout
+configuration of our cluster's reverse proxy was indeed the issue, overriding
+the timeout settings with the snippet below solved the issue instantly!
+
+#+begin_src yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongIngress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+  name: kong-timeout-conf
+proxy:
+  connect_timeout: 10000000 # 10 minutes
+  protocol: http
+  read_timeout: 10000000
+  retries: 10
+  write_timeout: 10000000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    konghq.com/override: kong-timeout-conf
+#+end_src
+
+** Notes on builds.sr.ht
+:PROPERTIES:
+:EXPORT_DATE: 2022-04-29
+:EXPORT_FILE_NAME: notes-on-buildssrht
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :slug notes-on-buildssrht
+:END:
+#+begin_description
+I quite like builds.sr.ht and want to share some of the reasons.
+#+end_description
+
+For the past few months I've been using [[https://sr.ht][sourcehut]]'s platform to work on software
+an it has been quite an interesting experience. Nonetheless, one of the services
+I really enjoy using is the their build service called [[https://builds.sr.ht][builds.sr.ht]].
+
+#+begin_quote
+builds.sr.ht is a service on sr.ht that allows you to submit "build manifests"
+for us to work on. -- [[https://man.sr.ht/builds.sr.ht/][man.sr.ht]]
+#+end_quote
+
+The thing I don't like on [[https://github.com/features/actions][GitHub Actions]] is that it is kind of /magical/. For
+example, you don't actually know what it is doing when you define that an
+=action= should only run when a specific path is modified. Not to even mention
+their [[https://docs.github.com/pt/actions/creating-actions][custom actions]] which usually takes a non-trivial amount of
+TypeScript/JavaScript.
+
+Contrary to this, [[https://builds.sr.ht][builds.sr.ht]] is /really/ explicit on its [[https://man.sr.ht/builds.sr.ht/manifest.md][build manifest]].
+You're basically expected to write plain shell scripts for your builds.
+
+*** Reducing resource usage
+   :PROPERTIES:
+   :CUSTOM_ID: reducing-resource-usage
+   :END:
+As I said previously, there's no special syntax to work on specific paths,
+branches, pull requests and such. By default your task will run on every commit
+you push. In order to reduce our CI usage we can restrain our tasks to run on
+specific scenarios:
+
+**** On path change
+    :PROPERTIES:
+    :CUSTOM_ID: on-path-change
+    :END:
+#+begin_src sh
+if ! $(git diff --quiet HEAD HEAD^ -- "<your-path>")
+then
+  # do something
+fi
+#+end_src
+
+**** On branch change
+    :PROPERTIES:
+    :CUSTOM_ID: on-branch-change
+    :END:
+This tip was taken from [[https://todo.sr.ht/~sircmpwn/builds.sr.ht/170][issue #170]].
+
+#+begin_src yaml
+tasks:
+- check-branch: |
+   cd repo_name
+   if [ "$(git rev-parse your-branch)" != "$(git rev-parse HEAD)" ]; then \
+      complete-build; \
+   fi
+#+end_src
+
+*** NixOS on builds.sr.ht
+   :PROPERTIES:
+   :CUSTOM_ID: nixos-on-builds.sr.ht
+   :END:
+As I don't like to write shell scripts I use Nix and this is my favorite feature
+of this service. builds.sr.ht supports [[https://nixos.org][NixOS]] by default[fn:3]. This means that
+we can leverage Nix Flakes for truly declarative and reproducible builds there!
+Let's consider a small example using [[https://go.dev][Go]] to show you how easy it really is. A
+small =flake.nix= containing the following content should suffice our needs:
+
+#+begin_src nix
+{
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+  outputs = { self, nixpkgs, ... }:
+    let pkgs = import nixpkgs { system = "x86_64-linux"; };
+    in
+    {
+      devShells."x86_64-linux".ci = with pkgs; mkShell {
+        buildInputs = [ go golangci-lint ];
+      };
+    };
+}
+#+end_src
+
+This definition is capable of giving us a shell containing Go and [[https://github.com/golangci/golangci-lint][golangci-lint]]
+on =$PATH=.
+
+Now let's write the build manifest for our CI:
+
+#+begin_src yaml
+image: nixos/unstable
+packages:
+  - nixos.nixUnstable
+environment:
+  NIX_CONFIG: "experimental-features = nix-command flakes"
+tasks:
+  - lint: |
+      cd source
+      nix develop .#ci -c golangci-lint run
+  - test: |
+      cd source
+      nix develop .#ci -c go test ./...
+  - build: |
+      cd source
+      nix develop .#ci -c go build
+#+end_src
+
+And that's it! We have our CI up and running with the guarantee of having our
+tools being the same on every run. No sudden updates or unexpected behavior.
+
+** Running a Raspberry Pi 4 with NixOS
+:PROPERTIES:
+:EXPORT_DATE: 2022-05-09
+:EXPORT_FILE_NAME: running-a-raspberry-pi-4-with-nixos
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :slug running-a-raspberry-pi-4-with-nixos
+:ID:       9732313b-be33-4080-b016-8fe9a076264a
+:END:
+#+begin_description
+Configuring and running NixOS on a Raspberry Pi 4.
+#+end_description
+
+For quite some time I've been wanting to run a small homelab with [[https://nixos.org][NixOS]]. I don't
+host much services myself, however I feel that I can have a lot of fun (and
+learn /a bit/) by maintaining my own server. All the services I run on the
+Cloud™ (Matrix Dendrite and a Nix Binary Cache) could be running on a Raspberry
+Pi inside my drawer. So that be it!
+
+#+caption: A picture of Raspberry Pi inside an Argon One case and a Keychron K2V2 behind
+[[/img/raspberry-argon.jpg]]
+
+*** Setup
+   :PROPERTIES:
+   :CUSTOM_ID: setup
+   :END:
+At the time of writing my setup looks like this:
+
+- Case Argon ONE M.2
+- KingSpec SSD M.2 SATA - 512GB
+- Random Flash Drive - 8GB (you can also use a SD Card)
+- Raspberry Pi 4 - 8GB
+
+*** Flashing
+   :PROPERTIES:
+   :CUSTOM_ID: flashing
+   :END:
+Download the NixOS =aarch64= image. Personally I went with the [[https://hydra.nixos.org/job/nixos/trunk-combined/nixos.sd_image_new_kernel.aarch64-linux][unstable branch]]
+as I like to live dangerously but you can choose [[https://nixos.wiki/wiki/NixOS_on_ARM#SD_card_images_.28SBCs_and_similar_platforms.29][other versions]] if you want to.
+After that you just need to =dd= it to your flash drive and boot it:
+
+#+begin_src shell
+$ sudo dd if=nixos.img of=/dev/sdX bs=4096 conv=fsync status=progress
+#+end_src
+
+*Notes*:
+- Don't forget to extract the image before flashing it.
+- If using the Argon One M.2 case, don't boot the USB Drive with your SSD connected. Otherwise your raspberry will try to boot from the SSD and not your Flash Drive/SD Card.
+
+*** Formatting
+   :PROPERTIES:
+   :CUSTOM_ID: formatting
+   :END:
+You can actually follow the [[https://nixos.org/manual/nixos/stable][NixOS Manual]] to partition your hard drive. However
+I've written a script to help me do this:
+
+#+begin_src shell
+# replace /dev/sda with your SSD
+export FMT_DISK=/dev/sda
+
+wipefs -a $FMT_DISK
+
+export DISK=/dev/disk/by-id/ata*
+
+parted $FMT_DISK -- mklabel msdos
+parted $FMT_DISK -- mkpart primary fat32 0MiB 512MiB # $DISK-part1 is /boot
+parted $FMT_DISK -- mkpart primary 512MiB -4GiB # $DISK-part2 is the ext4 partition
+parted $FMT_DISK -- mkpart primary linux-swap -4GiB 100% # Swap
+
+mkfs.ext4 -L nixos $DISK-part2
+mount $DISK-part2 /mnt
+
+mkfs.vfat -F32 $DISK-part1
+mkdir -p /mnt/boot
+mount $DISK-part1 /mnt/boot
+#+end_src
+
+*** NixOS Configuration
+   :PROPERTIES:
+   :CUSTOM_ID: nixos-configuration
+   :END:
+In order to boot correctly, you need to define some boot options[fn:4]:
+
+#+begin_src nix
+{
+  boot = {
+    initrd.availableKernelModules = [ "usbhid" "usb_storage" ];
+    kernelPackages = pkgs.linuxPackages_rpi4;
+    kernelParams = [
+      "8250.nr_uarts=1"
+      "cma=128M"
+      "console=tty1"
+      "console=ttyAMA0,115200"
+    ];
+
+    loader = {
+      raspberryPi = {
+        enable = true;
+        version = 4;
+      };
+
+      grub.enable = false;
+      generic-extlinux-compatible.enable = true;
+    };
+  };
+
+  hardware.enableRedistributableFirmware = true;
+}
+#+end_src
+
+*** Boot firmware
+   :PROPERTIES:
+   :CUSTOM_ID: boot-firmware
+   :END:
+The installer disk has a partition containing the necessary firmwares to boot
+(it was on =/dev/sda1/= for me). Just copy it to your boot partition.
+
+#+begin_src shell
+mkdir /firmware
+mount /dev/sda1 /firmware
+cp /firmware/* /mnt/boot
+#+end_src
+
+*** Installing
+   :PROPERTIES:
+   :CUSTOM_ID: installing
+   :END:
+**** With Channels
+    :PROPERTIES:
+    :CUSTOM_ID: with-channels
+    :END:
+The only step left is to install the system:
+
+#+begin_src shell
+nixos-install --root /mnt
+#+end_src
+
+**** With Flakes
+    :PROPERTIES:
+    :CUSTOM_ID: with-flakes
+    :END:
+Another way to install it is to make use of Nix [[https://nixos.wiki/wiki/Flakes][Flakes]]. This way we can ensure
+that our build is completely reproducible and/or running the same software
+version as the other machines.
+
+This is a rather simple process if you already have a repo configured with your
+[[https://nixos.org][NixOS]] configurations. First, I need a shell with =git= and a [[https://nixos.org][Nix]] version that
+supports the experimental [[https://nixos.wiki/wiki/Flakes][Flakes]] commands.
+
+#+begin_src shell
+nix-shell -p git nixUnstable
+#+end_src
+
+After that I just clone my repository, copy the =hardware-configuration.nix=
+file over and install the system.
+
+#+begin_src shell
+# clone the repository
+git clone https://git.sr.ht/~glorifiedgluer/dotfiles
+cd dotfiles
+
+# copy hardware-configuration.nix
+cp /mnt/etc/nixos/hardware-configuration.nix hosts/rpi4/
+
+# install the system
+nixos-install --flake .#rpi4
+#+end_src
+** Starting a personal monorepo
+:PROPERTIES:
+:EXPORT_DATE: 2022-05-11
+:EXPORT_FILE_NAME: starting-a-personal-monorepo
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :slug starting-a-personal-monorepo
+:ID:       143b30fd-8d32-4e67-9e13-5bf8a47ea8e2
+:END:
+#+begin_description
+Starting my journey with a personal monorepo managed by Nix.
+#+end_description
+
+I've been using [[https://nixos.org][Nix]] as my package manager for 4 years now and it has been the
+best /computer-related/ decision I have ever made and fortunately, for the past
+few years its ecosystem has been growing a lot[fn:5] [fn:6] [fn:7]. Some of this
+movement is due to the advent o [[https://nixos.wiki/wiki/Flakes][Flakes]] that makes it /way/ easier to share
+reproducible outputs than the previous Nix solution of channels.
+
+Considering that I can use Nix:
+
+- to share build artifacts (binaries, Nix modules and such);
+- to manage my dependencies;
+- as a build system.
+
+I thought to myself: "Why not build a personal monorepo"? I mean, this might
+sound like a weird conclusion to take from all of this but I can explain! I
+swear!
+
+*** Rationale
+  :PROPERTIES:
+  :CUSTOM_ID: rationale
+  :END:
+Sometimes I just get bored setting up a new project. Create a new repository,
+setup the dependencies, write a CI manifest... it's too tiresome! I won't even
+mention the pain in the ass that is to write multiple projects on the multiple
+machines. The clone, fetch, pull and push dance is just too much when I could be
+coding already.
+
+Most of my personal projects are written in [[https://go.dev][Go]], a really boring language that
+takes its time to include new features and release new versions. This means that
+an update won't break them and that I can take advantage of a way to share the
+same compiler and tooling version through my projects.
+
+If you're a Nix user, a single command would show you all the outputs available
+for use: =nix flake show sourcehut:~glorifiedgluer/monorepo=. This also means
+that you can import this repo as an input on your =flake.nix= file and use any
+of my projects as you please.
+
+The CI can be simplified to a simple shell conditional:
+
+#+begin_src yaml
+tasks:
+  - someproject: |
+      cd monorepo
+      if ! $(git diff --quiet HEAD HEAD^ -- "someproject")
+      then
+        # do something if the project got an update
+      fi
+#+end_src
+
+Nonetheless, the best reason to try this is out is to have some fun and explore
+new challenges with version control and build systems! ;-)
+
+*** Expectation
+  :PROPERTIES:
+  :CUSTOM_ID: expectation
+  :END:
+I mean... none? lol. Being serious now, I don't expect my projects to become
+something used by hundreds or thousands of users as most of them are done out of
+passion/need. So the rationale above is composed of things that personally took
+out part of the joy of bulding out something and seeing it run.
+
+Is this going to work? I have no idea as I don't have much experience with
+monorepos. I'm not really sure if this is going to scale or bore me in other
+ways. The only certainty I have is that I'm having fun doing it /right now/!
+
+You can see the repository on the links below:
+
+- [[https://github.com/ratsclub/monorepo][GitHub]]
+- [[https://git.sr.ht/~glorifiedgluer/monorepo/][sourcehut]]
+
+** Git mirroring, systemd and NixOS
+:PROPERTIES:
+:EXPORT_DATE: 2022-06-14
+:EXPORT_FILE_NAME: git-mirroring-systemd-nixos
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :slug git-mirroring-systemd-nixos
+:END:
+#+begin_description
+Configuring a Git mirror with systemd services and timers on NixOS.
+#+end_description
+
+For the past few years I have been collecting contributions to multiple projects
+on multiple platforms such as GitHub, GitLab, self-hosted Gitea instances and so
+on. It's rather boring to go to a website and see the source code there... Then
+I thought to myself: "Why not write about a made up need I don't have just to
+learn something new?".
+
+So, the idea here was to mirror those repositories into my [[https://sourcehut.org][sourcehut]] account
+(although this should work for any remote repository). For this we will use a
+[[https://nixos.org][NixOS]] system and [[https://www.freedesktop.org/software/systemd/man/systemd.timer.html][systemd timers]]. The idea is dead simple, we clone the
+repositories and push them to our desired remote.
+
+*** Configuring the repository
+   :PROPERTIES:
+   :CUSTOM_ID: configuring-the-repository
+   :END:
+This step is pretty easy and can be done in two steps:
+
+1. Clone the repository
+
+#+begin_src sh
+$ git clone --mirror https://git.com/repo
+#+end_src
+
+2. Configure the remote as to ensure that we will only push to the
+   desired remote.
+
+#+begin_src sh
+$ cd repo
+$ git remote set-url --push origin https://remote.com/repo-mirror
+#+end_src
+
+*** systemd to the rescue
+   :PROPERTIES:
+   :CUSTOM_ID: systemd-to-the-rescue
+   :END:
+We have our repository but we are still missing an important step that is to
+keep pushing new changes to our mirror.
+
+[[https://nixos.org][NixOS]] has a pretty good declarative way of declaring systemd services and timers
+that we can take advantage of here. The idea is to have a script being ran in
+our diretory through a systemd /service/ that will be invoked by a systemd
+/timer/ hourly.
+
+**** The script
+    :PROPERTIES:
+    :CUSTOM_ID: the-script
+    :END:
+There's nothing novel here. This script will iterate over the directories inside
+the =WorkingDirectory=, fetch updates and then push it to our mirror.
+
+#+begin_src nix
+let
+  gitmirrorScript = pkgs.writeShellScriptBin "gitmirror" ''
+    for d in */ ; do
+      git -C "$d" fetch -p origin
+      git -C "$d" push --mirror
+    done
+  '';
+in
+#+end_src
+
+**** The service and timer
+    :PROPERTIES:
+    :CUSTOM_ID: the-service-and-timer
+    :END:
+The service is rather simple too, we pass our repository's directory through the
+=WorkingDirectory= value and set the =gitmirror= service as the unit to be
+invoked by our timer. Note, however, that we added =git= /and/ =openssh= to the
+path. Your root user should be able to authenticate on boths repos with its ssh
+key.
+
+#+begin_src nix
+{
+  systemd.services.gitmirror = {
+    enable = true;
+    description = "Git mirror service";
+    after = [ "network.target" ];
+    path = with pkgs; [ git openssh ];
+    serviceConfig = {
+      Type="oneshot";
+      WorkingDirectory = "/home/glorifiedgluer/repo";
+      ExecStart = "${gitmirrorScript}/bin/gitmirror";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+
+  systemd.timers.gitmirror = {
+    description = "Git mirror timer";
+    timerConfig = {
+      OnCalendar = "hourly";
+      Unit = "gitmirror.service";
+    };
+    wantedBy = [ "timers.target" ];
+  };
+}
+#+end_src
+
+** Moving this website to a single Org Mode file
+:PROPERTIES:
+:EXPORT_DATE: 2022-07-11
+:EXPORT_FILE_NAME: moving-site-org-mode
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :slug moving-site-org-mode
+:END:
+#+begin_description
+This website is now contained in a single Org Mode file.
+#+end_description
+
+I have always loved [[https://www.gnu.org/software/emacs/][GNU Emacs]] and its integrated computing environment. It has
+been even better after I started using [[https://github.com/doomemacs/doomemacs][Doom Emacs]][fn:8], it basically took care of
+things I was unable to do properly: make it fast and semantically coherent.
+Either for the lack of time or technical knowledge.
+
+As most GNU Emacs users, I love [[https://orgmode.org/][Org Mode]] and I love to write for this blog. So
+why not join these two things together? [[https://ox-hugo.scripter.co/][ox-hugo]] let's me write a /org/ file and
+turn it into multiple /hugo-compatible/ markdown files. This is quite a feature
+for me as I like to keep all my /stuff/ into one place[fn:9].
+
+It would be pretty cool to have a place to share small trips with pictures and
+some comments. Thinking about it a bit more, it might work like some sort of
+microblog but... different? I should start doing it and stop ovethinking. It
+would be pretty cool to read a huge file with years of history written on it!
+
+Oh, and you can see the file I'm talking about right here:
+[[https://git.sr.ht/~glorifiedgluer/monorepo/blob/main/glorifiedgluercom/content/content.org][sourcehut:~glorifiedgluer/monorepo/glorifiedgluercom/content/content.org]].
+** ErgoJourney - Choosing a new keyboard layout
+:PROPERTIES:
+:EXPORT_DATE: 2022-07-18
+:EXPORT_FILE_NAME: ergojourney-choosing-a-new-keyboard-layout
+:END:
+#+begin_description
+The beginning of my journey for an ergonomic setup. Starting with a new keyboard layout.
+#+end_description
+
+After multiple injuries to my right wrist due to a multitude of activities
+(sports, bad typing[fn:13] and an /act of god/) I decided to change my keyboard layout
+to one that could possibly demand less work off of my hands.
+
+First let's go through a small history of keyboards I've previously used.
+Unfortunately I don't actually have pictures of them as I don't have the habit
+to take pictures of things (which I should reconsider!). Briefly, the complete
+list is the following:
+
+1. IBM Model M
+2. ThinkPad X230
+3. HyperX Alloy FPS Pro (Cherry MX Blue)
+4. Keychron K2V2 (Cherry MX Red)
+5. Corne V3 (failed attempt, the PCB wasn't delivered)
+6. SZA Moonlander Mark I
+
+*** Previously used keyboards
+
+Let's talk about the keyboards I have owned for the past decade.
+There was a place near (São Paulo is huge but everything is close if you can
+walk to the subway) my work called /Santa Efigênia/. At the time, this was the
+biggest place to go look after tech gadgets here in São Paulo.
+
+As all places like this, there were a lot of second-hand shops. Places that
+bought boxes after boxes of old corporate hardware. And this is how I got my
+hands on an *[[https://en.wikipedia.org/wiki/Model_M_keyboard][IBM Model M]]*! I'm going to be honest with you, I didn't know it was
+a /rare/ keyboard nor that it was an icon of some sort. I just liked the design
+and bought it for a cheap price as it was the cooler PS/2 keyboard I could find
+there.
+
+After selling my /Model M/ way cheaper than I should (😭) I got a *[[https://en.wikipedia.org/wiki/ThinkPad_X_series#X230][ThinkPad
+X230]]* that I used for about 10 years or so. I really liked the feeling of the
+keyboard and even tried to mod it to use the X220 but I have the unpopular
+opinion that the X230 has the best keyboard.
+
+While using my /X230/ I finally discovered what a mechanical keyboard is +and
+instantly regretted my decisions on the /Model M/+ and got a *[[https://row.hyperx.com/pt-br/products/hyperx-alloy-fps-pro-mechanical-gaming-keyboard][HyperX Alloy FPS
+Pro]]* with /Cherry MX Blue/ switches for a steal. For the price I paid it was an
+actually OK keyboard, however the full price was not worth it in my opinion. I
+found the switch too heavy for hours of typing and the sound was just... weird.
+I can't explain but for me it was not that pleasant type on it. Anyway, I ended
+up selling it too.[fn:10]
+
+*** Current keyboard
+
+My current keyboard is the [[https://www.keychron.com/products/keychron-k2-hot-swappable-wireless-mechanical-keyboard][Keychron K2 Version 2]]. It's Wireless, Hot-swappable
+(meaning that I can /swap/ the switches), Compact layout (84 keys[fn:11]) and
+Gateron G Red Switch (pre-lubed).
+
+Some things I learned with this keyboard is that I more fond of linear switches
+than clicky/tactile ones. The thing that bothered me the most is that the
+keycaps accumulated a lot of grease and started to get too shiny[fn:12].
+
+# TODO add a picture of my keychron
+
+*** Future Keyboards
+**** Corne V3
+
+One of the first things you discover when you start to look after ergonomic
+keyboards is that you can build one yourself. There is a multitude of
+communities, projects and contents over the internet.
+
+I really liked some models:
+
+1. [[https://github.com/davidphilipbarr/Sweep][Sweep]] is a /34 keys/ split keyboard. I wanted a bit more keys, so I
+   discarded this one.
+2. [[https://github.com/diepala/cantor/][Cantor]] is a /42 keys/ split keyboard. The problem with this one is that I
+   couldn't find the required low-profile switches for cheap, so I discarded
+   this option. However, it was my favorite design!
+3. [[https://github.com/foostan/crkbd][Corne]] is a /36 keys/ split keyboard. This is probably the most famous split
+   keyboard. I chose it because it was basically the cheapest option for me and
+   also had more keys than Sweep.
+
+Although I bought everything needed to start soldering the Corne together, my
+country's post office probably lost my PCB during delivery. So I don't have much
+to say about, if they happen to deliver it I might write about my experience
+soldering it or just straight out buy the [[https://keyhive.xyz/shop/corne-v3][complete kit from KeyHive]].
+
+**** SZA Moonlader Mark I
+
+At the moment I'm waiting for my [[https://www.zsa.io/moonlander/][Moonlander SZA Mark I]] to arrive. I didn't do
+much research on the keyboard as I wasn't intending on buying one (too expensive
+here) and instead I got one as a gift! Given this, I thought it would be cool to wait
+for a cool unboxing experience to a novel technology for me.
+
+# TODO add a picture of my moonlander with the keycaps, don't forget to link the keycaps
+
+*** Drinking the Colemak Kool-Aid
+
+Considering this huge introduction, my conclusion was that I should probably
+take advantage of this new keyboard form I'm getting and learn a new keyboard
+layout. This might give me some benefits upon my wrist injuries and make typing
+less painful.
+
+I was between [[https://en.wikipedia.org/wiki/Dvorak_keyboard_layout][Dvorak]] and [[https://colemak.com/][Colemak]] but the thing is, all the discussions around
+these layouts seemed to be mostly about personal preferences so I decided to
+pick one with the most sensible technique: *the coin flip* and the coin told me
+to go with Colemak.
+
+Through my small research I found out that Colemak ships by default on most
+Linux distros and it works very good with other languages (Brazilian Portuguese
+🇧🇷).
+
+I guess that the only thing left is to practice typing on it now!
+
+** Implementing Correlation IDs in F# with Giraffe and Serilog
+:PROPERTIES:
+:EXPORT_DATE: 2022-08-27
+:EXPORT_FILE_NAME: implementing-correlation-ids-fsharp-giraffe-serilog
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :slug implementing-correlation-ids-fsharp-giraffe-serilog
+:END:
+#+begin_description
+Adding a unique ID to each ASP.NET request/response in F# with Serilog.
+#+end_description
+
+#+attr_html: :title São Paulo's Penha subway station. (2022-08-03)
+[[/img/2022-08-03-penha-station.jpg]]
+
+I spent a stupid amount of time trying to setup an [[https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-6.0][ASP.NET Middleware]] to handle
+correlation IDs on requests. I must confess that I just got my first .NET *and*
+F#[fn:17] job, therefore most of the time spent was just getting used to the
+whole ecosystem. However during my trial and error I saw a bunch of blog posts
+showing me how to do this in different manners and a lot discussions about the
+correct order to implement things.
+
+#+begin_quote
+A correlation ID is a unique ID that is assigned to every transaction. So, when
+a transaction becomes distributed across multiple services, we can follow that
+transaction across different services using the logging information. --- Gaurav
+Kumar Aroraa, Lalit Kale and Kanwar Manish
+#+end_quote
+
+This was written with the following versions:
+
+- .NET SDK 6.0.400
+- Giraffe 6.0.0 - =dotnet add package Giraffe -v 6.0.0=
+- Serilog 2.11.0 - =dotnet add package Serilog -v 2.11.0=
+- Serilog.AspNetCore - =dotnet add package Serilog.AspNetCore -v 6.0.1=
+
+*** Importing the needed modules
+Let's get started by importing all the needed packages:
+
+#+begin_src fsharp
+open System
+open Microsoft.AspNetCore.Builder
+open Microsoft.AspNetCore.Http
+open Microsoft.Extensions.DependencyInjection
+open Microsoft.Extensions.Hosting
+open Microsoft.AspNetCore.Hosting
+
+open Giraffe
+open Serilog
+open Serilog.Context
+#+end_src
+
+*** Starting the web host
+Differently from [[https://saturnframework.org/][Saturn]], Giraffe doesn't have a [[https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/computation-expressions][computation expression]] to
+configure our web host. With that in mind, the code below must do the job.
+
+#+begin_src fsharp
+module Entry =
+    open Configuration
+
+    Log.Logger <-
+        LoggerConfiguration()
+            .Enrich.FromLogContext()
+            .WriteTo.Console(
+                outputTemplate = "[{Timestamp:HH:mm:ss} {CorrelationId} {Level:u3}] {Message:lj}{NewLine}{Exception}"
+            )
+            .CreateLogger()
+
+    [<EntryPoint>]
+    let main args =
+        Host
+            .CreateDefaultBuilder(args)
+            .ConfigureWebHost(configureWebHost)
+            .UseSerilog()
+            .Build()
+            .Run()
+
+        0
+#+end_src
+
+The key parts of the code are:
+
+- =.Enrich.FromLogContext()=
+- The =outputTemplate= containing the =CorrelationId= property
+
+We will define the =configureWebHost= in another module called =Configuration=.
+This same module contains other helper functions related to the Host
+configuration.
+
+#+begin_src fsharp
+module Configuration =
+    let configureApp (builder: IApplicationBuilder) =
+        builder
+            .UseMiddleware<Middleware.CorrelationId>()
+            .UseGiraffe Endpoint.router
+
+    let configureServices (services: IServiceCollection) = services.AddGiraffe() |> ignore
+
+    let configureWebHost (builder: IWebHostBuilder) =
+        builder
+            .Configure(configureApp)
+            .ConfigureServices(configureServices)
+            .UseKestrel()
+            .UseUrls([| "http://0.0.0.0:8000" |])
+            .UseWebRoot("/")
+        |> ignore
+#+end_src
+
+Here we can see a =Middleware.CorrelationId= being implemented as an ASP.NET
+Middleware.
+
+*** Implementing the middleware
+The mechanism of this middleware is quite simple. One of the possible ways to
+implement a correlation ID propagation on web APIs is to pass a unique value as
+request header. In our case, it will be passed around on a header key called
+=X-Correlation-Id=.
+
+#+begin_src fsharp
+module Middleware =
+    type CorrelationId(next: RequestDelegate) =
+        member this.Invoke(context: HttpContext) =
+            let headerName = "X-Correlation-Id"
+            let logPropertyName = "CorrelationId"
+
+            let success, value =
+                context.Request.Headers.TryGetValue headerName
+
+            let correlationId =
+                if success
+                then value.ToString()
+                else Guid.NewGuid().ToString()
+
+            context.Response.Headers.Add(headerName, correlationId)
+
+            using (LogContext.PushProperty(logPropertyName, correlationId)) (fun _ ->
+                next.Invoke(context)
+            )
+#+end_src
+
+The logic is the following:
+
+1. Check if there's a value on the =X-Correlation-Id= header key
+2. If there's a value, we turn this into a string. Otherwise, we create a Guid as the correlation id.
+3. Add the header to the response with the extracted correlation id
+
+*** Testing with an actual request
+For a testing purpose, let's create a /Hello, World!/ endpoint with a simple
+log.
+
+#+begin_src fsharp
+module Endpoint =
+    let HelloHandler: HttpHandler =
+        fun (next: HttpFunc) (ctx: HttpContext) ->
+            Log.Information "Helloing the world!"
+            json {| message = "Hello, World!" |} next ctx
+
+    let router = route "/" >=> HelloHandler
+#+end_src
+
+Doing a simple request through a web browser should return a basic ={ "message":
+"Hello, World!" }= json text and show a your console should show the correlation
+id of our request.
+
+#+begin_example
+[20:34:49  INF] Application started. Press Ctrl+C to shut down.
+[20:34:49  INF] Hosting environment: Production
+[20:34:49  INF] Content root path: /home/user/foo/barr
+[20:34:49  INF] Request starting HTTP/1.1 GET http://localhost:8000/ - -
+[20:34:49 fe7b6dd7-eec4-4792-9fda-de814ef5dd14 INF] Helloing the world!
+[20:34:50  INF] Request finished HTTP/1.1 GET http://localhost:8000/ - - - 200 27 application/json;+charset=utf-8 1126.8972ms
+#+end_example
+
+** Building a Dell PowerEdge T410 NAS with NixOS and ZFS
+:PROPERTIES:
+:EXPORT_DATE: 2022-09-06
+:EXPORT_FILE_NAME: building-dell-poweredge-nas
+:END:
+#+begin_description
+My journey into the sysadmin rabbithole with a personal NAS.
+#+end_description
+
+For some time I've been thinking about getting a NAS for personal usage.
+However, most of the /prebuilt/ solutions are too expensive here and they don't
+even come with hard drives... I then decided to research a cheap way to build it
+my own.
+
+One famous guide for home-built NAS is the [[https://forums.serverbuilds.net/t/guide-nas-killer-5-0/3072][NAS KILLER]] series by [[https://old.reddit.com/user/JDM_WAAAT/][u/JDM_WAAAT]]. I
+tried to find most of the parts shown there but I always missed one as it was
+either not available or couldn't be shipped here. This way my only choice was to
+look at the prebuilt options they mention on the series. I saw a mention of some
+models of Dell PowerEdges and decided to take a look at the local second-hand
+market.
+
+There it was, a Dell PowerEdge T410 for R\$400 (equivalent of \$75) including
+shipping. Such a steal considering that they go fora bout  R\$3.5k here! The
+specs are the following:
+
+| Host   | Dell PowerEdge 410                             |
+| CPU    | Intel Xeon X5660 (12) @ 1.596GHz               |
+| GPU    | Matrox Electronics Systems Ltd. PowerEdge T410 |
+| Memory | 32GB DDR3 ECC 1600MHz                          |
+
+You can see the whole cost of this setup below:
+
+| Date (in days)   | Item                                | Price (R$) |
+|------------------+-------------------------------------+------------|
+| <2022-09-07 Wed> | Dell PowerEdge T410 [fn:15]         |        400 |
+| <2022-09-07 Wed> | [[https://pt.aliexpress.com/item/1005004253108255.html][Dell PERC H200]] [fn:16]              |     166.96 |
+| <2022-09-09 Fri> | [[https://produto.mercadolivre.com.br/MLB-2199914105-hdd-dell-4tb-sas-6gbps-rpm-72k-35-st4000nm0023-pn-0drmyh-_JM][5x Seagate ST4000NM0023 4TB]] [fn:18] |       4455 |
+| <2022-10-20 Thu> | [[https://pt.aliexpress.com/item/32840300151.html][32GB 1600MHz RAM DDR3 ECC (16x2)]]    |     161.51 |
+|------------------+-------------------------------------+------------|
+| 43               |                                     |    5183.47 |
+#+TBLFM: @>$1=@-1-@2::@>$3=vsum(@2..@-1)
+
+*** Upgrading the PowerEdge RAID Controller (PERC)
+:PROPERTIES:
+:ID:       33047bb2-b54f-40e5-860e-4740aafbcb1e
+:END:
+
+Unfortunately my server came with a [[https://www.dell.com/support/kbdoc/en-us/000131648/list-of-poweredge-raid-controller-perc-types-for-dell-emc-systems][Dell PERC 6/I]] which only supports disks as
+big as 2TB. Doing some research over the internet I found out that I had two
+options of upgrades here: H200 or H700.
+
+As I'm going to use ZFS as my filesystem, I went with H200 because I can just
+use it in IT mode (as JBOD) making it possible to pass all the drives directly
+to my ZFS pool without the hardware interfering much.
+
+Now something that I want to confess here... I was afraid to buy this server and
+have to pay enterprise prices for hardware or even restrict my ability to
+expand/replace the system. However, I learned that I can use my new H200 PERC on
+a regular desktop[fn:19] with some special cables you can buy for cheap so I
+might even be able to build a smaller machine with the same amount of disks and
+a more balanced power/comsuption ratio.
+
+*** Setting up SSH
+
+The first thing I do on the NixOS installation media is to change the ~nixos~
+user password to proceed the installation in another computer:
+
+#+begin_src shell
+$ passwd
+
+# over the other computer
+$ ssh nixos@<ip>
+#+end_src
+
+*** Configuring the disks
+
+Fortunately, using ZFS with NixOS is a breeze. It has a really good support and
+I can even boot from a ZFS pool. Let's start by listing the disks and getting
+their IDs:
+
+#+begin_src shell
+[nixos@nixos:~]$ ls -al /dev/disk/by-id/
+total 0
+drwxr-xr-x 2 root root 340 Nov  2 15:12 .
+drwxr-xr-x 7 root root 140 Nov  2 14:54 ..
+lrwxrwxrwx 1 root root   9 Nov  2 15:12 scsi-35000c500571d23bf -> ../../sdb
+lrwxrwxrwx 1 root root   9 Nov  2 15:12 scsi-35000c500964ac36f -> ../../sdd
+lrwxrwxrwx 1 root root   9 Nov  2 15:12 scsi-35000c500964b5e7b -> ../../sdc
+lrwxrwxrwx 1 root root   9 Nov  2 15:12 scsi-35000c500964b723b -> ../../sdf
+lrwxrwxrwx 1 root root   9 Nov  2 15:12 scsi-35000c500964bbbd3 -> ../../sde
+#+end_src
+
+We should use the disks IDs on our ZFS pool, this will avoid some headaches in
+the future as switching the HDs bays and ZFS losing tracks of which disk is
+which. Ok, now that we have the IDs, let's wipe them to make sure we don't have
+any filesystems on them already.
+
+#+begin_src shell
+DISK1=/dev/disk/by-id/scsi-35000c500571d23bf
+DISK2=/dev/disk/by-id/scsi-35000c500964ac36f
+DISK3=/dev/disk/by-id/scsi-35000c500964b5e7b
+DISK4=/dev/disk/by-id/scsi-35000c500964b723b
+DISK5=/dev/disk/by-id/scsi-35000c500964bbbd3
+
+sudo wipefs -af $DISK1
+sudo wipefs -af $DISK2
+sudo wipefs -af $DISK3
+sudo wipefs -af $DISK4
+sudo wipefs -af $DISK5
+#+end_src
+
+Now the last bit missing is the partition layout:
+
+#+begin_src shell
+sudo sgdisk -n3:1M:+512M -t3:EF00 $DISK1
+sudo sgdisk -n1:0:0 -t1:BF01 $DISK1
+#+end_src
+
+After this we just copy it to the other drives:
+
+#+begin_src shell
+sudo sfdisk --dump $DISK1 | sudo sfdisk $DISK2
+sudo sfdisk --dump $DISK1 | sudo sfdisk $DISK3
+sudo sfdisk --dump $DISK1 | sudo sfdisk $DISK4
+sudo sfdisk --dump $DISK1 | sudo sfdisk $DISK5
+#+end_src
+
+**** Formatting
+
+***** Boot
+
+Starting with the boot partition:
+
+#+begin_src shell
+sudo mkfs.vfat $DISK1-part3
+sudo mkfs.vfat $DISK2-part3
+sudo mkfs.vfat $DISK3-part3
+sudo mkfs.vfat $DISK4-part3
+sudo mkfs.vfat $DISK5-part3
+#+end_src
+
+***** ZFS
+
+Considering that I want two disk parity on my setup, I'm going with a /raidz2/ pool.
+
+#+begin_src shell
+sudo zpool create -o ashift=12 \
+                  -O dnodesize=auto \
+                  -O normalization=formD \
+                  -O relatime=on \
+                  -O acltype=posixacl \
+                  -O xattr=sa \
+                  -O mountpoint=none \
+                  -O compression=lz4 \
+                  -O recordsize=1M \
+                  zroot raidz2 \
+                  $DISK1-part1 $DISK2-part1 $DISK3-part1 $DISK4-part1 $DISK5-part1
+#+end_src
+
+And the following datasets:
+
+#+begin_src shell
+sudo zfs create -o mountpoint=none zroot/root
+sudo zfs create -o mountpoint=legacy zroot/root/nixos
+sudo zfs create -o mountpoint=legacy zroot/var
+sudo zfs create -o mountpoint=legacy zroot/var/media
+sudo zfs create -o mountpoint=legacy zroot/var/torrents
+sudo zfs create -o mountpoint=legacy zroot/var/samba
+sudo zfs create -o mountpoint=legacy zroot/home
+#+end_src
+
+**** Mounting everything together
+
+Mounting is the easiest part of the whole process. However, we need the directories to be there in the first place.
+
+#+begin_src shell
+sudo mount -t zfs zroot/root/nixos /mnt
+sudo mkdir /mnt/home
+sudo mkdir -p /mnt/var/lib/{torrents,media,samba}
+sudo mkdir /mnt/boot
+#+end_src
+
+Now it's just a matter of /mapping/ everything to the right place:
+
+#+begin_src shell
+sudo mount -t zfs zroot/home /mnt/home
+sudo mount -t zfs zroot/var /mnt/var
+sudo mount -t zfs zroot/var/media /mnt/var/lib/media
+sudo mount -t zfs zroot/var/torrents /mnt/var/lib/torrents
+sudo mount -t zfs zroot/var/samba /mnt/var/lib/samba
+sudo mount $DISK1-part3 /mnt/boot
+#+end_src
+
+*** Finishing up
+
+The only step left is to generate the NixOS configuration with the filesystem layout and install the system:
+
+#+begin_src shell
+sudo nixos-generate-config --root /mnt
+
+# don't forget to get your machine id and put it on `networking.hostId`
+head -c 8 /etc/machine-id
+
+sudo nixos-install
+#+end_src
+
+** Debian's blank screen after suspending on Thinkpad T495
+:PROPERTIES:
+:EXPORT_DATE: 2022-12-09
+:EXPORT_FILE_NAME: debian-blank-screen-thinkpad-t495
+:END:
+
+#+begin_description
+How I fixed the issue of getting a blank screen after suspending on Debian 11.
+#+end_description
+
+*tl;dr:* ~sudo apt install firmware-amd-graphics~
+
+After working on a huge legacy project that demanded a beefy desktop
+at the company I can finally work from my laptop through Virtual
+Machines. These are the specs for it:
+
+#+begin_src
+CPU: AMD Ryzen 7 PRO 3700U
+RAM: 40GB
+DISK: 1TB NVMe SSD
+#+end_src
+
+It's not news that I love NixOS and run it on all my devices. However,
+for some reason I can't really explain or reason upon, I prefer to run
+[[https://www.debian.org/][Debian]] on my laptop. I went ahead and
+installed it but... after letting it sit for a few minutes I faced an
+issue: resuming from /Suspend/ gave me a blank screen with no option
+out of it other than force rebooting.
+
+After a *long* research and multiple attempts testing some ~GRUB_CMDLINE_LINUX~[fn:20] arguments, I finally found the solution:
+
+#+begin_src
+sudo apt install firmware-amd-graphics
+#+end_src
+
+** Custom JWT Authentication with F# and ASP.NET
+:PROPERTIES:
+:EXPORT_DATE: 2022-12-20
+:EXPORT_FILE_NAME: custom-jwt-authentication-fsharp-asp-net
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :slug custom-jwt-authentication-fsharp-asp-net
+:END:
+
+At my ~$CURRENT_JOB~ we are working on introducing a new back-end
+service, and as usual, teams entirely composed of new-ish employees
+face some hard time discovering all the small pieces required to make
+the gears turn.
+
+This time the challenge was to implement the authentication layer. It
+is actually quite simple as it is just a /regular JWT/ token, but the
+devil's in the details:
+
+- the token is on a custom header called `x-jwt-payload`
+- the token does not contain the ~alg~ attribute
+- the validation is done internally at the reverse proxy level
+
+OK, this doesn't sound /too/ bad. However, it does take some tools
+from our hands... ASP.NET has the [[https://devblogs.microsoft.com/dotnet/jwt-validation-and-authorization-in-asp-net-core/][UseJwtBearerAuthentication
+middleware]] that would take care of this workflow for us, but this
+requires access to the /Authority/[fn:14] server which we don't have,
+and also requires the ~alg~ attribute to decode the token.
+
+Having said that, let's develop another middleware to take of our
+authentication. I tried to reach the official documentation on how to
+write a custom authentication scheme for ASP.NET but it was less than
+useless. Then I tried to reach for blog posts, Stack Overflow
+questions and open source projects, but they all seemed so convoluted
+for such a small feature... When I was almost going to /brute force/
+the solution out of my IDE through auto completion and debugging, [[https://stackoverflow.com/a/46568439][this
+answer]] appeared!
+
+That's it! This is what I needed, a really concise example going
+through each step of the authentication workflow. I wonder why
+Microsoft doesn't have something like this on their docs. Or at least
+not something easy to find there.
+
+Alright, time to implement piece by piece of this code. Starting with
+the Authentication scheme definition:
+
+#+begin_src fsharp
+  type CustomJwtAuthenticationOptions() =
+      inherit AuthenticationSchemeOptions()
+      
+      member this.DefaultScheme = "CustomJwtAuthentication"
+      member this.HeaderName = "x-jwt-payload"
+#+end_src
+
+The next missing part is the [[https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1?view=aspnetcore-7.0][Authentication Handler]]. For this, I'll
+use the great [[https://demystifyfp.gitbook.io/fstoolkit-errorhandling][FsToolkit.ErrorHandling]] package to help structure the
+code, so do a ~dotnet add package FsToolkit.ErrorHandling~.
+
+#+begin_src fsharp
+  type CustomJwtAuthenticationHandler
+      (
+          options: IOptionsMonitor<CustomJwtAuthenticationOptions>,
+          logger: ILoggerFactory,
+          encoder: UrlEncoder,
+          clock: ISystemClock
+      ) =
+      inherit AuthenticationHandler<CustomJwtAuthenticationOptions>(options, logger, encoder, clock)
+
+      override this.HandleAuthenticationAsync() =
+          result {
+              let! token = this.RetrieveTokenValue this.Options.HeaderName
+              let! jwt = this.DecodeToken token
+
+              let name =
+                  let firstName =
+                      jwt.Item("firstName") |> string
+                  let lastName =
+                      jwt.Item("lastName") |> string
+
+                  $"{firstName} {LastName}"
+
+              let claims =
+                  [ Claim(ClaimTypes.NameIdentifier, jwt.Sub)
+                    Claim(ClaimTypes.Name, name) ]
+
+              let claimIdentity =
+                  ClaimsIdentity(claims, this.Options.DefaultSchemeName)
+
+              let ticket =
+                  AuthenticationTicket(
+                      ClaimsPrincipal(claimsIdentity),
+                      AuthenticationProperties(),
+                      this.Options.DefaultSchemeName
+                  )
+
+              return Task.FromResult(AuthenticateResult.Success(ticket))
+          }
+          |> function
+              | Ok value -> value
+              | Error e -> Task.FromResult(AuthenticateResult.Fail(e))
+#+end_src
+
+And that's it! I now have the custom JWT authentication I needed for
+my ASP.NET application. Of course, we are missing some helper methods
+I used on the code. Let's take a look at them.
+
+This function is used to extract the Base 64 token from the header.
+
+#+begin_src fsharp
+  member private this.RetrieveTokenValue name =
+      let found, value =
+          this.Request.Headers.TryGetValue(name)
+
+      if not found then
+          Error $"Missing header '{name}'"
+      else
+          value.ToString()
+          |> String.IsNullOrWhiteSpace
+          |> function
+              | false -> Ok value
+              | true -> Error $"Missing header '{name}' value"
+#+end_src
+
+Now the function responsible to decode the JWT token itself.
+
+#+begin_src fsharp
+  member private this.DecodeToken token =
+      try
+          let jwt =
+              token
+              |> Convert.FromBase64String
+              |> Encoding.UTF8.GetString
+              |> Jwt.JwtPayload.Deserialize
+
+          Ok jwt
+      with
+      | exn -> Error $"Error decoding token: {exn.Message}"
+#+end_src
+
+OK, *now* we have everything needed to use our brand new
+authentication scheme. How can we plug this together on our
+application's startup? Considering that we're using [[https://saturnframework.org/][Saturn]] to
+configure it, it would look just like this:
+
+#+begin_src fsharp
+  let configureApp (app: IApplicationBuilder) =
+      app.UseAuthentication()
+
+  let configureServices (services: IServiceCollection) =
+      services
+          .AddAuthentication(
+              CustomJwtAuthenticationOptions().DefaultScheme
+          )
+          .AddScheme<CustomJwtAuthenticationOptions, CustomJwtAuthenticationHandler>(
+              CustomJwtAuthenticationOptions().DefaultScheme, (fun options -> ())
+          )
+      |> ignore
+
+      services
+
+  let main _ =
+      let app =
+          application {
+              // ...
+              app_config configureApp
+              service_config configureServices
+          }
+          run app
+#+end_src
+
+** Setting up my new Synology DS1520+
+:PROPERTIES:
+:EXPORT_DATE: 2022-12-26
+:EXPORT_FILE_NAME: setting-up-synology-ds1520
+:END:
+
+#+begin_description
+Using a Virtual Machine and Docker containers to setup my Synology
+home server.
+#+end_description
+
+#+attr_html: :title The DS1520+, 5x4TB IronWolf ST4000VN008 and 1TB SKC3000S1024G NVMe. (2022-12-26)
+[[/img/2022-12-26-synology.webp]]
+
+Some time ago [[*Building a Dell PowerEdge T410 NAS with NixOS and ZFS][I built a NAS for personal usage]]. It has been a blessing
+in my life as I'm not afraid of losing data or going out of storage
+anymore. However, due to some unfortunate events, I don't have a place
+to run it other than my bedroom, but it is too noisy to keep it beside
+my bed.
+
+I decided to migrate the server to a smaller form so that I could rest
+comfortable without a running computer on my ears. Interestingly, in
+Brazil we don't have much options for small factor cases such as ITX.
+Considering that I wouldn't be able to build it my own, I decided to
+go with a Synology DS1520+.
+
+*** Software
+
+Now, I'm going to be honest here, the software is absolutely awesome.
+Personally, I don't like to use closed-source software (and I'll show
+you one of the reasons in a few moments), but the disk and backup
+management is way better than something I could come up with. I don't
+know how long they will support my model and its software but for the
+time being I'm enjoying it.
+
+Partitioning and formatting was always a struggle for me as I can't
+decide for myself if I should go with Btrfs or ZFS; which RAID setup
+or how many datasets to create. This was all automatically handled for
+me.
+
+*** Hardware
+
+This is the part that sucks the most about the device. I mean, the
+hardware is definitely reasonable for its original use case: file
+storage. It has a [[https://www.intel.com/content/www/us/en/products/sku/197305/intel-celeron-processor-j4125-4m-cache-up-to-2-70-ghz/specifications.html][Celeron J4125]] with 8GB DDR4 ECC RAM (up to 20GB).
+This is more than enough for my needs.
+
+What about the noise? I can't hear it at all! The only noise that it
+introduces to the room is actually from it hard-drives, but nothing
+loud enough to disrupt my sleep as it's barely noticeable.
+
+Something that I think I shouldn't have bought is the NVMe drive for
+caching. I thought that by running a bunch of media software I'd get
+better performance caching reads on the SSD. Well, it turns out that I
+don't actually have this much reads and I only hit a cache of 5GB on a
+daily-basis.
+
+*** What about the containers?
+
+Synology provides an official Docker application at its /Package
+Center/ that you can just install and go crazy with it... or not. I
+might have done everything wrong and tried to circumvent the software
+in a way that is not recommended. However, every time I tried to run a
+container that exposes an HTTP server, I got redirected to the port
+~5000~ by my device's NGINX. I spent a ridiculous amount of time
+trying to change this behavior but I thought that it would be easier
+to setup this in a way that I'm used to.
+
+**** Alpine Linux for the rescue
+
+Feeling defeated by Synology's software, I decided to try a /different
+approach/: a regular Linux distribution. As my
+hardware is really limited, I want to use as less resources as
+possible. For this reason I chose to go with [[https://www.alpinelinux.org/][Alpine Linux]][fn:21] as the
+backbone of my virtual machine.
+
+There's nothing novel about running containers with Docker and
+~docker-compose~, so I'm not going to dig deeper on setting this up.
+
+***** Using NFS as the storage
+
+Docker has a poorly documented way of setting up an NFS share directly
+on the container and due to this I assume they don't want you to use
+this feature 😜. Anyway, mounting an NFS share is much easier than
+going trial and error with docker volumes over NFS.
+
+I created the NFS share on Synology's dashboard and then on my alpine
+machine I ran:
+
+#+begin_src shell
+  mkdir -p /mnt/docker
+  mount -t nfs <ip>:/volume1/<share-dir> /mnt/docker
+#+end_src
+
+I also added this line on my ~/etc/fstab~ file to automatically mount
+the NFS volume after boot:
+
+#+begin_src shell
+  <ip>:/volume1/<share-dir> /mnt/docker nfs _netdev 0 0
+#+end_src
+
+This might not be obvious at this point, but doing things this way is
+awesome because I can just mount volumes pointing to ~/mnt/docker~ and
+backup them through [[https://www.synology.com/en-global/dsm/feature/hyper_backup][Hyper Backup]] on [[https://www.backblaze.com/b2/cloud-storage.html][Backblaze B2]].
+
+#+begin_src yaml
+  caddy:
+    image: caddy:2.6
+    # ...
+    volumes:
+      - /mnt/docker/caddy/Caddyfile:/etc/caddy/Caddyfile
+      # ...
+#+end_src
+
+This setup gives me the most out of everything I tried so far:
+
++ Flexibility :: I configure my services through a regular Linux
+  system with extensive documentation.
++ Security :: Hyper Backup assures me things are backed up correctly.
++ Portability :: They are regular containers, I can easily migrate to another host
+
+*** Conclusion
+
+My current experience has been positive. Although, I'm still kind of
+skeptical about the longevity of the backup software. It is easy to
+use and makes incremental backups a breezy to setup, but I still want
+the freedom to restore on a Linux server without much trouble. Well,
+this is mostly a personal desire and I understand this device was not
+made for my use case! 😁
+
+** New Year's Resolutions for 2023
+:PROPERTIES:
+:EXPORT_DATE: 2023-01-01
+:EXPORT_FILE_NAME: new-years-resolution-for-2023
+:END:
+
+#+begin_description
+My /glorified/ to-do list for 2023
+#+end_description
+
+I have never done a New Year's resolution before... well, at least not
+a public one written down in a blog post! 😁
+
+- Content
+  - More blog posts
+  - Write more software (if possible, in F#)
+  - Take more pictures
+- Habits
+  - Turn [[https://www.gwern.net/Spaced-repetition][spaced repetition]] into a habit
+  - Read at least a book each month
+- Knowledge
+  - Be able to hold at least a basic conversation in French
+- Gym-related goals
+  - Squat :: 150kg for 5 reps.
+  - Deadlift :: 200kg MR.
+  - Benchpress :: 100kg for 5 reps.
+  - Overhead Press :: 60kg for 5 reps.
+- Travel-related goals
+  - Nationally :: Visit [[https://en.wikipedia.org/wiki/Ouro_Preto][Ouro Preto]]; visit São Paulo's countryside;
+    discover new restaurants
+  - Internationally :: Visit Japan or an European country
+
+Being completely honest, this is a lot for a single year. Even more for the traveling part.
+But, it's how they say: /go big or go home/!
+
+** TODO Photo dump - (2022-09-17)
+:PROPERTIES:
+:EXPORT_DATE: 2022-09-17
+:EXPORT_FILE_NAME: photo-dump-2022-09-17
+:END:
+
+On September 17th 2022 I had a meal with my beloved nana on a Vietnamese
+restaurant called Phoviet located at /Alameda Santos, 1202 - Jardim Paulista,
+São Paulo - SP, 01418-100/ and after that went for a quick walk on Avenida
+Paulista.
+
+# TODO scan instax mini pictures
+
+** TODO Photo dump - (2022-10-30)
+:PROPERTIES:
+:EXPORT_DATE: 2022-10-30
+:EXPORT_FILE_NAME: photo-dump-2022-10-30
+:END:
+
+* Footnotes
+
+[fn:1] https://commonmark.org/
+
+[fn:2] This post did indeed deteriorate quickly as 2 years later I'm writing this blog on [[https://www.gnu.org/software/emacs/][GNU Emacs]] with [[https://orgmode.org/][Org Mode]] + [[https://ox-hugo.scripter.co/][ox-hugo]] and hosting it on [[https://srht.site/][sourcehut pages]].
+
+[fn:3] https://nixos.org
+
+[fn:4] https://nixos.wiki/wiki/NixOS_on_ARM/Raspberry_Pi_4#Configuration
+
+[fn:5] https://blog.replit.com/nix
+
+[fn:6] https://shopify.engineering/what-is-nix
+
+[fn:7] https://hercules-ci.com/
+
+[fn:8] For the past few weeks it has been even better with the work of
+[[https://github.com/thiagokokada][github:thiagokokada]] on the [[https://github.com/nix-community/nix-doom-emacs/][github:nix-community/nix-doom-emacs]] repository.
+Really, kudos for taking care of this project! 🎉
+
+[fn:9] [[id:143b30fd-8d32-4e67-9e13-5bf8a47ea8e2][Starting a personal monorepo]]
+
+[fn:13] I've never learned how to touch type correctly and as such I only use at most 3 fingers on each hand.
+
+[fn:10] [[https://github.com/yuri-potatoq][Yuri]] was the friend of mine that bought it and actually liked to type on it. Different people, different switch tastes. 😊
+
+[fn:11] Most known as a 75% layout.
+
+[fn:12] I fixed this with a cheap [[https://pt.aliexpress.com/item/32946133227.html][keyset from AliExpress]] that meant to go to my Corne V3.
+
+[fn:17] It has been my first /production/ encounter with functional programming and I'm loving it! 🤓
+
+[fn:15] This hardware is actually overkill for this build but I couldn't find anything better for such a price.
+
+[fn:16] Unfortunately my machine arrived with a Dell PERC 6/i that has a 2TB per disk limit.
+
+[fn:18] Unfortunately hard drives are *really* expensive in Brazil due to taxes... a ~$35 drive costing near $200 is just insane!
+
+[fn:19] A lot of people use the LSI 9240-8I HBA on regular desktops.
+
+[fn:20] Did you know that setting ~splash~ on ~GRUB_CMDLINE_LINUX_DEFAULT~ gives you a cute splash screen instead of a tty asking for your password to unlock your encrypted partition?
+
+[fn:14] The address of the token-issuing authentication server. The JWT bearer authentication middleware will use this URI to find and retrieve the public key that can be used to validate the token’s signature. It will also confirm that the iss parameter in the token matches this URI.
+
+[fn:21] They even provide an image made specifically for virtualization! 🎉
