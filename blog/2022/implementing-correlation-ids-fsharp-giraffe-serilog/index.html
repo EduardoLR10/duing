@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+  Implementing Correlation IDs in F# with Giraffe and Serilog
+
+    </title>
+    
+    <link rel="stylesheet" href="/css/main.min.2b661d17033c8e88dcb9551cb00d5235c93175108db6ef12ccc009cce52bdd00.css" /><meta property="og:title" content="Implementing Correlation IDs in F# with Giraffe and Serilog" />
+<meta property="og:description" content="Adding a unique ID to each ASP.NET request/response in F# with Serilog." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://glorifiedgluer.com/blog/2022/implementing-correlation-ids-fsharp-giraffe-serilog/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2022-08-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-08-27T00:00:00+00:00" />
+
+</head>
+  <body><nav>
+  <img
+    src="/img/nana-icons/shiba-computer-low.jpg"
+    alt="A shiba using the computer"
+    width="128"
+    height="128"
+  />
+  <h1>~glorifiedgluer</h1>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="/blogroll">Blogroll</a></li>
+  </ul>
+</nav>
+<main>
+  <h2>Implementing Correlation IDs in F# with Giraffe and Serilog
+    <small>
+      <time>August 27, 2022</time>
+    by ~glorifiedgluer
+
+
+    </small>
+  </h2><figure><img src="/img/2022-08-03-penha-station.jpg"/><figcaption>
+            <h4>São Paulo&#39;s Penha subway station. (2022-08-03)</h4>
+        </figcaption>
+</figure>
+
+<p>I spent a stupid amount of time trying to setup an <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-6.0">ASP.NET Middleware</a> to handle
+correlation IDs on requests. I must confess that I just got my first .NET <strong>and</strong>
+F#<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> job, therefore most of the time spent was just getting used to the
+whole ecosystem. However during my trial and error I saw a bunch of blog posts
+showing me how to do this in different manners and a lot discussions about the
+correct order to implement things.</p>
+<blockquote>
+<p>A correlation ID is a unique ID that is assigned to every transaction. So, when
+a transaction becomes distributed across multiple services, we can follow that
+transaction across different services using the logging information. &mdash; Gaurav
+Kumar Aroraa, Lalit Kale and Kanwar Manish</p>
+</blockquote>
+<p>This was written with the following versions:</p>
+<ul>
+<li>.NET SDK 6.0.400</li>
+<li>Giraffe 6.0.0 - <code>dotnet add package Giraffe -v 6.0.0</code></li>
+<li>Serilog 2.11.0 - <code>dotnet add package Serilog -v 2.11.0</code></li>
+<li>Serilog.AspNetCore - <code>dotnet add package Serilog.AspNetCore -v 6.0.1</code></li>
+</ul>
+<h2 id="importing-the-needed-modules">Importing the needed modules</h2>
+<p>Let&rsquo;s get started by importing all the needed packages:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fsharp" data-lang="fsharp"><span class="line"><span class="cl"><span class="k">open</span> <span class="nn">System</span>
+</span></span><span class="line"><span class="cl"><span class="k">open</span> <span class="nn">Microsoft.AspNetCore.Builder</span>
+</span></span><span class="line"><span class="cl"><span class="k">open</span> <span class="nn">Microsoft.AspNetCore.Http</span>
+</span></span><span class="line"><span class="cl"><span class="k">open</span> <span class="nn">Microsoft.Extensions.DependencyInjection</span>
+</span></span><span class="line"><span class="cl"><span class="k">open</span> <span class="nn">Microsoft.Extensions.Hosting</span>
+</span></span><span class="line"><span class="cl"><span class="k">open</span> <span class="nn">Microsoft.AspNetCore.Hosting</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">open</span> <span class="nn">Giraffe</span>
+</span></span><span class="line"><span class="cl"><span class="k">open</span> <span class="nn">Serilog</span>
+</span></span><span class="line"><span class="cl"><span class="k">open</span> <span class="nn">Serilog.Context</span>
+</span></span></code></pre></div><h2 id="starting-the-web-host">Starting the web host</h2>
+<p>Differently from <a href="https://saturnframework.org/">Saturn</a>, Giraffe doesn&rsquo;t have a <a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/computation-expressions">computation expression</a> to
+configure our web host. With that in mind, the code below must do the job.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fsharp" data-lang="fsharp"><span class="line"><span class="cl"><span class="k">module</span> <span class="nn">Entry</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">open</span> <span class="nn">Configuration</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nn">Log</span><span class="p">.</span><span class="n">Logger</span> <span class="o">&lt;-</span>
+</span></span><span class="line"><span class="cl">        <span class="n">LoggerConfiguration</span><span class="bp">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">Enrich</span><span class="o">.</span><span class="n">FromLogContext</span><span class="bp">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">WriteTo</span><span class="o">.</span><span class="n">Console</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                <span class="n">outputTemplate</span> <span class="o">=</span> <span class="s">&#34;[{Timestamp:HH:mm:ss} {CorrelationId} {Level:u3}] {Message:lj}{NewLine}{Exception}&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">CreateLogger</span><span class="bp">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">[&lt;</span><span class="n">EntryPoint</span><span class="o">&gt;]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">let</span> <span class="nv">main</span> <span class="n">args</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">        <span class="nn">Host</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">CreateDefaultBuilder</span><span class="o">(</span><span class="n">args</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">ConfigureWebHost</span><span class="o">(</span><span class="n">configureWebHost</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">UseSerilog</span><span class="bp">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">Build</span><span class="bp">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">Run</span><span class="bp">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">0</span>
+</span></span></code></pre></div><p>The key parts of the code are:</p>
+<ul>
+<li><code>.Enrich.FromLogContext()</code></li>
+<li>The <code>outputTemplate</code> containing the <code>CorrelationId</code> property</li>
+</ul>
+<p>We will define the <code>configureWebHost</code> in another module called <code>Configuration</code>.
+This same module contains other helper functions related to the Host
+configuration.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fsharp" data-lang="fsharp"><span class="line"><span class="cl"><span class="k">module</span> <span class="nn">Configuration</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">let</span> <span class="nv">configureApp</span> <span class="o">(</span><span class="n">builder</span><span class="o">:</span> <span class="n">IApplicationBuilder</span><span class="o">)</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">        <span class="n">builder</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">UseMiddleware</span><span class="o">&lt;</span><span class="nn">Middleware</span><span class="p">.</span><span class="n">CorrelationId</span><span class="o">&gt;</span><span class="bp">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">UseGiraffe</span> <span class="nn">Endpoint</span><span class="p">.</span><span class="n">router</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">let</span> <span class="nv">configureServices</span> <span class="o">(</span><span class="n">services</span><span class="o">:</span> <span class="n">IServiceCollection</span><span class="o">)</span> <span class="o">=</span> <span class="n">services</span><span class="o">.</span><span class="n">AddGiraffe</span><span class="bp">()</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">let</span> <span class="nv">configureWebHost</span> <span class="o">(</span><span class="n">builder</span><span class="o">:</span> <span class="n">IWebHostBuilder</span><span class="o">)</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">        <span class="n">builder</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">Configure</span><span class="o">(</span><span class="n">configureApp</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">ConfigureServices</span><span class="o">(</span><span class="n">configureServices</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">UseKestrel</span><span class="bp">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">UseUrls</span><span class="o">([|</span> <span class="s">&#34;http://0.0.0.0:8000&#34;</span> <span class="o">|])</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">UseWebRoot</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">|&gt;</span> <span class="n">ignore</span>
+</span></span></code></pre></div><p>Here we can see a <code>Middleware.CorrelationId</code> being implemented as an ASP.NET
+Middleware.</p>
+<h2 id="implementing-the-middleware">Implementing the middleware</h2>
+<p>The mechanism of this middleware is quite simple. One of the possible ways to
+implement a correlation ID propagation on web APIs is to pass a unique value as
+request header. In our case, it will be passed around on a header key called
+<code>X-Correlation-Id</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fsharp" data-lang="fsharp"><span class="line"><span class="cl"><span class="k">module</span> <span class="nn">Middleware</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">type</span> <span class="nc">CorrelationId</span><span class="o">(</span><span class="n">next</span><span class="o">:</span> <span class="n">RequestDelegate</span><span class="o">)</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">        <span class="k">member</span> <span class="n">this</span><span class="p">.</span><span class="nf">Invoke</span><span class="o">(</span><span class="n">context</span><span class="o">:</span> <span class="n">HttpContext</span><span class="o">)</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">            <span class="k">let</span> <span class="nv">headerName</span> <span class="o">=</span> <span class="s">&#34;X-Correlation-Id&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">let</span> <span class="nv">logPropertyName</span> <span class="o">=</span> <span class="s">&#34;CorrelationId&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">let</span> <span class="nv">success</span><span class="o">,</span> <span class="n">value</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">                <span class="n">context</span><span class="o">.</span><span class="n">Request</span><span class="o">.</span><span class="n">Headers</span><span class="o">.</span><span class="n">TryGetValue</span> <span class="n">headerName</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">let</span> <span class="nv">correlationId</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">success</span>
+</span></span><span class="line"><span class="cl">                <span class="k">then</span> <span class="n">value</span><span class="o">.</span><span class="n">ToString</span><span class="bp">()</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span> <span class="nn">Guid</span><span class="p">.</span><span class="n">NewGuid</span><span class="bp">()</span><span class="o">.</span><span class="n">ToString</span><span class="bp">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">context</span><span class="o">.</span><span class="n">Response</span><span class="o">.</span><span class="n">Headers</span><span class="o">.</span><span class="n">Add</span><span class="o">(</span><span class="n">headerName</span><span class="o">,</span> <span class="n">correlationId</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">using</span> <span class="o">(</span><span class="nn">LogContext</span><span class="p">.</span><span class="n">PushProperty</span><span class="o">(</span><span class="n">logPropertyName</span><span class="o">,</span> <span class="n">correlationId</span><span class="o">))</span> <span class="o">(</span><span class="k">fun</span> <span class="o">_</span> <span class="o">-&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">next</span><span class="o">.</span><span class="n">Invoke</span><span class="o">(</span><span class="n">context</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">)</span>
+</span></span></code></pre></div><p>The logic is the following:</p>
+<ol>
+<li>Check if there&rsquo;s a value on the <code>X-Correlation-Id</code> header key</li>
+<li>If there&rsquo;s a value, we turn this into a string. Otherwise, we create a Guid as the correlation id.</li>
+<li>Add the header to the response with the extracted correlation id</li>
+</ol>
+<h2 id="testing-with-an-actual-request">Testing with an actual request</h2>
+<p>For a testing purpose, let&rsquo;s create a <em>Hello, World!</em> endpoint with a simple
+log.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fsharp" data-lang="fsharp"><span class="line"><span class="cl"><span class="k">module</span> <span class="nn">Endpoint</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">    <span class="k">let</span> <span class="nv">HelloHandler</span><span class="o">:</span> <span class="n">HttpHandler</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fun</span> <span class="o">(</span><span class="n">next</span><span class="o">:</span> <span class="n">HttpFunc</span><span class="o">)</span> <span class="o">(</span><span class="n">ctx</span><span class="o">:</span> <span class="n">HttpContext</span><span class="o">)</span> <span class="o">-&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nn">Log</span><span class="p">.</span><span class="n">Information</span> <span class="s">&#34;Helloing the world!&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">json</span> <span class="o">{|</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&#34;Hello, World!&#34;</span> <span class="o">|}</span> <span class="n">next</span> <span class="n">ctx</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">let</span> <span class="nv">router</span> <span class="o">=</span> <span class="n">route</span> <span class="s">&#34;/&#34;</span> <span class="o">&gt;=&gt;</span> <span class="n">HelloHandler</span>
+</span></span></code></pre></div><p>Doing a simple request through a web browser should return a basic <code>{ &quot;message&quot;: &quot;Hello, World!&quot; }</code> json text and show a your console should show the correlation
+id of our request.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">[20:34:49  INF] Application started. Press Ctrl+C to shut down.
+</span></span><span class="line"><span class="cl">[20:34:49  INF] Hosting environment: Production
+</span></span><span class="line"><span class="cl">[20:34:49  INF] Content root path: /home/user/foo/barr
+</span></span><span class="line"><span class="cl">[20:34:49  INF] Request starting HTTP/1.1 GET http://localhost:8000/ - -
+</span></span><span class="line"><span class="cl">[20:34:49 fe7b6dd7-eec4-4792-9fda-de814ef5dd14 INF] Helloing the world!
+</span></span><span class="line"><span class="cl">[20:34:50  INF] Request finished HTTP/1.1 GET http://localhost:8000/ - - - 200 27 application/json;+charset=utf-8 1126.8972ms
+</span></span></code></pre></div><div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>It has been my first <em>production</em> encounter with functional programming and I&rsquo;m loving it! 🤓&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+<footer>
+    <p><em>
+        Have something to say about this? Feel free to send me an email at
+        <a href="mailto:~glorifiedgluer/inbox@lists.sr.ht">my inbox</a>!
+    </em></p>
+</footer>
+
+      </main>
+    </main>
+  </body>
+</html>
