@@ -59,55 +59,95 @@ branches, pull requests and such. By default your task will run on every commit
 you push. In order to reduce our CI usage we can restrain our tasks to run on
 specific scenarios:</p>
 <h3 id="on-path-change">On path change</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="k">if</span> ! <span class="k">$(</span>git diff --quiet HEAD HEAD^ -- <span class="s2">&#34;&lt;your-path&gt;&#34;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl"><span class="k">then</span>
-</span></span><span class="line"><span class="cl">  <span class="c1"># do something</span>
-</span></span><span class="line"><span class="cl"><span class="k">fi</span>
-</span></span></code></pre></div><h3 id="on-branch-change">On branch change</h3>
+<div class="highlight">
+    <span class="highlight-type">sh</span>
+    <pre><code class="language-sh hljs" data-lang="sh">if ! $(git diff --quiet HEAD HEAD^ -- &#34;&lt;your-path&gt;&#34;)
+then
+  # do something
+fi</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "sh";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><h3 id="on-branch-change">On branch change</h3>
 <p>This tip was taken from <a href="https://todo.sr.ht/~sircmpwn/builds.sr.ht/170">issue #170</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">tasks</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">check-branch</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span></span></span><span class="line"><span class="cl"><span class="sd">   cd repo_name
-</span></span></span><span class="line"><span class="cl"><span class="sd">   if [ &#34;$(git rev-parse your-branch)&#34; != &#34;$(git rev-parse HEAD)&#34; ]; then \
-</span></span></span><span class="line"><span class="cl"><span class="sd">      complete-build; \
-</span></span></span><span class="line"><span class="cl"><span class="sd">   fi</span><span class="w">   
-</span></span></span></code></pre></div><h2 id="nixos-on-builds.sr.ht">NixOS on builds.sr.ht</h2>
+<div class="highlight">
+    <span class="highlight-type">yaml</span>
+    <pre><code class="language-yaml hljs" data-lang="yaml">tasks:
+- check-branch: |
+   cd repo_name
+   if [ &#34;$(git rev-parse your-branch)&#34; != &#34;$(git rev-parse HEAD)&#34; ]; then \
+      complete-build; \
+   fi</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "yaml";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><h2 id="nixos-on-builds.sr.ht">NixOS on builds.sr.ht</h2>
 <p>As I don&rsquo;t like to write shell scripts I use Nix and this is my favorite feature
 of this service. builds.sr.ht supports <a href="https://nixos.org">NixOS</a> by default<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. This means that
 we can leverage Nix Flakes for truly declarative and reproducible builds there!
 Let&rsquo;s consider a small example using <a href="https://go.dev">Go</a> to show you how easy it really is. A
 small <code>flake.nix</code> containing the following content should suffice our needs:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nix" data-lang="nix"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">inputs</span><span class="o">.</span><span class="n">nixpkgs</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;github:nixos/nixpkgs/nixos-unstable&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="n">outputs</span> <span class="o">=</span> <span class="p">{</span> <span class="n">self</span><span class="o">,</span> <span class="n">nixpkgs</span><span class="o">,</span> <span class="o">...</span> <span class="p">}:</span>
-</span></span><span class="line"><span class="cl">    <span class="k">let</span> <span class="n">pkgs</span> <span class="o">=</span> <span class="kn">import</span> <span class="n">nixpkgs</span> <span class="p">{</span> <span class="n">system</span> <span class="o">=</span> <span class="s2">&#34;x86_64-linux&#34;</span><span class="p">;</span> <span class="p">};</span>
-</span></span><span class="line"><span class="cl">    <span class="k">in</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="n">devShells</span><span class="o">.</span><span class="s2">&#34;x86_64-linux&#34;</span><span class="o">.</span><span class="n">ci</span> <span class="o">=</span> <span class="k">with</span> <span class="n">pkgs</span><span class="p">;</span> <span class="n">mkShell</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">buildInputs</span> <span class="o">=</span> <span class="p">[</span> <span class="n">go</span> <span class="n">golangci-lint</span> <span class="p">];</span>
-</span></span><span class="line"><span class="cl">      <span class="p">};</span>
-</span></span><span class="line"><span class="cl">    <span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>This definition is capable of giving us a shell containing Go and <a href="https://github.com/golangci/golangci-lint">golangci-lint</a>
+<div class="highlight">
+    <span class="highlight-type">nix</span>
+    <pre><code class="language-nix hljs" data-lang="nix">{
+  inputs.nixpkgs.url = &#34;github:nixos/nixpkgs/nixos-unstable&#34;;
+
+  outputs = { self, nixpkgs, ... }:
+    let pkgs = import nixpkgs { system = &#34;x86_64-linux&#34;; };
+    in
+    {
+      devShells.&#34;x86_64-linux&#34;.ci = with pkgs; mkShell {
+        buildInputs = [ go golangci-lint ];
+      };
+    };
+}</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "nix";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>This definition is capable of giving us a shell containing Go and <a href="https://github.com/golangci/golangci-lint">golangci-lint</a>
 on <code>$PATH</code>.</p>
 <p>Now let&rsquo;s write the build manifest for our CI:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nixos/unstable</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">packages</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">nixos.nixUnstable</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">environment</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">NIX_CONFIG</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;experimental-features = nix-command flakes&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">tasks</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">lint</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span></span></span><span class="line"><span class="cl"><span class="sd">      cd source
-</span></span></span><span class="line"><span class="cl"><span class="sd">      nix develop .#ci -c golangci-lint run</span><span class="w">      
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span></span></span><span class="line"><span class="cl"><span class="sd">      cd source
-</span></span></span><span class="line"><span class="cl"><span class="sd">      nix develop .#ci -c go test ./...</span><span class="w">      
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span></span></span><span class="line"><span class="cl"><span class="sd">      cd source
-</span></span></span><span class="line"><span class="cl"><span class="sd">      nix develop .#ci -c go build</span><span class="w">      
-</span></span></span></code></pre></div><p>And that&rsquo;s it! We have our CI up and running with the guarantee of having our
+<div class="highlight">
+    <span class="highlight-type">yaml</span>
+    <pre><code class="language-yaml hljs" data-lang="yaml">image: nixos/unstable
+packages:
+  - nixos.nixUnstable
+environment:
+  NIX_CONFIG: &#34;experimental-features = nix-command flakes&#34;
+tasks:
+  - lint: |
+      cd source
+      nix develop .#ci -c golangci-lint run
+  - test: |
+      cd source
+      nix develop .#ci -c go test ./...
+  - build: |
+      cd source
+      nix develop .#ci -c go build</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "yaml";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>And that&rsquo;s it! We have our CI up and running with the guarantee of having our
 tools being the same on every run. No sudden updates or unexpected behavior.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>

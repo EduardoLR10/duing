@@ -47,8 +47,18 @@ may have a different configuration than your application./ ;-)</p>
 <p>At Grupo SBF we have an HTTP server written in <a href="https://go.dev/">Go</a> that queries <a href="https://cloud.google.com/bigquery">BigQuery</a> and
 returns the result as a <strong>big</strong> csv file. However, after some time we sent a
 request and instead of a file, we received this error message:</p>
-<pre tabindex="0"><code class="language-nil" data-lang="nil">write tcp 10.0.0.1:8080-&gt;10.0.0.2:38302: write: broken pipe
-</code></pre><p>Well, this is quite a surprise as we haven&rsquo;t seen this error message before&hellip;
+<div class="highlight">
+    <span class="highlight-type">nil</span>
+    <pre><code class="language-nil hljs" data-lang="nil">write tcp 10.0.0.1:8080-&gt;10.0.0.2:38302: write: broken pipe</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "nil";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>Well, this is quite a surprise as we haven&rsquo;t seen this error message before&hellip;
 After all, what does it even mean? A quick Google search returned this:</p>
 <blockquote>
 <p>A condition in programming (also known in POSIX as EPIPE error code and SIGPIPE
@@ -61,13 +71,23 @@ might have some obvious places to check out.</p>
 <p>Cloudflare has a <a href="https://blog.cloudflare.com/exposing-go-on-the-internet/">great article</a> talking about the default configuration on Go&rsquo;s
 HTTP server and how to avoid making mistakes with them. We jumped straight to
 the article&rsquo;s timeout section and checked if we didn&rsquo;t forget to configure them.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">srv</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Server</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">ReadTimeout</span><span class="p">:</span>  <span class="mi">10</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Minute</span><span class="p">,</span> <span class="c1">// 10 minutes
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">WriteTimeout</span><span class="p">:</span> <span class="mi">10</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Minute</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Addr</span><span class="p">:</span>         <span class="s">&#34;:8080&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Handler</span><span class="p">:</span>      <span class="nx">r</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>For context, our application takes about 2 minutes to send a response so this
+<div class="highlight">
+    <span class="highlight-type">go</span>
+    <pre><code class="language-go hljs" data-lang="go">srv := &amp;http.Server{
+    ReadTimeout:  10 * time.Minute, // 10 minutes
+    WriteTimeout: 10 * time.Minute,
+    Addr:         &#34;:8080&#34;,
+    Handler:      r,
+}</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "go";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>For context, our application takes about 2 minutes to send a response so this
 isn&rsquo;t a problem for us as we have 10 minutes until a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504">504 server error</a> is
 returned.</p>
 <p>To our amazement, sending the request to a local server returned no error
@@ -86,129 +106,199 @@ server with a similar functionality of our service.</p>
 <p>The idea behind the test is to setup an endpoint that takes a lot of time
 writing on the buffer while our reverse proxy has a timeout of only 2 seconds.</p>
 <h3 id="go-server-and-dockerfile">Go server and Dockerfile</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">mux</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">NewServeMux</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">mux</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">// creating a large data size
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// that will take a long time to be written
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">size</span> <span class="o">:=</span> <span class="mi">900</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">1000</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">tpl</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">size</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">t</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">template</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;page&#34;</span><span class="p">).</span><span class="nf">Parse</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">tpl</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;error parsing template: %s&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">t</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="kc">nil</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;error writing: %s&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">})</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nx">srv</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Server</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">ReadTimeout</span><span class="p">:</span> <span class="mi">10</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Minute</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">WriteTimeout</span><span class="p">:</span> <span class="mi">10</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Minute</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">Addr</span><span class="p">:</span> <span class="s">&#34;:8080&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">Handler</span><span class="p">:</span> <span class="nx">mux</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;server is running!&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">srv</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>And then the Dockerfile:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="c"># server.Dockerfile</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> golang:alpine AS build</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> apk --no-cache add gcc g++ make git<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /go/src/app</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> . .<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> go mod init server<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> go mod tidy<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> <span class="nv">GOOS</span><span class="o">=</span>linux go build -ldflags<span class="o">=</span><span class="s2">&#34;-s -w&#34;</span> -o ./bin/web-app ./server.go<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> alpine:3.13</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> apk --no-cache add ca-certificates<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /usr/bin</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> --from<span class="o">=</span>build /go/src/app/bin /go/bin<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 8080</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENTRYPOINT</span> /go/bin/web-app --port <span class="m">8080</span><span class="err">
-</span></span></span></code></pre></div><h3 id="nginx-configuration-and-dockerfile">nginx configuration and Dockerfile</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cfg" data-lang="cfg"><span class="line"><span class="cl"><span class="c1"># nginx.conf</span>
-</span></span><span class="line"><span class="cl"><span class="na">events {</span>
-</span></span><span class="line"><span class="cl">    <span class="na">worker_connections 1024;</span>
-</span></span><span class="line"><span class="cl"><span class="na">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="na">http {</span>
-</span></span><span class="line"><span class="cl">  <span class="na">server_tokens off;</span>
-</span></span><span class="line"><span class="cl">  <span class="na">server {</span>
-</span></span><span class="line"><span class="cl">    <span class="na">listen 80;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="na">location / {</span>
-</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header X-Forwarded-For $remote_addr;</span>
-</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header Host            $http_host;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">      <span class="c1"># timeout set to 2 seconds</span>
-</span></span><span class="line"><span class="cl">      <span class="na">proxy_read_timeout 2s;</span>
-</span></span><span class="line"><span class="cl">      <span class="na">proxy_connect_timeout 2s;</span>
-</span></span><span class="line"><span class="cl">      <span class="na">proxy_send_timeout 2s;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">      <span class="na">proxy_pass http://goservice:8080/;</span>
-</span></span><span class="line"><span class="cl">    <span class="na">}</span>
-</span></span><span class="line"><span class="cl">  <span class="na">}</span>
-</span></span><span class="line"><span class="cl"><span class="na">}</span>
-</span></span></code></pre></div><p>And then the Dockerfile:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="c"># nginx.Dockerfile</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> nginx:latest</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 80</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> nginx.conf /etc/nginx/nginx.conf<span class="err">
-</span></span></span></code></pre></div><h3 id="docker-compose">Docker Compose</h3>
+<div class="highlight">
+    <span class="highlight-type">go</span>
+    <pre><code class="language-go hljs" data-lang="go">func main() {
+    mux := http.NewServeMux()
+    mux.HandleFunc(&#34;/&#34;, func(w http.ResponseWriter, r *http.Request) {
+        time.Sleep(time.Second * 10)
+
+        // creating a large data size
+        // that will take a long time to be written
+        size := 900 * 1000 * 1000
+        tpl := make([]byte, size)
+        t, err := template.New(&#34;page&#34;).Parse(string(tpl))
+        if err != nil {
+            log.Printf(&#34;error parsing template: %s&#34;, err)
+            return
+        }
+
+        if err := t.Execute(w, nil); err != nil {
+            log.Printf(&#34;error writing: %s&#34;, err)
+            return
+        }
+    })
+
+    srv := &amp;http.Server{
+        ReadTimeout: 10 * time.Minute,
+        WriteTimeout: 10 * time.Minute,
+        Addr: &#34;:8080&#34;,
+        Handler: mux,
+    }
+
+    log.Println(&#34;server is running!&#34;)
+    log.Println(srv.ListenAndServe())
+}</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "go";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>And then the Dockerfile:</p>
+<div class="highlight">
+    <span class="highlight-type">Dockerfile</span>
+    <pre><code class="language-Dockerfile hljs" data-lang="Dockerfile"># server.Dockerfile
+FROM golang:alpine AS build
+RUN apk --no-cache add gcc g&#43;&#43; make git
+WORKDIR /go/src/app
+COPY . .
+RUN go mod init server
+RUN go mod tidy
+RUN GOOS=linux go build -ldflags=&#34;-s -w&#34; -o ./bin/web-app ./server.go
+
+FROM alpine:3.13
+RUN apk --no-cache add ca-certificates
+WORKDIR /usr/bin
+COPY --from=build /go/src/app/bin /go/bin
+EXPOSE 8080
+ENTRYPOINT /go/bin/web-app --port 8080</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "Dockerfile";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><h3 id="nginx-configuration-and-dockerfile">nginx configuration and Dockerfile</h3>
+<div class="highlight">
+    <span class="highlight-type">cfg</span>
+    <pre><code class="language-cfg hljs" data-lang="cfg"># nginx.conf
+events {
+    worker_connections 1024;
+}
+
+http {
+  server_tokens off;
+  server {
+    listen 80;
+
+    location / {
+      proxy_set_header X-Forwarded-For $remote_addr;
+      proxy_set_header Host            $http_host;
+
+      # timeout set to 2 seconds
+      proxy_read_timeout 2s;
+      proxy_connect_timeout 2s;
+      proxy_send_timeout 2s;
+
+      proxy_pass http://goservice:8080/;
+    }
+  }
+}</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "cfg";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>And then the Dockerfile:</p>
+<div class="highlight">
+    <span class="highlight-type">Dockerfile</span>
+    <pre><code class="language-Dockerfile hljs" data-lang="Dockerfile"># nginx.Dockerfile
+FROM nginx:latest
+EXPOSE 80
+COPY nginx.conf /etc/nginx/nginx.conf</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "Dockerfile";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><h3 id="docker-compose">Docker Compose</h3>
 <p>The last piece missing is a <a href="https://docs.docker.com/compose/">Docker
 Compose</a> file to help us run these containers:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># docker-compose.yaml</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;3.6&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">goservice</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;server.Dockerfile&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;8080&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">nginx</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;nginx.Dockerfile&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;80:80&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;goservice&#34;</span><span class="w">
-</span></span></span></code></pre></div><h3 id="running-and-testing">Running and testing</h3>
+<div class="highlight">
+    <span class="highlight-type">yaml</span>
+    <pre><code class="language-yaml hljs" data-lang="yaml"># docker-compose.yaml
+version: &#34;3.6&#34;
+services:
+  goservice:
+    build: &#34;server.Dockerfile&#34;
+    ports:
+      - &#34;8080&#34;
+  nginx:
+    build: &#34;nginx.Dockerfile&#34;
+    ports:
+      - &#34;80:80&#34;
+    depends_on:
+      - &#34;goservice&#34;</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "yaml";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><h3 id="running-and-testing">Running and testing</h3>
 <p>After setting up our environment we can test it by running the commands below:</p>
 <ul>
 <li><code>docker-compose up --build</code> to run our containers</li>
 <li><code>curl localhost</code> to make a request to our server</li>
 </ul>
 <p>Voilá! The error shows up confirming our theory!</p>
-<pre tabindex="0"><code class="language-nil" data-lang="nil">goservice_1  | 2022/04/07 01:12:14 error writing: write tcp 172.18.0.2:8080-&gt;172.18.0.3:56768: write: broken pipe
-</code></pre><h2 id="conclusion">Conclusion</h2>
+<div class="highlight">
+    <span class="highlight-type">nil</span>
+    <pre><code class="language-nil hljs" data-lang="nil">goservice_1  | 2022/04/07 01:12:14 error writing: write tcp 172.18.0.2:8080-&gt;172.18.0.3:56768: write: broken pipe</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "nil";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><h2 id="conclusion">Conclusion</h2>
 <p>This was a lot of fun to figure it! As noted by our tests the timeout
 configuration of our cluster&rsquo;s reverse proxy was indeed the issue, overriding
 the timeout settings with the snippet below solved the issue instantly!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">configuration.konghq.com/v1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">KongIngress</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">kubernetes.io/ingress.class</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;kong&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">kong-timeout-conf</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">proxy</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">connect_timeout</span><span class="p">:</span><span class="w"> </span><span class="m">10000000</span><span class="w"> </span><span class="c"># 10 minutes</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">http</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">read_timeout</span><span class="p">:</span><span class="w"> </span><span class="m">10000000</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">write_timeout</span><span class="p">:</span><span class="w"> </span><span class="m">10000000</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">konghq.com/override</span><span class="p">:</span><span class="w"> </span><span class="l">kong-timeout-conf</span><span class="w">
-</span></span></span></code></pre></div><footer>
+<div class="highlight">
+    <span class="highlight-type">yaml</span>
+    <pre><code class="language-yaml hljs" data-lang="yaml">apiVersion: configuration.konghq.com/v1
+kind: KongIngress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: &#34;kong&#34;
+  name: kong-timeout-conf
+proxy:
+  connect_timeout: 10000000 # 10 minutes
+  protocol: http
+  read_timeout: 10000000
+  retries: 10
+  write_timeout: 10000000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    konghq.com/override: kong-timeout-conf</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "yaml";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><footer>
     <p><em>
         Have something to say about this? Feel free to send me an email at
         <a href="mailto:~glorifiedgluer/inbox@lists.sr.ht">my inbox</a>!

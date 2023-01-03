@@ -43,18 +43,38 @@
 <p>After working on a huge legacy project that demanded a beefy desktop
 at the company I can finally work from my laptop through Virtual
 Machines. These are the specs for it:</p>
-<pre tabindex="0"><code class="language-nil" data-lang="nil">CPU: AMD Ryzen 7 PRO 3700U
+<div class="highlight">
+    <span class="highlight-type">nil</span>
+    <pre><code class="language-nil hljs" data-lang="nil">CPU: AMD Ryzen 7 PRO 3700U
 RAM: 40GB
-DISK: 1TB NVMe SSD
-</code></pre><p>It&rsquo;s not news that I love NixOS and run it on all my devices. However,
+DISK: 1TB NVMe SSD</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "nil";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>It&rsquo;s not news that I love NixOS and run it on all my devices. However,
 for some reason I can&rsquo;t really explain or reason upon, I prefer to run
 <a href="https://www.debian.org/">Debian</a> on my laptop. I went ahead and
 installed it but&hellip; after letting it sit for a few minutes I faced an
 issue: resuming from <em>Suspend</em> gave me a blank screen with no option
 out of it other than force rebooting.</p>
 <p>After a <strong>long</strong> research and multiple attempts testing some <code>GRUB_CMDLINE_LINUX</code><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> arguments, I finally found the solution:</p>
-<pre tabindex="0"><code class="language-nil" data-lang="nil">sudo apt install firmware-amd-graphics
-</code></pre><div class="footnotes" role="doc-endnotes">
+<div class="highlight">
+    <span class="highlight-type">nil</span>
+    <pre><code class="language-nil hljs" data-lang="nil">sudo apt install firmware-amd-graphics</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "nil";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1">

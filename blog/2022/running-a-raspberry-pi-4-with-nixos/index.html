@@ -62,8 +62,18 @@ Pi inside my drawer. So that be it!</p>
 <p>Download the NixOS <code>aarch64</code> image. Personally I went with the <a href="https://hydra.nixos.org/job/nixos/trunk-combined/nixos.sd_image_new_kernel.aarch64-linux">unstable branch</a>
 as I like to live dangerously but you can choose <a href="https://nixos.wiki/wiki/NixOS_on_ARM#SD_card_images_.28SBCs_and_similar_platforms.29">other versions</a> if you want to.
 After that you just need to <code>dd</code> it to your flash drive and boot it:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ sudo dd <span class="k">if</span><span class="o">=</span>nixos.img <span class="nv">of</span><span class="o">=</span>/dev/sdX <span class="nv">bs</span><span class="o">=</span><span class="m">4096</span> <span class="nv">conv</span><span class="o">=</span>fsync <span class="nv">status</span><span class="o">=</span>progress
-</span></span></code></pre></div><p><strong>Notes</strong>:</p>
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">$ sudo dd if=nixos.img of=/dev/sdX bs=4096 conv=fsync status=progress</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p><strong>Notes</strong>:</p>
 <ul>
 <li>Don&rsquo;t forget to extract the image before flashing it.</li>
 <li>If using the Argon One M.2 case, don&rsquo;t boot the USB Drive with your SSD connected. Otherwise your raspberry will try to boot from the SSD and not your Flash Drive/SD Card.</li>
@@ -71,80 +81,140 @@ After that you just need to <code>dd</code> it to your flash drive and boot it:<
 <h2 id="formatting">Formatting</h2>
 <p>You can actually follow the <a href="https://nixos.org/manual/nixos/stable">NixOS Manual</a> to partition your hard drive. However
 I&rsquo;ve written a script to help me do this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># replace /dev/sda with your SSD</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">FMT_DISK</span><span class="o">=</span>/dev/sda
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">wipefs -a <span class="nv">$FMT_DISK</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">DISK</span><span class="o">=</span>/dev/disk/by-id/ata*
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">parted <span class="nv">$FMT_DISK</span> -- mklabel msdos
-</span></span><span class="line"><span class="cl">parted <span class="nv">$FMT_DISK</span> -- mkpart primary fat32 0MiB 512MiB <span class="c1"># $DISK-part1 is /boot</span>
-</span></span><span class="line"><span class="cl">parted <span class="nv">$FMT_DISK</span> -- mkpart primary 512MiB -4GiB <span class="c1"># $DISK-part2 is the ext4 partition</span>
-</span></span><span class="line"><span class="cl">parted <span class="nv">$FMT_DISK</span> -- mkpart primary linux-swap -4GiB 100% <span class="c1"># Swap</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">mkfs.ext4 -L nixos <span class="nv">$DISK</span>-part2
-</span></span><span class="line"><span class="cl">mount <span class="nv">$DISK</span>-part2 /mnt
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">mkfs.vfat -F32 <span class="nv">$DISK</span>-part1
-</span></span><span class="line"><span class="cl">mkdir -p /mnt/boot
-</span></span><span class="line"><span class="cl">mount <span class="nv">$DISK</span>-part1 /mnt/boot
-</span></span></code></pre></div><h2 id="nixos-configuration">NixOS Configuration</h2>
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell"># replace /dev/sda with your SSD
+export FMT_DISK=/dev/sda
+
+wipefs -a $FMT_DISK
+
+export DISK=/dev/disk/by-id/ata*
+
+parted $FMT_DISK -- mklabel msdos
+parted $FMT_DISK -- mkpart primary fat32 0MiB 512MiB # $DISK-part1 is /boot
+parted $FMT_DISK -- mkpart primary 512MiB -4GiB # $DISK-part2 is the ext4 partition
+parted $FMT_DISK -- mkpart primary linux-swap -4GiB 100% # Swap
+
+mkfs.ext4 -L nixos $DISK-part2
+mount $DISK-part2 /mnt
+
+mkfs.vfat -F32 $DISK-part1
+mkdir -p /mnt/boot
+mount $DISK-part1 /mnt/boot</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><h2 id="nixos-configuration">NixOS Configuration</h2>
 <p>In order to boot correctly, you need to define some boot options<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nix" data-lang="nix"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">boot</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">initrd</span><span class="o">.</span><span class="n">availableKernelModules</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&#34;usbhid&#34;</span> <span class="s2">&#34;usb_storage&#34;</span> <span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="n">kernelPackages</span> <span class="o">=</span> <span class="n">pkgs</span><span class="o">.</span><span class="n">linuxPackages_rpi4</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">kernelParams</span> <span class="o">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;8250.nr_uarts=1&#34;</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;cma=128M&#34;</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;console=tty1&#34;</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;console=ttyAMA0,115200&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">];</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">loader</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="n">raspberryPi</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">enable</span> <span class="o">=</span> <span class="no">true</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">version</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">      <span class="n">grub</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="no">false</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">      <span class="n">generic-extlinux-compatible</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="no">true</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">};</span>
-</span></span><span class="line"><span class="cl">  <span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="n">hardware</span><span class="o">.</span><span class="n">enableRedistributableFirmware</span> <span class="o">=</span> <span class="no">true</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="boot-firmware">Boot firmware</h2>
+<div class="highlight">
+    <span class="highlight-type">nix</span>
+    <pre><code class="language-nix hljs" data-lang="nix">{
+  boot = {
+    initrd.availableKernelModules = [ &#34;usbhid&#34; &#34;usb_storage&#34; ];
+    kernelPackages = pkgs.linuxPackages_rpi4;
+    kernelParams = [
+      &#34;8250.nr_uarts=1&#34;
+      &#34;cma=128M&#34;
+      &#34;console=tty1&#34;
+      &#34;console=ttyAMA0,115200&#34;
+    ];
+
+    loader = {
+      raspberryPi = {
+        enable = true;
+        version = 4;
+      };
+
+      grub.enable = false;
+      generic-extlinux-compatible.enable = true;
+    };
+  };
+
+  hardware.enableRedistributableFirmware = true;
+}</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "nix";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><h2 id="boot-firmware">Boot firmware</h2>
 <p>The installer disk has a partition containing the necessary firmwares to boot
 (it was on <code>/dev/sda1/</code> for me). Just copy it to your boot partition.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir /firmware
-</span></span><span class="line"><span class="cl">mount /dev/sda1 /firmware
-</span></span><span class="line"><span class="cl">cp /firmware/* /mnt/boot
-</span></span></code></pre></div><h2 id="installing">Installing</h2>
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">mkdir /firmware
+mount /dev/sda1 /firmware
+cp /firmware/* /mnt/boot</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><h2 id="installing">Installing</h2>
 <h3 id="with-channels">With Channels</h3>
 <p>The only step left is to install the system:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nixos-install --root /mnt
-</span></span></code></pre></div><h3 id="with-flakes">With Flakes</h3>
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">nixos-install --root /mnt</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><h3 id="with-flakes">With Flakes</h3>
 <p>Another way to install it is to make use of Nix <a href="https://nixos.wiki/wiki/Flakes">Flakes</a>. This way we can ensure
 that our build is completely reproducible and/or running the same software
 version as the other machines.</p>
 <p>This is a rather simple process if you already have a repo configured with your
 <a href="https://nixos.org">NixOS</a> configurations. First, I need a shell with <code>git</code> and a <a href="https://nixos.org">Nix</a> version that
 supports the experimental <a href="https://nixos.wiki/wiki/Flakes">Flakes</a> commands.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nix-shell -p git nixUnstable
-</span></span></code></pre></div><p>After that I just clone my repository, copy the <code>hardware-configuration.nix</code>
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">nix-shell -p git nixUnstable</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>After that I just clone my repository, copy the <code>hardware-configuration.nix</code>
 file over and install the system.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># clone the repository</span>
-</span></span><span class="line"><span class="cl">git clone https://git.sr.ht/~glorifiedgluer/dotfiles
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> dotfiles
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># copy hardware-configuration.nix</span>
-</span></span><span class="line"><span class="cl">cp /mnt/etc/nixos/hardware-configuration.nix hosts/rpi4/
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># install the system</span>
-</span></span><span class="line"><span class="cl">nixos-install --flake .#rpi4
-</span></span></code></pre></div><div class="footnotes" role="doc-endnotes">
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell"># clone the repository
+git clone https://git.sr.ht/~glorifiedgluer/dotfiles
+cd dotfiles
+
+# copy hardware-configuration.nix
+cp /mnt/etc/nixos/hardware-configuration.nix hosts/rpi4/
+
+# install the system
+nixos-install --flake .#rpi4</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1">

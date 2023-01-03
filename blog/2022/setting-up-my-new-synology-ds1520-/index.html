@@ -104,21 +104,51 @@ this feature 😜. Anyway, mounting an NFS share is much easier than
 going trial and error with docker volumes over NFS.</p>
 <p>I created the NFS share on Synology&rsquo;s dashboard and then on my alpine
 machine I ran:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">  mkdir -p /mnt/docker
-</span></span><span class="line"><span class="cl">  mount -t nfs &lt;ip&gt;:/volume1/&lt;share-dir&gt; /mnt/docker
-</span></span></code></pre></div><p>I also added this line on my <code>/etc/fstab</code> file to automatically mount
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">  mkdir -p /mnt/docker
+  mount -t nfs &lt;ip&gt;:/volume1/&lt;share-dir&gt; /mnt/docker</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>I also added this line on my <code>/etc/fstab</code> file to automatically mount
 the NFS volume after boot:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">  &lt;ip&gt;:/volume1/&lt;share-dir&gt; /mnt/docker nfs _netdev <span class="m">0</span> <span class="m">0</span>
-</span></span></code></pre></div><p>This might not be obvious at this point, but doing things this way is
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">  &lt;ip&gt;:/volume1/&lt;share-dir&gt; /mnt/docker nfs _netdev 0 0</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>This might not be obvious at this point, but doing things this way is
 awesome because I can just mount volumes pointing to <code>/mnt/docker</code> and
 backup them through <a href="https://www.synology.com/en-global/dsm/feature/hyper_backup">Hyper Backup</a> on <a href="https://www.backblaze.com/b2/cloud-storage.html">Backblaze B2</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">  </span><span class="nt">caddy</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">caddy:2.6</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># ...</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/mnt/docker/caddy/Caddyfile:/etc/caddy/Caddyfile</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># ...</span><span class="w">
-</span></span></span></code></pre></div><p>This setup gives me the most out of everything I tried so far:</p>
+<div class="highlight">
+    <span class="highlight-type">yaml</span>
+    <pre><code class="language-yaml hljs" data-lang="yaml">  caddy:
+    image: caddy:2.6
+    # ...
+    volumes:
+      - /mnt/docker/caddy/Caddyfile:/etc/caddy/Caddyfile
+      # ...</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "yaml";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>This setup gives me the most out of everything I tried so far:</p>
 <dl>
 <dt>Flexibility</dt>
 <dd>I configure my services through a regular Linux

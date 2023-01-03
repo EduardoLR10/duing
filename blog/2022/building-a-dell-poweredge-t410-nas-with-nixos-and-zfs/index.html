@@ -127,97 +127,207 @@ a more balanced power/comsuption ratio.</p>
 <h2 id="setting-up-ssh">Setting up SSH</h2>
 <p>The first thing I do on the NixOS installation media is to change the <code>nixos</code>
 user password to proceed the installation in another computer:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ passwd
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># over the other computer</span>
-</span></span><span class="line"><span class="cl">$ ssh nixos@&lt;ip&gt;
-</span></span></code></pre></div><h2 id="configuring-the-disks">Configuring the disks</h2>
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">$ passwd
+
+# over the other computer
+$ ssh nixos@&lt;ip&gt;</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><h2 id="configuring-the-disks">Configuring the disks</h2>
 <p>Fortunately, using ZFS with NixOS is a breeze. It has a really good support and
 I can even boot from a ZFS pool. Let&rsquo;s start by listing the disks and getting
 their IDs:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>nixos@nixos:~<span class="o">]</span>$ ls -al /dev/disk/by-id/
-</span></span><span class="line"><span class="cl">total <span class="m">0</span>
-</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> root root <span class="m">340</span> Nov  <span class="m">2</span> 15:12 .
-</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">7</span> root root <span class="m">140</span> Nov  <span class="m">2</span> 14:54 ..
-</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root   <span class="m">9</span> Nov  <span class="m">2</span> 15:12 scsi-35000c500571d23bf -&gt; ../../sdb
-</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root   <span class="m">9</span> Nov  <span class="m">2</span> 15:12 scsi-35000c500964ac36f -&gt; ../../sdd
-</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root   <span class="m">9</span> Nov  <span class="m">2</span> 15:12 scsi-35000c500964b5e7b -&gt; ../../sdc
-</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root   <span class="m">9</span> Nov  <span class="m">2</span> 15:12 scsi-35000c500964b723b -&gt; ../../sdf
-</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root   <span class="m">9</span> Nov  <span class="m">2</span> 15:12 scsi-35000c500964bbbd3 -&gt; ../../sde
-</span></span></code></pre></div><p>We should use the disks IDs on our ZFS pool, this will avoid some headaches in
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">[nixos@nixos:~]$ ls -al /dev/disk/by-id/
+total 0
+drwxr-xr-x 2 root root 340 Nov  2 15:12 .
+drwxr-xr-x 7 root root 140 Nov  2 14:54 ..
+lrwxrwxrwx 1 root root   9 Nov  2 15:12 scsi-35000c500571d23bf -&gt; ../../sdb
+lrwxrwxrwx 1 root root   9 Nov  2 15:12 scsi-35000c500964ac36f -&gt; ../../sdd
+lrwxrwxrwx 1 root root   9 Nov  2 15:12 scsi-35000c500964b5e7b -&gt; ../../sdc
+lrwxrwxrwx 1 root root   9 Nov  2 15:12 scsi-35000c500964b723b -&gt; ../../sdf
+lrwxrwxrwx 1 root root   9 Nov  2 15:12 scsi-35000c500964bbbd3 -&gt; ../../sde</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>We should use the disks IDs on our ZFS pool, this will avoid some headaches in
 the future as switching the HDs bays and ZFS losing tracks of which disk is
 which. Ok, now that we have the IDs, let&rsquo;s wipe them to make sure we don&rsquo;t have
 any filesystems on them already.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nv">DISK1</span><span class="o">=</span>/dev/disk/by-id/scsi-35000c500571d23bf
-</span></span><span class="line"><span class="cl"><span class="nv">DISK2</span><span class="o">=</span>/dev/disk/by-id/scsi-35000c500964ac36f
-</span></span><span class="line"><span class="cl"><span class="nv">DISK3</span><span class="o">=</span>/dev/disk/by-id/scsi-35000c500964b5e7b
-</span></span><span class="line"><span class="cl"><span class="nv">DISK4</span><span class="o">=</span>/dev/disk/by-id/scsi-35000c500964b723b
-</span></span><span class="line"><span class="cl"><span class="nv">DISK5</span><span class="o">=</span>/dev/disk/by-id/scsi-35000c500964bbbd3
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">sudo wipefs -af <span class="nv">$DISK1</span>
-</span></span><span class="line"><span class="cl">sudo wipefs -af <span class="nv">$DISK2</span>
-</span></span><span class="line"><span class="cl">sudo wipefs -af <span class="nv">$DISK3</span>
-</span></span><span class="line"><span class="cl">sudo wipefs -af <span class="nv">$DISK4</span>
-</span></span><span class="line"><span class="cl">sudo wipefs -af <span class="nv">$DISK5</span>
-</span></span></code></pre></div><p>Now the last bit missing is the partition layout:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo sgdisk -n3:1M:+512M -t3:EF00 <span class="nv">$DISK1</span>
-</span></span><span class="line"><span class="cl">sudo sgdisk -n1:0:0 -t1:BF01 <span class="nv">$DISK1</span>
-</span></span></code></pre></div><p>After this we just copy it to the other drives:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo sfdisk --dump <span class="nv">$DISK1</span> <span class="p">|</span> sudo sfdisk <span class="nv">$DISK2</span>
-</span></span><span class="line"><span class="cl">sudo sfdisk --dump <span class="nv">$DISK1</span> <span class="p">|</span> sudo sfdisk <span class="nv">$DISK3</span>
-</span></span><span class="line"><span class="cl">sudo sfdisk --dump <span class="nv">$DISK1</span> <span class="p">|</span> sudo sfdisk <span class="nv">$DISK4</span>
-</span></span><span class="line"><span class="cl">sudo sfdisk --dump <span class="nv">$DISK1</span> <span class="p">|</span> sudo sfdisk <span class="nv">$DISK5</span>
-</span></span></code></pre></div><h3 id="formatting">Formatting</h3>
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">DISK1=/dev/disk/by-id/scsi-35000c500571d23bf
+DISK2=/dev/disk/by-id/scsi-35000c500964ac36f
+DISK3=/dev/disk/by-id/scsi-35000c500964b5e7b
+DISK4=/dev/disk/by-id/scsi-35000c500964b723b
+DISK5=/dev/disk/by-id/scsi-35000c500964bbbd3
+
+sudo wipefs -af $DISK1
+sudo wipefs -af $DISK2
+sudo wipefs -af $DISK3
+sudo wipefs -af $DISK4
+sudo wipefs -af $DISK5</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>Now the last bit missing is the partition layout:</p>
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">sudo sgdisk -n3:1M:&#43;512M -t3:EF00 $DISK1
+sudo sgdisk -n1:0:0 -t1:BF01 $DISK1</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>After this we just copy it to the other drives:</p>
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">sudo sfdisk --dump $DISK1 | sudo sfdisk $DISK2
+sudo sfdisk --dump $DISK1 | sudo sfdisk $DISK3
+sudo sfdisk --dump $DISK1 | sudo sfdisk $DISK4
+sudo sfdisk --dump $DISK1 | sudo sfdisk $DISK5</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><h3 id="formatting">Formatting</h3>
 <h4 id="boot">Boot</h4>
 <p>Starting with the boot partition:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo mkfs.vfat <span class="nv">$DISK1</span>-part3
-</span></span><span class="line"><span class="cl">sudo mkfs.vfat <span class="nv">$DISK2</span>-part3
-</span></span><span class="line"><span class="cl">sudo mkfs.vfat <span class="nv">$DISK3</span>-part3
-</span></span><span class="line"><span class="cl">sudo mkfs.vfat <span class="nv">$DISK4</span>-part3
-</span></span><span class="line"><span class="cl">sudo mkfs.vfat <span class="nv">$DISK5</span>-part3
-</span></span></code></pre></div><h4 id="zfs">ZFS</h4>
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">sudo mkfs.vfat $DISK1-part3
+sudo mkfs.vfat $DISK2-part3
+sudo mkfs.vfat $DISK3-part3
+sudo mkfs.vfat $DISK4-part3
+sudo mkfs.vfat $DISK5-part3</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><h4 id="zfs">ZFS</h4>
 <p>Considering that I want two disk parity on my setup, I&rsquo;m going with a <em>raidz2</em> pool.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo zpool create -o <span class="nv">ashift</span><span class="o">=</span><span class="m">12</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  -O <span class="nv">dnodesize</span><span class="o">=</span>auto <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  -O <span class="nv">normalization</span><span class="o">=</span>formD <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  -O <span class="nv">relatime</span><span class="o">=</span>on <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  -O <span class="nv">acltype</span><span class="o">=</span>posixacl <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  -O <span class="nv">xattr</span><span class="o">=</span>sa <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  -O <span class="nv">mountpoint</span><span class="o">=</span>none <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  -O <span class="nv">compression</span><span class="o">=</span>lz4 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  -O <span class="nv">recordsize</span><span class="o">=</span>1M <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  zroot raidz2 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  <span class="nv">$DISK1</span>-part1 <span class="nv">$DISK2</span>-part1 <span class="nv">$DISK3</span>-part1 <span class="nv">$DISK4</span>-part1 <span class="nv">$DISK5</span>-part1
-</span></span></code></pre></div><p>And the following datasets:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo zfs create -o <span class="nv">mountpoint</span><span class="o">=</span>none zroot/root
-</span></span><span class="line"><span class="cl">sudo zfs create -o <span class="nv">mountpoint</span><span class="o">=</span>legacy zroot/root/nixos
-</span></span><span class="line"><span class="cl">sudo zfs create -o <span class="nv">mountpoint</span><span class="o">=</span>legacy zroot/var
-</span></span><span class="line"><span class="cl">sudo zfs create -o <span class="nv">mountpoint</span><span class="o">=</span>legacy zroot/var/media
-</span></span><span class="line"><span class="cl">sudo zfs create -o <span class="nv">mountpoint</span><span class="o">=</span>legacy zroot/var/torrents
-</span></span><span class="line"><span class="cl">sudo zfs create -o <span class="nv">mountpoint</span><span class="o">=</span>legacy zroot/var/samba
-</span></span><span class="line"><span class="cl">sudo zfs create -o <span class="nv">mountpoint</span><span class="o">=</span>legacy zroot/home
-</span></span></code></pre></div><h3 id="mounting-everything-together">Mounting everything together</h3>
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">sudo zpool create -o ashift=12 \
+                  -O dnodesize=auto \
+                  -O normalization=formD \
+                  -O relatime=on \
+                  -O acltype=posixacl \
+                  -O xattr=sa \
+                  -O mountpoint=none \
+                  -O compression=lz4 \
+                  -O recordsize=1M \
+                  zroot raidz2 \
+                  $DISK1-part1 $DISK2-part1 $DISK3-part1 $DISK4-part1 $DISK5-part1</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>And the following datasets:</p>
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">sudo zfs create -o mountpoint=none zroot/root
+sudo zfs create -o mountpoint=legacy zroot/root/nixos
+sudo zfs create -o mountpoint=legacy zroot/var
+sudo zfs create -o mountpoint=legacy zroot/var/media
+sudo zfs create -o mountpoint=legacy zroot/var/torrents
+sudo zfs create -o mountpoint=legacy zroot/var/samba
+sudo zfs create -o mountpoint=legacy zroot/home</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><h3 id="mounting-everything-together">Mounting everything together</h3>
 <p>Mounting is the easiest part of the whole process. However, we need the directories to be there in the first place.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo mount -t zfs zroot/root/nixos /mnt
-</span></span><span class="line"><span class="cl">sudo mkdir /mnt/home
-</span></span><span class="line"><span class="cl">sudo mkdir -p /mnt/var/lib/<span class="o">{</span>torrents,media,samba<span class="o">}</span>
-</span></span><span class="line"><span class="cl">sudo mkdir /mnt/boot
-</span></span></code></pre></div><p>Now it&rsquo;s just a matter of <em>mapping</em> everything to the right place:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo mount -t zfs zroot/home /mnt/home
-</span></span><span class="line"><span class="cl">sudo mount -t zfs zroot/var /mnt/var
-</span></span><span class="line"><span class="cl">sudo mount -t zfs zroot/var/media /mnt/var/lib/media
-</span></span><span class="line"><span class="cl">sudo mount -t zfs zroot/var/torrents /mnt/var/lib/torrents
-</span></span><span class="line"><span class="cl">sudo mount -t zfs zroot/var/samba /mnt/var/lib/samba
-</span></span><span class="line"><span class="cl">sudo mount <span class="nv">$DISK1</span>-part3 /mnt/boot
-</span></span></code></pre></div><h2 id="finishing-up">Finishing up</h2>
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">sudo mount -t zfs zroot/root/nixos /mnt
+sudo mkdir /mnt/home
+sudo mkdir -p /mnt/var/lib/{torrents,media,samba}
+sudo mkdir /mnt/boot</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>Now it&rsquo;s just a matter of <em>mapping</em> everything to the right place:</p>
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">sudo mount -t zfs zroot/home /mnt/home
+sudo mount -t zfs zroot/var /mnt/var
+sudo mount -t zfs zroot/var/media /mnt/var/lib/media
+sudo mount -t zfs zroot/var/torrents /mnt/var/lib/torrents
+sudo mount -t zfs zroot/var/samba /mnt/var/lib/samba
+sudo mount $DISK1-part3 /mnt/boot</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><h2 id="finishing-up">Finishing up</h2>
 <p>The only step left is to generate the NixOS configuration with the filesystem layout and install the system:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo nixos-generate-config --root /mnt
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># don&#39;t forget to get your machine id and put it on `networking.hostId`</span>
-</span></span><span class="line"><span class="cl">head -c <span class="m">8</span> /etc/machine-id
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">sudo nixos-install
-</span></span></code></pre></div><div class="footnotes" role="doc-endnotes">
+<div class="highlight">
+    <span class="highlight-type">shell</span>
+    <pre><code class="language-shell hljs" data-lang="shell">sudo nixos-generate-config --root /mnt
+
+# don&#39;t forget to get your machine id and put it on `networking.hostId`
+head -c 8 /etc/machine-id
+
+sudo nixos-install</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "shell";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1">

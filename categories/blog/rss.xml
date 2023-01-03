@@ -45,7 +45,7 @@ This time the challenge was to implement the authentication layer. It is actuall
       <guid>https://glorifiedgluer.com/blog/2022/debians-blank-screen-after-suspending-on-thinkpad-t495/</guid>
       <description>tl;dr: sudo apt install firmware-amd-graphics
 After working on a huge legacy project that demanded a beefy desktop at the company I can finally work from my laptop through Virtual Machines. These are the specs for it:
-CPU: AMD Ryzen 7 PRO 3700U RAM: 40GB DISK: 1TB NVMe SSD It&amp;rsquo;s not news that I love NixOS and run it on all my devices. However, for some reason I can&amp;rsquo;t really explain or reason upon, I prefer to run Debian on my laptop.</description>
+nil CPU: AMD Ryzen 7 PRO 3700U RAM: 40GB DISK: 1TB NVMe SSD   .highlight-type { content: &#34;nil&#34;; position: absolute; opacity: 0.5; } It&amp;rsquo;s not news that I love NixOS and run it on all my devices.</description>
     </item>
     
     <item>

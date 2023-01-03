@@ -72,111 +72,161 @@ Microsoft doesn&rsquo;t have something like this on their docs. Or at least
 not something easy to find there.</p>
 <p>Alright, time to implement piece by piece of this code. Starting with
 the Authentication scheme definition:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fsharp" data-lang="fsharp"><span class="line"><span class="cl">  <span class="k">type</span> <span class="nc">CustomJwtAuthenticationOptions</span><span class="bp">()</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">      <span class="k">inherit</span> <span class="n">AuthenticationSchemeOptions</span><span class="bp">()</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">      <span class="k">member</span> <span class="n">this</span><span class="p">.</span><span class="nf">DefaultScheme</span> <span class="o">=</span> <span class="s">&#34;CustomJwtAuthentication&#34;</span>
-</span></span><span class="line"><span class="cl">      <span class="k">member</span> <span class="n">this</span><span class="p">.</span><span class="nf">HeaderName</span> <span class="o">=</span> <span class="s">&#34;x-jwt-payload&#34;</span>
-</span></span></code></pre></div><p>The next missing part is the <a href="https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1?view=aspnetcore-7.0">Authentication Handler</a>. For this, I&rsquo;ll
+<div class="highlight">
+    <span class="highlight-type">fsharp</span>
+    <pre><code class="language-fsharp hljs" data-lang="fsharp">  type CustomJwtAuthenticationOptions() =
+      inherit AuthenticationSchemeOptions()
+
+      member this.DefaultScheme = &#34;CustomJwtAuthentication&#34;
+      member this.HeaderName = &#34;x-jwt-payload&#34;</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "fsharp";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>The next missing part is the <a href="https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1?view=aspnetcore-7.0">Authentication Handler</a>. For this, I&rsquo;ll
 use the great <a href="https://demystifyfp.gitbook.io/fstoolkit-errorhandling">FsToolkit.ErrorHandling</a> package to help structure the
 code, so do a <code>dotnet add package FsToolkit.ErrorHandling</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fsharp" data-lang="fsharp"><span class="line"><span class="cl">  <span class="k">type</span> <span class="nc">CustomJwtAuthenticationHandler</span>
-</span></span><span class="line"><span class="cl">      <span class="o">(</span>
-</span></span><span class="line"><span class="cl">          <span class="n">options</span><span class="o">:</span> <span class="n">IOptionsMonitor</span><span class="o">&lt;</span><span class="n">CustomJwtAuthenticationOptions</span><span class="o">&gt;,</span>
-</span></span><span class="line"><span class="cl">          <span class="n">logger</span><span class="o">:</span> <span class="n">ILoggerFactory</span><span class="o">,</span>
-</span></span><span class="line"><span class="cl">          <span class="n">encoder</span><span class="o">:</span> <span class="n">UrlEncoder</span><span class="o">,</span>
-</span></span><span class="line"><span class="cl">          <span class="n">clock</span><span class="o">:</span> <span class="n">ISystemClock</span>
-</span></span><span class="line"><span class="cl">      <span class="o">)</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">      <span class="k">inherit</span> <span class="n">AuthenticationHandler</span><span class="o">&lt;</span><span class="n">CustomJwtAuthenticationOptions</span><span class="o">&gt;(</span><span class="n">options</span><span class="o">,</span> <span class="n">logger</span><span class="o">,</span> <span class="n">encoder</span><span class="o">,</span> <span class="n">clock</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">      <span class="k">override</span> <span class="n">this</span><span class="p">.</span><span class="nf">HandleAuthenticationAsync</span><span class="bp">()</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">          <span class="n">result</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">              <span class="k">let!</span> <span class="nv">token</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">RetrieveTokenValue</span> <span class="n">this</span><span class="o">.</span><span class="n">Options</span><span class="o">.</span><span class="n">HeaderName</span>
-</span></span><span class="line"><span class="cl">              <span class="k">let!</span> <span class="nv">jwt</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">DecodeToken</span> <span class="n">token</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">              <span class="k">let</span> <span class="nv">name</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">                  <span class="k">let</span> <span class="nv">firstName</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">                      <span class="n">jwt</span><span class="o">.</span><span class="n">Item</span><span class="o">(</span><span class="s">&#34;firstName&#34;</span><span class="o">)</span> <span class="o">|&gt;</span> <span class="kt">string</span>
-</span></span><span class="line"><span class="cl">                  <span class="k">let</span> <span class="nv">lastName</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">                      <span class="n">jwt</span><span class="o">.</span><span class="n">Item</span><span class="o">(</span><span class="s">&#34;lastName&#34;</span><span class="o">)</span> <span class="o">|&gt;</span> <span class="kt">string</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">                  <span class="o">$</span><span class="s">&#34;{firstName} {LastName}&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">              <span class="k">let</span> <span class="nv">claims</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">                  <span class="o">[</span> <span class="n">Claim</span><span class="o">(</span><span class="nn">ClaimTypes</span><span class="p">.</span><span class="n">NameIdentifier</span><span class="o">,</span> <span class="n">jwt</span><span class="o">.</span><span class="n">Sub</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                    <span class="n">Claim</span><span class="o">(</span><span class="nn">ClaimTypes</span><span class="p">.</span><span class="n">Name</span><span class="o">,</span> <span class="n">name</span><span class="o">)</span> <span class="o">]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">              <span class="k">let</span> <span class="nv">claimIdentity</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">                  <span class="n">ClaimsIdentity</span><span class="o">(</span><span class="n">claims</span><span class="o">,</span> <span class="n">this</span><span class="o">.</span><span class="n">Options</span><span class="o">.</span><span class="n">DefaultSchemeName</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">              <span class="k">let</span> <span class="nv">ticket</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">                  <span class="n">AuthenticationTicket</span><span class="o">(</span>
-</span></span><span class="line"><span class="cl">                      <span class="n">ClaimsPrincipal</span><span class="o">(</span><span class="n">claimsIdentity</span><span class="o">),</span>
-</span></span><span class="line"><span class="cl">                      <span class="n">AuthenticationProperties</span><span class="bp">()</span><span class="o">,</span>
-</span></span><span class="line"><span class="cl">                      <span class="n">this</span><span class="o">.</span><span class="n">Options</span><span class="o">.</span><span class="n">DefaultSchemeName</span>
-</span></span><span class="line"><span class="cl">                  <span class="o">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">              <span class="k">return</span> <span class="nn">Task</span><span class="p">.</span><span class="n">FromResult</span><span class="o">(</span><span class="nn">AuthenticateResult</span><span class="p">.</span><span class="n">Success</span><span class="o">(</span><span class="n">ticket</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">          <span class="o">}</span>
-</span></span><span class="line"><span class="cl">          <span class="o">|&gt;</span> <span class="k">function</span>
-</span></span><span class="line"><span class="cl">              <span class="o">|</span> <span class="n">Ok</span> <span class="n">value</span> <span class="o">-&gt;</span> <span class="n">value</span>
-</span></span><span class="line"><span class="cl">              <span class="o">|</span> <span class="n">Error</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="nn">Task</span><span class="p">.</span><span class="n">FromResult</span><span class="o">(</span><span class="nn">AuthenticateResult</span><span class="p">.</span><span class="n">Fail</span><span class="o">(</span><span class="n">e</span><span class="o">))</span>
-</span></span></code></pre></div><p>And that&rsquo;s it! I now have the custom JWT authentication I needed for
+<div class="highlight">
+    <span class="highlight-type">fsharp</span>
+    <pre><code class="language-fsharp hljs" data-lang="fsharp">  type CustomJwtAuthenticationHandler
+      (
+          options: IOptionsMonitor&lt;CustomJwtAuthenticationOptions&gt;,
+          logger: ILoggerFactory,
+          encoder: UrlEncoder,
+          clock: ISystemClock
+      ) =
+      inherit AuthenticationHandler&lt;CustomJwtAuthenticationOptions&gt;(options, logger, encoder, clock)
+
+      override this.HandleAuthenticationAsync() =
+          result {
+              let! token = this.RetrieveTokenValue this.Options.HeaderName
+              let! jwt = this.DecodeToken token
+
+              let name =
+                  let firstName =
+                      jwt.Item(&#34;firstName&#34;) |&gt; string
+                  let lastName =
+                      jwt.Item(&#34;lastName&#34;) |&gt; string
+
+                  $&#34;{firstName} {LastName}&#34;
+
+              let claims =
+                  [ Claim(ClaimTypes.NameIdentifier, jwt.Sub)
+                    Claim(ClaimTypes.Name, name) ]
+
+              let claimIdentity =
+                  ClaimsIdentity(claims, this.Options.DefaultSchemeName)
+
+              let ticket =
+                  AuthenticationTicket(
+                      ClaimsPrincipal(claimsIdentity),
+                      AuthenticationProperties(),
+                      this.Options.DefaultSchemeName
+                  )
+
+              return Task.FromResult(AuthenticateResult.Success(ticket))
+          }
+          |&gt; function
+              | Ok value -&gt; value
+              | Error e -&gt; Task.FromResult(AuthenticateResult.Fail(e))</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "fsharp";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>And that&rsquo;s it! I now have the custom JWT authentication I needed for
 my ASP.NET application. Of course, we are missing some helper methods
 I used on the code. Let&rsquo;s take a look at them.</p>
 <p>This function is used to extract the Base 64 token from the header.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fsharp" data-lang="fsharp"><span class="line"><span class="cl">  <span class="k">member</span> <span class="k">private</span> <span class="n">this</span><span class="o">.</span><span class="n">RetrieveTokenValue</span> <span class="n">name</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">      <span class="k">let</span> <span class="nv">found</span><span class="o">,</span> <span class="n">value</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">          <span class="n">this</span><span class="o">.</span><span class="n">Request</span><span class="o">.</span><span class="n">Headers</span><span class="o">.</span><span class="n">TryGetValue</span><span class="o">(</span><span class="n">name</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">          <span class="n">Error</span> <span class="o">$</span><span class="s">&#34;Missing header &#39;{name}&#39;&#34;</span>
-</span></span><span class="line"><span class="cl">      <span class="k">else</span>
-</span></span><span class="line"><span class="cl">          <span class="n">value</span><span class="o">.</span><span class="n">ToString</span><span class="bp">()</span>
-</span></span><span class="line"><span class="cl">          <span class="o">|&gt;</span> <span class="nn">String</span><span class="p">.</span><span class="n">IsNullOrWhiteSpace</span>
-</span></span><span class="line"><span class="cl">          <span class="o">|&gt;</span> <span class="k">function</span>
-</span></span><span class="line"><span class="cl">              <span class="o">|</span> <span class="k">false</span> <span class="o">-&gt;</span> <span class="n">Ok</span> <span class="n">value</span>
-</span></span><span class="line"><span class="cl">              <span class="o">|</span> <span class="k">true</span> <span class="o">-&gt;</span> <span class="n">Error</span> <span class="o">$</span><span class="s">&#34;Missing header &#39;{name}&#39; value&#34;</span>
-</span></span></code></pre></div><p>Now the function responsible to decode the JWT token itself.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fsharp" data-lang="fsharp"><span class="line"><span class="cl">  <span class="k">member</span> <span class="k">private</span> <span class="n">this</span><span class="o">.</span><span class="n">DecodeToken</span> <span class="n">token</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">      <span class="k">try</span>
-</span></span><span class="line"><span class="cl">          <span class="k">let</span> <span class="nv">jwt</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">              <span class="n">token</span>
-</span></span><span class="line"><span class="cl">              <span class="o">|&gt;</span> <span class="nn">Convert</span><span class="p">.</span><span class="n">FromBase64String</span>
-</span></span><span class="line"><span class="cl">              <span class="o">|&gt;</span> <span class="nn">Encoding</span><span class="p">.</span><span class="nn">UTF8</span><span class="p">.</span><span class="n">GetString</span>
-</span></span><span class="line"><span class="cl">              <span class="o">|&gt;</span> <span class="nn">Jwt</span><span class="p">.</span><span class="nn">JwtPayload</span><span class="p">.</span><span class="n">Deserialize</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">          <span class="n">Ok</span> <span class="n">jwt</span>
-</span></span><span class="line"><span class="cl">      <span class="k">with</span>
-</span></span><span class="line"><span class="cl">      <span class="o">|</span> <span class="kt">exn</span> <span class="o">-&gt;</span> <span class="n">Error</span> <span class="o">$</span><span class="s">&#34;Error decoding token: {exn.Message}&#34;</span>
-</span></span></code></pre></div><p>OK, <strong>now</strong> we have everything needed to use our brand new
+<div class="highlight">
+    <span class="highlight-type">fsharp</span>
+    <pre><code class="language-fsharp hljs" data-lang="fsharp">  member private this.RetrieveTokenValue name =
+      let found, value =
+          this.Request.Headers.TryGetValue(name)
+
+      if not found then
+          Error $&#34;Missing header &#39;{name}&#39;&#34;
+      else
+          value.ToString()
+          |&gt; String.IsNullOrWhiteSpace
+          |&gt; function
+              | false -&gt; Ok value
+              | true -&gt; Error $&#34;Missing header &#39;{name}&#39; value&#34;</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "fsharp";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>Now the function responsible to decode the JWT token itself.</p>
+<div class="highlight">
+    <span class="highlight-type">fsharp</span>
+    <pre><code class="language-fsharp hljs" data-lang="fsharp">  member private this.DecodeToken token =
+      try
+          let jwt =
+              token
+              |&gt; Convert.FromBase64String
+              |&gt; Encoding.UTF8.GetString
+              |&gt; Jwt.JwtPayload.Deserialize
+
+          Ok jwt
+      with
+      | exn -&gt; Error $&#34;Error decoding token: {exn.Message}&#34;</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "fsharp";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>OK, <strong>now</strong> we have everything needed to use our brand new
 authentication scheme. How can we plug this together on our
 application&rsquo;s startup? Considering that we&rsquo;re using <a href="https://saturnframework.org/">Saturn</a> to
 configure it, it would look just like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fsharp" data-lang="fsharp"><span class="line"><span class="cl">  <span class="k">let</span> <span class="nv">configureApp</span> <span class="o">(</span><span class="n">app</span><span class="o">:</span> <span class="n">IApplicationBuilder</span><span class="o">)</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">      <span class="n">app</span><span class="o">.</span><span class="n">UseAuthentication</span><span class="bp">()</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="k">let</span> <span class="nv">configureServices</span> <span class="o">(</span><span class="n">services</span><span class="o">:</span> <span class="n">IServiceCollection</span><span class="o">)</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">      <span class="n">services</span>
-</span></span><span class="line"><span class="cl">          <span class="o">.</span><span class="n">AddAuthentication</span><span class="o">(</span>
-</span></span><span class="line"><span class="cl">              <span class="n">CustomJwtAuthenticationOptions</span><span class="bp">()</span><span class="o">.</span><span class="n">DefaultScheme</span>
-</span></span><span class="line"><span class="cl">          <span class="o">)</span>
-</span></span><span class="line"><span class="cl">          <span class="o">.</span><span class="n">AddScheme</span><span class="o">&lt;</span><span class="n">CustomJwtAuthenticationOptions</span><span class="o">,</span> <span class="n">CustomJwtAuthenticationHandler</span><span class="o">&gt;(</span>
-</span></span><span class="line"><span class="cl">              <span class="n">CustomJwtAuthenticationOptions</span><span class="bp">()</span><span class="o">.</span><span class="n">DefaultScheme</span><span class="o">,</span> <span class="o">(</span><span class="k">fun</span> <span class="n">options</span> <span class="o">-&gt;</span> <span class="bp">()</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">          <span class="o">)</span>
-</span></span><span class="line"><span class="cl">      <span class="o">|&gt;</span> <span class="n">ignore</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">      <span class="n">services</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="k">let</span> <span class="nv">main</span> <span class="o">_</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">      <span class="k">let</span> <span class="nv">app</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">          <span class="n">application</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">              <span class="c1">// ...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>              <span class="n">app_config</span> <span class="n">configureApp</span>
-</span></span><span class="line"><span class="cl">              <span class="n">service_config</span> <span class="n">configureServices</span>
-</span></span><span class="line"><span class="cl">          <span class="o">}</span>
-</span></span><span class="line"><span class="cl">          <span class="n">run</span> <span class="n">app</span>
-</span></span></code></pre></div><div class="footnotes" role="doc-endnotes">
+<div class="highlight">
+    <span class="highlight-type">fsharp</span>
+    <pre><code class="language-fsharp hljs" data-lang="fsharp">  let configureApp (app: IApplicationBuilder) =
+      app.UseAuthentication()
+
+  let configureServices (services: IServiceCollection) =
+      services
+          .AddAuthentication(
+              CustomJwtAuthenticationOptions().DefaultScheme
+          )
+          .AddScheme&lt;CustomJwtAuthenticationOptions, CustomJwtAuthenticationHandler&gt;(
+              CustomJwtAuthenticationOptions().DefaultScheme, (fun options -&gt; ())
+          )
+      |&gt; ignore
+
+      services
+
+  let main _ =
+      let app =
+          application {
+              // ...
+              app_config configureApp
+              service_config configureServices
+          }
+          run app</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "fsharp";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1">

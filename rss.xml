@@ -6,7 +6,16 @@
     <description>Recent content on ~glorifiedgluer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://glorifiedgluer.com/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://glorifiedgluer.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>one post</title>
+      <link>https://glorifiedgluer.com/blog/2023/one-post/</link>
+      <pubDate>Tue, 03 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://glorifiedgluer.com/blog/2023/one-post/</guid>
+      <description>This is a title bla bla bla</description>
+    </item>
+    
     <item>
       <title>New Year&#39;s Resolutions for 2023</title>
       <link>https://glorifiedgluer.com/blog/2023/new-years-resolutions-for-2023/</link>
@@ -45,7 +54,7 @@ This time the challenge was to implement the authentication layer. It is actuall
       <guid>https://glorifiedgluer.com/blog/2022/debians-blank-screen-after-suspending-on-thinkpad-t495/</guid>
       <description>tl;dr: sudo apt install firmware-amd-graphics
 After working on a huge legacy project that demanded a beefy desktop at the company I can finally work from my laptop through Virtual Machines. These are the specs for it:
-CPU: AMD Ryzen 7 PRO 3700U RAM: 40GB DISK: 1TB NVMe SSD It&amp;rsquo;s not news that I love NixOS and run it on all my devices. However, for some reason I can&amp;rsquo;t really explain or reason upon, I prefer to run Debian on my laptop.</description>
+nil CPU: AMD Ryzen 7 PRO 3700U RAM: 40GB DISK: 1TB NVMe SSD   .highlight-type { content: &#34;nil&#34;; position: absolute; opacity: 0.5; } It&amp;rsquo;s not news that I love NixOS and run it on all my devices.</description>
     </item>
     
     <item>
@@ -158,14 +167,12 @@ At Grupo SBF we have an HTTP server written in Go that queries BigQuery and retu
     </item>
     
     <item>
-      <title>~glorifiedgluer</title>
-      <link>https://glorifiedgluer.com/content/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>Writing Hugo blog in Org (File Export)</title>
+      <link>https://glorifiedgluer.com/blog/2017/writing-hugo-blog-in-org-file-export/</link>
+      <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/content/</guid>
-      <description>Pages  About  About me  I&amp;#39;m Victor Freire, a student and software developer based in Guarulhos, Brazil, currently working at Divisions Maintenance Group as a software engineer writing F# and Nix.
- I&amp;#39;ve taught myself coding, cloud computing and linux for years, out of passion. At the moment I&amp;#39;m mostly interested in learning about highly scalable systems.
- My projects live at sourcehut and GitHub, you can also contact me via email.</description>
+      <guid>https://glorifiedgluer.com/blog/2017/writing-hugo-blog-in-org-file-export/</guid>
+      <description>First heading within the post  This post will be exported as content/posts/writing-hugo-blog-in-org-file-export.md. Its title will be &amp;ldquo;Writing Hugo blog in Org&amp;rdquo;. It will have hugo and org tags and emacs as category. The lastmod property in the front-matter is set automatically to the time of export. The menu item identifier is auto-set. The menu item weight and post weight if needed have to be manually specified as shown above.  A sub-heading under that heading  It&amp;rsquo;s draft state will be marked as true because of #+hugo_draft: true.</description>
     </item>
     
     <item>

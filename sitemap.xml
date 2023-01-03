@@ -3,12 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://glorifiedgluer.com/</loc>
-    <lastmod>2023-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://glorifiedgluer.com/categories/blog/</loc>
-    <lastmod>2023-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2023-01-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://glorifiedgluer.com/categories/</loc>
+    <lastmod>2023-01-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://glorifiedgluer.com/blog/2023/one-post/</loc>
+    <lastmod>2023-01-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://glorifiedgluer.com/categories/testing/</loc>
+    <lastmod>2023-01-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://glorifiedgluer.com/categories/blog/</loc>
     <lastmod>2023-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://glorifiedgluer.com/blog/2023/new-years-resolutions-for-2023/</loc>
@@ -56,15 +62,23 @@
     <loc>https://glorifiedgluer.com/blog/2020/this-will-deteriorate-quickly/</loc>
     <lastmod>2020-03-01T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://glorifiedgluer.com/categories/emacs/</loc>
+    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://glorifiedgluer.com/tags/</loc>
+    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://glorifiedgluer.com/tags/test/</loc>
+    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://glorifiedgluer.com/blog/2017/writing-hugo-blog-in-org-file-export/</loc>
+    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://glorifiedgluer.com/blog/</loc>
     <lastmod>1970-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://glorifiedgluer.com/content/</loc>
   </url><url>
     <loc>https://glorifiedgluer.com/about/</loc>
   </url><url>
     <loc>https://glorifiedgluer.com/blogroll/</loc>
-  </url><url>
-    <loc>https://glorifiedgluer.com/tags/</loc>
   </url>
 </urlset>

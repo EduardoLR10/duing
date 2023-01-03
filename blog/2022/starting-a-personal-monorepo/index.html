@@ -68,14 +68,24 @@ for use: <code>nix flake show sourcehut:~glorifiedgluer/monorepo</code>. This al
 that you can import this repo as an input on your <code>flake.nix</code> file and use any
 of my projects as you please.</p>
 <p>The CI can be simplified to a simple shell conditional:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">tasks</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">someproject</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span></span></span><span class="line"><span class="cl"><span class="sd">      cd monorepo
-</span></span></span><span class="line"><span class="cl"><span class="sd">      if ! $(git diff --quiet HEAD HEAD^ -- &#34;someproject&#34;)
-</span></span></span><span class="line"><span class="cl"><span class="sd">      then
-</span></span></span><span class="line"><span class="cl"><span class="sd">        # do something if the project got an update
-</span></span></span><span class="line"><span class="cl"><span class="sd">      fi</span><span class="w">      
-</span></span></span></code></pre></div><p>Nonetheless, the best reason to try this is out is to have some fun and explore
+<div class="highlight">
+    <span class="highlight-type">yaml</span>
+    <pre><code class="language-yaml hljs" data-lang="yaml">tasks:
+  - someproject: |
+      cd monorepo
+      if ! $(git diff --quiet HEAD HEAD^ -- &#34;someproject&#34;)
+      then
+        # do something if the project got an update
+      fi</code></pre>
+</div>
+
+<style>
+    .highlight-type {
+        content: "yaml";
+        position: absolute;
+        opacity: 0.5;
+    }
+</style><p>Nonetheless, the best reason to try this is out is to have some fun and explore
 new challenges with version control and build systems! ;-)</p>
 <h2 id="expectation">Expectation</h2>
 <p>I mean&hellip; none? lol. Being serious now, I don&rsquo;t expect my projects to become
