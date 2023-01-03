@@ -43,9 +43,7 @@
               ];
 
               configurePhase = ''
-                cd content
                 emacs $(pwd) --batch -load export.el
-                cd ..
               '';
 
               buildPhase = ''

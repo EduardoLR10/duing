@@ -1,0 +1,10 @@
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: blog
+#+HUGO_CATEGORIES: testing
+#+TITLE: one post
+#+DATE: 2023-01-03
+#+AUTHOR: Eduardo Lemos
+
+* This is a title
+
+ bla bla bla

@@ -76,6 +76,7 @@ Feel free to check out the navigation links above and enjoy the picture below.
 :EXPORT_TITLE: ~glorifiedgluer blog
 :EXPORT_FILE_NAME: _index
 :EXPORT_DATE: 1970-01-01
+:EXPORT_HUGO_TAGS: test
 :END:
 #+begin_description
 Scattered thoughts, ideas and experiences.
