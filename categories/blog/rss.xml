@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>blog on ~glorifiedgluer</title>
-    <link>https://glorifiedgluer.com/categories/blog/</link>
-    <description>Recent content in blog on ~glorifiedgluer</description>
+    <title>blog on duing.dev</title>
+    <link>duing.dev/categories/blog/</link>
+    <description>Recent content in blog on duing.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://glorifiedgluer.com/categories/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="duing.dev/categories/blog/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>New Year&#39;s Resolutions for 2023</title>
-      <link>https://glorifiedgluer.com/blog/2023/new-years-resolutions-for-2023/</link>
+      <link>duing.dev/blog/2023/new-years-resolutions-for-2023/</link>
       <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2023/new-years-resolutions-for-2023/</guid>
+      <guid>duing.dev/blog/2023/new-years-resolutions-for-2023/</guid>
       <description>I have never done a New Year&amp;rsquo;s resolution before&amp;hellip; well, at least not a public one written down in a blog post! 😁
  Content  More blog posts Write more software (if possible, in F#) Take more pictures   Habits  Turn spaced repetition into a habit Read at least a book each month   Knowledge  Be able to hold at least a basic conversation in French   Gym-related goals  Squat: 150kg for 5 reps.</description>
     </item>
     
     <item>
       <title>Setting up my new Synology DS1520&#43;</title>
-      <link>https://glorifiedgluer.com/blog/2022/setting-up-my-new-synology-ds1520-/</link>
+      <link>duing.dev/blog/2022/setting-up-my-new-synology-ds1520-/</link>
       <pubDate>Mon, 26 Dec 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2022/setting-up-my-new-synology-ds1520-/</guid>
+      <guid>duing.dev/blog/2022/setting-up-my-new-synology-ds1520-/</guid>
       <description>The DS1520&amp;#43;, 5x4TB IronWolf ST4000VN008 and 1TB SKC3000S1024G NVMe. (2022-12-26)   Some time ago I built a NAS for personal usage. It has been a blessing in my life as I&amp;rsquo;m not afraid of losing data or going out of storage anymore. However, due to some unfortunate events, I don&amp;rsquo;t have a place to run it other than my bedroom, but it is too noisy to keep it beside my bed.</description>
     </item>
     
     <item>
       <title>Custom JWT Authentication with F# and ASP.NET</title>
-      <link>https://glorifiedgluer.com/blog/2022/custom-jwt-authentication-fsharp-asp-net/</link>
+      <link>duing.dev/blog/2022/custom-jwt-authentication-fsharp-asp-net/</link>
       <pubDate>Tue, 20 Dec 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2022/custom-jwt-authentication-fsharp-asp-net/</guid>
+      <guid>duing.dev/blog/2022/custom-jwt-authentication-fsharp-asp-net/</guid>
       <description>At my $CURRENT_JOB we are working on introducing a new back-end service, and as usual, teams entirely composed of new-ish employees face some hard time discovering all the small pieces required to make the gears turn.
 This time the challenge was to implement the authentication layer. It is actually quite simple as it is just a regular JWT token, but the devil&amp;rsquo;s in the details:
  the token is on a custom header called `x-jwt-payload` the token does not contain the alg attribute the validation is done internally at the reverse proxy level  OK, this doesn&amp;rsquo;t sound too bad.</description>
@@ -39,90 +39,90 @@ This time the challenge was to implement the authentication layer. It is actuall
     
     <item>
       <title>Debian&#39;s blank screen after suspending on Thinkpad T495</title>
-      <link>https://glorifiedgluer.com/blog/2022/debians-blank-screen-after-suspending-on-thinkpad-t495/</link>
+      <link>duing.dev/blog/2022/debians-blank-screen-after-suspending-on-thinkpad-t495/</link>
       <pubDate>Fri, 09 Dec 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2022/debians-blank-screen-after-suspending-on-thinkpad-t495/</guid>
+      <guid>duing.dev/blog/2022/debians-blank-screen-after-suspending-on-thinkpad-t495/</guid>
       <description>tl;dr: sudo apt install firmware-amd-graphics
 After working on a huge legacy project that demanded a beefy desktop at the company I can finally work from my laptop through Virtual Machines. These are the specs for it:
-nil CPU: AMD Ryzen 7 PRO 3700U RAM: 40GB DISK: 1TB NVMe SSD   .highlight-type { content: &#34;nil&#34;; position: absolute; opacity: 0.5; } It&amp;rsquo;s not news that I love NixOS and run it on all my devices.</description>
+CPU: AMD Ryzen 7 PRO 3700U RAM: 40GB DISK: 1TB NVMe SSD It&amp;rsquo;s not news that I love NixOS and run it on all my devices. However, for some reason I can&amp;rsquo;t really explain or reason upon, I prefer to run Debian on my laptop.</description>
     </item>
     
     <item>
       <title>Building a Dell PowerEdge T410 NAS with NixOS and ZFS</title>
-      <link>https://glorifiedgluer.com/blog/2022/building-a-dell-poweredge-t410-nas-with-nixos-and-zfs/</link>
+      <link>duing.dev/blog/2022/building-a-dell-poweredge-t410-nas-with-nixos-and-zfs/</link>
       <pubDate>Tue, 06 Sep 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2022/building-a-dell-poweredge-t410-nas-with-nixos-and-zfs/</guid>
+      <guid>duing.dev/blog/2022/building-a-dell-poweredge-t410-nas-with-nixos-and-zfs/</guid>
       <description>For some time I&amp;rsquo;ve been thinking about getting a NAS for personal usage. However, most of the prebuilt solutions are too expensive here and they don&amp;rsquo;t even come with hard drives&amp;hellip; I then decided to research a cheap way to build it my own.
 One famous guide for home-built NAS is the NAS KILLER series by u/JDM_WAAAT. I tried to find most of the parts shown there but I always missed one as it was either not available or couldn&amp;rsquo;t be shipped here.</description>
     </item>
     
     <item>
       <title>Implementing Correlation IDs in F# with Giraffe and Serilog</title>
-      <link>https://glorifiedgluer.com/blog/2022/implementing-correlation-ids-fsharp-giraffe-serilog/</link>
+      <link>duing.dev/blog/2022/implementing-correlation-ids-fsharp-giraffe-serilog/</link>
       <pubDate>Sat, 27 Aug 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2022/implementing-correlation-ids-fsharp-giraffe-serilog/</guid>
+      <guid>duing.dev/blog/2022/implementing-correlation-ids-fsharp-giraffe-serilog/</guid>
       <description>São Paulo&amp;#39;s Penha subway station. (2022-08-03)   I spent a stupid amount of time trying to setup an ASP.NET Middleware to handle correlation IDs on requests. I must confess that I just got my first .NET and F#1 job, therefore most of the time spent was just getting used to the whole ecosystem. However during my trial and error I saw a bunch of blog posts showing me how to do this in different manners and a lot discussions about the correct order to implement things.</description>
     </item>
     
     <item>
       <title>ErgoJourney - Choosing a new keyboard layout</title>
-      <link>https://glorifiedgluer.com/blog/2022/ergojourney-choosing-a-new-keyboard-layout/</link>
+      <link>duing.dev/blog/2022/ergojourney-choosing-a-new-keyboard-layout/</link>
       <pubDate>Mon, 18 Jul 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2022/ergojourney-choosing-a-new-keyboard-layout/</guid>
+      <guid>duing.dev/blog/2022/ergojourney-choosing-a-new-keyboard-layout/</guid>
       <description>After multiple injuries to my right wrist due to a multitude of activities (sports, bad typing1 and an act of god) I decided to change my keyboard layout to one that could possibly demand less work off of my hands.
 First let&amp;rsquo;s go through a small history of keyboards I&amp;rsquo;ve previously used. Unfortunately I don&amp;rsquo;t actually have pictures of them as I don&amp;rsquo;t have the habit to take pictures of things (which I should reconsider!</description>
     </item>
     
     <item>
       <title>Moving this website to a single Org Mode file</title>
-      <link>https://glorifiedgluer.com/blog/2022/moving-site-org-mode/</link>
+      <link>duing.dev/blog/2022/moving-site-org-mode/</link>
       <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2022/moving-site-org-mode/</guid>
+      <guid>duing.dev/blog/2022/moving-site-org-mode/</guid>
       <description>I have always loved GNU Emacs and its integrated computing environment. It has been even better after I started using Doom Emacs1, it basically took care of things I was unable to do properly: make it fast and semantically coherent. Either for the lack of time or technical knowledge.
 As most GNU Emacs users, I love Org Mode and I love to write for this blog. So why not join these two things together?</description>
     </item>
     
     <item>
       <title>Git mirroring, systemd and NixOS</title>
-      <link>https://glorifiedgluer.com/blog/2022/git-mirroring-systemd-nixos/</link>
+      <link>duing.dev/blog/2022/git-mirroring-systemd-nixos/</link>
       <pubDate>Tue, 14 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2022/git-mirroring-systemd-nixos/</guid>
+      <guid>duing.dev/blog/2022/git-mirroring-systemd-nixos/</guid>
       <description>For the past few years I have been collecting contributions to multiple projects on multiple platforms such as GitHub, GitLab, self-hosted Gitea instances and so on. It&amp;rsquo;s rather boring to go to a website and see the source code there&amp;hellip; Then I thought to myself: &amp;ldquo;Why not write about a made up need I don&amp;rsquo;t have just to learn something new?&amp;rdquo;.
 So, the idea here was to mirror those repositories into my sourcehut account (although this should work for any remote repository).</description>
     </item>
     
     <item>
       <title>Starting a personal monorepo</title>
-      <link>https://glorifiedgluer.com/blog/2022/starting-a-personal-monorepo/</link>
+      <link>duing.dev/blog/2022/starting-a-personal-monorepo/</link>
       <pubDate>Wed, 11 May 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2022/starting-a-personal-monorepo/</guid>
+      <guid>duing.dev/blog/2022/starting-a-personal-monorepo/</guid>
       <description>I&amp;rsquo;ve been using Nix as my package manager for 4 years now and it has been the best computer-related decision I have ever made and fortunately, for the past few years its ecosystem has been growing a lot1 , 2 , 3. Some of this movement is due to the advent o Flakes that makes it way easier to share reproducible outputs than the previous Nix solution of channels.
 Considering that I can use Nix:</description>
     </item>
     
     <item>
       <title>Running a Raspberry Pi 4 with NixOS</title>
-      <link>https://glorifiedgluer.com/blog/2022/running-a-raspberry-pi-4-with-nixos/</link>
+      <link>duing.dev/blog/2022/running-a-raspberry-pi-4-with-nixos/</link>
       <pubDate>Mon, 09 May 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2022/running-a-raspberry-pi-4-with-nixos/</guid>
+      <guid>duing.dev/blog/2022/running-a-raspberry-pi-4-with-nixos/</guid>
       <description>For quite some time I&amp;rsquo;ve been wanting to run a small homelab with NixOS. I don&amp;rsquo;t host much services myself, however I feel that I can have a lot of fun (and learn a bit) by maintaining my own server. All the services I run on the Cloud™ (Matrix Dendrite and a Nix Binary Cache) could be running on a Raspberry Pi inside my drawer. So that be it!
  Figure 1: A picture of Raspberry Pi inside an Argon One case and a Keychron K2V2 behind</description>
     </item>
     
     <item>
       <title>Notes on builds.sr.ht</title>
-      <link>https://glorifiedgluer.com/blog/2022/notes-on-buildssrht/</link>
+      <link>duing.dev/blog/2022/notes-on-buildssrht/</link>
       <pubDate>Fri, 29 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2022/notes-on-buildssrht/</guid>
+      <guid>duing.dev/blog/2022/notes-on-buildssrht/</guid>
       <description>For the past few months I&amp;rsquo;ve been using sourcehut&amp;rsquo;s platform to work on software an it has been quite an interesting experience. Nonetheless, one of the services I really enjoy using is the their build service called builds.sr.ht.
  builds.sr.ht is a service on sr.ht that allows you to submit &amp;ldquo;build manifests&amp;rdquo; for us to work on. &amp;ndash; man.sr.ht
  The thing I don&amp;rsquo;t like on GitHub Actions is that it is kind of magical.</description>
@@ -130,39 +130,39 @@ Considering that I can use Nix:</description>
     
     <item>
       <title>write: broken pipe</title>
-      <link>https://glorifiedgluer.com/blog/2022/write-broken-pipe/</link>
+      <link>duing.dev/blog/2022/write-broken-pipe/</link>
       <pubDate>Wed, 06 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2022/write-broken-pipe/</guid>
+      <guid>duing.dev/blog/2022/write-broken-pipe/</guid>
       <description>tl;dr: Kong Ingress Controller was the culprit. Its timeout setting was closing the connection before the file could be sent. /If you&amp;rsquo;re facing this issue in a long-lasting request, check your reverse proxy configuration, as it may have a different configuration than your application./ ;-)
 At Grupo SBF we have an HTTP server written in Go that queries BigQuery and returns the result as a big csv file. However, after some time we sent a request and instead of a file, we received this error message:</description>
     </item>
     
     <item>
       <title>Burning out and finding out</title>
-      <link>https://glorifiedgluer.com/blog/2021/burning-out-and-finding-out/</link>
+      <link>duing.dev/blog/2021/burning-out-and-finding-out/</link>
       <pubDate>Tue, 31 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2021/burning-out-and-finding-out/</guid>
+      <guid>duing.dev/blog/2021/burning-out-and-finding-out/</guid>
       <description>São Paulo&amp;#39;s República subway station. (2022-08-03)   At the time of this writing I&amp;rsquo;m burned out. I had no doubt it was a thing and that it could happen to anyone. However, I couldn&amp;rsquo;t see myself suffering from this. At least not so soon.
  Burnout is caused when you repeatedly make large amounts of sacrifice and or effort into high-risk problems that fail. It&amp;rsquo;s the result of a negative prediction error in the nucleus accumbens.</description>
     </item>
     
     <item>
       <title>This will deteriorate quickly</title>
-      <link>https://glorifiedgluer.com/blog/2020/this-will-deteriorate-quickly/</link>
+      <link>duing.dev/blog/2020/this-will-deteriorate-quickly/</link>
       <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2020/this-will-deteriorate-quickly/</guid>
+      <guid>duing.dev/blog/2020/this-will-deteriorate-quickly/</guid>
       <description>In my teenager years I was a member of my school&amp;rsquo;s student council. Part of our job was to propose changes to our current infrastructure, organize study groups and plan social projects. We were a bunch of youngsters without much experience &amp;ndash; or no experience at all &amp;ndash; in the education field, therefore we resorted to know from those who had it over the Internet. At the time there wasn&amp;rsquo;t a lot of content about it on social media, the majority was writing at Blogspot (now Blogger) or forums.</description>
     </item>
     
     <item>
       <title>~glorifiedgluer blog</title>
-      <link>https://glorifiedgluer.com/blog/</link>
+      <link>duing.dev/blog/</link>
       <pubDate>Thu, 01 Jan 1970 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/</guid>
+      <guid>duing.dev/blog/</guid>
       <description></description>
     </item>
     

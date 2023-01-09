@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>testing on ~glorifiedgluer</title>
-    <link>https://glorifiedgluer.com/categories/testing/</link>
-    <description>Recent content in testing on ~glorifiedgluer</description>
+    <title>testing on duing.dev</title>
+    <link>duing.dev/categories/testing/</link>
+    <description>Recent content in testing on duing.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://glorifiedgluer.com/categories/testing/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="duing.dev/categories/testing/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>one post</title>
-      <link>https://glorifiedgluer.com/blog/2023/one-post/</link>
+      <link>duing.dev/blog/2023/one-post/</link>
       <pubDate>Tue, 03 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2023/one-post/</guid>
+      <guid>duing.dev/blog/2023/one-post/</guid>
       <description>This is a title bla bla bla</description>
     </item>
     

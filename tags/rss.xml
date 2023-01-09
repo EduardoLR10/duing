@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on ~glorifiedgluer</title>
-    <link>https://glorifiedgluer.com/tags/</link>
-    <description>Recent content in Tags on ~glorifiedgluer</description>
+    <title>Tags on duing.dev</title>
+    <link>duing.dev/tags/</link>
+    <description>Recent content in Tags on duing.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 10 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://glorifiedgluer.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="duing.dev/tags/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>test</title>
-      <link>https://glorifiedgluer.com/tags/test/</link>
+      <link>duing.dev/tags/test/</link>
       <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/tags/test/</guid>
+      <guid>duing.dev/tags/test/</guid>
       <description></description>
     </item>
     

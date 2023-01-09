@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>test on ~glorifiedgluer</title>
-    <link>https://glorifiedgluer.com/tags/test/</link>
-    <description>Recent content in test on ~glorifiedgluer</description>
+    <title>test on duing.dev</title>
+    <link>duing.dev/tags/test/</link>
+    <description>Recent content in test on duing.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 10 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://glorifiedgluer.com/tags/test/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="duing.dev/tags/test/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Writing Hugo blog in Org (File Export)</title>
-      <link>https://glorifiedgluer.com/blog/2017/writing-hugo-blog-in-org-file-export/</link>
+      <link>duing.dev/blog/2017/writing-hugo-blog-in-org-file-export/</link>
       <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/2017/writing-hugo-blog-in-org-file-export/</guid>
+      <guid>duing.dev/blog/2017/writing-hugo-blog-in-org-file-export/</guid>
       <description>First heading within the post  This post will be exported as content/posts/writing-hugo-blog-in-org-file-export.md. Its title will be &amp;ldquo;Writing Hugo blog in Org&amp;rdquo;. It will have hugo and org tags and emacs as category. The lastmod property in the front-matter is set automatically to the time of export. The menu item identifier is auto-set. The menu item weight and post weight if needed have to be manually specified as shown above.  A sub-heading under that heading  It&amp;rsquo;s draft state will be marked as true because of #+hugo_draft: true.</description>
     </item>
     
     <item>
       <title>~glorifiedgluer blog</title>
-      <link>https://glorifiedgluer.com/blog/</link>
+      <link>duing.dev/blog/</link>
       <pubDate>Thu, 01 Jan 1970 00:00:00 +0000</pubDate>
       
-      <guid>https://glorifiedgluer.com/blog/</guid>
+      <guid>duing.dev/blog/</guid>
       <description></description>
     </item>
     
