@@ -1,6 +1,7 @@
-title = "~glorifiedgluer"
-baseURL = "https://glorifiedgluer.com"
+title = "duing.dev"
+baseURL = "duing.dev"
 languageCode = "en-us"
+theme = "Blonde"
 
 pygmentsUseClasses = true
 assetDir = "static"
@@ -12,7 +13,7 @@ assetDir = "static"
   blog = '/blog/:year/:slug/'
 
 [author]
-  name = "Victor Freire"
+  name = "Eduardo Lemos Rocha"
 
 [mediaTypes."application/atom+xml"]
   suffixes = ["xml"]

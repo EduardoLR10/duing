@@ -1,5 +1,5 @@
 {
-  description = "~glorifiedgluer's website";
+  description = "duing.dev website";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -34,7 +34,7 @@
                 ]));
             in
             stdenv.mkDerivation {
-              name = "glorifiedgluercom";
+              name = "duingdev";
               src = lib.cleanSource ./.;
 
               buildInputs = [
