@@ -2,14 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://duing.dev/posts/about/</loc>
+    <lastmod>2023-01-14T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://duing.dev/</loc>
-    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
+    <lastmod>2023-01-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://duing.dev/posts/home/</loc>
-    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
+    <lastmod>2023-01-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://duing.dev/posts/</loc>
-    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
+    <lastmod>2023-01-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://duing.dev/posts/publications/</loc>
+    <lastmod>2023-01-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://duing.dev/categories/blog/</loc>
     <lastmod>2023-01-01T00:00:00+00:00</lastmod>
@@ -62,22 +68,14 @@
     <loc>https://duing.dev/blog/this-will-deteriorate-quickly/</loc>
     <lastmod>2020-03-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duing.dev/categories/emacs/</loc>
-    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/tags/</loc>
-    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/tags/test/</loc>
-    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/posts/anothertest/</loc>
-    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://duing.dev/blog/</loc>
     <lastmod>1970-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duing.dev/about/</loc>
+    <loc>https://duing.dev/tags/</loc>
+    <lastmod>1970-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://duing.dev/tags/test/</loc>
+    <lastmod>1970-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://duing.dev/blogroll/</loc>
   </url>

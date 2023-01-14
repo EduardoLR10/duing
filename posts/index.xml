@@ -6,23 +6,33 @@
     <description>Recent content in Posts on Duing Dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 13 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 14 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Hi! I&#39;m Lemos</title>
-      <link>https://duing.dev/posts/home/</link>
-      <pubDate>Fri, 13 Jan 2023 00:00:00 +0000</pubDate>
+      <title>About</title>
+      <link>https://duing.dev/posts/about/</link>
+      <pubDate>Sat, 14 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://duing.dev/posts/home/</guid>
-      <description>I am a software developer who is fascinated with understanding and practicing computer science. Functional programming, processor architectures, and operating systems are the main areas that left me awe. I am deeply interested in proactively going to unknown territories, investigating new technologies and programming languages. Regardless of the tool and nature, my goal is to express art whilst programming, i.e., solving problems in an elegant manner.  Life is a DIY project &amp;ndash; Zack Nelson  </description>
+      <guid>https://duing.dev/posts/about/</guid>
+      <description>About me I&amp;rsquo;m Eduardo Lemos, a software developer based in Brasília, Brazil. I&amp;rsquo;ve graduated in computer engineering in 2022 at University of Brasília. Currently, I work for FPComplete as a software engineer writing Haskell and Nix.
+I&amp;rsquo;ve started programming by changing IDs of itens and blocks in Minecraft mods back in the day. Later on, at the final stretch at university, I&amp;rsquo;ve discovered myself as an addicted person to computer science.</description>
     </item>
     
     <item>
-      <title>Writing Hugo blog in Org (File Export)</title>
-      <link>https://duing.dev/posts/anothertest/</link>
-      <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
+      <title>Hi! I&#39;m Lemos</title>
+      <link>https://duing.dev/posts/home/</link>
+      <pubDate>Sat, 14 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://duing.dev/posts/anothertest/</guid>
-      <description>First heading within the post  This post will be exported as content/posts/writing-hugo-blog-in-org-file-export.md. Its title will be &amp;ldquo;Writing Hugo blog in Org&amp;rdquo;. It will have hugo and org tags and emacs as category. The lastmod property in the front-matter is set automatically to the time of export. The menu item identifier is auto-set. The menu item weight and post weight if needed have to be manually specified as shown above.  A sub-heading under that heading  It&amp;rsquo;s draft state will be marked as true because of #+hugo_draft: true.</description>
+      <guid>https://duing.dev/posts/home/</guid>
+      <description>I am a software developer who is fascinated with understanding and practicing computer science. Functional programming, processor architectures, and operating systems are the main areas that left me awe. I am deeply interested in proactively going to unknown territories, investigating new technologies and programming languages. Regardless of the tool and nature, my goal is to express art whilst programming, i.e., solving problems in an elegant manner. \bigskip  Life is a DIY project &amp;ndash; Zack Nelson  </description>
+    </item>
+    
+    <item>
+      <title>Publications</title>
+      <link>https://duing.dev/posts/publications/</link>
+      <pubDate>Sat, 14 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://duing.dev/posts/publications/</guid>
+      <description>(, )</description>
     </item>
     
   </channel>

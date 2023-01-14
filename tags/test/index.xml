@@ -6,16 +6,7 @@
     <description>Recent content in test on Duing Dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 10 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/test/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Writing Hugo blog in Org (File Export)</title>
-      <link>https://duing.dev/posts/anothertest/</link>
-      <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://duing.dev/posts/anothertest/</guid>
-      <description>First heading within the post  This post will be exported as content/posts/writing-hugo-blog-in-org-file-export.md. Its title will be &amp;ldquo;Writing Hugo blog in Org&amp;rdquo;. It will have hugo and org tags and emacs as category. The lastmod property in the front-matter is set automatically to the time of export. The menu item identifier is auto-set. The menu item weight and post weight if needed have to be manually specified as shown above.  A sub-heading under that heading  It&amp;rsquo;s draft state will be marked as true because of #+hugo_draft: true.</description>
-    </item>
-    
+    <lastBuildDate>Thu, 01 Jan 1970 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/test/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>~glorifiedgluer blog</title>
       <link>https://duing.dev/blog/</link>
