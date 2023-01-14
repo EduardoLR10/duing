@@ -1,0 +1,12 @@
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: home
+#+HUGO_CATEGORIES: testing
+#+TITLE: one post
+#+DATE: 2023-01-03
+#+AUTHOR: Eduardo Lemos
+
+* This is a title
+
+This page is empty because I didn't find anything interesting to put here yet.
+
+Feel free to check out the navigation links above and enjoy the picture below.
