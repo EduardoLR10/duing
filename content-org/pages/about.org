@@ -1,6 +1,12 @@
 #+hugo_base_dir: ../
 #+hugo_type: about
 
+:PROPERTIES:
+:EXPORT_TITLE: About
+:EXPORT_FILE_NAME: about
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :description About this site and me.
+:END:
+
 #+title: About
 
 #+date: 2023-01-14

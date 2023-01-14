@@ -17,7 +17,7 @@ summaryLength = 70  # number of words for article summaries
     author = "Eduardo Lemos Rocha"
     description = "Duing Dev"  # this will be added as metadata
 
-    posts = "/posts/"  # content directory where to find home page posts; default searches in "posts" and "post"
+    posts = "posts"  # content directory where to find home page posts; default searches in "posts" and "post"
     
     logo = "/logo.svg"
     logoAltText = "Logo"
@@ -34,7 +34,7 @@ summaryLength = 70  # number of words for article summaries
     # requires setting `homeSinglePage`
     # goes well with extraContentDirs
     showSinglePageAsHome = true
-    homeSinglePage = "/home.md"
+    homeSinglePage = "/pages/home.md"
 
     # It's best to put these icons in the "static" folder of your site
     # logo = "/logo.svg"

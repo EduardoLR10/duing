@@ -1,6 +1,6 @@
 #+hugo_base_dir: ../
 #+hugo_type: publications
-#+bibliography: pub.bib
+#+bibliography: ../static/pub.bib
 
 #+title: Publications
 
@@ -8,3 +8,4 @@
 #+author: Eduardo Lemos
 
 [cite:@JUNIER]
+
