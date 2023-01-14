@@ -1,6 +1,5 @@
 #+hugo_base_dir: ../
 #+hugo_type: homepage
-#+OPTIONS: \n:t
 
 #+title: Hi! I'm Lemos
 
@@ -12,7 +11,7 @@ Functional programming, processor architectures, and operating systems are the m
 I am deeply interested in proactively going to unknown territories, investigating new technologies and programming languages.
 Regardless of the tool and nature, my goal is to express art whilst programming, i.e., solving problems in an elegant manner.
 
-\bigskip
+
 
  #+BEGIN_QUOTE
  Life is a DIY project -- Zack Nelson

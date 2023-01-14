@@ -28,8 +28,8 @@ Example usage in Emacs Lisp: (ox-hugo/export-all \"~/org\")."
          (dont-recurse (or dont-recurse (and current-prefix-arg t)))
          (search-path (file-name-as-directory (expand-file-name org-files-root-dir)))
          (org-files (if dont-recurse
-                        (directory-files search-path :full "\.org$")
-                      (directory-files-recursively search-path "\.org$")))
+                        (directory-files search-path :full "^.*\.org")
+                      (directory-files-recursively search-path "^.*\.org")))
          (num-files (length org-files))
          (cnt 1))
     (if (= 0 num-files)
