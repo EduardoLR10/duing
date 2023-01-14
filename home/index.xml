@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Homes on Duing Dev</title>
+    <link>https://duing.dev/home/</link>
+    <description>Recent content in Homes on Duing Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 03 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/home/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>one post</title>
+      <link>https://duing.dev/home/home/</link>
+      <pubDate>Tue, 03 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://duing.dev/home/home/</guid>
+      <description>This is a title This page is empty because I didn&amp;rsquo;t find anything interesting to put here yet.
+Feel free to check out the navigation links above and enjoy the picture below.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html class="" lang="en"><head>
+    
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+
+    <link
+    rel="icon"
+    href='/favicon.png'
+/>
+<link
+    rel="shortcut icon"
+    href='/favicon.ico'
+    type="image/x-icon"
+/>
+<link
+    rel="apple-touch-icon"
+    href='/apple-touch-icon.png'
+/>
+
+    <link
+        rel="icon"
+        href='/logo.svg'
+        type="image/svg+xml"
+    />
+
+<title>
+        
+            Custom JWT Authentication with F# and ASP.NET  &ndash;
+        
+        Duing Dev
+    </title>
+
+    
+    <link href="/symbols-nerd-font/symbols-nerd-font.css" rel="stylesheet" integrity="sha512-lydow8GLOLlYNOtHlksNCmGWWCBsbIEtikXpHzfWqx78HLlyQZHOzyLwPpKol4Th6aCwLUXOfODVYgwrd3nwKQ=="/>
+    <link href="/jetbrains-mono/jetbrains-mono.css" rel="stylesheet" integrity="sha512-tJxlgL6v1Y7kFf+qB8SloaAMKnOAw6WouknxXtIjkBux9Y/9aX81EUWOJO8c/3l98DmjG8brr4to7zaez606Fg=="/>
+
+    
+    
+    <link type="text/css" rel="stylesheet" href=https://duing.dev/css/styles.6f7510796ff02c7dabd794e74edd5fe8768c226a0caad05f3838da994c532544d6915ce65b106ca5a210796f2936429e8446811360103cd082ad0dc245016d71.css integrity="sha512-b3UQeW/wLH2r15TnTt1f6HaMImoMqtBfODjamUxTJUTWkVzmWxBspaIQeW8pNkKehEaBE2AQPNCCrQ3CRQFtcQ==" />
+<meta name="author" content="Eduardo Lemos Rocha" />
+
+    
+    
+        <meta name="description" content="e are working on introducing a new back-end service, and as usual, teams entirely composed of new-ish employees face some hard time discovering all the small pieces required to make the gears turn.
+This time the challenge was to implement the authentication layer. It is actually quite simple as it is just a regular JWT token, but the devil&amp;rsquo;s in the details:
+ the token is on a custom header called `x-jwt-payload` the token does not contain the alg attribute the validation is done internally at the reverse proxy level  OK, this doesn&amp;rsquo;t sound too bad." />
+    
+
+<meta property="og:site_name"
+    content='Duing Dev' />
+
+    <meta property="og:title" content="Custom JWT Authentication with F# and ASP.NET" />
+    <meta property="og:type" content="article" />
+    
+    <meta
+        property="article:author" content="Eduardo Lemos Rocha" />
+    <meta
+        property="article:published_time"
+        content='2022-12-20T00:00:00Z&#43;0000' />
+    
+    <meta property="og:url" content="https://duing.dev/blog/custom-jwt-authentication-fsharp-asp-net/" />
+    
+    
+    <meta property="og:image"
+        content="https://duing.dev/icon512.png" />
+    
+        <meta property="og:description" content="At my $CURRENT_JOB we are working on introducing a new back-end service, and as usual, teams entirely composed of new-ish employees face some hard time discover" />
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain"
+      content='duing.dev'
+/>
+<meta property="twitter:url" content="https://duing.dev/blog/custom-jwt-authentication-fsharp-asp-net/" />
+
+
+    <meta name="twitter:title" content="Custom JWT Authentication with F# and ASP.NET" />
+    
+    
+    
+    <meta name="twitter:image"
+        content="https://duing.dev/icon512.png" />
+    
+        <meta name="twitter:description" content="At my $CURRENT_JOB we are working on introducing a new back-end service, and as usual, teams entirely composed of new-ish employees face some hard time discover" />
+    
+
+<link rel="manifest" href="/manifest/index.json" />
+</head>
+
+
+<body>
+        <div id="baseContainer"><header class="">
+<div class="titleAndSearchContainer">
+        <div id="titleContainer">
+            
+                <a class="unstyledLink" href="/">
+                    <img src='/logo.svg' alt='Logo'/>
+                </a>
+            
+            <div class="rightOfLogo">
+                <div class="titleAndHamburger">
+                    <h1>
+                        <a class="unstyledLink" href="/">Duing Dev</a>
+                        
+                    </h1>
+                    
+                </div>
+                <div id="wide_nav"><nav>
+    
+    <ul id="main-nav">
+        <li><a href="/">Home</a></li>
+        
+            <li><a href="/posts">Posts</a></li>
+        
+        
+        
+        
+        
+        
+            <li><a href="/about/">About</a></li>
+        
+        
+            <li><a href="/tags">Tags</a></li>
+        
+        
+    </ul>
+</nav>
+</div>
+            </div>
+        </div>
+        <div class="search">
+    <input id="searchbar" type="text" placeholder='Search' />
+    <a class="nerdlink" onclick="newSearch();">&#xf002;</a>
+</div>
+<script>
+    function newSearch() {
+        let term = searchbar.value.trim();
+        if (!term) return;
+        location.href = `/search?q=${term}`;
+    }
+    searchbar.onkeyup = (ev) => {if (ev.keyCode == 13) newSearch()};
+</script>
+
+    </div>
+    <div id="links">
+        
+        
+        <a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="mailto:dudulr10@gmail.com">
+    
+    
+        &#xf6ed;
+    
+    <span>
+        Email
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://github.com/EduardoLR10">
+    
+    
+        &#xf09b;
+    
+    <span>
+        GitHub
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://www.linkedin.com/in/eduardo-lemos-rocha-3198a5149/">
+    
+    
+        &#xf0e1;
+    
+    <span>
+        Linkedin
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://www.youtube.com/channel/UCMyzdYsPiBU3xoqaOeahr6Q">
+    
+    
+        &#xf16a;
+    
+    <span>
+        Dr.Nekoma
+    </span>
+</a>
+
+    </div>
+    
+
+</header>
+<div id="contentContainer">
+                <div id="content">
+                    <main>
+<article class="card single">
+    
+        <h1>Custom JWT Authentication with F# and ASP.NET</h1>
+    
+    
+        <p class="date">
+            <span title='Date'> </span>
+    2022-12-20
+
+</p>
+    
+    
+    
+    
+    <div><p>At my <code>$CURRENT_JOB</code> we are working on introducing a new back-end
+service, and as usual, teams entirely composed of new-ish employees
+face some hard time discovering all the small pieces required to make
+the gears turn.</p>
+<p>This time the challenge was to implement the authentication layer. It
+is actually quite simple as it is just a <em>regular JWT</em> token, but the
+devil&rsquo;s in the details:</p>
+<ul>
+<li>the token is on a custom header called `x-jwt-payload`</li>
+<li>the token does not contain the <code>alg</code> attribute</li>
+<li>the validation is done internally at the reverse proxy level</li>
+</ul>
+<p>OK, this doesn&rsquo;t sound <em>too</em> bad. However, it does take some tools
+from our hands&hellip; ASP.NET has the <a href="https://devblogs.microsoft.com/dotnet/jwt-validation-and-authorization-in-asp-net-core/">UseJwtBearerAuthentication
+middleware</a> that would take care of this workflow for us, but this
+requires access to the <em>Authority</em><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> server which we don&rsquo;t have,
+and also requires the <code>alg</code> attribute to decode the token.</p>
+<p>Having said that, let&rsquo;s develop another middleware to take of our
+authentication. I tried to reach the official documentation on how to
+write a custom authentication scheme for ASP.NET but it was less than
+useless. Then I tried to reach for blog posts, Stack Overflow
+questions and open source projects, but they all seemed so convoluted
+for such a small feature&hellip; When I was almost going to <em>brute force</em>
+the solution out of my IDE through auto completion and debugging, <a href="https://stackoverflow.com/a/46568439">this
+answer</a> appeared!</p>
+<p>That&rsquo;s it! This is what I needed, a really concise example going
+through each step of the authentication workflow. I wonder why
+Microsoft doesn&rsquo;t have something like this on their docs. Or at least
+not something easy to find there.</p>
+<p>Alright, time to implement piece by piece of this code. Starting with
+the Authentication scheme definition:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">CustomJwtAuthenticationOptions</span>() <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">inherit</span> AuthenticationSchemeOptions()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">member</span> this.<span style="color:#a6e22e">DefaultScheme</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;CustomJwtAuthentication&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">member</span> this.<span style="color:#a6e22e">HeaderName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;x-jwt-payload&#34;</span>
+</span></span></code></pre></div><p>The next missing part is the <a href="https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1?view=aspnetcore-7.0">Authentication Handler</a>. For this, I&rsquo;ll
+use the great <a href="https://demystifyfp.gitbook.io/fstoolkit-errorhandling">FsToolkit.ErrorHandling</a> package to help structure the
+code, so do a <code>dotnet add package FsToolkit.ErrorHandling</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">CustomJwtAuthenticationHandler</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>          options<span style="color:#f92672">:</span> IOptionsMonitor<span style="color:#f92672">&lt;</span>CustomJwtAuthenticationOptions<span style="color:#f92672">&gt;,</span>
+</span></span><span style="display:flex;"><span>          logger<span style="color:#f92672">:</span> ILoggerFactory<span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>          encoder<span style="color:#f92672">:</span> UrlEncoder<span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>          clock<span style="color:#f92672">:</span> ISystemClock
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">)</span> <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">inherit</span> AuthenticationHandler<span style="color:#f92672">&lt;</span>CustomJwtAuthenticationOptions<span style="color:#f92672">&gt;(</span>options<span style="color:#f92672">,</span> logger<span style="color:#f92672">,</span> encoder<span style="color:#f92672">,</span> clock<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">override</span> this.<span style="color:#a6e22e">HandleAuthenticationAsync</span>() <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>          result <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#66d9ef">let!</span> token <span style="color:#f92672">=</span> this<span style="color:#f92672">.</span>RetrieveTokenValue this<span style="color:#f92672">.</span>Options<span style="color:#f92672">.</span>HeaderName
+</span></span><span style="display:flex;"><span>              <span style="color:#66d9ef">let!</span> jwt <span style="color:#f92672">=</span> this<span style="color:#f92672">.</span>DecodeToken token
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>              <span style="color:#66d9ef">let</span> name <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#66d9ef">let</span> firstName <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>                      jwt<span style="color:#f92672">.</span>Item<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;firstName&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">|&gt;</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#66d9ef">let</span> lastName <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>                      jwt<span style="color:#f92672">.</span>Item<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;lastName&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">|&gt;</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">$</span><span style="color:#e6db74">&#34;{firstName} {LastName}&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>              <span style="color:#66d9ef">let</span> claims <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">[</span> Claim<span style="color:#f92672">(</span>ClaimTypes.NameIdentifier<span style="color:#f92672">,</span> jwt<span style="color:#f92672">.</span>Sub<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                    Claim<span style="color:#f92672">(</span>ClaimTypes.Name<span style="color:#f92672">,</span> name<span style="color:#f92672">)</span> <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>              <span style="color:#66d9ef">let</span> claimIdentity <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>                  ClaimsIdentity<span style="color:#f92672">(</span>claims<span style="color:#f92672">,</span> this<span style="color:#f92672">.</span>Options<span style="color:#f92672">.</span>DefaultSchemeName<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>              <span style="color:#66d9ef">let</span> ticket <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>                  AuthenticationTicket<span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>                      ClaimsPrincipal<span style="color:#f92672">(</span>claimsIdentity<span style="color:#f92672">),</span>
+</span></span><span style="display:flex;"><span>                      AuthenticationProperties()<span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>                      this<span style="color:#f92672">.</span>Options<span style="color:#f92672">.</span>DefaultSchemeName
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>              <span style="color:#66d9ef">return</span> Task.FromResult<span style="color:#f92672">(</span>AuthenticateResult.Success<span style="color:#f92672">(</span>ticket<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">|&gt;</span> <span style="color:#66d9ef">function</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">|</span> Ok value <span style="color:#f92672">-&gt;</span> value
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">|</span> Error e <span style="color:#f92672">-&gt;</span> Task.FromResult<span style="color:#f92672">(</span>AuthenticateResult.Fail<span style="color:#f92672">(</span>e<span style="color:#f92672">))</span>
+</span></span></code></pre></div><p>And that&rsquo;s it! I now have the custom JWT authentication I needed for
+my ASP.NET application. Of course, we are missing some helper methods
+I used on the code. Let&rsquo;s take a look at them.</p>
+<p>This function is used to extract the Base 64 token from the header.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span>  <span style="color:#66d9ef">member</span> <span style="color:#66d9ef">private</span> this<span style="color:#f92672">.</span>RetrieveTokenValue name <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> found<span style="color:#f92672">,</span> value <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>          this<span style="color:#f92672">.</span>Request<span style="color:#f92672">.</span>Headers<span style="color:#f92672">.</span>TryGetValue<span style="color:#f92672">(</span>name<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> found <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>          Error <span style="color:#f92672">$</span><span style="color:#e6db74">&#34;Missing header &#39;{name}&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>          value<span style="color:#f92672">.</span>ToString()
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">|&gt;</span> String.IsNullOrWhiteSpace
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">|&gt;</span> <span style="color:#66d9ef">function</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">|</span> <span style="color:#66d9ef">false</span> <span style="color:#f92672">-&gt;</span> Ok value
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">|</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">-&gt;</span> Error <span style="color:#f92672">$</span><span style="color:#e6db74">&#34;Missing header &#39;{name}&#39; value&#34;</span>
+</span></span></code></pre></div><p>Now the function responsible to decode the JWT token itself.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span>  <span style="color:#66d9ef">member</span> <span style="color:#66d9ef">private</span> this<span style="color:#f92672">.</span>DecodeToken token <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">try</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">let</span> jwt <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>              token
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">|&gt;</span> Convert.FromBase64String
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">|&gt;</span> Encoding.UTF8.GetString
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">|&gt;</span> Jwt.JwtPayload.Deserialize
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          Ok jwt
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">with</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|</span> <span style="color:#66d9ef">exn</span> <span style="color:#f92672">-&gt;</span> Error <span style="color:#f92672">$</span><span style="color:#e6db74">&#34;Error decoding token: {exn.Message}&#34;</span>
+</span></span></code></pre></div><p>OK, <strong>now</strong> we have everything needed to use our brand new
+authentication scheme. How can we plug this together on our
+application&rsquo;s startup? Considering that we&rsquo;re using <a href="https://saturnframework.org/">Saturn</a> to
+configure it, it would look just like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> configureApp <span style="color:#f92672">(</span>app<span style="color:#f92672">:</span> IApplicationBuilder<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      app<span style="color:#f92672">.</span>UseAuthentication()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> configureServices <span style="color:#f92672">(</span>services<span style="color:#f92672">:</span> IServiceCollection<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      services
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">.</span>AddAuthentication<span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>              CustomJwtAuthenticationOptions()<span style="color:#f92672">.</span>DefaultScheme
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">.</span>AddScheme<span style="color:#f92672">&lt;</span>CustomJwtAuthenticationOptions<span style="color:#f92672">,</span> CustomJwtAuthenticationHandler<span style="color:#f92672">&gt;(</span>
+</span></span><span style="display:flex;"><span>              CustomJwtAuthenticationOptions()<span style="color:#f92672">.</span>DefaultScheme<span style="color:#f92672">,</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> options <span style="color:#f92672">-&gt;</span> ()<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">|&gt;</span> ignore
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      services
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> main <span style="color:#f92672">_</span> <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> app <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>          application <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>              app_config configureApp
+</span></span><span style="display:flex;"><span>              service_config configureServices
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>          run app
+</span></span></code></pre></div><div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>The address of the token-issuing authentication server. The JWT bearer authentication middleware will use this URI to find and retrieve the public key that can be used to validate the token’s signature. It will also confirm that the iss parameter in the token matches this URI.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+</div>
+</article>
+
+
+
+
+
+
+                    </main><footer>
+    <hr />
+
+<p><small>
+        2023 &copy; 
+    </small></p>
+    <p><small>
+        <a href='https://gitlab.com/gabmus/hugo-ficurinia'>Ficurinia theme</a> for <a href='https://gohugo.io'>Hugo</a> by <a href='https://gabmus.org'>Gabriele Musco</a>. Licensed under <a href='https://www.gnu.org/licenses/agpl-3.0.html'>GNU AGPLv3</a>.
+    </small></p>
+</footer>
+</div>
+            </div>
+        </div>
+
+
+</body>
+</html>
