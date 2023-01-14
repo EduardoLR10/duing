@@ -3,21 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://duing.dev/</loc>
-    <lastmod>2023-01-03T00:00:00+00:00</lastmod>
+    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duing.dev/categories/</loc>
-    <lastmod>2023-01-03T00:00:00+00:00</lastmod>
+    <loc>https://duing.dev/posts/home/</loc>
+    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duing.dev/home/</loc>
-    <lastmod>2023-01-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/home/home/</loc>
-    <lastmod>2023-01-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/categories/testing/</loc>
-    <lastmod>2023-01-03T00:00:00+00:00</lastmod>
+    <loc>https://duing.dev/posts/</loc>
+    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://duing.dev/categories/blog/</loc>
+    <lastmod>2023-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://duing.dev/categories/</loc>
     <lastmod>2023-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://duing.dev/blog/new-years-resolution-for-2023/</loc>
@@ -66,9 +63,6 @@
     <lastmod>2020-03-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://duing.dev/categories/emacs/</loc>
-    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/posts/</loc>
     <lastmod>2017-09-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://duing.dev/tags/</loc>
