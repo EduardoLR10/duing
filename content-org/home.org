@@ -2,7 +2,7 @@
 #+hugo_type: homepage
 #+OPTIONS: \n:t
 
-#+title: Duing Dev
+#+title: Hi! I'm Lemos
 
 #+date: 2023-01-13
 #+author: Eduardo Lemos
