@@ -1,12 +1,17 @@
-#+HUGO_BASE_DIR: ../
-#+HUGO_SECTION: home
-#+HUGO_CATEGORIES: testing
-#+TITLE: one post
-#+DATE: 2023-01-03
-#+AUTHOR: Eduardo Lemos
+#+hugo_base_dir: ../
+#+hugo_type: homepage
 
-* This is a title
+#+title: Duing Dev
 
-This page is empty because I didn't find anything interesting to put here yet.
+#+date: 2023-01-13
+#+author: Eduardo Lemos
 
-Feel free to check out the navigation links above and enjoy the picture below.
+I am a software developer who is fascinated with understanding and practicing computer science.
+Functional programming, processor architectures, and operating systems are the main areas that left me awe.
+I am deeply interested in proactively going to unknown territories, investigating new technologies and programming languages.
+Regardless of the tool and nature, my goal is to express art whilst programming, i.e., solving problems in an elegant manner.
+
+
+ #+BEGIN_QUOTE
+ Life is a DIY project -- Zack Nelson
+ #+END_QUOTE

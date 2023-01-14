@@ -53,20 +53,6 @@ I intend to use as much [[https://www.gnu.org/philosophy/floss-and-foss.html][FO
 :END:
 This page is a rendered version of my [[https://en.wikipedia.org/wiki/OPML][OPML]] file.
 
-** Home
-:PROPERTIES:
-:EXPORT_TITLE: ~glorifiedgluer
-:EXPORT_FILE_NAME: _index
-:EXPORT_HUGO_TYPE: homepage
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :description ~glorifiedgluer's personal website.
-:END:
-This page is empty because I didn't find anything interesting to put here yet.
-
-Feel free to check out the navigation links above and enjoy the picture below.
-
-#+attr_html: :title Drawing by @psicochurroz. :alt A capybara giving a ride to a gopher.
-[[/img/capybara-gopher.png]]
-
 * Blog :@blog:
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: blog
