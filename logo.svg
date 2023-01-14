@@ -1,9 +1,11 @@
 <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 68" width="68" height="68">
 	<title>logo-svg</title>
+	<defs>
+		<image  width="41" height="44" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAsCAMAAADPc2F3AAAAAXNSR0IB2cksfwAAAIFQTFRFV6jbV6jaV6jbVqnbVarbAAAAV6jaWKffVqjbWKfbV6jaVafaVaraUK/fV6fbVqfbV6jbVqjbVqfbVqfaV6jbVqncV6jcVafaV6jbV6jbV6jbVqnbVqnbV6jbV6jbV6jaV6jbV6jbV6jbV6jbV6jbV6jbV6jbV6jbV6jbV6jaVqfbxuTogAAAACt0Uk5T/9+/fz8AnyDvQG9gMBDggLDwwKBwUJBfAAH2OgBhAtBo9Wn3Zv1jW1QAACfsEUYAAAEHSURBVHicxdTZdoIwEAbgUBwBQ4hAVKi27q36/g+oLZCZnJLloh7/y8x3JgshjFkSvcUToLHBLtMkVFLrkyzNQiVjs2DJeLBM81DJImHIQpLMS4NKQ1bGOUNW0/mFQwJw0lc5JWRkpW4JEqu5WwLOrzwSm9YemZCFuiWZXnjkXJczj5RPkFyXuUdiJ/lvUuny4gV7r4JlqsvBN6TwyKWuem6dwMm5W06xmjgl+dSF849bYe3nabLKpn03WhIZxb9Zbx5pHqFSwcgL9tH0+US5hTG503I/DJXJqDwMsj0OQwsYlSctz33H7kn+K7+07Ledg0V+m7IWYJMXIksp8IBtPa+3RuVAcwcYwB0q4+ub9QAAAABJRU5ErkJggg=="/>
+	</defs>
 	<style>
 		.s0 { fill: #ffffff } 
-		.s1 { fill: #57a8db } 
 	</style>
 	<path id="D" class="s0" aria-label="D"  d="m6.1 65v-44.1h21.4q3.9 0 7.3 1.2 3.5 1.1 6.1 3.7 2.5 2.6 4.1 6.8 1.5 4.2 1.5 10.4 0 6.1-1.5 10.3-1.6 4.1-4.1 6.8-2.6 2.6-6.1 3.8-3.4 1.1-7.3 1.1zm9.8-8.6h10.4q2.1 0 4-0.6 2-0.6 3.3-2.2 1.5-1.6 2.3-4.2 0.8-2.5 0.8-6.4 0-4-0.8-6.5-0.8-2.7-2.3-4.2-1.3-1.6-3.3-2.2-1.9-0.6-4-0.6h-10.4z"/>
-	<path id="D" class="s1" aria-label="D"  d="m20.1 48v-44.1h21.4q3.9 0 7.3 1.2 3.5 1.1 6.1 3.7 2.5 2.6 4.1 6.8 1.5 4.2 1.5 10.4 0 6.1-1.5 10.3-1.6 4.1-4.1 6.8-2.6 2.6-6.1 3.8-3.4 1.1-7.3 1.1zm9.8-8.6h10.4q2.1 0 4-0.6 2-0.6 3.3-2.2 1.5-1.6 2.3-4.2 0.8-2.5 0.8-6.5 0-3.9-0.8-6.4-0.8-2.7-2.3-4.2-1.3-1.6-3.3-2.2-1.9-0.6-4-0.6h-10.4z"/>
+	<use id="D" href="#img1" x="20" y="4"/>
 </svg>
