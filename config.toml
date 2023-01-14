@@ -15,9 +15,17 @@ summaryLength = 70  # number of words for article summaries
 
 [params]
     author = "Eduardo Lemos Rocha"
-    description = "Duing DIY"  # this will be added as metadata
+    description = "Duing Dev"  # this will be added as metadata
 
     posts = "posts"  # content directory where to find home page posts; default searches in "posts" and "post"
+    
+    logo = "/logo.svg"
+    logoAltText = "Logo"
+    favicon = "/favicon.png"
+    faviconIco = "/favicon.ico"
+    appletouch = "/apple-touch-icon.png"
+    svgicon = "/logo.svg"
+
     showPostsLink = true  # show or hide the link to the simple post list
     extraContentDirs = []  # other content directories to render similarly to the home page
     showcaseDir = "showcase"  # create a content directory that shows a special showcase section in the home page
@@ -29,12 +37,12 @@ summaryLength = 70  # number of words for article summaries
     homeSinglePage = "/home.md"
 
     # It's best to put these icons in the "static" folder of your site
-    logo = "/logo.svg"
-    favicon = "/favicon.png"  # 32x32
-    faviconIco = "/favicon.ico"  # 32x32
-    appletouch = "/apple-touch-icon.png"  # 180x180
-    svgicon = "/logo.svg"
-    icon512 = "/icon512.png"  # 512x512 png image
+    # logo = "/logo.svg"
+    # favicon = "/favicon.png"  # 32x32
+    # faviconIco = "/favicon.ico"  # 32x32
+    # appletouch = "/apple-touch-icon.png"  # 180x180
+    # svgicon = "/logo.svg"
+    # icon512 = "/icon512.png"  # 512x512 png image
 
     logoRightOfTitle = false  # positions the logo to the right of the title; default: false
 
