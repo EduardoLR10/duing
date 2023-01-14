@@ -1,16 +1,9 @@
 <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 68" width="68" height="68">
 	<title>logo-svg</title>
 	<style>
-		tspan { white-space:pre } 
-		.t0 { font-size: 63px;fill: #ffffff;font-weight: 700;font-family: "SFFourche-Bold", "SF Fourche" } 
-		.t1 { font-size: 63px;fill: #57a8db;font-weight: 700;font-family: "SFFourche-Bold", "SF Fourche" } 
+		.s0 { fill: #ffffff } 
+		.s1 { fill: #57a8db } 
 	</style>
-	<text id="D" style="transform: matrix(1,0,0,1,3,65)" >
-		<tspan x="0" y="0" class="t0">D
-</tspan>
-	</text>
-	<text id="D" style="transform: matrix(1,0,0,1,17,48)" >
-		<tspan x="0" y="0" class="t1">D
-</tspan>
-	</text>
+	<path id="D" class="s0" aria-label="D"  d="m6.1 65v-44.1h21.4q3.9 0 7.3 1.2 3.5 1.1 6.1 3.7 2.5 2.6 4.1 6.8 1.5 4.2 1.5 10.4 0 6.1-1.5 10.3-1.6 4.1-4.1 6.8-2.6 2.6-6.1 3.8-3.4 1.1-7.3 1.1zm9.8-8.6h10.4q2.1 0 4-0.6 2-0.6 3.3-2.2 1.5-1.6 2.3-4.2 0.8-2.5 0.8-6.4 0-4-0.8-6.5-0.8-2.7-2.3-4.2-1.3-1.6-3.3-2.2-1.9-0.6-4-0.6h-10.4z"/>
+	<path id="D" class="s1" aria-label="D"  d="m20.1 48v-44.1h21.4q3.9 0 7.3 1.2 3.5 1.1 6.1 3.7 2.5 2.6 4.1 6.8 1.5 4.2 1.5 10.4 0 6.1-1.5 10.3-1.6 4.1-4.1 6.8-2.6 2.6-6.1 3.8-3.4 1.1-7.3 1.1zm9.8-8.6h10.4q2.1 0 4-0.6 2-0.6 3.3-2.2 1.5-1.6 2.3-4.2 0.8-2.5 0.8-6.5 0-3.9-0.8-6.4-0.8-2.7-2.3-4.2-1.3-1.6-3.3-2.2-1.9-0.6-4-0.6h-10.4z"/>
 </svg>
