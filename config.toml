@@ -17,7 +17,7 @@ summaryLength = 70  # number of words for article summaries
     author = "Eduardo Lemos Rocha"
     description = "Duing Dev"  # this will be added as metadata
 
-    posts = "posts"  # content directory where to find home page posts; default searches in "posts" and "post"
+    posts = "/posts/"  # content directory where to find home page posts; default searches in "posts" and "post"
     
     logo = "/logo.svg"
     logoAltText = "Logo"
@@ -140,6 +140,11 @@ summaryLength = 70  # number of words for article summaries
         name = "About"
         url = "/about/"
         weight = 10
+    [[menu.main]]
+        identifier = "publications"
+        name = "Publications"
+        url = "/publications/"
+        weight = 15
     # these links (menu.icons) will be added as icon links below the main nav
     [[menu.icons]]
         identifier = "email"

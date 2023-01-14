@@ -7,43 +7,6 @@
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: /
 :END:
-** About
-:PROPERTIES:
-:EXPORT_TITLE: About
-:EXPORT_FILE_NAME: about
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :description About this site and me.
-:END:
-*** About me
-I'm *Victor Freire*, a student and software developer based in *Guarulhos,
-Brazil*, currently working at [[https://divisionsmg.com][Divisions Maintenance Group]] as a
-software engineer writing [[https://fsharp.org/][F#]] and [[https://nixos.org][Nix]].
-
-I've taught myself coding, cloud computing and linux for years, out of passion.
-At the moment I'm mostly interested in learning about highly scalable systems.
-
-My projects live at [[https://git.sr.ht/~glorifiedgluer][sourcehut]] and [[https://github.com/ratsclub][GitHub]], you can also contact me via [[mailto:victor@freire.dev.br][email]].
-
-*** About this site
-
-**** Why?
-This site was built for the only reason of sharing and documenting most of my
-interests.
-
-**** How?
-I intend to use as much [[https://www.gnu.org/philosophy/floss-and-foss.html][FOSS]] as possible while producing its content.
-
-***** Software
-
-- Icons made by my beloved nana
-- Generated using [[https://hugo.io][Hugo]], theme inspired by [[https://harelang.org][The Hare programming language website]]
-- Source code at [[https://git.sr.ht/~glorifiedgluer/glorifiedgluercom][sourcehut]]
-- Built with [[https://nixos.org][Nix]] and [[https://builds.sr.ht/~glorifiedgluer/monorepo][builds.sr.ht]]
-- Hosted at [[https://srht.site/][pages.sr.ht]]
-
-***** Hardware
-
-- Pictures taken with a Fujifilm Instax Mini 90 or Nikon D3100
-- Analog pictures scanned with a Canon CanoScan LiDE 300
 
 ** Blogroll
 :PROPERTIES:

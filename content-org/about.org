@@ -1,0 +1,34 @@
+#+hugo_base_dir: ../
+#+hugo_type: about
+
+#+title: About
+
+#+date: 2023-01-14
+#+author: Eduardo Lemos
+
+*** About me
+
+I'm *Eduardo Lemos*, a software developer based in *Brasília,
+Brazil*. I've graduated in computer engineering in 2022 at University of Brasília.
+Currently, I work for [[https://www.fpcomplete.com][FPComplete]] as a software engineer writing Haskell and Nix.
+
+I've started programming by changing IDs of itens and blocks in Minecraft mods
+back in the day. Later on, at the final stretch at university, I've discovered myself
+as an addicted person to computer science.
+
+After such discovery, I've started to slowly increase the number of personal projects.
+At the current moment, I actively participate in the study group [[https://www.youtube.com/channel/UCMyzdYsPiBU3xoqaOeahr6Q][Dr.Nekoma]]. In parallel,
+I study continuous time modeling in Haskell with my mentor [[https://www.linkedin.com/in/joseedil/?originalSubdomain=br][Edil Medeiros]] -- a continuation of
+my [[https://bdm.unb.br/handle/10483/32536][graduation project]].
+
+Additionally, I'm personally interested in economics, ethics and philosophy, with the latter being where
+the main problems reside.
+
+*** About this site
+
+My goal is to share meaningful thoughts about a myriad of topics, ranging from technical discoveries all the way to
+philosophical thoughts and life lessons based on personal experience.
+
+**** Credits
+
+  I'm grateful for [[https://github.com/ratsclub][Victor Freire]] for helping me putting this blog up and running.

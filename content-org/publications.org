@@ -1,0 +1,10 @@
+#+hugo_base_dir: ../
+#+hugo_type: publications
+#+bibliography: pub.bib
+
+#+title: Publications
+
+#+date: 2023-01-14
+#+author: Eduardo Lemos
+
+[cite:@JUNIER]
