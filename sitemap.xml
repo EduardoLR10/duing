@@ -2,81 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://duing.dev/posts/about/</loc>
-    <lastmod>2023-01-14T00:00:00+00:00</lastmod>
+    <loc>https://duing.dev/categories/</loc>
   </url><url>
     <loc>https://duing.dev/</loc>
-    <lastmod>2023-01-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/posts/home/</loc>
-    <lastmod>2023-01-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/posts/</loc>
-    <lastmod>2023-01-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/posts/publications/</loc>
-    <lastmod>2023-01-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/categories/blog/</loc>
-    <lastmod>2023-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/categories/</loc>
-    <lastmod>2023-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/new-years-resolution-for-2023/</loc>
-    <lastmod>2023-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/setting-up-synology-ds1520/</loc>
-    <lastmod>2022-12-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/custom-jwt-authentication-fsharp-asp-net/</loc>
-    <lastmod>2022-12-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/debian-blank-screen-thinkpad-t495/</loc>
-    <lastmod>2022-12-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/building-dell-poweredge-nas/</loc>
-    <lastmod>2022-09-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/implementing-correlation-ids-fsharp-giraffe-serilog/</loc>
-    <lastmod>2022-08-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/ergojourney-choosing-a-new-keyboard-layout/</loc>
-    <lastmod>2022-07-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/moving-site-org-mode/</loc>
-    <lastmod>2022-07-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/git-mirroring-systemd-nixos/</loc>
-    <lastmod>2022-06-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/starting-a-personal-monorepo/</loc>
-    <lastmod>2022-05-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/running-a-raspberry-pi-4-with-nixos/</loc>
-    <lastmod>2022-05-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/notes-on-buildssrht/</loc>
-    <lastmod>2022-04-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/write-broken-pipe/</loc>
-    <lastmod>2022-04-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/burning-out-and-finding-out/</loc>
-    <lastmod>2021-08-31T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/this-will-deteriorate-quickly/</loc>
-    <lastmod>2020-03-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blog/</loc>
-    <lastmod>1970-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://duing.dev/tags/</loc>
-    <lastmod>1970-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/tags/test/</loc>
-    <lastmod>1970-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/blogroll/</loc>
   </url>
 </urlset>

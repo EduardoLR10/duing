@@ -8,24 +8,8 @@
     
     
     
-        
-        
-        
-    
-        
-        
-        
-    
-        
-        
-        
-    
-        
-        
-        
-    
-    "articles": [{"date":"2023-01-14","image":"","imageAlt":"","link":"https://duing.dev/posts/about/","summary":"About me I\u0026rsquo;m Eduardo Lemos, a software developer based in Brasília, Brazil. I\u0026rsquo;ve graduated in computer engineering in 2022 at University of Brasília. Currently, I work for FPComplete as a software engineer writing Haskell and Nix.\nI\u0026rsquo;ve started programming by changing IDs of itens and blocks in Minecraft mods back in the day. Later on, at the final stretch at university, I\u0026rsquo;ve discovered myself as an addicted person to computer science.","tags":[],"title":"About"},{"date":"2023-01-14","image":"","imageAlt":"","link":"https://duing.dev/posts/home/","summary":"I am a software developer who is fascinated with understanding and practicing computer science. Functional programming, processor architectures, and operating systems are the main areas that left me awe. I am deeply interested in proactively going to unknown territories, investigating new technologies and programming languages. Regardless of the tool and nature, my goal is to express art whilst programming, i.e., solving problems in an elegant manner. \\bigskip  Life is a DIY project \u0026ndash; Zack Nelson  ","tags":[],"title":"Hi! I'm Lemos"},{"date":"2023-01-14","image":"","imageAlt":"","link":"https://duing.dev/posts/publications/","summary":"(, )","tags":[],"title":"Publications"},{"date":"0001-01-01","image":"","imageAlt":"","link":"https://duing.dev/blogroll/","summary":"A rendered version of my OPML file.","tags":[],"title":"Blogroll"}],
-    "test": "About   Hi! I'm Lemos   Publications   Blogroll   ",
+    "articles": [],
+    "test": "",
     "page": "1",
     "next": ""
 }
