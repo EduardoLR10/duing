@@ -12,8 +12,16 @@
         
         
     
-    "articles": [{"date":"2017-09-10","image":"","imageAlt":"","link":"https://duing.dev/posts/test/","summary":"First heading within the post  This post will be exported as content/posts/writing-hugo-blog-in-org-file-export.md. Its title will be \u0026ldquo;Writing Hugo blog in Org\u0026rdquo;. It will have hugo and org tags and emacs as category. The lastmod property in the front-matter is set automatically to the time of export. The menu item identifier is auto-set. The menu item weight and post weight if needed have to be manually specified as shown above.  A sub-heading under that heading  It\u0026rsquo;s draft state will be marked as true because of #+hugo_draft: true.","tags":["test"],"title":"Writing Hugo blog in Org (File Export)"}],
-    "test": "Writing Hugo blog in Org (File Export)   ",
+        
+        
+        
+    
+        
+        
+        
+    
+    "articles": [{"date":"2023-01-03","image":"","imageAlt":"","link":"https://duing.dev/about/","summary":"About me I\u0026rsquo;m Eduardo Lemos, a software developer based in Brasília, Brazil. I\u0026rsquo;ve graduated in computer engineering in 2022 at University of Brasília. Currently, I work for FPComplete as a software engineer writing Haskell and Nix.\nI\u0026rsquo;ve started programming by changing IDs of itens and blocks in Minecraft mods back in the day. Later on, at the final stretch at university, I\u0026rsquo;ve discovered myself as an addicted person to computer science.","tags":[],"title":"About"},{"date":"2023-01-03","image":"","imageAlt":"","link":"https://duing.dev/publications/","summary":"J. C. Amorim, E. L. Rocha, L. Minardi, V. Alves, E. P.  de Freitas, T. Castro, M. Amrani, J. Ortiz, P.-Y. Schobbens, and G. Perrouin, “Providing command and control agility: A software product line approach,” Expert Systems with Applications, vol. 216, p. 119473, 2023. [Online]. Available: https://www.sciencedirect.com/science/article/pii/S0957417422024927","tags":[],"title":"Publications"},{"date":"2017-09-10","image":"","imageAlt":"","link":"https://duing.dev/posts/test/","summary":"First heading within the post  This post will be exported as content/posts/writing-hugo-blog-in-org-file-export.md. Its title will be \u0026ldquo;Writing Hugo blog in Org\u0026rdquo;. It will have hugo and org tags and emacs as category. The lastmod property in the front-matter is set automatically to the time of export. The menu item identifier is auto-set. The menu item weight and post weight if needed have to be manually specified as shown above.  A sub-heading under that heading  It\u0026rsquo;s draft state will be marked as true because of #+hugo_draft: true.","tags":["test"],"title":"Writing Hugo blog in Org (File Export)"}],
+    "test": "About   Publications   Writing Hugo blog in Org (File Export)   ",
     "page": "1",
     "next": ""
 }

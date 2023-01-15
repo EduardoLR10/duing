@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://duing.dev/pages/about/</loc>
+    <loc>https://duing.dev/about/</loc>
+    <lastmod>2023-01-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://duing.dev/publications/</loc>
     <lastmod>2023-01-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://duing.dev/</loc>
     <lastmod>2023-01-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duing.dev/pages/home/</loc>
+    <loc>https://duing.dev/home/home/</loc>
     <lastmod>2023-01-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duing.dev/pages/</loc>
-    <lastmod>2023-01-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duing.dev/pages/publications/</loc>
+    <loc>https://duing.dev/home/</loc>
     <lastmod>2023-01-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://duing.dev/posts/</loc>
