@@ -168,6 +168,9 @@ summaryLength = 70  # number of words for article summaries
         url = "https://www.youtube.com/channel/UCMyzdYsPiBU3xoqaOeahr6Q"
         weight = 30
 
+[markup.goldmark.renderer]
+  unsafe = true
+
 # this section is necessary if you want infinite scrolling
 # it allows to output the article list as paged JSON so that "pages" can be retrieved via javascript
 [outputs]
