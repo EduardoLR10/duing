@@ -3,7 +3,7 @@
 
 #+title: My best idea of 2022
 
-#+date: 2023-09-15
+#+date: 2023-01-15
 #+author: Eduardo Lemos
 
 During 2022, a lot of things happened. I graduated from university, got my first job, and moved to a new one,
