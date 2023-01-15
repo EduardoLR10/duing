@@ -1,0 +1,66 @@
+#+hugo_base_dir: ../
+#+hugo_tags: lesson
+
+#+title: My best idea of 2022
+
+#+date: 2023-09-15
+#+author: Eduardo Lemos
+
+During 2022, a lot of things happened. I graduated from university, got my first job, and moved to a new one,
+the second one being my first international experience within the programming industry. While working, I also
+continued the development of my [[https://bdm.unb.br/handle/10483/32536][graduation thesis]] with the help of my friend and mentor [[https://br.linkedin.com/in/joseedil][Edil Medeiros]].
+All these experiences were great on their own, but they don't even get close to how good the idea of a
+*study group* was.
+
+* Exploiting the Environment
+
+On May, I talked to a co-worker about how my lack of displine profoundly affects my
+ability to start/continue/finish projects. I already noticed that the obligation of having to report to a third party
+heavily improves my performance. This colleage confessed that he also suffers from the same problem. We started thinking
+on how we could exploit such attribute to revert the natural destination of the situation -- getting nothing done and start
+accumulating frustration in a daily basis.
+
+Of course, this does justify the lack of a routine and the endurance required to not miss a single task previously planned.
+However, we noticed that given that our behavior is influenced by our surrounding *environment* it seems easy to just try to
+modify it and gather the results afterwards. For instance, if both of us have to report to each other about a specific duty,
+this would increase the chances of both of us of accomplishing the task. This informal approach, i.e., two or more
+friends adding extra obligations to each other, is not 100% bullet-proof because the worst output is to one participant to be
+embarassed because he/she has nothing to report.
+
+We decided that the worst case scenario was already enough for both of us and such strategy should be tested. This led to the creation
+of the study group [[https://github.com/Dr-Nekoma][Dr.Nekoma]].
+
+* Dr.Nekoma
+
+Named after two great japanese animations (Dr.Stone and Haikyuu!), the purpose of this study group, at least at first glance, would be
+to create an environment in which a group of people could participate in projects together, each participant commiting himself to getting
+online in specific days of the week. Hence, because everybody else would be doing the same, this would create the perfect
+scenario for projects to bloom and sky rocket.
+
+We started with only two participants (me and my colleague). This, however, didn't last very long. Rapidly we added more members, both
+coming from work. With more people involved, more ideas were shared and faster projects started to get done. Meanwhile, another property
+got clear to me: a group of enthusiasts have a great tendency of generating a [[https://en.wikipedia.org/wiki/Positive_feedback][positive feedback loop]]. In other words, one participant getting
+excited about a project provokes other enthusiastic participants to get more excited and vice-versa.
+
+The practical effect of this property was that our sessions of pair programming started to increase in length. As we were about to reach a
+steady state of getting blocked, someone insisted to fix the current bug just to be able to see a certain feature working on the project. The
+remaining members, already kinda exhausted, got infected with this virus and continue on helping to debug.
+
+Not only that, but we also had the opportunity to hone our communication abilities on how to explain problems and solutions to other developers
+and listen to their alternative ideas. Knowing how to debate in the technology space is important to create more efficient solutions and understand
+the drawbacks that each approach has.
+
+Later on, with more people getting involved in the group, not only more topics were added, such as philosophy, but also new activities. We started
+doing presentations within the group to enhance even more our communication and to train ourselves on how to present certaion topic that left us awe.
+This led to discoveries of such topics by the other participants while generating a healthy discussion with questions and debates about what was
+presented. Interestingly, I've noticed that such frictions do not happen because participants want to be right, but because they are trying to find
+some sort of *truth* about what is being discussed. This leads to a very humble and thought-provoking environment.
+
+* Conclusion
+
+Dr.Nekoma has a profile on [[https://github.com/Dr-Nekoma][Github]], [[https://www.youtube.com/channel/UCMyzdYsPiBU3xoqaOeahr6Q][Youtube]], and on [[https://www.twitch.tv/drnekoma][Twitch]]. Since May 2022 until the day of writing, we've accumulated 78 youtube videos, going across several
+programming languages, and several domains in the computer science space. Multiple presentations were done about various subjects. Our most recent project,
+[[https://github.com/Dr-Nekoma/spatula][spatula]], is an order of magnitudes more interesting and complex than anything I have done to this day during university and research. I have a gigantic source of
+knowledge and motivation that induces me to be even more hungry, to not stop the learning process no matter what.
+
+I'm very grateful for this group that allows me to express my nature of being truly interested in computer science. My only regret is not having this idea sooner.

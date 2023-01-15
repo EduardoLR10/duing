@@ -6,6 +6,8 @@ hugo_stats.json
 result
 content
 
+/content-org/template.org
+
 # Executable may be added to repository
 hugo.exe
 hugo.darwin
