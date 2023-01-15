@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Duing Dev</title>
+    <link>https://duing.dev/posts/</link>
+    <description>Recent content in Posts on Duing Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 15 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My best idea of 2022</title>
+      <link>https://duing.dev/posts/bestidea2022/</link>
+      <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://duing.dev/posts/bestidea2022/</guid>
+      <description>During 2022, a lot of things happened. I graduated from university, got my first job, and moved to a new one, the second one being my first international experience within the programming industry. While working, I also continued the development of my graduation thesis with the help of my friend and mentor Edil Medeiros. All these experiences were great on their own, but they don&amp;rsquo;t even get close to how good the idea of a study group was.</description>
+    </item>
+    
+  </channel>
+</rss>
