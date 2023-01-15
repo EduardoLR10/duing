@@ -13,10 +13,10 @@ I am a software developer who is fascinated with understanding and practicing co
 Functional programming, processor architectures, and operating systems are the main areas that left me awe.
 I am deeply interested in proactively going to unknown territories, investigating new technologies and programming languages.
 Regardless of the tool and nature, my goal is to express art whilst programming, i.e., solving problems in an elegant manner.
-\\
-\\
+
+#+HTML: <br>
+#+HTML: <br>
+
  #+BEGIN_QUOTE
- 
  Life is a DIY project -- Zack Nelson
- 
  #+END_QUOTE
