@@ -60,7 +60,7 @@ some sort of *truth* about what is being discussed. This leads to a very humble 
 
 Dr.Nekoma has a profile on [[https://github.com/Dr-Nekoma][Github]], [[https://www.youtube.com/channel/UCMyzdYsPiBU3xoqaOeahr6Q][Youtube]], and on [[https://www.twitch.tv/drnekoma][Twitch]]. Since May 2022 until the day of writing, we've accumulated 78 youtube videos, going across several
 programming languages, and several domains in the computer science space. Multiple presentations were done about various subjects. Our most recent project,
-[[https://github.com/Dr-Nekoma/spatula][spatula]], is an order of magnitudes more interesting and complex than anything I have done to this day during university and research. I have a gigantic source of
+[[https://github.com/Dr-Nekoma/spatula][spatula]], is an order of magnitude more interesting and complex than anything I have done to this day during university and research. I have a gigantic source of
 knowledge and motivation that induces me to be even more hungry, to not stop the learning process no matter what.
 
 I'm very grateful for this group that allows me to express my nature of being truly interested in computer science. My only regret is not having this idea sooner.
