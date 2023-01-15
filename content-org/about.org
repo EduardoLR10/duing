@@ -3,7 +3,7 @@
 #+HUGO_WEIGHT: 2
 
 #+TITLE: About
-#+DATE: 2023-01-03
+#+DATE: 2023-01-15
 #+AUTHOR: Eduardo Lemos
 
 *** About me
