@@ -1,5 +1,7 @@
-#+hugo_base_dir: ../
-#+hugo_type: homepage
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: pages/
+#+DATE: 2023-01-03
+#+AUTHOR: Eduardo Lemos
 
 #+title: Hi! I'm Lemos
 
@@ -10,8 +12,6 @@ I am a software developer who is fascinated with understanding and practicing co
 Functional programming, processor architectures, and operating systems are the main areas that left me awe.
 I am deeply interested in proactively going to unknown territories, investigating new technologies and programming languages.
 Regardless of the tool and nature, my goal is to express art whilst programming, i.e., solving problems in an elegant manner.
-
-
 
  #+BEGIN_QUOTE
  Life is a DIY project -- Zack Nelson

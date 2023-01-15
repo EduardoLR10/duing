@@ -1,0 +1,11 @@
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: pages/
+#+bibliography: ../static/pub.bib
+#+weight: 1
+#+DATE: 2023-01-03
+#+AUTHOR: Eduardo Lemos
+
+#+title: Publications
+
+[cite:@JUNIER]
+

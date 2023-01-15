@@ -1,12 +1,10 @@
 #+hugo_base_dir: ../
-#+hugo_section: posts
 #+title: Writing Hugo blog in Org (File Export)
 
 #+date: 2017-09-10
 #+author: Eduardo Lemos
 
 #+hugo_tags: test
-#+hugo_categories: emacs
 
 * First heading within the post
 - This post will be exported as

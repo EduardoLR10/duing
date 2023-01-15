@@ -1,16 +1,9 @@
-#+hugo_base_dir: ../
-#+hugo_type: about
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: pages/
 
-:PROPERTIES:
-:EXPORT_TITLE: About
-:EXPORT_FILE_NAME: about
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :description About this site and me.
-:END:
-
-#+title: About
-
-#+date: 2023-01-14
-#+author: Eduardo Lemos
+#+TITLE: About
+#+DATE: 2023-01-03
+#+AUTHOR: Eduardo Lemos
 
 *** About me
 
