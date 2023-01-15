@@ -16,7 +16,5 @@ Regardless of the tool and nature, my goal is to express art whilst programming,
 \\
 \\
  #+BEGIN_QUOTE
- \\
  Life is a DIY project -- Zack Nelson
- \\
  #+END_QUOTE
