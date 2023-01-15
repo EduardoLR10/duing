@@ -20,6 +20,8 @@
 - It's draft state will be marked as =true= because of =#+hugo_draft:
   true=.
 
+[[/img/test.png]]
+  
 With the point _anywhere_, do =C-c C-e H h= to export this whole file
 titled /Writing Hugo blog in Org/ to a Hugo post.
 

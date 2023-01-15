@@ -1,5 +1,6 @@
 #+HUGO_BASE_DIR: ../
-#+HUGO_SECTION: pages/
+#+HUGO_SECTION: .
+#+HUGO_WEIGHT: 2
 
 #+TITLE: About
 #+DATE: 2023-01-03

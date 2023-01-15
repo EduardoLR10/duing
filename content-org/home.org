@@ -1,5 +1,6 @@
 #+HUGO_BASE_DIR: ../
-#+HUGO_SECTION: pages/
+#+HUGO_SECTION: home
+
 #+DATE: 2023-01-03
 #+AUTHOR: Eduardo Lemos
 

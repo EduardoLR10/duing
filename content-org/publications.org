@@ -1,11 +1,15 @@
 #+HUGO_BASE_DIR: ../
-#+HUGO_SECTION: pages/
-#+bibliography: ../static/pub.bib
-#+weight: 1
+#+HUGO_SECTION: .
+#+HUGO_WEIGHT: 2
 #+DATE: 2023-01-03
 #+AUTHOR: Eduardo Lemos
 
 #+title: Publications
 
-[cite:@JUNIER]
+- J. C. Amorim, E. L. Rocha, L. Minardi, V. Alves, E. P.
+de Freitas, T. Castro, M. Amrani, J. Ortiz, P.-Y. Schobbens,
+and G. Perrouin, “Providing command and control agility:
+A software product line approach,” Expert Systems with
+Applications, vol. 216, p. 119473, 2023. [Online]. Available:
+https://www.sciencedirect.com/science/article/pii/S0957417422024927
 

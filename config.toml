@@ -35,7 +35,7 @@ summaryLength = 70  # number of words for article summaries
     # requires setting `homeSinglePage`
     # goes well with extraContentDirs
     showSinglePageAsHome = true
-    homeSinglePage = "/pages/home"
+    homeSinglePage = "/home"
 
     # It's best to put these icons in the "static" folder of your site
     # logo = "/logo.svg"
