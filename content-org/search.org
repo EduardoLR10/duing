@@ -1,5 +1,5 @@
 #+HUGO_BASE_DIR: ../
-#+HUGO_SECTION: _
+#+HUGO_SECTION: search
 :PROPERTIES:
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :layout search :outputs "html json" :nosearch false
 :END:
