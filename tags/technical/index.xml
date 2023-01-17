@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>technical on Duing Dev</title>
+    <link>https://duing.dev/tags/technical/</link>
+    <description>Recent content in technical on Duing Dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 30 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/technical/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Circular Programming or Corecursion</title>
+      <link>https://duing.dev/posts/circularprogramming/</link>
+      <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://duing.dev/posts/circularprogramming/</guid>
+      <description>Disclaimer I created this post during the make of my graduation project more than one and half years ago. This post served as training of a topic I had the intention of talking about in the final thesis &amp;ndash; something that ended up not happening. I&amp;rsquo;ve made a presentation on Dr.Nekoma about the topic, given how interesting it is. The following is the original post.
+Introduction Here I present a very descriptive explanation of a solution to a simple example problem.</description>
+    </item>
+    
+  </channel>
+</rss>

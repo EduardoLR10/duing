@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html class="" lang="en"><head>
+    
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+
+    <link
+    rel="icon"
+    href='/favicon.png'
+/>
+<link
+    rel="shortcut icon"
+    href='/favicon.ico'
+    type="image/x-icon"
+/>
+<link
+    rel="apple-touch-icon"
+    href='/apple-touch-icon.png'
+/>
+
+    <link
+        rel="icon"
+        href='/logo.svg'
+        type="image/svg+xml"
+    />
+
+<title>
+        
+            Circular Programming or Corecursion  &ndash;
+        
+        Duing Dev
+    </title>
+
+    
+    <link href="/symbols-nerd-font/symbols-nerd-font.css" rel="stylesheet" integrity="sha512-lydow8GLOLlYNOtHlksNCmGWWCBsbIEtikXpHzfWqx78HLlyQZHOzyLwPpKol4Th6aCwLUXOfODVYgwrd3nwKQ=="/>
+    <link href="/jetbrains-mono/jetbrains-mono.css" rel="stylesheet" integrity="sha512-tJxlgL6v1Y7kFf+qB8SloaAMKnOAw6WouknxXtIjkBux9Y/9aX81EUWOJO8c/3l98DmjG8brr4to7zaez606Fg=="/>
+
+    
+    
+    <link type="text/css" rel="stylesheet" href=https://duing.dev/css/styles.6f7510796ff02c7dabd794e74edd5fe8768c226a0caad05f3838da994c532544d6915ce65b106ca5a210796f2936429e8446811360103cd082ad0dc245016d71.css integrity="sha512-b3UQeW/wLH2r15TnTt1f6HaMImoMqtBfODjamUxTJUTWkVzmWxBspaIQeW8pNkKehEaBE2AQPNCCrQ3CRQFtcQ==" />
+<meta name="author" content="Eduardo Lemos Rocha" />
+
+    
+        <meta name="keywords" content='technical' />
+    
+    
+        <meta name="description" content=" this post during the make of my graduation project more than one and half years ago. This post served as training of a topic I had the intention of talking about in the final thesis &amp;ndash; something that ended up not happening. I&amp;rsquo;ve made a presentation on Dr.Nekoma about the topic, given how interesting it is. The following is the original post.
+Introduction Here I present a very descriptive explanation of a solution to a simple example problem." />
+    
+
+<meta property="og:site_name"
+    content='Duing Dev' />
+
+    <meta property="og:title" content="Circular Programming or Corecursion" />
+    <meta property="og:type" content="article" />
+    
+    <meta
+        property="article:author" content="Eduardo Lemos Rocha" />
+    <meta
+        property="article:published_time"
+        content='2021-07-30T00:00:00Z&#43;0000' />
+    
+        
+            <meta property="article:tag" content="technical" />
+        
+    
+    <meta property="og:url" content="https://duing.dev/posts/circularprogramming/" />
+    
+    
+    <meta property="og:image"
+        content="https://duing.dev/img/icon.svg" />
+    
+        <meta property="og:description" content="Disclaimer I created this post during the make of my graduation project more than one and half years ago. This post served as training of a topic I had the inte" />
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain"
+      content='duing.dev'
+/>
+<meta property="twitter:url" content="https://duing.dev/posts/circularprogramming/" />
+
+
+    <meta name="twitter:title" content="Circular Programming or Corecursion" />
+    
+    
+    
+    <meta name="twitter:image"
+        content="https://duing.dev/img/icon.svg" />
+    
+        <meta name="twitter:description" content="Disclaimer I created this post during the make of my graduation project more than one and half years ago. This post served as training of a topic I had the inte" />
+    
+
+<link rel="manifest" href="/manifest/index.json" />
+</head>
+
+
+<body>
+        <div id="baseContainer"><header class="">
+<div class="titleAndSearchContainer">
+        <div id="titleContainer">
+            
+                <a class="unstyledLink" href="/">
+                    <img src='/logo.svg' alt='Logo'/>
+                </a>
+            
+            <div class="rightOfLogo">
+                <div class="titleAndHamburger">
+                    <h1>
+                        <a class="unstyledLink" href="/">Duing Dev</a>
+                        
+                    </h1>
+                    
+                </div>
+                <div id="wide_nav"><nav>
+    
+    <ul id="main-nav">
+        <li><a href="/">Home</a></li>
+        
+            <li><a href="/posts">Posts</a></li>
+        
+        
+        
+        
+        
+            <li><a href="https://duing.dev/about/">
+                About
+            </a></li>
+        
+            <li><a href="https://duing.dev/publications/">
+                Publications
+            </a></li>
+        
+        
+        
+            <li><a href="/tags">Tags</a></li>
+        
+        
+    </ul>
+</nav>
+</div>
+            </div>
+        </div>
+        
+    </div>
+    <div id="links">
+        
+        
+        <a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="mailto:dudulr10@gmail.com">
+    
+    
+        &#xf6ed;
+    
+    <span>
+        Email
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://github.com/EduardoLR10">
+    
+    
+        &#xf09b;
+    
+    <span>
+        GitHub
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://discordapp.com/users/246675375877390337">
+    
+    
+        &#xfb6e;
+    
+    <span>
+        Discord
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://www.linkedin.com/in/eduardo-lemos-rocha-3198a5149/">
+    
+    
+        &#xf0e1;
+    
+    <span>
+        Linkedin
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://www.youtube.com/channel/UCMyzdYsPiBU3xoqaOeahr6Q">
+    
+    
+        &#xf16a;
+    
+    <span>
+        Dr.Nekoma
+    </span>
+</a>
+
+    </div>
+    
+
+</header>
+<div id="contentContainer">
+                <div id="content">
+                    <main>
+<article class="card single">
+    
+        <h1>Circular Programming or Corecursion</h1>
+    
+    
+        <p class="date">
+            <span title='Date'> </span>
+    2021-07-30
+
+</p>
+    
+    
+    
+    
+    <div><h2 id="disclaimer">Disclaimer</h2>
+<p>I created this post during the make of my graduation project more than
+one and half years ago. This post served as training of a topic I had the
+intention of talking about in the final thesis &ndash; something that ended up
+not happening. I&rsquo;ve made a <a href="https://youtu.be/IJhaks0IA2w">presentation</a> on Dr.Nekoma about the topic, given how
+interesting it is. The following is the original post.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Here I present a very descriptive explanation of a solution to a simple
+example problem. The solution explores the concepts of circular
+programming or corecursion. Because of the constraints of this topic, it
+is important to pay attention to detail using drawings as the main tool.</p>
+<p>Our problem consists of doing the following: we have a list of elements
+and we want to replace every single element of it with the minimum
+element. The last requirement is the tricky one: we want to do it in a
+<strong>single pass</strong>, i.e, checking each element only <strong>once</strong>.</p>
+<p>As our main reference already points out [1], in C we would be dealing
+with pointers all over the place to solve this. At each position of the
+list, we replace the current element with a pointer to a memory region
+which will serve as a placeholder for the minimum value at the end of
+the entire pass. At the end of each comparison, we change the value
+contained in this region. We will end up with all elements of the list
+being pointers pointing to the same place which is a region that
+contains the minimum element, fulfilling our needs.</p>
+<p>This, however, is a very imperative way to accomplish this task. What
+about a functional approach? This is where circular programming or
+corecursion comes [2] to the rescue. Unfortunately, this solution
+requires a very rare type of intuition, thus requesting a lot of
+patience to understand it completely. This is where I come in.</p>
+<h2 id="magic">Magic</h2>
+<p>To exemplify our goal, I will present first the solution inspired by
+[1]. It uses three functions working together. Let&rsquo;s start with the
+mind-bending one:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">trace</span> <span style="color:#f92672">::</span> (a <span style="color:#f92672">-&gt;</span> c <span style="color:#f92672">-&gt;</span> (b, c)) <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> b
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">trace</span> f init <span style="color:#f92672">=</span> result
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">where</span> (result, feedback) <span style="color:#f92672">=</span> f init feedback
+</span></span></code></pre></div><p>The weird part of this trace function is in the &ldquo;where&rdquo; clause: the
+function f requests feedback which is part of the answer. Initially,
+this seems like a very notorious paradox. How can we use something that
+is not yet produced? Fair enough. Let&rsquo;s continue our journey so at the
+end we can check using ghci if this mess actually works.</p>
+<p>Next up is the main body of our algorithm, function r':</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">r&#39;</span> <span style="color:#f92672">::</span> (<span style="color:#66d9ef">Ord</span> a) <span style="color:#f92672">=&gt;</span> [a] <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> ([a], a)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">r&#39;</span> [x] m <span style="color:#f92672">=</span> ([m], x)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">r&#39;</span> (x<span style="color:#66d9ef">:</span>xs) m <span style="color:#f92672">=</span> <span style="color:#66d9ef">let</span> (rep, m&#39;) <span style="color:#f92672">=</span> r&#39; xs m
+</span></span><span style="display:flex;"><span>                            <span style="color:#66d9ef">in</span> (m <span style="color:#66d9ef">:</span> rep, min x m&#39;)
+</span></span></code></pre></div><p>In contrast with the previous function, this one is simple using our
+common and loved type of recursion. Pattern matching is guiding the
+process to continue accordingly and at the end of execution, we will
+have a pair. The first element of it is a list with all elements being
+m. The second part of the pair is the minimum element of the list we
+initially provided.</p>
+<p>We can use ghci as a sanity check:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#66d9ef">Main</span><span style="color:#f92672">&gt;</span> r&#39; [<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>] <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>([<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>], <span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div><p>Awesome! We can now verify what is going on with this r&rsquo; function. Let&rsquo;s
+continue. Finally, the last function is the glue calling trace and r&rsquo; in
+order to solve our problem:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">r</span> <span style="color:#f92672">::</span> (<span style="color:#66d9ef">Ord</span> a) <span style="color:#f92672">=&gt;</span> [a] <span style="color:#f92672">-&gt;</span> [a]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> trace r&#39;
+</span></span></code></pre></div><p>And we are done. Using function r, we are able to solve the proposed
+problem, however, we have an enormous issue as we don&rsquo;t trust that this
+solution actually works because it uses function trace which we don&rsquo;t
+understand yet, or even believe that it is incorrect. So, let&rsquo;s use ghci
+to see if I&rsquo;m lying to you:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#66d9ef">Main</span><span style="color:#f92672">&gt;</span> r [<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>]
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+</span></span></code></pre></div><p>You can check on your own by copy-pasting these functions and testing
+them out. It will work and you&rsquo;ll want to surrender functional
+programming and close this post. Calm down! At the end of our adventure,
+I assure you that it is going to be clear.</p>
+<h2 id="secret-sauce">Secret sauce</h2>
+<p>The proposed solution only works because of one powerful and
+underestimated aspect of Haskell: <em>lazy evaluation</em>. It is only because
+the interpreter/compiler works in this manner that our algorithm is
+possible. So what does this concept actually mean? It means that we only
+do what is necessary. I assume that the reader already has a great
+notion of it but for the non-initiated, I present pseudocode to serve as
+an example to provide enough intuition:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>( s1 <span style="color:#f92672">||</span> s2 <span style="color:#f92672">||</span> <span style="color:#f92672">...</span> <span style="color:#f92672">||</span> sN) {
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span></code></pre></div><p>In the lazy approach, we only care about what is necessary in order to
+continue our computations. So, if statement s1 is True, we don&rsquo;t need to
+compute any other statement due to the nature of the OR logic operator.
+Remember, we only do what is unavoidable to go on.</p>
+<p>Another relevant topic to understand the explanation is the idea of
+<em>thunks</em>. During lazy evaluation, Haskell builds a graph of required
+computations requested by the current computation in order to be
+evaluated. Each vertice of this graph is a thunk. To give an example of
+this, let&rsquo;s use the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#66d9ef">Main</span><span style="color:#f92672">&gt;</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#66d9ef">Main</span><span style="color:#f92672">&gt;</span> a <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#66d9ef">Main</span><span style="color:#f92672">&gt;</span> y <span style="color:#f92672">=</span> a <span style="color:#66d9ef">:</span> <span style="color:#66d9ef">[]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#66d9ef">Main</span><span style="color:#f92672">&gt;</span> y
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">3</span>]
+</span></span></code></pre></div><p>To get the list &ldquo;y&rdquo;, we need to know what the name &ldquo;a&rdquo; refers to. In
+order to do that, we need to evaluate &ldquo;x&rdquo;. At each step of the lazy
+process, we call something else that we need to evaluate the minimum of
+the computation. We do not have to evaluate everything, just what is a
+must-have to satisfy our needs. This principle is also known as
+<em>call-by-need</em>.</p>
+<p>Now we have enough tools and concepts to fully understand what is going
+on with the code of the previous section.</p>
+<h2 id="slow-but-steady-effort">Slow but steady effort</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">trace</span> <span style="color:#f92672">::</span> (a <span style="color:#f92672">-&gt;</span> c <span style="color:#f92672">-&gt;</span> (b, c)) <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> b
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">trace</span> f init <span style="color:#f92672">=</span> result
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">where</span> (result, feedback) <span style="color:#f92672">=</span> f init feedback
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">r&#39;</span> <span style="color:#f92672">::</span> (<span style="color:#66d9ef">Ord</span> a) <span style="color:#f92672">=&gt;</span> [a] <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> ([a], a)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">r&#39;</span> [x] m <span style="color:#f92672">=</span> ([m], x)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">r&#39;</span> (x<span style="color:#66d9ef">:</span>xs) m <span style="color:#f92672">=</span> <span style="color:#66d9ef">let</span> (rep, m&#39;) <span style="color:#f92672">=</span> r&#39; xs m
+</span></span><span style="display:flex;"><span>                            <span style="color:#66d9ef">in</span> (m <span style="color:#66d9ef">:</span> rep, min x m&#39;)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">r</span> <span style="color:#f92672">::</span> (<span style="color:#66d9ef">Ord</span> a) <span style="color:#f92672">=&gt;</span> [a] <span style="color:#f92672">-&gt;</span> [a]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> trace r&#39;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#66d9ef">Main</span><span style="color:#f92672">&gt;</span> r [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+</span></span></code></pre></div><p>Above, I added the same code previously presented plus our small toy
+example so you don&rsquo;t need to scroll all the way back to follow along.
+Let&rsquo;s start checking if we are all on the same page. Function r, in
+order to be evaluated, will call function trace which uses r&rsquo; as an
+argument. So what we really need to understand is the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">trace</span> r&#39; [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> result
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">where</span> (result, feedback) <span style="color:#f92672">=</span> r&#39; [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>] feedback
+</span></span></code></pre></div><p>With this checkpoint out of the way, we can get our hands dirty, i.e,
+try to simulate what the interpreter/compiler does, never forgetting
+that we are lazy and we know what thunks are.</p>
+<p>To provide an output to the trace function, we need to know what
+&ldquo;result&rdquo; is. After reading the where clause, we are capable of knowing
+more about &ldquo;result&rdquo;. Intuitively, it depends on the function r&rsquo;. This
+means that it refers to r&rsquo; to be computed. We now have our first thunk:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> fst <span style="color:#f92672">$</span> r&#39; [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>] feedback
+</span></span></code></pre></div><p>Now that we have understood how we can achieve &ldquo;result&rdquo;, we can proceed.
+The next step is to solve whatever the result of r&rsquo; is so we can apply
+fst to it. But wait a second. Function r&rsquo; refers to two names, &ldquo;[1,2,3]&rdquo;
+and &ldquo;feedback&rdquo;. The first one is already known which is the list that we
+have provided in the beginning. However, the latter one, &ldquo;feedback&rdquo;, is
+something that we need to add to our thunk list:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">t1</span> <span style="color:#f92672">=</span> r&#39; [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>] feedback
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> fst t1
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">feedback</span> <span style="color:#f92672">=</span> snd t1
+</span></span></code></pre></div><p>I also renamed the same computation used by both &ldquo;result&rdquo; and &ldquo;feedback&rdquo;
+to organize our list of thunks. Knowing this, it is fair to say that t1
+is our major problem. Let&rsquo;s start to compute it. It is clear that the
+current scenario only matches the second pattern match of r':</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">t1</span> <span style="color:#f92672">=</span> r&#39; [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>] feedback
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">t1</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">let</span> (rep, m&#39;) <span style="color:#f92672">=</span> r&#39; [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>] feedback
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">in</span> (feedback <span style="color:#66d9ef">:</span> rep, min <span style="color:#ae81ff">1</span> m&#39;)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">t1</span> <span style="color:#f92672">=</span> (feedback <span style="color:#66d9ef">:</span> rep, min <span style="color:#ae81ff">1</span> m&#39;)
+</span></span></code></pre></div><p>Because we have updated what t1 is, we can change our thunk list:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> fst <span style="color:#f92672">$</span> (feedback <span style="color:#66d9ef">:</span> rep, min <span style="color:#ae81ff">1</span> m&#39;)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> feedback <span style="color:#66d9ef">:</span> rep
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">feedback</span> <span style="color:#f92672">=</span> snd <span style="color:#f92672">$</span> (feedback <span style="color:#66d9ef">:</span> rep, min <span style="color:#ae81ff">1</span> m&#39;)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">feedback</span> <span style="color:#f92672">=</span> min <span style="color:#ae81ff">1</span> m&#39;
+</span></span></code></pre></div><p>Now we know what &ldquo;result&rdquo; is in a more precise way. However, because we
+want to print the answer on the screen, this is not enough. It is
+necessary to continue. Our answer is composed of two parts, &ldquo;feedback&rdquo;
+and &ldquo;rep&rdquo;. To compute the end result, both of them are required. With
+our thunk list, we have a hint of what &ldquo;feedback&rdquo; is. It uses &ldquo;m&rsquo;&rdquo;
+though, so let&rsquo;s add this guy and &ldquo;rep&rdquo; to our list:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> feedback <span style="color:#66d9ef">:</span> rep
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">t2</span> <span style="color:#f92672">=</span> r&#39; [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>] feedback
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rep</span> <span style="color:#f92672">=</span> fst t2
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">feedback</span> <span style="color:#f92672">=</span> min <span style="color:#ae81ff">1</span> m&#39;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">m&#39;</span> <span style="color:#f92672">=</span> snd t2
+</span></span></code></pre></div><p>These names refer to a part of our previous computation using r&rsquo;, t1.
+I&rsquo;ve named t2. We didn&rsquo;t care about it before because that was not
+necessary in order to continue at that point in the evaluation process.
+Let&rsquo;s compute t2. It should be trivial to see that the same pattern is
+used:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">t2</span> <span style="color:#f92672">=</span> r&#39; [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>] feedback
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">t2</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">let</span> (rep2, m&#39;&#39;) <span style="color:#f92672">=</span> r&#39; [<span style="color:#ae81ff">3</span>] feedback
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">in</span> (feedback <span style="color:#66d9ef">:</span> rep2, min <span style="color:#ae81ff">2</span> m&#39;&#39;)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">t2</span> <span style="color:#f92672">=</span> (feedback <span style="color:#66d9ef">:</span> rep2, min <span style="color:#ae81ff">2</span> m&#39;&#39;)
+</span></span></code></pre></div><p>I need to point out something really important. During this computation,
+we have created new names, e.g, &ldquo;rep2&rdquo; and &ldquo;m&rsquo;&rsquo;&rdquo;. Although this is not
+written in the original body of the function r&rsquo;, this renaming aspect is
+necessary due to the previous computation of r&rsquo; (t1), which produced
+&ldquo;rep&rdquo; and &ldquo;m&rsquo;&rdquo;. We need to be careful because we can overwrite a name,
+thus overwriting a thunk. Notice that this is not the same case for
+&ldquo;feedback&rdquo;. This is the same &ldquo;feedback&rdquo; as before and we are just
+passing this guy as an argument over and over again. Pay attention to
+this pattern. After updating our thunk list, we will have something like
+this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> feedback <span style="color:#66d9ef">:</span> rep
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rep</span> <span style="color:#f92672">=</span> feedback <span style="color:#66d9ef">:</span> rep2
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">feedback</span> <span style="color:#f92672">=</span> min <span style="color:#ae81ff">1</span> m&#39;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">m&#39;</span> <span style="color:#f92672">=</span> min <span style="color:#ae81ff">2</span> m&#39;&#39;
+</span></span></code></pre></div><p>As the reader should have already guessed, we need to add new members to
+our thunk list due to &ldquo;m&rsquo;&rsquo;&rdquo; and &ldquo;rep2&rdquo;:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> feedback <span style="color:#66d9ef">:</span> rep
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rep</span> <span style="color:#f92672">=</span> feedback <span style="color:#66d9ef">:</span> rep2
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">feedback</span> <span style="color:#f92672">=</span> min <span style="color:#ae81ff">1</span> m&#39;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">m&#39;</span> <span style="color:#f92672">=</span> min <span style="color:#ae81ff">2</span> m&#39;&#39;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">t3</span> <span style="color:#f92672">=</span> r&#39; [<span style="color:#ae81ff">3</span>] feedback
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rep2</span> <span style="color:#f92672">=</span> fst t3
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">m&#39;&#39;</span> <span style="color:#f92672">=</span> snd t3
+</span></span></code></pre></div><p>I know this is getting a bit too long but we are almost there, trust me.
+Let&rsquo;s compute t3. This time though, we have only one element in the
+list, thus we will use the first pattern match of r':</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">t3</span> <span style="color:#f92672">=</span> r&#39; [<span style="color:#ae81ff">3</span>] feedback
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">t3</span> <span style="color:#f92672">=</span> ([feedback], <span style="color:#ae81ff">3</span>)
+</span></span></code></pre></div><p>This last computation does not refer to any other new one. We can update
+our thunk list with our new findings. I will also compute all the binary
+functions, such as min:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> feedback <span style="color:#66d9ef">:</span> rep
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rep</span> <span style="color:#f92672">=</span> feedback <span style="color:#66d9ef">:</span> rep2
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">feedback</span> <span style="color:#f92672">=</span> min <span style="color:#ae81ff">1</span> m&#39;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">m&#39;</span> <span style="color:#f92672">=</span> min <span style="color:#ae81ff">2</span> m&#39;&#39;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rep2</span> <span style="color:#f92672">=</span> fst <span style="color:#f92672">$</span> ([feedback], <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">m&#39;&#39;</span> <span style="color:#f92672">=</span> snd <span style="color:#f92672">$</span> ([feedback], <span style="color:#ae81ff">3</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> feedback <span style="color:#66d9ef">:</span> rep
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rep</span> <span style="color:#f92672">=</span> feedback <span style="color:#66d9ef">:</span> rep2
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">feedback</span> <span style="color:#f92672">=</span> min <span style="color:#ae81ff">1</span> m&#39;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">m&#39;</span> <span style="color:#f92672">=</span> min <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rep2</span> <span style="color:#f92672">=</span> [feedback]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">m&#39;&#39;</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> feedback <span style="color:#66d9ef">:</span> rep
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rep</span> <span style="color:#f92672">=</span> feedback <span style="color:#66d9ef">:</span> [feedback]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">feedback</span> <span style="color:#f92672">=</span> min <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">m&#39;</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rep2</span> <span style="color:#f92672">=</span> [feedback]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">m&#39;&#39;</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">:</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">:</span> [<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rep</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">:</span> [<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">feedback</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">m&#39;</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rep2</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">m&#39;&#39;</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><p>After this last update move, we now have a list of numbers as our
+representation of &ldquo;result&rdquo;! Our battle is over! We can print on the
+screen the entire list and celebrate!</p>
+<h2 id="conclusions">Conclusions</h2>
+<p>As I have already presented, the secret sauce of this solution is a
+combination of lazy evaluation with the notion of thunks. Why do we call
+this circular programming or corecursion though?</p>
+<p>These names come from the nature of generating new computations in a
+circular fashion using current data to produce even more. Normally with
+recursion, we slice the problem into smaller subproblems and stop with
+some sort of base case. Here we use what we have already computed to
+produce more computations and future computations interfere directly
+with past computations, reminding us of pointers in imperative languages
+like C. Reference [2] has more information about this topic.</p>
+<h2 id="references">References</h2>
+<ol>
+<li><a href="https://tylercecil.com/posts/2015/07/29/circular.html">https://tylercecil.com/posts/2015/07/29/circular.html</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Corecursion">https://en.wikipedia.org/wiki/Corecursion</a></li>
+</ol>
+</div>
+</article>
+
+    <hr />
+    <p class="articleTagsContainer">
+        <span> </span>
+        <strong>Tags:</strong>
+        
+            <a
+                
+                href="/tags/technical">#technical</a>
+        
+    </p>
+
+
+
+
+
+
+                    </main><footer>
+    <hr />
+
+<p><small>
+        2023 &copy; 
+    </small></p>
+    <p><small>
+        <a href='https://gitlab.com/gabmus/hugo-ficurinia'>Ficurinia theme</a> for <a href='https://gohugo.io'>Hugo</a> by <a href='https://gabmus.org'>Gabriele Musco</a>. Licensed under <a href='https://www.gnu.org/licenses/agpl-3.0.html'>GNU AGPLv3</a>.
+    </small></p>
+</footer>
+</div>
+            </div>
+        </div>
+
+
+</body>
+</html>
