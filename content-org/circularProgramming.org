@@ -1,0 +1,366 @@
+#+hugo_base_dir: ../
+#+hugo_tags: technical
+
+#+title: Circular Programming or Corecursion
+
+#+date: 2021-07-30
+#+author: Eduardo Lemos
+
+* Disclaimer
+
+I created this post during the make of my graduation project more than
+one and half years ago. This post served as training of a topic I had the
+intention of talking about in the final thesis -- something that ended up
+not happening. I've made a [[https://youtu.be/IJhaks0IA2w][presentation]] on Dr.Nekoma about the topic, given how
+interesting it is. The following is the original post.
+
+* Introduction
+
+Here I present a very descriptive explanation of a solution to a simple
+example problem. The solution explores the concepts of circular
+programming or corecursion. Because of the constraints of this topic, it
+is important to pay attention to detail using drawings as the main tool.
+
+Our problem consists of doing the following: we have a list of elements
+and we want to replace every single element of it with the minimum
+element. The last requirement is the tricky one: we want to do it in a
+*single pass*, i.e, checking each element only *once*.
+
+As our main reference already points out [1], in C we would be dealing
+with pointers all over the place to solve this. At each position of the
+list, we replace the current element with a pointer to a memory region
+which will serve as a placeholder for the minimum value at the end of
+the entire pass. At the end of each comparison, we change the value
+contained in this region. We will end up with all elements of the list
+being pointers pointing to the same place which is a region that
+contains the minimum element, fulfilling our needs.
+
+This, however, is a very imperative way to accomplish this task. What
+about a functional approach? This is where circular programming or
+corecursion comes [2] to the rescue. Unfortunately, this solution
+requires a very rare type of intuition, thus requesting a lot of
+patience to understand it completely. This is where I come in.
+
+* Magic
+
+To exemplify our goal, I will present first the solution inspired by
+[1]. It uses three functions working together. Let's start with the
+mind-bending one:
+
+#+begin_src haskell
+trace :: (a -> c -> (b, c)) -> a -> b
+trace f init = result
+    where (result, feedback) = f init feedback
+#+end_src
+
+The weird part of this trace function is in the "where" clause: the
+function f requests feedback which is part of the answer. Initially,
+this seems like a very notorious paradox. How can we use something that
+is not yet produced? Fair enough. Let's continue our journey so at the
+end we can check using ghci if this mess actually works.
+
+Next up is the main body of our algorithm, function r':
+
+#+begin_src haskell
+r' :: (Ord a) => [a] -> a -> ([a], a)
+r' [x] m = ([m], x)
+r' (x:xs) m = let (rep, m') = r' xs m
+                            in (m : rep, min x m')
+#+end_src
+
+In contrast with the previous function, this one is simple using our
+common and loved type of recursion. Pattern matching is guiding the
+process to continue accordingly and at the end of execution, we will
+have a pair. The first element of it is a list with all elements being
+m. The second part of the pair is the minimum element of the list we
+initially provided.
+
+We can use ghci as a sanity check:
+
+#+begin_src haskell
+*Main> r' [1..10] 0
+([0,0,0,0,0,0,0,0,0,0], 1)
+#+end_src
+
+Awesome! We can now verify what is going on with this r' function. Let's
+continue. Finally, the last function is the glue calling trace and r' in
+order to solve our problem:
+
+#+begin_src haskell
+r :: (Ord a) => [a] -> [a]
+r = trace r'
+#+end_src
+
+And we are done. Using function r, we are able to solve the proposed
+problem, however, we have an enormous issue as we don't trust that this
+solution actually works because it uses function trace which we don't
+understand yet, or even believe that it is incorrect. So, let's use ghci
+to see if I'm lying to you:
+
+#+begin_src haskell
+*Main> r [1..10]
+[1,1,1,1,1,1,1,1,1,1]
+#+end_src
+
+You can check on your own by copy-pasting these functions and testing
+them out. It will work and you'll want to surrender functional
+programming and close this post. Calm down! At the end of our adventure,
+I assure you that it is going to be clear.
+
+* Secret sauce
+
+The proposed solution only works because of one powerful and
+underestimated aspect of Haskell: /lazy evaluation/. It is only because
+the interpreter/compiler works in this manner that our algorithm is
+possible. So what does this concept actually mean? It means that we only
+do what is necessary. I assume that the reader already has a great
+notion of it but for the non-initiated, I present pseudocode to serve as
+an example to provide enough intuition:
+
+#+begin_src haskell
+...
+if( s1 || s2 || ... || sN) {
+...
+}
+...
+#+end_src
+
+In the lazy approach, we only care about what is necessary in order to
+continue our computations. So, if statement s1 is True, we don't need to
+compute any other statement due to the nature of the OR logic operator.
+Remember, we only do what is unavoidable to go on.
+
+Another relevant topic to understand the explanation is the idea of
+/thunks/. During lazy evaluation, Haskell builds a graph of required
+computations requested by the current computation in order to be
+evaluated. Each vertice of this graph is a thunk. To give an example of
+this, let's use the following:
+
+#+begin_src haskell
+*Main> x = 1
+*Main> a = x + 2
+*Main> y = a : []
+*Main> y
+[3]
+#+end_src
+
+To get the list "y", we need to know what the name "a" refers to. In
+order to do that, we need to evaluate "x". At each step of the lazy
+process, we call something else that we need to evaluate the minimum of
+the computation. We do not have to evaluate everything, just what is a
+must-have to satisfy our needs. This principle is also known as
+/call-by-need/.
+
+Now we have enough tools and concepts to fully understand what is going
+on with the code of the previous section.
+
+* Slow but steady effort
+
+#+begin_src haskell
+trace :: (a -> c -> (b, c)) -> a -> b
+trace f init = result
+    where (result, feedback) = f init feedback
+
+r' :: (Ord a) => [a] -> a -> ([a], a)
+r' [x] m = ([m], x)
+r' (x:xs) m = let (rep, m') = r' xs m
+                            in (m : rep, min x m')
+
+r :: (Ord a) => [a] -> [a]
+r = trace r'
+
+*Main> r [1,2,3]
+[1,1,1]
+#+end_src
+
+Above, I added the same code previously presented plus our small toy
+example so you don't need to scroll all the way back to follow along.
+Let's start checking if we are all on the same page. Function r, in
+order to be evaluated, will call function trace which uses r' as an
+argument. So what we really need to understand is the following:
+
+#+begin_src haskell
+trace r' [1,2,3] = result
+    where (result, feedback) = r' [1,2,3] feedback
+#+end_src
+
+With this checkpoint out of the way, we can get our hands dirty, i.e,
+try to simulate what the interpreter/compiler does, never forgetting
+that we are lazy and we know what thunks are.
+
+To provide an output to the trace function, we need to know what
+"result" is. After reading the where clause, we are capable of knowing
+more about "result". Intuitively, it depends on the function r'. This
+means that it refers to r' to be computed. We now have our first thunk:
+
+#+begin_src haskell
+result = fst $ r' [1,2,3] feedback
+#+end_src
+
+Now that we have understood how we can achieve "result", we can proceed.
+The next step is to solve whatever the result of r' is so we can apply
+fst to it. But wait a second. Function r' refers to two names, "[1,2,3]"
+and "feedback". The first one is already known which is the list that we
+have provided in the beginning. However, the latter one, "feedback", is
+something that we need to add to our thunk list:
+
+#+begin_src haskell
+t1 = r' [1,2,3] feedback
+result = fst t1
+feedback = snd t1
+#+end_src
+
+I also renamed the same computation used by both "result" and "feedback"
+to organize our list of thunks. Knowing this, it is fair to say that t1
+is our major problem. Let's start to compute it. It is clear that the
+current scenario only matches the second pattern match of r':
+
+#+begin_src haskell
+t1 = r' [1,2,3] feedback
+t1 = let (rep, m') = r' [2,3] feedback
+         in (feedback : rep, min 1 m')
+
+t1 = (feedback : rep, min 1 m')
+#+end_src
+
+Because we have updated what t1 is, we can change our thunk list:
+
+#+begin_src haskell
+result = fst $ (feedback : rep, min 1 m')
+result = feedback : rep
+
+feedback = snd $ (feedback : rep, min 1 m')
+feedback = min 1 m'
+#+end_src
+
+Now we know what "result" is in a more precise way. However, because we
+want to print the answer on the screen, this is not enough. It is
+necessary to continue. Our answer is composed of two parts, "feedback"
+and "rep". To compute the end result, both of them are required. With
+our thunk list, we have a hint of what "feedback" is. It uses "m'"
+though, so let's add this guy and "rep" to our list:
+
+#+begin_src haskell
+result = feedback : rep
+t2 = r' [2,3] feedback
+rep = fst t2
+feedback = min 1 m'
+m' = snd t2
+#+end_src
+
+These names refer to a part of our previous computation using r', t1.
+I've named t2. We didn't care about it before because that was not
+necessary in order to continue at that point in the evaluation process.
+Let's compute t2. It should be trivial to see that the same pattern is
+used:
+
+#+begin_src haskell
+t2 = r' [2,3] feedback
+t2 = let (rep2, m'') = r' [3] feedback
+         in (feedback : rep2, min 2 m'')
+
+t2 = (feedback : rep2, min 2 m'')
+#+end_src
+
+I need to point out something really important. During this computation,
+we have created new names, e.g, "rep2" and "m''". Although this is not
+written in the original body of the function r', this renaming aspect is
+necessary due to the previous computation of r' (t1), which produced
+"rep" and "m'". We need to be careful because we can overwrite a name,
+thus overwriting a thunk. Notice that this is not the same case for
+"feedback". This is the same "feedback" as before and we are just
+passing this guy as an argument over and over again. Pay attention to
+this pattern. After updating our thunk list, we will have something like
+this:
+
+#+begin_src haskell
+result = feedback : rep
+rep = feedback : rep2
+feedback = min 1 m'
+m' = min 2 m''
+#+end_src
+
+As the reader should have already guessed, we need to add new members to
+our thunk list due to "m''" and "rep2":
+
+#+begin_src haskell
+result = feedback : rep
+rep = feedback : rep2
+feedback = min 1 m'
+m' = min 2 m''
+t3 = r' [3] feedback
+rep2 = fst t3
+m'' = snd t3
+#+end_src
+
+I know this is getting a bit too long but we are almost there, trust me.
+Let's compute t3. This time though, we have only one element in the
+list, thus we will use the first pattern match of r':
+
+#+begin_src haskell
+t3 = r' [3] feedback
+t3 = ([feedback], 3)
+#+end_src
+
+This last computation does not refer to any other new one. We can update
+our thunk list with our new findings. I will also compute all the binary
+functions, such as min:
+
+#+begin_src haskell
+result = feedback : rep
+rep = feedback : rep2
+feedback = min 1 m'
+m' = min 2 m''
+rep2 = fst $ ([feedback], 3)
+m'' = snd $ ([feedback], 3)
+#+end_src
+
+#+begin_src haskell
+result = feedback : rep
+rep = feedback : rep2
+feedback = min 1 m'
+m' = min 2 3
+rep2 = [feedback]
+m'' = 3
+#+end_src
+
+#+begin_src haskell
+result = feedback : rep
+rep = feedback : [feedback]
+feedback = min 1 2
+m' = 2
+rep2 = [feedback]
+m'' = 3
+#+end_src
+
+#+begin_src haskell
+result = 1 : 1 : [1]
+rep = 1 : [1]
+feedback = 1
+m' = 2
+rep2 = [1]
+m'' = 3
+#+end_src
+
+After this last update move, we now have a list of numbers as our
+representation of "result"! Our battle is over! We can print on the
+screen the entire list and celebrate!
+
+* Conclusions
+
+As I have already presented, the secret sauce of this solution is a
+combination of lazy evaluation with the notion of thunks. Why do we call
+this circular programming or corecursion though?
+
+These names come from the nature of generating new computations in a
+circular fashion using current data to produce even more. Normally with
+recursion, we slice the problem into smaller subproblems and stop with
+some sort of base case. Here we use what we have already computed to
+produce more computations and future computations interfere directly
+with past computations, reminding us of pointers in imperative languages
+like C. Reference [2] has more information about this topic.
+
+* References
+   
+1. [[https://tylercecil.com/posts/2015/07/29/circular.html]]
+2. [[https://en.wikipedia.org/wiki/Corecursion]]
