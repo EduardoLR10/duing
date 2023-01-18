@@ -71,9 +71,8 @@ int fibonacci(int n){
 #+end_src
 
 #+BEGIN_EXPORT html
-<figure>
-  <img src="/img/fixingRecursion/droste.jpg" width="15%"> <img src="/img/fixingRecursion/infinityMirrorEffect.jpg" width="30%">
-  <figcaption>Recursion's weird nature is in a lot of places</figcaption>
+<figure style='display: flex;'>
+  <img src="/img/fixingRecursion/droste.jpg" width="26%"> <img src="/img/fixingRecursion/infinityMirrorEffect.jpg" width="45%">
 </figure>  
 #+END_EXPORT
 
