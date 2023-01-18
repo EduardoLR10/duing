@@ -1,10 +1,15 @@
 #+hugo_base_dir: ../
-#+hugo_tags: lesson
+#+hugo_tags: lesson entertainment
 
 #+title: Do we still care about Art?
 
 #+date: 2023-01-18
 #+author: Eduardo Lemos
+
+In this post, I want to talk about how a movie that I watched years ago added some value in
+the current version of myself. How, now that I'm much older than back then, I see that the movie
+showed to me that art is much more important that I thought. How, even in my profession, there can
+be a noble purpose.
 
 * Retrospective
 
@@ -127,14 +132,14 @@ uncertainty. Should we keep looking at the world like that? If not, what can we 
  #+END_QUOTE
 
 It does not really matter if we are surrounded by people that exclude the art aspect from the equation. It does not matter if that will always be
-the case. What really matters is if we let that pragmatic point of view ruin art's nature. What matters is if we allow the such poison to destroy such human
+the case. What really matters is if we let that pragmatic point of view ruin art's nature. What matters is if we allow the poison to destroy such human
 value. The constant fight of not allowing that to happen even if in a gigantic disadvantage. That is what matters the most.
  
 * Conclusions
 
 My first reaction when reaching those conclusions was that I am in the same group as the Racer family. Not in racing of course, but in programming. I see all the time,
 the pragmatic demon flying around discussions. I see it changing how we think about things and how we deal with them. How extreme this goes always bothered me. It is
-one thing to see practical value in something, but it is a different conversation is that is the main focus.
+one thing to see practical value in something, but it is a different conversation if that is the main focus.
 
 This understanding of the final race really changed how I looked at the movie itself. Now it totally makes sense that during Speed's final sprint towards
 winning the race, the commenters and the audience went just crazy. They were watching an artist creating a wonderful piece. They were watching someone that values
