@@ -83,7 +83,7 @@ confusion, Racer X answers that whatever the reason behind it is, it must be som
 it is more than just a way of living for him. Something that drives him forward. Something much more powerful than just free will.
 \\
  #+BEGIN_QUOTE
- Villan: Racing has nothing to do with cars or drivers. Are you ready to put away your toys and grow up? Are you ready to become a real race-car driver?
+ Villain: Racing has nothing to do with cars or drivers. Are you ready to put away your toys and grow up? Are you ready to become a real race-car driver?
  #+END_QUOTE
 
 What a stark contrast. While Racer X suggested that racing is something deep and profound for Speed, the villain flipped
