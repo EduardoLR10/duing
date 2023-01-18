@@ -1,0 +1,166 @@
+#+hugo_base_dir: ../
+#+hugo_tags: lesson
+
+#+title: Do we still care about Art?
+
+#+date: 2023-01-18
+#+author: Eduardo Lemos
+
+* Retrospective
+
+Sometimes we remember our infancy. We remember the toys we used to play with,
+the people we used to interact with, the lessons that we learned along the way (usually in
+the most painful way), and also we remember what we used to *watch*.
+
+I was talking to a friend the other day and she asked me about what I used to watch when
+young, i.e., between 10 to 15 years of age. My mind sent me to the show [[https://en.wikipedia.org/wiki/Speed_Racer][Speed Racer]]. I remember
+watching it a lot, including having DVDs and toys. I don't, however, remember anymore the story
+or the main plots of it, unfortunately. What I do remember is that we had a live-action [[https://en.wikipedia.org/wiki/Speed_Racer_(film)][movie]] based
+on it.
+
+The movie itself is a gigantic piece of nostalgia for me, it has cool visuals and some cringe
+moments throughout it. When I was young, that was about it for me about this movie. But, now that
+I'm older I see that another thing resides in this movie; a much more important question is embedded
+in this piece of entertainment.
+
+Don't get me wrong, the movie actually makes this message very clear in some of its dialogues,
+but it took me years to properly value it. More interestingly, such a message fits perfectly with a lot
+of what I see happening in current times and I'm afraid humanity will go downhill about it.
+
+* Context
+
+The created universe has incredible cars (that you may argue do not follow the laws of physics) and
+racing has a lot of vertical movements now in comparison with our age. Propulsion mechanisms were
+added to the vehicles, thus allowing them to jump. More pedals and directionality were also added,
+thus allowing rotation at high velocity. The metals that the cars are made of are super resistant.
+Such races need to be captured via multiple cameras, given that the competitors are going up
+to 400 MPH in horsepower. Finally, it is allowed for the pilots to try to make the opponents get off
+the track, given that the security system of the cars is also significantly more robust than today's
+standards.
+
+The story of the film is pretty straightforward. Speed Racer and his family view racing as something
+different than the corporations in the universe that they are in. In fact, his brother, Rex Racer, started
+being an annoyance for such dictators of that industry, thus the Racers started getting threats and attempts
+to get rid of them. Later on, Rex decides to leave his family behind in order to protect it. The movie continues
+with Speed, now grown up, starting to interact with such evil entities and discovering what Rex was trying to
+fight against.
+
+What I want to talk about is this different view that the Racers had about the sport of racing and what exactly
+they were fighting, in terms of abstract ideas.
+
+* The Final Race
+
+The most memorable thing for me about this movie is the final scene. Speed got a way to participate in a
+very important race, making the villain (CEO of the aforementioned corporation) extremely mad. His move, then,
+is to put a gigantic pile of money on Speed's head for all the other racers. This basically makes the situation
+all-versus-one for the protagonist.
+
+This, however, is not enough to stop him. Speed is the most talented racer of the bunch, and even with everybody
+trying to push him out of boundaries, he keeps climbing to the top leaders. After some up-and-down moments, he is
+in a very precarious situation, losing multiple positions. After some drama to increase the suspense, he
+activates a hidden lever in Mach 6 (his car), and not only he starts to surpass everybody and everything in front of
+him, but a sequence of dialogues from the movie starts, all composed together. And that is what I want to talk about.
+You can follow along via [[https://youtu.be/DTXFknz4J88?t=99][this video]] from minute 1:39 until 3:22.
+
+* The Dialogue
+
+Like I said before, this moment is the one I remember the most. Something about it just always gets me every time.
+It is fair to say that it is because this is the climax of the movie, but that is not it. There is something more
+profound going on in this scene. Until more recently, I didn't know why, but now I think do.
+
+The following sequence of dialogues starts. From here, I want to put slightly altered parts of the sequence of dialogue and explain the meaning behind it from my perspective.
+\\
+ #+BEGIN_QUOTE
+ Speed: I don't know why I'm doing it anymore.
+ Racer X: You don't climb into a car to be a driver. You do it because you're driven.
+ #+END_QUOTE
+
+Speed tells Racer X (that it is in fact Rex after plastic surgery) that he does not know why he keeps doing it. He confessed
+that he does not know why he keeps pushing it so hard to portray his view of what racing is about. To atone his
+confusion, Racer X answers that whatever the reason behind it is, it must be something that explains why this is more than just a sport for him. It must explain why
+it is more than just a way of living for him. Something that drives him forward. Something much more powerful than just free will.
+\\
+ #+BEGIN_QUOTE
+ Villan: Racing has nothing to do with cars or drivers. Are you ready to put away your toys and grow up? Are you ready to become a real race-car driver?
+ #+END_QUOTE
+
+What a stark contrast. While Racer X suggested that racing is something deep and profound for Speed, the villain flipped
+the coin. He picked this abstract point of view and judged it as something that only kids care about, and grown-up men throw away
+the moment they want to become real drivers in their professions.
+\\
+ #+BEGIN_QUOTE
+ Speed: If you know so much, why don't you tell me why I should keep driving?
+ Racer X: That's for you to figure out... I just hope when you do, I'm there to see it.
+ #+END_QUOTE
+
+Naturally, Speed asks Racer X if he knows what the reason is, given that he is so knowledgeable. Wisely, Racer X just says
+that this answer is for him to find and that moment would be special. So special in fact, that he wants to be there
+and admire his discovery.
+\\
+ #+BEGIN_QUOTE
+ Speed's Mom: When I watch you do some of the things you do... I just take my breath away...
+ #+END_QUOTE
+\\
+ #+BEGIN_QUOTE
+ Speed's Father: Remember that night, when we sat together and watched and cheered for that race? That night something just... clicked!
+ #+END_QUOTE
+
+And there we go. This is when Speed realizes that he is not alone in this fight. The point of view that he holds is also shared by his mother
+and father. She gets amazed watching him race and his father literally felt like his existence was justified by the same feeling. I argue
+that they are talking about viewing racing as a form of expressing *art*. The activity is a mean to a very noble end, which is the admiration
+and contemplation of something beautiful. Something more than us. Something that is above us all.
+
+Now it is not a surprise that mister villain needs to combat this. This character is the materialization of *modern pragmatism*, which adds an
+utilitarian twist to all of this. It can't comprehend something noble because everything it sees needs to sit in the material world. And think about
+it: how far this point of view has gone? Are we thinking like that all time? Think about discussions with our families in which money and prize are
+the subjects of whatever discussion, especially the ones that involve youngsters that are trying to understand what to do and are flooded with
+uncertainty. Should we keep looking at the world like that? If not, what can we do about it? Racer X gives us the answer:
+\\
+ #+BEGIN_QUOTE
+ Speed: Racing hasn't changed and never will.
+ Racer X: It doesn't matter if racing never changes. What matters is if we let racing change us.
+ #+END_QUOTE
+
+It does not really matter if we are surrounded by people that exclude the art aspect from the equation. It does not matter if that will always be
+the case. What really matters is if we let that pragmatic point of view ruin art's nature. What matters is if we allow the such poison to destroy such human
+value. The constant fight of not allowing that to happen even if in a gigantic disadvantage. That is what matters the most.
+ 
+* Conclusions
+
+My first reaction when reaching those conclusions was that I am in the same group as the Racer family. Not in racing of course, but in programming. I see all the time,
+the pragmatic demon flying around discussions. I see it changing how we think about things and how we deal with them. How extreme this goes always bothered me. It is
+one thing to see practical value in something, but it is a different conversation is that is the main focus.
+
+This understanding of the final race really changed how I looked at the movie itself. Now it totally makes sense that during Speed's final sprint towards
+winning the race, the commenters and the audience went just crazy. They were watching an artist creating a wonderful piece. They were watching someone that values
+art expressing his defense by showing them how far he can go because he holds this value. I don't think it is a mere coincidence that we have this scene happening
+in the middle of the sequence of dialogues:
+
+#+attr_html: :width 50%
+[[/img/careaboutart/paint.gif]]
+
+Are we doomed to forget art altogether? Are we gonna lose such an important value? Are gonna be sick with this pragmatic disease? What I know is that the people that
+hold that as a value will not allow that process of osmosis to happen to them. They will fight against it with all their will and strength. I will end this post with the
+complete speech of Speed's mom:
+\\
+ #+BEGIN_QUOTE
+  Speed, when I watch you do some of
+  the things you do, I feel like I'm
+  watching someone paint or play
+  music. When I go to the races, I
+  go to watch you make art and it's
+  beautiful and inspiring and
+  everything that art should be,
+  even though there are times when I
+  have to close my eyes. But then
+  there are other times, when you
+  just take my breath away and it's
+  at those moments, when I feel your
+  father's chest swell and I know
+  he's smiling, trying to pretend he
+  doesn't have tears in his eyes, I
+  just go to pieces.
+ #+END_QUOTE
+
+
+ 
