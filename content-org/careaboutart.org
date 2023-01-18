@@ -72,6 +72,8 @@ The following sequence of dialogues starts. From here, I want to put slightly al
 \\
  #+BEGIN_QUOTE
  Speed: I don't know why I'm doing it anymore.
+ #+END_QUOTE
+ #+BEGIN_QUOTE
  Racer X: You don't climb into a car to be a driver. You do it because you're driven.
  #+END_QUOTE
 
@@ -90,6 +92,8 @@ the moment they want to become real drivers in their professions.
 \\
  #+BEGIN_QUOTE
  Speed: If you know so much, why don't you tell me why I should keep driving?
+ #+END_QUOTE
+ #+BEGIN_QUOTE
  Racer X: That's for you to figure out... I just hope when you do, I'm there to see it.
  #+END_QUOTE
 
@@ -118,6 +122,8 @@ uncertainty. Should we keep looking at the world like that? If not, what can we 
 \\
  #+BEGIN_QUOTE
  Speed: Racing hasn't changed and never will.
+ #+END_QUOTE
+ #+BEGIN_QUOTE
  Racer X: It doesn't matter if racing never changes. What matters is if we let racing change us.
  #+END_QUOTE
 
@@ -136,7 +142,7 @@ winning the race, the commenters and the audience went just crazy. They were wat
 art expressing his defense by showing them how far he can go because he holds this value. I don't think it is a mere coincidence that we have this scene happening
 in the middle of the sequence of dialogues:
 
-#+attr_html: :width 50%
+#+attr_html: :width 60%
 [[/img/careaboutart/paint.gif]]
 
 Are we doomed to forget art altogether? Are we gonna lose such an important value? Are gonna be sick with this pragmatic disease? What I know is that the people that
