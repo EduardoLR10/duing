@@ -1,0 +1,358 @@
+#+hugo_base_dir: ../
+#+hugo_tags: technical
+
+#+title: Fixing Recursion
+
+#+date: 2021-09-11
+#+author: Eduardo Lemos
+
+* Disclaimer
+
+I created this post during the make of my graduation project more than
+one and half years ago. This post served as training of a topic I had the
+intention of talking about in the final thesis -- something that ended up
+not happening. You know that when math comes into programming something special
+is going to happen!
+
+* Introduction
+  
+Recursion is a common way to solve a wide range of problems. Usually,
+this concept is understood as a mix of auto reference and the notion of
+repetition. Here, I attempt to separate these two ideas highlighting how
+and why repetition should be the main intuition behind recursion,
+regardless if auto reference is been used in the majority of the
+situations alongside repetition.
+
+To accomplish this goal, I will use functional programming as the medium
+to isolate these concepts during our conversation. Moreover, I assume
+the reader has a solid understanding of the λ-calculus fundamentals.
+
+* Weirdness
+
+We use recursion frequently during the solution of daily problems. From
+factorials and fibonacci sequences to binary trees, we are constantly
+using this concept. These solutions are using repetition, but, usually,
+this is not the primary thing we recall from it.
+
+#+begin_src C
+int fact(int n){
+    if (n == 0){
+        return 1;
+    }
+    return n * fact (n - 1);
+}
+#+end_src
+
+Because we use recursion regularly with auto reference, we tend to
+associate or tie recursive patterns with auto reference almost as
+synonyms. So, the main idea of repeting something fades away during
+implementation of recursive solutions.
+
+Auto reference, however, is a more tricky idea than it might seems.
+First, it gives us the power to define something using something not yet
+defined completly. To illustraste this, let's take for instance the
+factorial function, the one I presented before. In order to define the
+function =fact= we are using the same function, which is yet to be
+complete! We didn't finish to write the function and we are already
+using it and, as a coincidence, it ends when we call it again. This,
+however, is not necessarily always the case. We can write
+implementations that do not return the recursive call, such as the
+fibonacci algorithm below. How can we use something that we don't know
+where it ends yet?
+
+#+begin_src C
+int fibonacci(int n){
+  if (n <= 1)
+    return n;
+  int n_1 = fibonacci(n - 1);
+    int n_2 = fibonacci(n - 2);
+  return n_1 + n_2;
+}
+#+end_src
+
+#+BEGIN_EXPORT html
+<figure>
+  <img src="/img/fixingRecursion/droste.jpg" width="15%"> <img src="/img/fixingRecursion/infinityMirrorEffect.jpg" width="30%">
+  <figcaption>Recursion's weird nature is in a lot of places</figcaption>
+</figure>  
+#+END_EXPORT
+
+Another interesting detail is on the side effects of using auto
+reference, such as saving our past information. Using again our
+factorial function as an example, at each step of the iteration process,
+we need to save =n= , because when we are finished calculating the
+factorial we will be "unpacking" all the =n= numbers we have packed
+before in order to get our final answer. Clearly, this is doing more
+than just repeting itself. During the process, we have to save the
+current state to multiply all the numbers afterwards.
+
+The notion of auto reference contains some strange behaviours embedded
+into it. It does more than repetition and contest our intuition of
+repetitive processes. Can we remove auto reference from our programs and
+just stick with repetition? Short answer: yes. Long answer: come along
+for the ride.
+
+* A different Approach
+ 
+Now that we have established that auto reference is strange in some
+degree, let's start to build a self-reference-free solution to a simple
+problem, such as calculating the factorial of a number. Of course,
+because we all have seen factorial implementations before, this is not
+an easy task. It requests us to reject our intuition.
+
+Thus, our first attempt, although it may appear is coming from nowhere
+for now, is the following: let's suppose that repetition can be injected
+separetely into a function, such as factorial. What? Ok, let's jump into
+some code, haskell this time around:
+
+#+begin_src haskell
+fact f n = if n == 0 then 1 else n * (f (n - 1))
+#+end_src
+
+My suggestion is to isolate the process of doing factorial, which
+involves multiplying, from the nature of repetition. In our case, the
+function =f= is our secret ingredient that will provides the repetitive
+nature to our program, thus eliminating the necessity of using auto
+reference. At this point, *we are not using fact over and over again,
+calling itself*.
+
+Naturally, we are assuming that this auxiliary function can be defined
+in the first place. If it does not, we can't use this approach of
+interpreting repetition as an entirely unique thing. However, I will
+solve this mystery by using λ-calculus:
+
+#+begin_src haskell
+fact f n = if n == 0 then 1 else n * (f (n - 1))
+
+*Main> fact' n = Y fact n
+*Main> fact' 3
+6
+*Main> fact' 5
+120
+#+end_src
+
+A couple questions should have appeared in your mind, like: what on
+earth is Y? And, if you are a little bit more confortable with haskell,
+you will also ask: how this type checks? Both of these questions have
+interesting answers. Let's dive into them.
+
+* Combinators
+  
+In order to understand the proposed solution, we need to understand two
+combinators in λ-calculus. The reason is the strong relationship between
+these combinators and the ideia of recursion itself, as we will see in a
+few moments.
+
+The first one is the Ω combinator. This combinator is the secret behind
+the idea of repetition and does not use auto reference:
+
+#+begin_src haskell
+Ω = (\x -> (x x)) (\x -> (x x))
+#+end_src
+
+Intutively, this operation picks an argument and duplicates it. To get
+the expression's value we can attempt to evaluate this expression, i.e,
+transform it into its normal form. We will get stuck in the same step
+over and over again.
+
+#+begin_src haskell
+a = (\x -> (x x))           -- Renaming step
+(\x -> (x x)) a             -- Omega combinator with the second part renamed
+(a a)                       -- Applying a to the function in the former part
+(\x -> (x x)) (\x -> (x x)) -- Back to where we started
+#+end_src
+
+A relevant observation is that while evaluating Ω, although we didn't
+use auto reference, *we have produced Ω again because of its
+definition*. This aspect is relevant to understand our next steps.
+
+Although this combinator manages to introduce repetition in λ-calculus,
+it is not useful by itself because we don't have control of what exactly
+is being repeated and plus it is repeting forever. We, as programmers
+and engineers, *are interested in stopping a specific process* at some
+point in order to get a valuable result. This is where the Y combinator
+comes in. It inherits the repetitive notion from the Ω combinator but
+adds an important new aspect:
+
+#+begin_src haskell
+Y = \f -> (\x -> f (x x)) (\x -> f (x x))
+#+end_src
+
+This second combinator is very similar to the first one and it is part
+of our answer in the previous section. The key difference though rests
+in the function =f=. The addition of this input function gives us the
+power to say precisely what we want to repeat and to stop at some point
+during the computation. Lastly, I want to point out an interesting
+detail of this combinator:
+
+#+begin_src haskell
+a = (\x -> f x x)                     -- Renaming step
+Y = \f -> (\x -> f x x) a)            -- Y combinator with the second part renamed
+Y f =  f a a                          -- Evaluating
+Y f = f (\x -> f x x) (\x -> f x x)   -- Replacing for what the label represent
+Y f = f (f a a)                       -- Almost back to where we started
+Y f = f (Y f)                         -- Auto reference? Is that you?
+#+end_src
+
+This last result lead us to think that we are using what we have
+promised we would not use, auto reference. It may seems that we have
+removed auto reference from the factorial function, but, at the same
+time, we are using it again in the Y combinator, suggesting that we are
+cheating by just passing the problem to another part of the solution.
+But that's not the case because it is the Y combinator definition that
+is producing this result. Its behaviour captures perfectly our notion of
+auto reference, although indirectly. Not because we have defined in that
+way, like we usually do with auto reference, but because it's own
+definition results in this as a consequence. It seems like auto
+reference is a *consequence of the repetitive nature* of the Y
+combinator.
+
+We can make, as a proof of concept, an example. Let's use function
+"const" as our victim to see our results:
+
+#+begin_src haskell
+f5 = const 5
+
+Y = \f -> (\x -> f x x) a) -- Y combinator definition
+Y f5 = f5 (Y f5)           -- Using our previous result
+Y f5 = const 5 (Y f5)      -- Replacing function for its definition
+Y f5 = 5                   -- End result
+#+end_src
+
+In conclusion, we can explore the Y combinator by passing to it an
+arbitrary function and its definition is sufficient to do repetition by
+its own naturally. And, we have saw that auto reference appears
+indirectly as a corollary of the combinator's construction. We manage to
+dodge our poison and stick with just repetition as the fundamental ideia
+behind it all.
+
+* Getting back to Earth
+  
+Discussing abstract ideas such as combinators is always challenging
+because we can go so far away and forget the practical consequences of
+our conclusions. To avoid this feeling and to illustrate the importance
+of our discussion, we will go back to our loved factorial example trying
+to simulate step by step.
+
+Let's remind our solution:
+
+#+begin_src haskell
+fact f n = if n == 0 then 1 else n * (f (n - 1))
+
+*Main> fact' n = Y fact n
+*Main> fact' 3
+6
+*Main> fact' 5
+120
+#+end_src
+
+As we saw earlier, the Y combinator is responsible for the repetition
+nature of recursion. Although it is not possible to use it in Haskell
+without any type of hacks, we will assume that it is built into the
+language, so we can stick with the knowledge we have leverage. Later on,
+I will present a solution that actually works out of the box in Haskell.
+
+The secret to understand what is happening here is to abuse one of our
+last results from the previous section. With that in mind, we have our
+first step:
+
+#+begin_src haskell
+fact' 3 = Y fact 3          -- Computation of the factorial of 3
+fact' 3 = fact (Y fact) 3   -- Using our mind bending result
+#+end_src
+
+We get an intriguing intermediate result. Initially, we didn't know how
+we would be doing factorial because we know repetition is a necessity
+and we are not calling =fact= again, thus using auto reference in order
+to repeat the iteration process. Instead, this nature is being captured
+by the Y combinator and, more importantly, as we have saw earlier,
+*without the =fact= function calling itself, using just repetition*.
+
+With this visualization, we can now answer why this type checks. The
+function =fact= "waits" for two arguments and this is exacly what is
+happening. The property of the Y combinator of naturally replicating
+itself satisfies the type requirements of the =fact= function.
+
+We can finish the computation using the same strategy:
+
+#+begin_src haskell
+fact' 3 = fact (Y fact) 3
+fact' 3 = 3 * (Y fact 2)
+fact' 3 = 3 * (fact (Y fact) 2)
+fact' 3 = 3 * 2 * (Y fact 1)
+fact' 3 = 3 * 2 * (fact (Y fact) 1)
+fact' 3 = 3 * 2 * 1 * (Y fact 0)
+fact' 3 = 3 * 2 * 1 * (fact (Y fact) 0)
+fact' 3 = 3 * 2 * 1 * 1
+fact' 3 = 6
+#+end_src
+
+* Fixed points
+  
+I want to additionally point out something quite unexpected that I
+purporsely ignored until now. Let's remember this piece of our journey:
+
+#+begin_src haskell
+a = (\x -> f x x)                     -- Renaming step
+Y = \f -> (\x -> f x x) a)            -- Y combinator with the second part renamed
+Y f =  f a a                          -- Evaluating
+Y f = f (\x -> f x x) (\x -> f x x)   -- Replacing for what the label represent
+Y f = f (f a a)                       -- Almost back to where we started
+Y f = f (Y f)                         -- Mind bending property
+#+end_src
+
+Rearranging this final mind bending property we get:
+
+#+begin_src haskell
+Y f = f (Y f)                         -- Mind bending property
+P = f P                               -- Fixed point definition
+#+end_src
+
+In mathemetics, the name for this final conclusion is fixed point [1],
+where a fixed point of a function is an element of the function's domain
+that is mapped to itself by the function. As an example, we have the
+fixed point of the network cosine function:
+
+#+begin_src haskell
+cos(0.7390851332151607) = 0.7390851332151607
+#+end_src
+
+In our cause, the extremely non intuitive aspect here is that the fixed
+point =P= is not a number. It is =Y f= , which is a function. Although
+this is quite hard to imagine, because these two concepts appears to be
+so distinct, recursion, which uses the mind bending property, somehow is
+related with calculating the fixed point of some arbitrary function
+=f= .
+
+As I promised earlier, a simpler solution to the Y combinator problem in
+haskell can be solved by replacing the combinator by an alternative
+function, inspired by this fixed point concept:
+
+#+begin_src haskell
+fix f = f (fix f)
+#+end_src
+
+This is not the defnition of the =fix= function used in Haskell in
+=Control.Monad.Fix=. The official definition is a little different, but
+for our purposes the one presented above provides enough understanding.
+
+* Conclusions
+  
+After this adventure, we can, not even distinguish auto reference from
+repetition, understand that repetition is the fundamental principal of
+recursion. We went back all the way to λ-calculus in order to understand
+that recursion is an idea strongly related to repetitive nature and not
+necessarily to auto reference. We have discovered that auto reference is
+a particular case of repetition happening behind the scenes. Finally, we
+saw a relationship between the fixed point concept and recursion, which
+is quite odd because we don't have an intuition about the relation of
+fixed points with recursion. They appear to be completely separate
+ideas, but we discover that they have a surprising firm connection.
+
+Ultimately, the idea of recursion cannot be expressed without the notion
+of repetition, and using auto reference to explain it is not wrong but
+rather incomplete.
+
+* References
+  
+1. [[https://en.wikipedia.org/wiki/Fixed_point_(mathematics)]]
