@@ -17,6 +17,16 @@
     </item>
     
     <item>
+      <title>Fixing Recursion</title>
+      <link>https://duing.dev/posts/fixingrecursion/</link>
+      <pubDate>Sat, 11 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://duing.dev/posts/fixingrecursion/</guid>
+      <description>Disclaimer I created this post during the make of my graduation project more than one and half years ago. This post served as training of a topic I had the intention of talking about in the final thesis &amp;ndash; something that ended up not happening. You know that when math comes into programming something special is going to happen!
+Introduction Recursion is a common way to solve a wide range of problems.</description>
+    </item>
+    
+    <item>
       <title>Circular Programming or Corecursion</title>
       <link>https://duing.dev/posts/circularprogramming/</link>
       <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>

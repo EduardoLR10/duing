@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html class="" lang="en"><head>
+    
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+
+    <link
+    rel="icon"
+    href='/favicon.png'
+/>
+<link
+    rel="shortcut icon"
+    href='/favicon.ico'
+    type="image/x-icon"
+/>
+<link
+    rel="apple-touch-icon"
+    href='/apple-touch-icon.png'
+/>
+
+    <link
+        rel="icon"
+        href='/logo.svg'
+        type="image/svg+xml"
+    />
+
+<title>
+        
+            Fixing Recursion  &ndash;
+        
+        Duing Dev
+    </title>
+
+    
+    <link href="/symbols-nerd-font/symbols-nerd-font.css" rel="stylesheet" integrity="sha512-lydow8GLOLlYNOtHlksNCmGWWCBsbIEtikXpHzfWqx78HLlyQZHOzyLwPpKol4Th6aCwLUXOfODVYgwrd3nwKQ=="/>
+    <link href="/jetbrains-mono/jetbrains-mono.css" rel="stylesheet" integrity="sha512-tJxlgL6v1Y7kFf+qB8SloaAMKnOAw6WouknxXtIjkBux9Y/9aX81EUWOJO8c/3l98DmjG8brr4to7zaez606Fg=="/>
+
+    
+    
+    <link type="text/css" rel="stylesheet" href=https://duing.dev/css/styles.6f7510796ff02c7dabd794e74edd5fe8768c226a0caad05f3838da994c532544d6915ce65b106ca5a210796f2936429e8446811360103cd082ad0dc245016d71.css integrity="sha512-b3UQeW/wLH2r15TnTt1f6HaMImoMqtBfODjamUxTJUTWkVzmWxBspaIQeW8pNkKehEaBE2AQPNCCrQ3CRQFtcQ==" />
+<meta name="author" content="Eduardo Lemos Rocha" />
+
+    
+        <meta name="keywords" content='technical' />
+    
+    
+        <meta name="description" content=" this post during the make of my graduation project more than one and half years ago. This post served as training of a topic I had the intention of talking about in the final thesis &amp;ndash; something that ended up not happening. You know that when math comes into programming something special is going to happen!
+Introduction Recursion is a common way to solve a wide range of problems." />
+    
+
+<meta property="og:site_name"
+    content='Duing Dev' />
+
+    <meta property="og:title" content="Fixing Recursion" />
+    <meta property="og:type" content="article" />
+    
+    <meta
+        property="article:author" content="Eduardo Lemos Rocha" />
+    <meta
+        property="article:published_time"
+        content='2021-09-11T00:00:00Z&#43;0000' />
+    
+        
+            <meta property="article:tag" content="technical" />
+        
+    
+    <meta property="og:url" content="https://duing.dev/posts/fixingrecursion/" />
+    
+    
+    <meta property="og:image"
+        content="https://duing.dev/img/icon.svg" />
+    
+        <meta property="og:description" content="Disclaimer I created this post during the make of my graduation project more than one and half years ago. This post served as training of a topic I had the inte" />
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain"
+      content='duing.dev'
+/>
+<meta property="twitter:url" content="https://duing.dev/posts/fixingrecursion/" />
+
+
+    <meta name="twitter:title" content="Fixing Recursion" />
+    
+    
+    
+    <meta name="twitter:image"
+        content="https://duing.dev/img/icon.svg" />
+    
+        <meta name="twitter:description" content="Disclaimer I created this post during the make of my graduation project more than one and half years ago. This post served as training of a topic I had the inte" />
+    
+
+<link rel="manifest" href="/manifest/index.json" />
+</head>
+
+
+<body>
+        <div id="baseContainer"><header class="">
+<div class="titleAndSearchContainer">
+        <div id="titleContainer">
+            
+                <a class="unstyledLink" href="/">
+                    <img src='/logo.svg' alt='Logo'/>
+                </a>
+            
+            <div class="rightOfLogo">
+                <div class="titleAndHamburger">
+                    <h1>
+                        <a class="unstyledLink" href="/">Duing Dev</a>
+                        
+                    </h1>
+                    
+                </div>
+                <div id="wide_nav"><nav>
+    
+    <ul id="main-nav">
+        <li><a href="/">Home</a></li>
+        
+            <li><a href="/posts">Posts</a></li>
+        
+        
+        
+        
+        
+            <li><a href="https://duing.dev/about/">
+                About
+            </a></li>
+        
+            <li><a href="https://duing.dev/publications/">
+                Publications
+            </a></li>
+        
+        
+        
+            <li><a href="/tags">Tags</a></li>
+        
+        
+    </ul>
+</nav>
+</div>
+            </div>
+        </div>
+        
+    </div>
+    <div id="links">
+        
+        
+        <a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="mailto:dudulr10@gmail.com">
+    
+    
+        &#xf6ed;
+    
+    <span>
+        Email
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://github.com/EduardoLR10">
+    
+    
+        &#xf09b;
+    
+    <span>
+        GitHub
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://discordapp.com/users/246675375877390337">
+    
+    
+        &#xfb6e;
+    
+    <span>
+        Discord
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://www.linkedin.com/in/eduardo-lemos-rocha-3198a5149/">
+    
+    
+        &#xf0e1;
+    
+    <span>
+        Linkedin
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://www.youtube.com/channel/UCMyzdYsPiBU3xoqaOeahr6Q">
+    
+    
+        &#xf16a;
+    
+    <span>
+        Dr.Nekoma
+    </span>
+</a>
+
+    </div>
+    
+
+</header>
+<div id="contentContainer">
+                <div id="content">
+                    <main>
+<article class="card single">
+    
+        <h1>Fixing Recursion</h1>
+    
+    
+        <p class="date">
+            <span title='Date'> </span>
+    2021-09-11
+
+</p>
+    
+    
+    
+    
+    <div><h2 id="disclaimer">Disclaimer</h2>
+<p>I created this post during the make of my graduation project more than
+one and half years ago. This post served as training of a topic I had the
+intention of talking about in the final thesis &ndash; something that ended up
+not happening. You know that when math comes into programming something special
+is going to happen!</p>
+<h2 id="introduction">Introduction</h2>
+<p>Recursion is a common way to solve a wide range of problems. Usually,
+this concept is understood as a mix of auto reference and the notion of
+repetition. Here, I attempt to separate these two ideas highlighting how
+and why repetition should be the main intuition behind recursion,
+regardless if auto reference is been used in the majority of the
+situations alongside repetition.</p>
+<p>To accomplish this goal, I will use functional programming as the medium
+to isolate these concepts during our conversation. Moreover, I assume
+the reader has a solid understanding of the λ-calculus fundamentals.</p>
+<h2 id="weirdness">Weirdness</h2>
+<p>We use recursion frequently during the solution of daily problems. From
+factorials and fibonacci sequences to binary trees, we are constantly
+using this concept. These solutions are using repetition, but, usually,
+this is not the primary thing we recall from it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fact</span>(<span style="color:#66d9ef">int</span> n){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> n <span style="color:#f92672">*</span> fact (n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Because we use recursion regularly with auto reference, we tend to
+associate or tie recursive patterns with auto reference almost as
+synonyms. So, the main idea of repeting something fades away during
+implementation of recursive solutions.</p>
+<p>Auto reference, however, is a more tricky idea than it might seems.
+First, it gives us the power to define something using something not yet
+defined completly. To illustraste this, let&rsquo;s take for instance the
+factorial function, the one I presented before. In order to define the
+function <code>fact</code> we are using the same function, which is yet to be
+complete! We didn&rsquo;t finish to write the function and we are already
+using it and, as a coincidence, it ends when we call it again. This,
+however, is not necessarily always the case. We can write
+implementations that do not return the recursive call, such as the
+fibonacci algorithm below. How can we use something that we don&rsquo;t know
+where it ends yet?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fibonacci</span>(<span style="color:#66d9ef">int</span> n){
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> n;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> n_1 <span style="color:#f92672">=</span> fibonacci(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> n_2 <span style="color:#f92672">=</span> fibonacci(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> n_1 <span style="color:#f92672">+</span> n_2;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><figure>
+  <img src="/img/fixingRecursion/droste.jpg" width="15%"> <img src="/img/fixingRecursion/infinityMirrorEffect.jpg" width="30%">
+  <figcaption>Recursion's weird nature is in a lot of places</figcaption>
+</figure>
+<p>Another interesting detail is on the side effects of using auto
+reference, such as saving our past information. Using again our
+factorial function as an example, at each step of the iteration process,
+we need to save <code>n</code> , because when we are finished calculating the
+factorial we will be &ldquo;unpacking&rdquo; all the <code>n</code> numbers we have packed
+before in order to get our final answer. Clearly, this is doing more
+than just repeting itself. During the process, we have to save the
+current state to multiply all the numbers afterwards.</p>
+<p>The notion of auto reference contains some strange behaviours embedded
+into it. It does more than repetition and contest our intuition of
+repetitive processes. Can we remove auto reference from our programs and
+just stick with repetition? Short answer: yes. Long answer: come along
+for the ride.</p>
+<h2 id="a-different-approach">A different Approach</h2>
+<p>Now that we have established that auto reference is strange in some
+degree, let&rsquo;s start to build a self-reference-free solution to a simple
+problem, such as calculating the factorial of a number. Of course,
+because we all have seen factorial implementations before, this is not
+an easy task. It requests us to reject our intuition.</p>
+<p>Thus, our first attempt, although it may appear is coming from nowhere
+for now, is the following: let&rsquo;s suppose that repetition can be injected
+separetely into a function, such as factorial. What? Ok, let&rsquo;s jump into
+some code, haskell this time around:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">fact</span> f n <span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">then</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">else</span> n <span style="color:#f92672">*</span> (f (n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))
+</span></span></code></pre></div><p>My suggestion is to isolate the process of doing factorial, which
+involves multiplying, from the nature of repetition. In our case, the
+function <code>f</code> is our secret ingredient that will provides the repetitive
+nature to our program, thus eliminating the necessity of using auto
+reference. At this point, <strong>we are not using fact over and over again,
+calling itself</strong>.</p>
+<p>Naturally, we are assuming that this auxiliary function can be defined
+in the first place. If it does not, we can&rsquo;t use this approach of
+interpreting repetition as an entirely unique thing. However, I will
+solve this mystery by using λ-calculus:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">fact</span> f n <span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">then</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">else</span> n <span style="color:#f92672">*</span> (f (n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#66d9ef">Main</span><span style="color:#f92672">&gt;</span> fact&#39; n <span style="color:#f92672">=</span> <span style="color:#66d9ef">Y</span> fact n
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#66d9ef">Main</span><span style="color:#f92672">&gt;</span> fact&#39; <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#66d9ef">Main</span><span style="color:#f92672">&gt;</span> fact&#39; <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">120</span>
+</span></span></code></pre></div><p>A couple questions should have appeared in your mind, like: what on
+earth is Y? And, if you are a little bit more confortable with haskell,
+you will also ask: how this type checks? Both of these questions have
+interesting answers. Let&rsquo;s dive into them.</p>
+<h2 id="combinators">Combinators</h2>
+<p>In order to understand the proposed solution, we need to understand two
+combinators in λ-calculus. The reason is the strong relationship between
+these combinators and the ideia of recursion itself, as we will see in a
+few moments.</p>
+<p>The first one is the Ω combinator. This combinator is the secret behind
+the idea of repetition and does not use auto reference:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#66d9ef">Ω</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> (x x)) (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> (x x))
+</span></span></code></pre></div><p>Intutively, this operation picks an argument and duplicates it. To get
+the expression&rsquo;s value we can attempt to evaluate this expression, i.e,
+transform it into its normal form. We will get stuck in the same step
+over and over again.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> (x x))           <span style="color:#75715e">-- Renaming step</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> (x x)) a             <span style="color:#75715e">-- Omega combinator with the second part renamed</span>
+</span></span><span style="display:flex;"><span>(a a)                       <span style="color:#75715e">-- Applying a to the function in the former part</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> (x x)) (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> (x x)) <span style="color:#75715e">-- Back to where we started</span>
+</span></span></code></pre></div><p>A relevant observation is that while evaluating Ω, although we didn&rsquo;t
+use auto reference, <strong>we have produced Ω again because of its
+definition</strong>. This aspect is relevant to understand our next steps.</p>
+<p>Although this combinator manages to introduce repetition in λ-calculus,
+it is not useful by itself because we don&rsquo;t have control of what exactly
+is being repeated and plus it is repeting forever. We, as programmers
+and engineers, <strong>are interested in stopping a specific process</strong> at some
+point in order to get a valuable result. This is where the Y combinator
+comes in. It inherits the repetitive notion from the Ω combinator but
+adds an important new aspect:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">\</span>f <span style="color:#f92672">-&gt;</span> (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> f (x x)) (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> f (x x))
+</span></span></code></pre></div><p>This second combinator is very similar to the first one and it is part
+of our answer in the previous section. The key difference though rests
+in the function <code>f</code>. The addition of this input function gives us the
+power to say precisely what we want to repeat and to stop at some point
+during the computation. Lastly, I want to point out an interesting
+detail of this combinator:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> f x x)                     <span style="color:#75715e">-- Renaming step</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">\</span>f <span style="color:#f92672">-&gt;</span> (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> f x x) a)            <span style="color:#75715e">-- Y combinator with the second part renamed</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> f <span style="color:#f92672">=</span>  f a a                          <span style="color:#75715e">-- Evaluating</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> f <span style="color:#f92672">=</span> f (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> f x x) (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> f x x)   <span style="color:#75715e">-- Replacing for what the label represent</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> f <span style="color:#f92672">=</span> f (f a a)                       <span style="color:#75715e">-- Almost back to where we started</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> f <span style="color:#f92672">=</span> f (<span style="color:#66d9ef">Y</span> f)                         <span style="color:#75715e">-- Auto reference? Is that you?</span>
+</span></span></code></pre></div><p>This last result lead us to think that we are using what we have
+promised we would not use, auto reference. It may seems that we have
+removed auto reference from the factorial function, but, at the same
+time, we are using it again in the Y combinator, suggesting that we are
+cheating by just passing the problem to another part of the solution.
+But that&rsquo;s not the case because it is the Y combinator definition that
+is producing this result. Its behaviour captures perfectly our notion of
+auto reference, although indirectly. Not because we have defined in that
+way, like we usually do with auto reference, but because it&rsquo;s own
+definition results in this as a consequence. It seems like auto
+reference is a <strong>consequence of the repetitive nature</strong> of the Y
+combinator.</p>
+<p>We can make, as a proof of concept, an example. Let&rsquo;s use function
+&ldquo;const&rdquo; as our victim to see our results:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">f5</span> <span style="color:#f92672">=</span> const <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">\</span>f <span style="color:#f92672">-&gt;</span> (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> f x x) a) <span style="color:#75715e">-- Y combinator definition</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> f5 <span style="color:#f92672">=</span> f5 (<span style="color:#66d9ef">Y</span> f5)           <span style="color:#75715e">-- Using our previous result</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> f5 <span style="color:#f92672">=</span> const <span style="color:#ae81ff">5</span> (<span style="color:#66d9ef">Y</span> f5)      <span style="color:#75715e">-- Replacing function for its definition</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> f5 <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>                   <span style="color:#75715e">-- End result</span>
+</span></span></code></pre></div><p>In conclusion, we can explore the Y combinator by passing to it an
+arbitrary function and its definition is sufficient to do repetition by
+its own naturally. And, we have saw that auto reference appears
+indirectly as a corollary of the combinator&rsquo;s construction. We manage to
+dodge our poison and stick with just repetition as the fundamental ideia
+behind it all.</p>
+<h2 id="getting-back-to-earth">Getting back to Earth</h2>
+<p>Discussing abstract ideas such as combinators is always challenging
+because we can go so far away and forget the practical consequences of
+our conclusions. To avoid this feeling and to illustrate the importance
+of our discussion, we will go back to our loved factorial example trying
+to simulate step by step.</p>
+<p>Let&rsquo;s remind our solution:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">fact</span> f n <span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">then</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">else</span> n <span style="color:#f92672">*</span> (f (n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#66d9ef">Main</span><span style="color:#f92672">&gt;</span> fact&#39; n <span style="color:#f92672">=</span> <span style="color:#66d9ef">Y</span> fact n
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#66d9ef">Main</span><span style="color:#f92672">&gt;</span> fact&#39; <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#66d9ef">Main</span><span style="color:#f92672">&gt;</span> fact&#39; <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">120</span>
+</span></span></code></pre></div><p>As we saw earlier, the Y combinator is responsible for the repetition
+nature of recursion. Although it is not possible to use it in Haskell
+without any type of hacks, we will assume that it is built into the
+language, so we can stick with the knowledge we have leverage. Later on,
+I will present a solution that actually works out of the box in Haskell.</p>
+<p>The secret to understand what is happening here is to abuse one of our
+last results from the previous section. With that in mind, we have our
+first step:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">fact&#39;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">Y</span> fact <span style="color:#ae81ff">3</span>          <span style="color:#75715e">-- Computation of the factorial of 3</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fact&#39;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">=</span> fact (<span style="color:#66d9ef">Y</span> fact) <span style="color:#ae81ff">3</span>   <span style="color:#75715e">-- Using our mind bending result</span>
+</span></span></code></pre></div><p>We get an intriguing intermediate result. Initially, we didn&rsquo;t know how
+we would be doing factorial because we know repetition is a necessity
+and we are not calling <code>fact</code> again, thus using auto reference in order
+to repeat the iteration process. Instead, this nature is being captured
+by the Y combinator and, more importantly, as we have saw earlier,
+<strong>without the <code>fact</code> function calling itself, using just repetition</strong>.</p>
+<p>With this visualization, we can now answer why this type checks. The
+function <code>fact</code> &ldquo;waits&rdquo; for two arguments and this is exacly what is
+happening. The property of the Y combinator of naturally replicating
+itself satisfies the type requirements of the <code>fact</code> function.</p>
+<p>We can finish the computation using the same strategy:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">fact&#39;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">=</span> fact (<span style="color:#66d9ef">Y</span> fact) <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fact&#39;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> (<span style="color:#66d9ef">Y</span> fact <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fact&#39;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> (fact (<span style="color:#66d9ef">Y</span> fact) <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fact&#39;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> (<span style="color:#66d9ef">Y</span> fact <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fact&#39;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> (fact (<span style="color:#66d9ef">Y</span> fact) <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fact&#39;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> (<span style="color:#66d9ef">Y</span> fact <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fact&#39;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> (fact (<span style="color:#66d9ef">Y</span> fact) <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fact&#39;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fact&#39;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>
+</span></span></code></pre></div><h2 id="fixed-points">Fixed points</h2>
+<p>I want to additionally point out something quite unexpected that I
+purporsely ignored until now. Let&rsquo;s remember this piece of our journey:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> f x x)                     <span style="color:#75715e">-- Renaming step</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">\</span>f <span style="color:#f92672">-&gt;</span> (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> f x x) a)            <span style="color:#75715e">-- Y combinator with the second part renamed</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> f <span style="color:#f92672">=</span>  f a a                          <span style="color:#75715e">-- Evaluating</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> f <span style="color:#f92672">=</span> f (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> f x x) (<span style="color:#a6e22e">\</span>x <span style="color:#f92672">-&gt;</span> f x x)   <span style="color:#75715e">-- Replacing for what the label represent</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> f <span style="color:#f92672">=</span> f (f a a)                       <span style="color:#75715e">-- Almost back to where we started</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> f <span style="color:#f92672">=</span> f (<span style="color:#66d9ef">Y</span> f)                         <span style="color:#75715e">-- Mind bending property</span>
+</span></span></code></pre></div><p>Rearranging this final mind bending property we get:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#66d9ef">Y</span> f <span style="color:#f92672">=</span> f (<span style="color:#66d9ef">Y</span> f)                         <span style="color:#75715e">-- Mind bending property</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">P</span> <span style="color:#f92672">=</span> f <span style="color:#66d9ef">P</span>                               <span style="color:#75715e">-- Fixed point definition</span>
+</span></span></code></pre></div><p>In mathemetics, the name for this final conclusion is fixed point [1],
+where a fixed point of a function is an element of the function&rsquo;s domain
+that is mapped to itself by the function. As an example, we have the
+fixed point of the network cosine function:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">cos</span>(<span style="color:#ae81ff">0.7390851332151607</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.7390851332151607</span>
+</span></span></code></pre></div><p>In our cause, the extremely non intuitive aspect here is that the fixed
+point <code>P</code> is not a number. It is <code>Y f</code> , which is a function. Although
+this is quite hard to imagine, because these two concepts appears to be
+so distinct, recursion, which uses the mind bending property, somehow is
+related with calculating the fixed point of some arbitrary function
+<code>f</code> .</p>
+<p>As I promised earlier, a simpler solution to the Y combinator problem in
+haskell can be solved by replacing the combinator by an alternative
+function, inspired by this fixed point concept:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">fix</span> f <span style="color:#f92672">=</span> f (fix f)
+</span></span></code></pre></div><p>This is not the defnition of the <code>fix</code> function used in Haskell in
+<code>Control.Monad.Fix</code>. The official definition is a little different, but
+for our purposes the one presented above provides enough understanding.</p>
+<h2 id="conclusions">Conclusions</h2>
+<p>After this adventure, we can, not even distinguish auto reference from
+repetition, understand that repetition is the fundamental principal of
+recursion. We went back all the way to λ-calculus in order to understand
+that recursion is an idea strongly related to repetitive nature and not
+necessarily to auto reference. We have discovered that auto reference is
+a particular case of repetition happening behind the scenes. Finally, we
+saw a relationship between the fixed point concept and recursion, which
+is quite odd because we don&rsquo;t have an intuition about the relation of
+fixed points with recursion. They appear to be completely separate
+ideas, but we discover that they have a surprising firm connection.</p>
+<p>Ultimately, the idea of recursion cannot be expressed without the notion
+of repetition, and using auto reference to explain it is not wrong but
+rather incomplete.</p>
+<h2 id="references">References</h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Fixed_point_(mathematics)">https://en.wikipedia.org/wiki/Fixed_point_(mathematics)</a></li>
+</ol>
+</div>
+</article>
+
+    <hr />
+    <p class="articleTagsContainer">
+        <span> </span>
+        <strong>Tags:</strong>
+        
+            <a
+                
+                href="/tags/technical">#technical</a>
+        
+    </p>
+
+
+
+
+
+
+                    </main><footer>
+    <hr />
+
+<p><small>
+        2023 &copy; 
+    </small></p>
+    <p><small>
+        <a href='https://gitlab.com/gabmus/hugo-ficurinia'>Ficurinia theme</a> for <a href='https://gohugo.io'>Hugo</a> by <a href='https://gabmus.org'>Gabriele Musco</a>. Licensed under <a href='https://www.gnu.org/licenses/agpl-3.0.html'>GNU AGPLv3</a>.
+    </small></p>
+</footer>
+</div>
+            </div>
+        </div>
+
+
+</body>
+</html>
