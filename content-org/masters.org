@@ -1,0 +1,92 @@
+#+hugo_base_dir: ../
+#+hugo_tags: technical
+
+#+title: Why Masters?
+
+#+date: 2023-03-06
+#+author: Eduardo Lemos
+
+Starting in March, I will start a master's program at University of Brasília, the same university
+where I graduated almost a year ago. The thought process that I went in order to make such a decision
+is not conventional and I think it is worth sharing it.
+
+* Software Industry
+
+As we know, the software industry values academic achievements only in very specific situations,
+usually involving big companies with very complicated projects to push, such as the next Apple M3
+processor and Windows 12 at Microsoft. Aside from those situations, it is established in the software-development
+culture that doing anything academic, even graduation itself, should be a decision in which you are aware
+that potentially will cast a null spell during interviews, i.e., it will not aggregate that much if at
+all.
+
+Part of the reason that this is the case, is the well-known fact that university is mostly outdated
+and/or can be replaced with a lot of competitive programming, e.g., leet coding and programming
+marathons. As someone that graduated in Computer Engineering last year, I can confirm such arguments.
+
+* Weirdness
+
+With that out of the way, I must emphasize some phenomenon that I observed during graduation that was crucial
+for my final decision.
+
+In my final years at university, something started bothering me. From a certain point onwards, I started to notice
+that my performance was getting better without any explanation for why. I was already aware of the aforementioned points
+from the software industry, and for me, there is no point in putting an incredible amount of hours into something just to
+get a 5/6 out of 10 on a piece of paper and move on. Between 2019 and 2022, I thought a lot about the reason why I was
+putting effort into it, and, most surprisingly, liking it a lot sometimes.
+
+* Knowledge
+
+My final conclusion out of these 3 years is that I find the process of acquiring knowledge, i.e., /learning/, something
+that holds *beauty*. And, of course, everybody would agree with such a statement, but that is not enough. It is not enough
+just to agree, because if it was, everybody that agrees would love studying as an enjoyable experience, instead of spending
+hours on end with TV shows, parties, and vacations. There must be something else that triggers a change in behavior.
+
+In my particular case, it was shifted by experience. As I had more control to study what I truly like, and get better at doing
+that, the more addictive it became to me. As I was traveling this journey, the more I saw that I was in pursuit of what
+makes me contemplate knowledge as you admire a piece of art. As I got further, I was more convinced that this is something
+worthwhile.
+
+This is everything that I had on hand, though. Because I lost the utilitarian argument due to my field of choice (software development),
+I couldn't argue that I was doing this because I wanted a bigger salary. That would only be the case if I was aiming for big tech
+companies, which is far from my main priority at the moment. The only thing that I could rely on is the fact that I feel beauty
+and elegance emanating from knowledge in the computer science space.
+
+* Proof-of-Concept
+
+After my graduation on May 2022, I continue developing the ideas started at my graduation project, [[https://github.com/FP-Modeling/rivika][rivika]], with my great friend and mentor,
+[[https://edil.com.br/][Edil Medeiros]]. We decided that we would try to sell rivika at one of the biggest engineering conferences, [[https://www.date-conference.com/][Design, Automation and Test in Europe Conference]].
+We aimed for its deadline, September 2022, to publish a paper with a story about the software we developed. Sadly, the paper was
+refused, with the case being considered bad luck with reviewers.
+
+However, that experience proved to me that I do enjoy and see value in doing scientific work. In other words, I enjoy and see value
+in trying to augment the existent knowledge that our species have. I was convinced that if I ever decided to do so officially, it would
+not be because of extra income, but because this is something that I hold value in, something that I see meaning when doing it, something
+that I see a mission to push forward.
+
+* Conclusions
+
+With that, I finished my explanation of why I decided to give academia one more shot. It is because I see the transformation and sharing of
+knowledge as something that carries beauty. Such a philosophical reason lies in the field of metaphysics, and it is something
+that I will study more in 2023.
+
+Unfortunately, there are some very critical drawbacks to this decision. First of all, is the complete vanish of free time, now that I will
+have to accomplish obligatory courses. That means that my current job is at risk or my health is at risk. I will have to grow an intense
+amount of discipline in order to make these two things talk with sync and not die throughout the process.
+
+Also important is that I may not be able to participate at [[https://github.com/Dr-Nekoma][Dr.Nekoma]], at least not with the same frequency. This is such a painful side-effect,
+given that I value a lot those encounters and projects. As I said in a previous post, this study group is [[file:../bestidea2022/][best idea I had during 2022]], and it hurts me to
+have less of it during the week.
+
+Finally, I hope this experience will allow me to get into deeper planes of understanding of what I already explored during graduation, e.g., Haskell,
+continuous-time modeling, and simulation, with also introducing me to other fascinating fields, such as hybrid systems and modal models. As I develop
+my web of knowledge, I hope to learn how to tell these discoveries to other people, with the help of Edil. Science is much more than just a report, it
+is an intertwined relationship between knowledge and protagonists in the real world -- a dance with has ups and downs through time and we keep telling
+their story in order to uncover the next steps of this saga.
+\\
+\\
+ #+BEGIN_QUOTE
+ Yeah, I was born for this
+ I know the risk, but I was born for this
+ -- Divide Music, song Born for This
+ #+END_QUOTE
+
