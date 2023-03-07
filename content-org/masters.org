@@ -86,7 +86,9 @@ their story in order to uncover the next steps of this saga.
 \\
  #+BEGIN_QUOTE
  Yeah, I was born for this
+ \\
  I know the risk, but I was born for this
+ \\
  -- Divide Music, song Born for This
  #+END_QUOTE
 
