@@ -80,7 +80,7 @@ have less of it during the week.
 Finally, I hope this experience will allow me to get into deeper planes of understanding of what I already explored during graduation, e.g., Haskell,
 continuous-time modeling, and simulation, with also introducing me to other fascinating fields, such as hybrid systems and modal models. As I develop
 my web of knowledge, I hope to learn how to tell these discoveries to other people, with the help of Edil. Science is much more than just a report, it
-is an intertwined relationship between knowledge and protagonists in the real world -- a dance with has ups and downs through time and we keep telling
+is an intertwined relationship between knowledge and protagonists in the real world -- a dance with ups and downs through time and we keep telling
 their story in order to uncover the next steps of this saga.
 \\
 \\
