@@ -10,7 +10,6 @@
 
 I'm *Eduardo Lemos*, a software developer based in *Brasília,
 Brazil*. I've graduated in computer engineering in 2022 at University of Brasília.
-Currently, I work for [[https://www.fpcomplete.com][FPComplete]] as a software engineer writing Haskell and Nix.
 
 I've started programming by changing IDs of itens and blocks in Minecraft mods
 back in the day. Later on, at the final stretch at university, I've discovered myself
