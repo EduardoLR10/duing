@@ -6,7 +6,17 @@
     <description>Recent content in lesson on Duing Dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 06 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/lesson/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 09 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/lesson/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beyond Hackers</title>
+      <link>https://duing.dev/posts/beyondhackers/</link>
+      <pubDate>Sun, 09 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://duing.dev/posts/beyondhackers/</guid>
+      <description>The Cathedral and the Bazaar by Eric S. Raymond is a perfect union of philosophy, economics, and software development culture. The reverberations of his theory are fascinating and explain much more than just why you should care about open-source software.
+Needless to say that I highly recommend the reading, there are aspects that he identified within the Hacker Culture that explain more than meets the naked eye. I&amp;rsquo;m here to suggest a few possible explanations for such observations and how the connection between those aspects and a hacker is more than just making money via coding.</description>
+    </item>
+    
     <item>
       <title>Why Masters?</title>
       <link>https://duing.dev/posts/masters/</link>
