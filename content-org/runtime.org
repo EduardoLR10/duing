@@ -174,7 +174,7 @@ think about more complicated parts of the system; he would take care of the part
 * Conclusions
 
 The enhancement of this league does not come for free. Every time a new system is brought to the table, the same debate of its worthiness comes with questions like:
-Is this worth learning? Can you should me a /practical/ use case for it? Wouldn't this be too complex for newcomers to learn? Why do I have to battle with the compiler
+Is this worth learning? Could you show me a /practical/ use case for it? Wouldn't this be too complex for newcomers to learn? Why do I have to battle with the compiler
 every single time? All of these questions are valid and they should keep being asked.
 
 However, the main point of adding extra layers is to attempt to add protection/guarantees, hence removing some of the left burdens on the developer. When fighting the
