@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html class="" lang="en"><head>
+    
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+
+    <link
+    rel="icon"
+    href='/favicon.png'
+/>
+<link
+    rel="shortcut icon"
+    href='/favicon.ico'
+    type="image/x-icon"
+/>
+<link
+    rel="apple-touch-icon"
+    href='/apple-touch-icon.png'
+/>
+
+    <link
+        rel="icon"
+        href='/logo.svg'
+        type="image/svg+xml"
+    />
+
+<title>
+        
+            Don&#39;t be a Hero, join a League  &ndash;
+        
+        Duing Dev
+    </title>
+
+    
+    <link href="/symbols-nerd-font/symbols-nerd-font.css" rel="stylesheet" integrity="sha512-lydow8GLOLlYNOtHlksNCmGWWCBsbIEtikXpHzfWqx78HLlyQZHOzyLwPpKol4Th6aCwLUXOfODVYgwrd3nwKQ=="/>
+    <link href="/jetbrains-mono/jetbrains-mono.css" rel="stylesheet" integrity="sha512-tJxlgL6v1Y7kFf+qB8SloaAMKnOAw6WouknxXtIjkBux9Y/9aX81EUWOJO8c/3l98DmjG8brr4to7zaez606Fg=="/>
+
+    
+    
+    <link type="text/css" rel="stylesheet" href=https://duing.dev/css/styles.6f7510796ff02c7dabd794e74edd5fe8768c226a0caad05f3838da994c532544d6915ce65b106ca5a210796f2936429e8446811360103cd082ad0dc245016d71.css integrity="sha512-b3UQeW/wLH2r15TnTt1f6HaMImoMqtBfODjamUxTJUTWkVzmWxBspaIQeW8pNkKehEaBE2AQPNCCrQ3CRQFtcQ==" />
+<meta name="author" content="Eduardo Lemos Rocha" />
+
+    
+        <meta name="keywords" content='lesson' />
+    
+    
+        <meta name="description" content="nted with SYB (Scrap Your Boilerplate) in the Haskell programming language for a master&amp;rsquo;s course. The plan was for me to make a toy example of one of the professor&amp;rsquo;s ideas using this library because of its power and generality.
+Prior to this project, I presented the subject for the class based on the original paper published by Simon and Ralf. My impression after the reading, which is also the one that I attempted to portray to my peers, is that the usefulness of the method came at a cost of complexity of understanding and the use of unsafety operations." />
+    
+
+<meta property="og:site_name"
+    content='Duing Dev' />
+
+    <meta property="og:title" content="Don&#39;t be a Hero, join a League" />
+    <meta property="og:type" content="article" />
+    
+    <meta
+        property="article:author" content="Eduardo Lemos Rocha" />
+    <meta
+        property="article:published_time"
+        content='2023-07-17T00:00:00Z&#43;0000' />
+    
+        
+            <meta property="article:tag" content="lesson" />
+        
+    
+    <meta property="og:url" content="https://duing.dev/posts/runtime/" />
+    
+    
+    <meta property="og:image"
+        content="https://duing.dev/img/icon.svg" />
+    
+        <meta property="og:description" content="Recently, I experimented with SYB (Scrap Your Boilerplate) in the Haskell programming language for a master&amp;rsquo;s course. The plan was for me to make a toy ex" />
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain"
+      content='duing.dev'
+/>
+<meta property="twitter:url" content="https://duing.dev/posts/runtime/" />
+
+
+    <meta name="twitter:title" content="Don&#39;t be a Hero, join a League" />
+    
+    
+    
+    <meta name="twitter:image"
+        content="https://duing.dev/img/icon.svg" />
+    
+        <meta name="twitter:description" content="Recently, I experimented with SYB (Scrap Your Boilerplate) in the Haskell programming language for a master&amp;rsquo;s course. The plan was for me to make a toy ex" />
+    
+
+<link rel="manifest" href="/manifest/index.json" />
+</head>
+
+
+<body>
+        <div id="baseContainer"><header class="">
+<div class="titleAndSearchContainer">
+        <div id="titleContainer">
+            
+                <a class="unstyledLink" href="/">
+                    <img src='/logo.svg' alt='Logo'/>
+                </a>
+            
+            <div class="rightOfLogo">
+                <div class="titleAndHamburger">
+                    <h1>
+                        <a class="unstyledLink" href="/">Duing Dev</a>
+                        
+                    </h1>
+                    
+                </div>
+                <div id="wide_nav"><nav>
+    
+    <ul id="main-nav">
+        <li><a href="/">Home</a></li>
+        
+            <li><a href="/posts">Posts</a></li>
+        
+        
+        
+        
+        
+            <li><a href="https://duing.dev/about/">
+                About
+            </a></li>
+        
+            <li><a href="https://duing.dev/publications/">
+                Publications
+            </a></li>
+        
+        
+        
+            <li><a href="/tags">Tags</a></li>
+        
+        
+    </ul>
+</nav>
+</div>
+            </div>
+        </div>
+        
+    </div>
+    <div id="links">
+        
+        
+        <a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="mailto:dudulr10@gmail.com">
+    
+    
+        &#xf6ed;
+    
+    <span>
+        Email
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://github.com/EduardoLR10">
+    
+    
+        &#xf09b;
+    
+    <span>
+        GitHub
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://discordapp.com/users/246675375877390337">
+    
+    
+        &#xfb6e;
+    
+    <span>
+        Discord
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://www.linkedin.com/in/eduardo-lemos-rocha-3198a5149/">
+    
+    
+        &#xf0e1;
+    
+    <span>
+        Linkedin
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://www.youtube.com/channel/UCMyzdYsPiBU3xoqaOeahr6Q">
+    
+    
+        &#xf16a;
+    
+    <span>
+        Dr.Nekoma
+    </span>
+</a>
+
+    </div>
+    
+
+</header>
+<div id="contentContainer">
+                <div id="content">
+                    <main>
+<article class="card single">
+    
+        <h1>Don&#39;t be a Hero, join a League</h1>
+    
+    
+        <p class="date">
+            <span title='Date'> </span>
+    2023-07-17
+
+</p>
+    
+    
+    
+    
+    <div><p>Recently, I experimented with SYB (Scrap Your Boilerplate) in the Haskell programming
+language for a master&rsquo;s course. The plan was for me to make a toy example of one of the professor&rsquo;s
+ideas using this library because of its power and generality.</p>
+<p>Prior to this project, I presented the subject for the class based on the original
+paper published by Simon and Ralf. My impression after the reading, which is also the one that I attempted
+to portray to my peers, is that the usefulness of the method came at a cost of complexity of understanding
+and the use of unsafety operations. My experiment confirmed this hypothesis, and I am here to share the lesson.</p>
+<h2 id="context">Context</h2>
+<p>Scrap Your Boilerplate is a set of functions that explore polymorphism in order to remove boilerplate-like functions
+from your code. The best use case for it is when you have <em>heterogenous</em> data structures. Your ADTs are mutually recursive
+and you commonly need to traverse them in order to do some sort of transformation, e.g., update the values on specific nodes, query
+values out of them, or do some sort of effect related to them. Below, here is an example of such a situation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">Company</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">C</span> [<span style="color:#66d9ef">Dept</span>]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">Dept</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">D</span> <span style="color:#66d9ef">Name</span> <span style="color:#66d9ef">Manager</span> [<span style="color:#66d9ef">SubUnit</span>]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">SubUnit</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">PU</span> <span style="color:#66d9ef">Employee</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">DU</span> <span style="color:#66d9ef">Dept</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">Employee</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">E</span> <span style="color:#66d9ef">Person</span> <span style="color:#66d9ef">Salary</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">Person</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">P</span> <span style="color:#66d9ef">Name</span> <span style="color:#66d9ef">Address</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">Salary</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">S</span> <span style="color:#66d9ef">Float</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">Manager</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">Employee</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">Name</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">String</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">Address</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">String</span>
+</span></span></code></pre></div><p>In order to do a simple operation on this set, such as increasing the salary of the employees, you would have to write:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">increase</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Float</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Company</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Company</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">increase</span> k (<span style="color:#66d9ef">C</span> ds) <span style="color:#f92672">=</span> <span style="color:#66d9ef">C</span> (map (incD k) ds)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">incD</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Float</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Dept</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Dept</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">incD</span> k (<span style="color:#66d9ef">D</span> nm mgr us) <span style="color:#f92672">=</span> <span style="color:#66d9ef">D</span> nm (incE k mgr) (map (incU k) us)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">incU</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Float</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">SubUnit</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">SubUnit</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">incU</span> k (<span style="color:#66d9ef">PU</span> e) <span style="color:#f92672">=</span> <span style="color:#66d9ef">PU</span> (incE k e)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">incU</span> k (<span style="color:#66d9ef">DU</span> d) <span style="color:#f92672">=</span> <span style="color:#66d9ef">DU</span> (incD k d)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">incE</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Float</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Employee</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Employee</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">incE</span> k (<span style="color:#66d9ef">E</span> p s) <span style="color:#f92672">=</span> <span style="color:#66d9ef">E</span> p (incS k s)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">incS</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Float</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Salary</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Salary</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">incS</span> k (<span style="color:#66d9ef">S</span> s) <span style="color:#f92672">=</span> <span style="color:#66d9ef">S</span> (s <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>k))
+</span></span></code></pre></div><p>As your domain expands and requirements change, this boilerplate grows in complexity and it is easy to get it wrong, even
+with the type system as support. The alternative then is to jump higher on the type level &mdash; we will explore polymorphism in a way
+that allows us to ask a value what is its type. Java programmers should keep the <code>instanceof</code> function in the back of their heads.
+This is about to get wild.</p>
+<h2 id="syb">SYB</h2>
+<p>The same function <code>increase</code> can be re-written using SYB in the following way:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">increase</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Float</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Company</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Company</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">increase</span> k <span style="color:#f92672">=</span> everywhere (mkT (incS k))
+</span></span></code></pre></div><p>I will briefly give some intuition about the functions <code>everywhere</code> and <code>mkT</code>. For the sake of this post&rsquo;s lesson, these two
+will suffice my point. The outline is: the function <code>everywhere</code> keeps the knot of recursion, whilst <code>mkT</code> does verification on the
+type of interest. Let&rsquo;s start with the latter. This function is based on the <code>cast</code> function:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">cast</span> <span style="color:#f92672">::</span> (<span style="color:#66d9ef">Typeable</span> a, <span style="color:#66d9ef">Typeable</span> b) <span style="color:#f92672">=&gt;</span> a <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Maybe</span> b
+</span></span></code></pre></div><p>Although its name probably is not the best, <code>cast</code> asks a value what is its type and if affirmative it will return its value wrapped in
+a <code>Just</code> and <code>Nothing</code> otherwise. Here are some examples:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#66d9ef">Prelude</span><span style="color:#f92672">&gt;</span> (cast <span style="color:#e6db74">&#39;a&#39;</span>) <span style="color:#f92672">::</span> <span style="color:#66d9ef">Maybe</span> <span style="color:#66d9ef">Char</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Just</span> <span style="color:#e6db74">&#39;a&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Prelude</span><span style="color:#f92672">&gt;</span> (cast <span style="color:#e6db74">&#39;a&#39;</span>) <span style="color:#f92672">::</span> <span style="color:#66d9ef">Maybe</span> <span style="color:#66d9ef">Bool</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Nothing</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Prelude</span><span style="color:#f92672">&gt;</span> (cast <span style="color:#66d9ef">True</span>) <span style="color:#f92672">::</span> <span style="color:#66d9ef">Maybe</span> <span style="color:#66d9ef">Bool</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Just</span> <span style="color:#66d9ef">True</span>
+</span></span></code></pre></div><p>Thus, <code>mkT</code> uses it in order to apply a function cirurgically. It checks first if the type is the specific target to apply identity or the
+given transformation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">mkT</span> <span style="color:#f92672">::</span> (<span style="color:#66d9ef">Typeable</span> a, <span style="color:#66d9ef">Typeable</span> b)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">=&gt;</span> (b <span style="color:#f92672">-&gt;</span> b) <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> a
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">mkT</span> f <span style="color:#f92672">=</span> <span style="color:#66d9ef">case</span> cast f <span style="color:#66d9ef">of</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">Just</span> g <span style="color:#f92672">-&gt;</span> g
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">Nothing</span> <span style="color:#f92672">-&gt;</span> id
+</span></span></code></pre></div><p>Intuition can be grasped via some examples:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#66d9ef">Prelude</span><span style="color:#f92672">&gt;</span> (mkT not) <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Prelude</span><span style="color:#f92672">&gt;</span> (mkT not) <span style="color:#e6db74">&#39;a&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;a&#39;</span>
+</span></span></code></pre></div><p>After understanding how we will apply a function to specific nodes in the data structure, it remains to see how this traverse is being done. The
+definition of the function <code>everywhere</code> is below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">everywhere</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Term</span> a
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">=&gt;</span> (forall b<span style="color:#f92672">.</span> <span style="color:#66d9ef">Term</span> b <span style="color:#f92672">=&gt;</span> b <span style="color:#f92672">-&gt;</span> b)
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> a
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">everywhere</span> f x <span style="color:#f92672">=</span> f (gmapT (everywhere f) x)
+</span></span></code></pre></div><p>This function is a little bit convoluted to be understood by itself. The intuition, however, is that a mutual recursion will happen between <code>everywhere</code>
+and <code>gmapT</code>. The latter is a <strong>one-layer</strong> traverse, i.e., we will apply a function to the level immediately below the current node. The following example
+should clarify:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#66d9ef">instance</span> <span style="color:#66d9ef">Term</span> <span style="color:#66d9ef">Employee</span> <span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>  gmapT f (<span style="color:#66d9ef">E</span> per sal) <span style="color:#f92672">=</span> <span style="color:#66d9ef">E</span> (f per) (f sal)
+</span></span></code></pre></div><p>By using mutual recursion, the authors were able to have control over how the recursion will travel the data structure, i.e., if it will follow a top-down or
+bottom-up approach. The function <code>everywhere'</code> is the top-down version of <code>everywhere</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">everywhere&#39;</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Term</span> a
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">=&gt;</span> (forall b<span style="color:#f92672">.</span> <span style="color:#66d9ef">Term</span> b <span style="color:#f92672">=&gt;</span> b <span style="color:#f92672">-&gt;</span> b)
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> a
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">everywhere&#39;</span> f x <span style="color:#f92672">=</span> gmapT (everywhere<span style="color:#960050;background-color:#1e0010">’</span> f) (f x)
+</span></span></code></pre></div><h2 id="experience">Experience</h2>
+<p>The explained approach uses some tricks in order to do its magic. Aside from the typeclasses <code>Term</code> and <code>Typeable</code>, the function <code>cast</code> actually only verifies the type
+of some value during run-time. At compiler-time, the only guarantee you will have is the existence of the typeclasses implementation. And this leads us to the main issue.</p>
+<p>During my short experiment with it, I had problems because my trust in the compiler was very low. The sensation that your project works if it type checks is nothing more
+than a meme in the community, because types can&rsquo;t guarantee the <strong>semantics</strong> of your program, i.e., you can do wrong things even if the type aligns. This means that something
+like a type system can&rsquo;t save you completely from making mistakes and ruining your life. It can, however, <strong>decrease</strong> the chances of that happening.</p>
+<p>When debugging SYB problems, I had the feeling that I transported myself into the world of Javascript or Python within Haskell&rsquo;s shell. I didn&rsquo;t know where my program was wrong,
+because I am too used to having help from the compiler&rsquo;s type system. This compiler-assisted debugging and refactoring became my standard and, when I lost it, the despair of being on uncharged
+waters hit me. I started <strong>testing</strong> piece by piece of my program until finally, I encountered <em>something</em>. A function being used in my SYB code was causing the issue due to some
+sort of restriction on pattern matching. Until now, I have no clue why this is the case, but clearly, I lack some sort of knowledge on how SYB manages its laziness and thunk evaluation.</p>
+<h2 id="correctness">Correctness</h2>
+<p>This experience gave me some insights into the process of programming with different tools/paradigms/mindsets.</p>
+<p>Back in the Fortran and C days, programmers were held as the ones that understand programs in their entirety and are completely responsible for
+their debugging. Pointer manipulations and state management were all controlled via the mind of the maintainers and its burden and complexity would be
+solely tangled with the developers&rsquo; understanding. When a change happens in the design, it is up to the coders to remember which areas of the program
+need to reflect such change. In languages like C, you have a tiny bit of help from the compiler but nothing extraordinary. Adding casts and void pointers
+completely diminishes that little amount of help from the compiler. The conclusion is that at the beginning of times, there was a strong tendency
+towards <strong>centralization</strong> of correctness in our programs. There were a few <strong>heroes</strong> that would save (or not) the day because they completely hold the responsibility.
+Tests were the only sidekick to this hero because it has <em>some</em> ability to validate a few mistakes that the programmer may have done.</p>
+<p>Further on the line, mindsets and systems have been created to <strong>decentralize</strong> this scenario. Type systems, effect systems, and the principle of immutability are
+just a few examples of the heroes that were born to share this burden of assessing the correctness of our programs. We reached a point in which the complexity
+of our applications is too big for most human beings to tackle by themselves. We chose to pay higher upfront, by developing systems and paradigms, in order
+to prevent a bigger cost in the longer run. This sort of long-term investment became a mandatory tool for critical systems, in which every small detail missed is
+millions of dollars in cost. With the tendency of every system to become more critical and more responsive to demands, the need to increase and/or maintain the <strong>league</strong>
+of entities will or at least <strong>should</strong> skyrocket. The programmer will not be replaced, but will work <strong>alongside</strong> these other support heroes, giving him time and space to
+think about more complicated parts of the system; he would take care of the parts that need him the most rather than everything using him as the central pillar.</p>
+<h2 id="conclusions">Conclusions</h2>
+<p>The enhancement of this league does not come for free. Every time a new system is brought to the table, the same debate of its worthiness comes with questions like:
+Is this worth learning? Can you should me a <em>practical</em> use case for it? Wouldn&rsquo;t this be too complex for newcomers to learn? Why do I have to battle with the compiler
+every single time? All of these questions are valid and they should keep being asked.</p>
+<p>However, the main point of adding extra layers is to attempt to add protection/guarantees, hence removing some of the left burdens on the developer. When fighting the
+compiler, you are having a <strong>conversation</strong> with your development partner. The compiler is not there to make you take more time to get your stuff done, it is there to
+validate to the best of its implementation what <em>you</em> have done wrong. As it gets more complicated to do a specific validation, the worse the error messages will become, and
+it is our job to address this problem of error messages &mdash; it is not a problem with the idea of having a partner to help you explore a jungle of errors.</p>
+<p>Programming languages with strong systems, such as Haskell and Rust, seem to prove that as we scale our programs to solve problems with higher and higher complexity it becomes
+less easy to have effective <strong>communication</strong> with our partners. We start to struggle when talking to the lazy system and the borrow checker because their complexity in implementation
+start to reflect in their communication ability &mdash; these two aspects seem to depend on each other. Again, however, this is not due to the idea of having layers of protection, but how
+can we separate the concern of validation from the concern of developer interaction when implementing such a layer.</p>
+<p>A great idea/model is not bad because its <em>implementation</em> in the real world is bad. It is a human struggle, in all general senses, to have great ideas and models that
+suffer from poor and/or problematic implementations.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Ralf Lämmel and Simon Peyton Jones. 2003. Scrap your boilerplate: a practical design pattern for generic programming. SIGPLAN Not. 38, 3 (March 2003), 26–37. <a href="https://doi.org/10.1145/640136.604179">https://doi.org/10.1145/640136.604179</a></li>
+</ul>
+</div>
+</article>
+
+    <hr />
+    <p class="articleTagsContainer">
+        <span> </span>
+        <strong>Tags:</strong>
+        
+            <a
+                
+                href="/tags/lesson">#lesson</a>
+        
+    </p>
+
+
+
+
+
+
+                    </main><footer>
+    <hr />
+
+<p><small>
+        2023 &copy; 
+    </small></p>
+    <p><small>
+        <a href='https://gitlab.com/gabmus/hugo-ficurinia'>Ficurinia theme</a> for <a href='https://gohugo.io'>Hugo</a> by <a href='https://gabmus.org'>Gabriele Musco</a>. Licensed under <a href='https://www.gnu.org/licenses/agpl-3.0.html'>GNU AGPLv3</a>.
+    </small></p>
+</footer>
+</div>
+            </div>
+        </div>
+
+
+</body>
+</html>
