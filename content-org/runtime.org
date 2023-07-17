@@ -127,7 +127,7 @@ instance Term Employee where
   gmapT f (E per sal) = E (f per) (f sal)
 #+end_src
 
-By using mutual recursion with the know of recursion separate, the authors were able to have control over how the recursion will travel the data structure, i.e., if
+By using mutual recursion with the knot of recursion separate, the authors were able to have control over how the recursion will travel the data structure, i.e., if
 it will follow a top-down or bottom-up approach. The function =everywhere'= is the top-down version of =everywhere=:
 
 #+begin_src haskell
