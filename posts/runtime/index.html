@@ -328,7 +328,7 @@ bottom-up approach. The function <code>everywhere'</code> is the top-down versio
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">everywhere&#39;</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Term</span> a
 </span></span><span style="display:flex;"><span>            <span style="color:#f92672">=&gt;</span> (forall b<span style="color:#f92672">.</span> <span style="color:#66d9ef">Term</span> b <span style="color:#f92672">=&gt;</span> b <span style="color:#f92672">-&gt;</span> b)
 </span></span><span style="display:flex;"><span>            <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> a
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">everywhere&#39;</span> f x <span style="color:#f92672">=</span> gmapT (everywhere<span style="color:#960050;background-color:#1e0010">’</span> f) (f x)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">everywhere&#39;</span> f x <span style="color:#f92672">=</span> gmapT (everywhere&#39; f) (f x)
 </span></span></code></pre></div><h2 id="experience">Experience</h2>
 <p>The explained approach uses some tricks in order to do its magic. Aside from the typeclasses <code>Term</code> and <code>Typeable</code>, the function <code>cast</code> actually only verifies the type
 of some value during run-time. At compiler-time, the only guarantee you will have is the existence of the typeclasses implementation. And this leads us to the main issue.</p>
@@ -362,12 +362,13 @@ every single time? All of these questions are valid and they should keep being a
 <p>However, the main point of adding extra layers is to attempt to add protection/guarantees, hence removing some of the left burdens on the developer. When fighting the
 compiler, you are having a <strong>conversation</strong> with your development partner. The compiler is not there to make you take more time to get your stuff done, it is there to
 validate to the best of its implementation what <em>you</em> have done wrong. As it gets more complicated to do a specific validation, the worse the error messages will become, and
-it is our job to address this problem of error messages &mdash; it is not a problem with the idea of having a partner to help you explore a jungle of errors.</p>
+it is our job to address this problem of error messages &mdash; it is not a problem with the idea of having a partner to help you explore a jungle of errors and potential impossible, but
+allowed, states of the program.</p>
 <p>Programming languages with strong systems, such as Haskell and Rust, seem to prove that as we scale our programs to solve problems with higher and higher complexity it becomes
 less easy to have effective <strong>communication</strong> with our partners. We start to struggle when talking to the lazy system and the borrow checker because their complexity in implementation
 start to reflect in their communication ability &mdash; these two aspects seem to depend on each other. Again, however, this is not due to the idea of having layers of protection, but how
 can we separate the concern of validation from the concern of developer interaction when implementing such a layer.</p>
-<p>A great idea/model is not bad because its <em>implementation</em> in the real world is bad. It is a human struggle, in all general senses, to have great ideas and models that
+<p>A great idea/model is not bad per say because its <em>implementation</em> in the real world is bad. It is a human struggle, in all general senses, to have great ideas and models that
 suffer from poor and/or problematic implementations.</p>
 <h2 id="references">References</h2>
 <ul>
