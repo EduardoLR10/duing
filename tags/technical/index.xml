@@ -6,7 +6,17 @@
     <description>Recent content in technical on Duing Dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 11 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/technical/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/technical/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Don&#39;t be a Hero, join a League</title>
+      <link>https://duing.dev/posts/runtime/</link>
+      <pubDate>Mon, 17 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://duing.dev/posts/runtime/</guid>
+      <description>Recently, I experimented with SYB (Scrap Your Boilerplate) in the Haskell programming language for a master&amp;rsquo;s course. The plan was for me to make a toy example of one of the professor&amp;rsquo;s ideas using this library because of its power and generality.
+Prior to this project, I presented the subject for the class based on the original paper published by Simon and Ralf. My impression after the reading, which is also the one that I attempted to portray to my peers, is that the usefulness of the method came at the cost of complexity of understanding and the use of unsafe operations.</description>
+    </item>
+    
     <item>
       <title>Fixing Recursion</title>
       <link>https://duing.dev/posts/fixingrecursion/</link>

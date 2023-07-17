@@ -42,7 +42,7 @@
 <meta name="author" content="Eduardo Lemos Rocha" />
 
     
-        <meta name="keywords" content='lesson' />
+        <meta name="keywords" content='lesson, technical' />
     
     
         <meta name="description" content="nted with SYB (Scrap Your Boilerplate) in the Haskell programming language for a master&amp;rsquo;s course. The plan was for me to make a toy example of one of the professor&amp;rsquo;s ideas using this library because of its power and generality.
@@ -63,6 +63,8 @@ Prior to this project, I presented the subject for the class based on the origin
     
         
             <meta property="article:tag" content="lesson" />
+        
+            <meta property="article:tag" content="technical" />
         
     
     <meta property="og:url" content="https://duing.dev/posts/runtime/" />
@@ -323,8 +325,8 @@ and <code>gmapT</code>. The latter is a <strong>one-layer</strong> traverse, i.e
 should clarify:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#66d9ef">instance</span> <span style="color:#66d9ef">Term</span> <span style="color:#66d9ef">Employee</span> <span style="color:#66d9ef">where</span>
 </span></span><span style="display:flex;"><span>  gmapT f (<span style="color:#66d9ef">E</span> per sal) <span style="color:#f92672">=</span> <span style="color:#66d9ef">E</span> (f per) (f sal)
-</span></span></code></pre></div><p>By using mutual recursion, the authors were able to have control over how the recursion will travel the data structure, i.e., if it will follow a top-down or
-bottom-up approach. The function <code>everywhere'</code> is the top-down version of <code>everywhere</code>:</p>
+</span></span></code></pre></div><p>By using mutual recursion with the know of recursion separate, the authors were able to have control over how the recursion will travel the data structure, i.e., if
+it will follow a top-down or bottom-up approach. The function <code>everywhere'</code> is the top-down version of <code>everywhere</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">everywhere&#39;</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Term</span> a
 </span></span><span style="display:flex;"><span>            <span style="color:#f92672">=&gt;</span> (forall b<span style="color:#f92672">.</span> <span style="color:#66d9ef">Term</span> b <span style="color:#f92672">=&gt;</span> b <span style="color:#f92672">-&gt;</span> b)
 </span></span><span style="display:flex;"><span>            <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> a
@@ -385,6 +387,10 @@ suffer from poor and/or problematic implementations.</p>
             <a
                 
                 href="/tags/lesson">#lesson</a>
+        
+            <a
+                
+                href="/tags/technical">#technical</a>
         
     </p>
 
