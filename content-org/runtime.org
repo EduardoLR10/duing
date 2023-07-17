@@ -1,0 +1,195 @@
+#+hugo_base_dir: ../
+#+hugo_tags: lesson
+
+#+title: Don't be a Hero, join a League
+
+#+date: 2023-07-17
+#+author: Eduardo Lemos
+
+Recently, I experimented with SYB (Scrap Your Boilerplate) in the Haskell programming
+language for a master's course. The plan was for me to make a toy example of one of the professor's
+ideas using this library because of its power and generality.
+
+Prior to this project, I presented the subject for the class based on the original
+paper published by Simon and Ralf. My impression after the reading, which is also the one that I attempted
+to portray to my peers, is that the usefulness of the method came at a cost of complexity of understanding
+and the use of unsafety operations. My experiment confirmed this hypothesis, and I am here to share the lesson.
+
+* Context
+
+Scrap Your Boilerplate is a set of functions that explore polymorphism in order to remove boilerplate-like functions
+from your code. The best use case for it is when you have /heterogenous/ data structures. Your ADTs are mutually recursive
+and you commonly need to traverse them in order to do some sort of transformation, e.g., update the values on specific nodes, query
+values out of them, or do some sort of effect related to them. Below, here is an example of such a situation:
+
+#+begin_src haskell
+data Company = C [Dept]
+data Dept = D Name Manager [SubUnit]
+data SubUnit = PU Employee | DU Dept
+data Employee = E Person Salary
+data Person = P Name Address
+data Salary = S Float
+type Manager = Employee
+type Name = String
+type Address = String
+#+end_src
+
+In order to do a simple operation on this set, such as increasing the salary of the employees, you would have to write:
+
+#+begin_src haskell
+increase :: Float -> Company -> Company
+increase k (C ds) = C (map (incD k) ds)
+
+incD :: Float -> Dept -> Dept
+incD k (D nm mgr us) = D nm (incE k mgr) (map (incU k) us)
+
+incU :: Float -> SubUnit -> SubUnit
+incU k (PU e) = PU (incE k e)
+incU k (DU d) = DU (incD k d)
+
+incE :: Float -> Employee -> Employee
+incE k (E p s) = E p (incS k s)
+
+incS :: Float -> Salary -> Salary
+incS k (S s) = S (s * (1+k))
+#+end_src
+
+As your domain expands and requirements change, this boilerplate grows in complexity and it is easy to get it wrong, even
+with the type system as support. The alternative then is to jump higher on the type level --- we will explore polymorphism in a way
+that allows us to ask a value what is its type. Java programmers should keep the =instanceof= function in the back of their heads.
+This is about to get wild.
+
+* SYB
+
+The same function =increase= can be re-written using SYB in the following way:
+
+#+begin_src haskell
+increase :: Float -> Company -> Company
+increase k = everywhere (mkT (incS k))
+#+end_src
+
+I will briefly give some intuition about the functions =everywhere= and =mkT=. For the sake of this post's lesson, these two
+will suffice my point. The outline is: the function =everywhere= keeps the knot of recursion, whilst =mkT= does verification on the
+type of interest. Let's start with the latter. This function is based on the =cast= function:
+
+#+begin_src haskell
+cast :: (Typeable a, Typeable b) => a -> Maybe b
+#+end_src
+
+Although its name probably is not the best, =cast= asks a value what is its type and if affirmative it will return its value wrapped in
+a =Just= and =Nothing= otherwise. Here are some examples:
+
+#+begin_src haskell
+Prelude> (cast 'a') :: Maybe Char
+Just 'a'
+Prelude> (cast 'a') :: Maybe Bool
+Nothing
+Prelude> (cast True) :: Maybe Bool
+Just True
+#+end_src
+
+Thus, =mkT= uses it in order to apply a function cirurgically. It checks first if the type is the specific target to apply identity or the
+given transformation:
+
+#+begin_src haskell
+mkT :: (Typeable a, Typeable b)
+    => (b -> b) -> a -> a
+mkT f = case cast f of
+          Just g -> g
+          Nothing -> id
+#+end_src
+
+Intuition can be grasped via some examples:
+
+#+begin_src haskell
+Prelude> (mkT not) True
+False
+Prelude> (mkT not) 'a'
+'a'
+#+end_src
+
+After understanding how we will apply a function to specific nodes in the data structure, it remains to see how this traverse is being done. The
+definition of the function =everywhere= is below:
+
+#+begin_src haskell
+everywhere :: Term a
+           => (forall b. Term b => b -> b)
+           -> a -> a
+everywhere f x = f (gmapT (everywhere f) x)
+#+end_src
+
+This function is a little bit convoluted to be understood by itself. The intuition, however, is that a mutual recursion will happen between =everywhere=
+and =gmapT=. The latter is a *one-layer* traverse, i.e., we will apply a function to the level immediately below the current node. The following example
+should clarify:
+
+#+begin_src haskell
+instance Term Employee where
+  gmapT f (E per sal) = E (f per) (f sal)
+#+end_src
+
+By using mutual recursion, the authors were able to have control over how the recursion will travel the data structure, i.e., if it will follow a top-down or
+bottom-up approach. The function =everywhere'= is the top-down version of =everywhere=:
+
+#+begin_src haskell
+everywhere' :: Term a
+            => (forall b. Term b => b -> b)
+            -> a -> a
+everywhere' f x = gmapT (everywhere’ f) (f x)
+#+end_src
+
+* Experience
+
+The explained approach uses some tricks in order to do its magic. Aside from the typeclasses =Term= and =Typeable=, the function =cast= actually only verifies the type
+of some value during run-time. At compiler-time, the only guarantee you will have is the existence of the typeclasses implementation. And this leads us to the main issue.
+
+During my short experiment with it, I had problems because my trust in the compiler was very low. The sensation that your project works if it type checks is nothing more
+than a meme in the community, because types can't guarantee the *semantics* of your program, i.e., you can do wrong things even if the type aligns. This means that something
+like a type system can't save you completely from making mistakes and ruining your life. It can, however, *decrease* the chances of that happening.
+
+When debugging SYB problems, I had the feeling that I transported myself into the world of Javascript or Python within Haskell's shell. I didn't know where my program was wrong,
+because I am too used to having help from the compiler's type system. This compiler-assisted debugging and refactoring became my standard and, when I lost it, the despair of being on uncharged
+waters hit me. I started *testing* piece by piece of my program until finally, I encountered /something/. A function being used in my SYB code was causing the issue due to some
+sort of restriction on pattern matching. Until now, I have no clue why this is the case, but clearly, I lack some sort of knowledge on how SYB manages its laziness and thunk evaluation.
+
+* Correctness
+
+This experience gave me some insights into the process of programming with different tools/paradigms/mindsets.
+
+Back in the Fortran and C days, programmers were held as the ones that understand programs in their entirety and are completely responsible for
+their debugging. Pointer manipulations and state management were all controlled via the mind of the maintainers and its burden and complexity would be
+solely tangled with the developers' understanding. When a change happens in the design, it is up to the coders to remember which areas of the program
+need to reflect such change. In languages like C, you have a tiny bit of help from the compiler but nothing extraordinary. Adding casts and void pointers
+completely diminishes that little amount of help from the compiler. The conclusion is that at the beginning of times, there was a strong tendency
+towards *centralization* of correctness in our programs. There were a few *heroes* that would save (or not) the day because they completely hold the responsibility.
+Tests were the only sidekick to this hero because it has /some/ ability to validate a few mistakes that the programmer may have done.
+
+Further on the line, mindsets and systems have been created to *decentralize* this scenario. Type systems, effect systems, and the principle of immutability are
+just a few examples of the heroes that were born to share this burden of assessing the correctness of our programs. We reached a point in which the complexity
+of our applications is too big for most human beings to tackle by themselves. We chose to pay higher upfront, by developing systems and paradigms, in order
+to prevent a bigger cost in the longer run. This sort of long-term investment became a mandatory tool for critical systems, in which every small detail missed is
+millions of dollars in cost. With the tendency of every system to become more critical and more responsive to demands, the need to increase and/or maintain the *league*
+of entities will or at least *should* skyrocket. The programmer will not be replaced, but will work *alongside* these other support heroes, giving him time and space to
+think about more complicated parts of the system; he would take care of the parts that need him the most rather than everything using him as the central pillar.
+
+* Conclusions
+
+The enhancement of this league does not come for free. Every time a new system is brought to the table, the same debate of its worthiness comes with questions like:
+Is this worth learning? Can you should me a /practical/ use case for it? Wouldn't this be too complex for newcomers to learn? Why do I have to battle with the compiler
+every single time? All of these questions are valid and they should keep being asked.
+
+However, the main point of adding extra layers is to attempt to add protection/guarantees, hence removing some of the left burdens on the developer. When fighting the
+compiler, you are having a *conversation* with your development partner. The compiler is not there to make you take more time to get your stuff done, it is there to
+validate to the best of its implementation what /you/ have done wrong. As it gets more complicated to do a specific validation, the worse the error messages will become, and
+it is our job to address this problem of error messages --- it is not a problem with the idea of having a partner to help you explore a jungle of errors.
+
+Programming languages with strong systems, such as Haskell and Rust, seem to prove that as we scale our programs to solve problems with higher and higher complexity it becomes
+less easy to have effective *communication* with our partners. We start to struggle when talking to the lazy system and the borrow checker because their complexity in implementation
+start to reflect in their communication ability --- these two aspects seem to depend on each other. Again, however, this is not due to the idea of having layers of protection, but how
+can we separate the concern of validation from the concern of developer interaction when implementing such a layer.
+
+A great idea/model is not bad because its /implementation/ in the real world is bad. It is a human struggle, in all general senses, to have great ideas and models that
+suffer from poor and/or problematic implementations.
+
+* References 
+
+- Ralf Lämmel and Simon Peyton Jones. 2003. Scrap your boilerplate: a practical design pattern for generic programming. SIGPLAN Not. 38, 3 (March 2003), 26–37. https://doi.org/10.1145/640136.604179
