@@ -188,7 +188,7 @@ less easy to have effective *communication* with our partners. We start to strug
 start to reflect in their communication ability --- these two aspects seem to depend on each other. In an unexpected way, this can be related to the Brook's Law prediction that
 communication costs of a project rise in terms of the square of the number of developers. In contrast with that scenario, here the costs depend on the number of /entities/ involved, because
 some of the members of the development process are not human beings, but software-based beings. Again, however, this is not due to the idea of having layers of protection, but related
-to our ability to implement it in such a way that separates the concern of validation from the concern of informing the validation to developer.
+to our ability to implement it in such a way that separates the concern of validation from the concern of informing the validation to the developer.
 
 A great idea/model is not bad per say because its /implementation/ in the real world is bad. It is a human struggle, in all general senses, to have great ideas and models that
 suffer from poor and/or problematic implementations.
