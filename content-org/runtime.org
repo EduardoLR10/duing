@@ -12,8 +12,8 @@ ideas using this library because of its power and generality.
 
 Prior to this project, I presented the subject for the class based on the original
 paper published by Simon and Ralf. My impression after the reading, which is also the one that I attempted
-to portray to my peers, is that the usefulness of the method came at a cost of complexity of understanding
-and the use of unsafety operations. My experiment confirmed this hypothesis, and I am here to share the lesson.
+to portray to my peers, is that the usefulness of the method came at the cost of complexity of understanding
+and the use of unsafe operations. My experiment confirmed this hypothesis, and I am here to share the lesson.
 
 * Context
 
