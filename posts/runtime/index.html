@@ -46,7 +46,7 @@
     
     
         <meta name="description" content="nted with SYB (Scrap Your Boilerplate) in the Haskell programming language for a master&amp;rsquo;s course. The plan was for me to make a toy example of one of the professor&amp;rsquo;s ideas using this library because of its power and generality.
-Prior to this project, I presented the subject for the class based on the original paper published by Simon and Ralf. My impression after the reading, which is also the one that I attempted to portray to my peers, is that the usefulness of the method came at the cost of complexity of understanding and the use of unsafe operations." />
+Prior to this project, I presented the subject for the class based on the original paper published by Simon and Ralf [1]. My impression after the reading, which is also the one that I attempted to portray to my peers, is that the usefulness of the method came at the cost of complexity of understanding and the use of unsafe operations." />
     
 
 <meta property="og:site_name"
@@ -249,7 +249,7 @@ Prior to this project, I presented the subject for the class based on the origin
 language for a master&rsquo;s course. The plan was for me to make a toy example of one of the professor&rsquo;s
 ideas using this library because of its power and generality.</p>
 <p>Prior to this project, I presented the subject for the class based on the original
-paper published by Simon and Ralf. My impression after the reading, which is also the one that I attempted
+paper published by Simon and Ralf [1]. My impression after the reading, which is also the one that I attempted
 to portray to my peers, is that the usefulness of the method came at the cost of complexity of understanding
 and the use of unsafe operations. My experiment confirmed this hypothesis, and I am here to share the lesson.</p>
 <h2 id="context">Context</h2>
@@ -368,17 +368,17 @@ it is our job to address this problem of error messages &mdash; it is not a prob
 allowed, states of the program.</p>
 <p>Programming languages with strong systems, such as Haskell and Rust, seem to prove that as we scale our programs to solve problems with higher and higher complexity it becomes
 less easy to have effective <strong>communication</strong> with our partners. We start to struggle when talking to the lazy system and the borrow checker because their complexity in implementation
-start to reflect in their communication ability &mdash; these two aspects seem to depend on each other. In an unexpected way, this can be related to the Brook&rsquo;s Law prediction that
+start to reflect in their communication ability &mdash; these two aspects seem to depend on each other. In an unexpected way, this can be related to the Brook&rsquo;s Law [2] prediction that
 communication costs of a project rise in terms of the square of the number of developers. In contrast with that scenario, here the costs depend on the number of <em>entities</em> involved, because
 some of the members of the development process are not human beings, but software-based beings. Again, however, this is not due to the idea of having layers of protection, but related
 to our ability to implement it in such a way that separates the concern of validation from the concern of informing the validation to the developer.</p>
 <p>A great idea/model is not bad per say because its <em>implementation</em> in the real world is bad. It is a human struggle, in all general senses, to have great ideas and models that
 suffer from poor and/or problematic implementations.</p>
 <h2 id="references">References</h2>
-<ul>
+<ol>
 <li>Ralf Lämmel and Simon Peyton Jones. 2003. Scrap your boilerplate: a practical design pattern for generic programming. SIGPLAN Not. 38, 3 (March 2003), 26–37. <a href="https://doi.org/10.1145/640136.604179">https://doi.org/10.1145/640136.604179</a></li>
 <li>Eric S. Raymond and Tim O&rsquo;Reilly. 1999. The Cathedral and the Bazaar (1st. ed.). O&rsquo;Reilly &amp; Associates, Inc., USA.</li>
-</ul>
+</ol>
 </div>
 </article>
 
