@@ -140,7 +140,7 @@ everywhere' f x = gmapT (everywhere' f) (f x)
 * Experience
 
 The explained approach uses some tricks in order to do its magic. Aside from the typeclasses =Term= and =Typeable=, the function =cast= actually only verifies the type
-of some value during run-time. At compiler-time, the only guarantee you will have is the existence of the typeclasses implementation. And this leads us to the main issue.
+of some value during run-time. At compile-time, the only guarantee you will have is the existence of the typeclasses implementation. And this leads us to the main issue.
 
 During my short experiment with it, I had problems because my trust in the compiler was very low. The sensation that your project works if it type checks is nothing more
 than a meme in the community, because types can't guarantee the *semantics* of your program, i.e., you can do wrong things even if the type aligns. This means that something
