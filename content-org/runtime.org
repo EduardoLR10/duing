@@ -144,7 +144,7 @@ of some value during run-time. At compiler-time, the only guarantee you will hav
 
 During my short experiment with it, I had problems because my trust in the compiler was very low. The sensation that your project works if it type checks is nothing more
 than a meme in the community, because types can't guarantee the *semantics* of your program, i.e., you can do wrong things even if the type aligns. This means that something
-like a type system can't save you completely from making mistakes and ruining your life. It can, however, *decrease* the chances of that happening.
+like a type system can't save you completely from making mistakes and ruining your own life. It can, however, *decrease* the chances of that happening.
 
 When debugging SYB problems, I had the feeling that I transported myself into the world of Javascript or Python within Haskell's shell. I didn't know where my program was wrong,
 because I am too used to having help from the compiler's type system. This compiler-assisted debugging and refactoring became my standard and, when I lost it, the despair of being on uncharged
