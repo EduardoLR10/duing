@@ -333,7 +333,7 @@ it will follow a top-down or bottom-up approach. The function <code>everywhere'<
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">everywhere&#39;</span> f x <span style="color:#f92672">=</span> gmapT (everywhere&#39; f) (f x)
 </span></span></code></pre></div><h2 id="experience">Experience</h2>
 <p>The explained approach uses some tricks in order to do its magic. Aside from the typeclasses <code>Term</code> and <code>Typeable</code>, the function <code>cast</code> actually only verifies the type
-of some value during run-time. At compiler-time, the only guarantee you will have is the existence of the typeclasses implementation. And this leads us to the main issue.</p>
+of some value during run-time. At compile-time, the only guarantee you will have is the existence of the typeclasses implementation. And this leads us to the main issue.</p>
 <p>During my short experiment with it, I had problems because my trust in the compiler was very low. The sensation that your project works if it type checks is nothing more
 than a meme in the community, because types can&rsquo;t guarantee the <strong>semantics</strong> of your program, i.e., you can do wrong things even if the type aligns. This means that something
 like a type system can&rsquo;t save you completely from making mistakes and ruining your own life. It can, however, <strong>decrease</strong> the chances of that happening.</p>
