@@ -336,7 +336,7 @@ serializable interface. Here&rsquo;s a sketch on how the final implementation of
 <p>This experiment gave me some insight about the types of relationships that I can expect when programming in OOP. My intuition tells me now that by locking
 the relationships with inheritance, I&rsquo;m forced to use a top-down approach, i.e., reusability and generics need to come from above. A super class is now needed
 because this is the way to provide reusability. Individual responsabilities need to be addressed via static or abstract methods until they cascade to their owners,
-i.e., the ones that will addressed it.</p>
+i.e., the ones that will address it.</p>
 <p>In contrast with languages like Haskell, Rust, and SML, this is addressed directly between the ones that will use the reusable piece of code and the required constraints.
 There is no need to mess around with new classes and redirecting responsabilities because in such languages there is no sense of hierarchy and only the must-have parts
 participate on the contract being established. In this sense, there isn&rsquo;t a need to follow a flow, such as the top-down from OOP, because the connections between this &ldquo;graph&rdquo;
