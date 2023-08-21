@@ -121,7 +121,7 @@ this is not its problem at all. That realization is the final piece of the puzzl
 #+end_src
 
 By making the serialize and deserialize methods abstract, we lose the ability to instantiate an object of the class ~hashable%~. However, we solve
-the problem of making an enforcement in one level of abstract and forcing its implementation to be done in a layer below. In this way, the subclasses
+the problem of making an enforcement in one level of abstraction and forcing its implementation to be done in a layer below. In this way, the subclasses
 will be able to use ~deserialize-hash-list~ and, because they will inherit from ~hashable%~, they will have to implement the serialization methods of the
 serializable interface. Here's a sketch on how the final implementation of the class ~field%~ will look like:
 
