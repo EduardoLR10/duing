@@ -144,7 +144,7 @@ i.e., the ones that will address it.
 
 This makes contrast with languages like Haskell, Rust, and SML, in which this is addressed directly between the ones that will use the reusable piece of code and the required constraints.
 There is no need to mess around with new classes and redirecting responsabilities because in such languages there is no sense of hierarchy and only the must-have parts
-participate on the contract being established. In this sense, there isn't a need to follow a flow, such as the top-down from OOP, because the connections between this "graph"
+participate on the contract being established. In this sense, there isn't a need to follow a flow, such as the top-down one from OOP, because the connections between this "graph"
 of abstractions is composed out of undirected edges.
 
 In OOP, your mind needs to always keep track where in the river of abstractions you are and, if necessary, start over from the top because this may be the only way due to
