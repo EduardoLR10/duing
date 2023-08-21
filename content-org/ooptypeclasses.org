@@ -1,0 +1,153 @@
+#+hugo_base_dir: ../
+#+hugo_tags: technical
+
+#+title: OOP-style Typeclasses
+
+#+date: 2023-08-21
+#+author: Eduardo Lemos
+
+The main benefit of exploring different programming paradigms is to learn how to build bridges.
+You have your preferences and by playing with the competitors, you are able to see where your preferences
+fall apart and vice-versa. Eventually, the mastery of both sides will allow you to syntatically and semantically
+connect the same concepts across different worlds of programming.
+
+The story goes as follows: suppose you have a function that is generic enough in order to be worth it to generalize it
+to other /types/ of structures, given that some contraints on it will be guaranteed. A lot of whispers will go around the room:
+typeclasses, traits, SML modules. In languages with features, it is not only easy to implement such function, but also natural.
+The mindset that the language wants you to have takes place. But, what if you want to treat the same problem in a paradigm you are
+not used to?
+
+* Context
+
+The aforementioned problem was the one that I encountered with my friend Magueta, while we were modeling [[https://github.com/Dr-Nekoma/RackeTowerDB][RacketowerDB]], our Dr.Nekoma project
+focused on the development of a relational database. As the name implies, we are using Racket, one of many lisp flavors. However, we decided
+to not go with the natural route (at least for us) of using functional programming (FP) abstractions to model our domain. We decided to go with the
+Object Oriented-Programming (OOP) path.
+
+For me, this decision brings great points to the table: first it will allow us to understand better a paradigm that competes of FP, and second it will
+force us to think outside of our biased-box and solve problem using the tools that we have at-hand. Further, we will be able to pinpoint where the OOP
+modeling will do a better or worse job of solving a problem in comparison with how we would solve it using FP. Such exercise allows us to drop the abstract
+ideological debates, which do have value in themselves, and materialize such problems in a concrete manner.
+
+* The Problem
+
+Our problem could be drafted via the following Haskell sketch:
+
+#+begin_src haskell
+deserializeHashList :: Serializable a => ByteString -> [(Text, a)] -> [(Text, a)]
+deserializeHashList byteStream accumulator = undefined
+#+end_src
+
+The main purpose of this function is to deserialize pairs. This is useful because we use some hash-maps in our application in more than one place and all hash-maps
+could be deserialized with a single function. The Table object, for instance, contains the metadata about *fields*, which maps each column name of a given table with
+its type and column position. The relational schema, by being a map between names and entities, also uses a hash-map to be modeled. In regard to the above draft, notice
+that the only connection being expressed between the function and whatever you want to deserialize is there is a contraint forces you that this value must have
+implemented the typeclass =Serializable=.
+
+We don't have this sort of freedom to relate types and contraints. We only have objects that look like this:
+
+#+begin_src racket
+(define field%
+  (class* object% (serializable<%>)
+    (init-field [position null]
+                [type null])
+    (define/public (serialize) (does-something))
+    (define/public (deserialize byte-stream) (does-something))
+    (super-new)))
+#+end_src
+
+For those non-initiated with Racket's syntax, let me break it down for you what we have above: the definition of the class ~field%~ is composed
+out of two fields, both initialized with =null=, and also promises to implement the interface ~serializable<%>~, which it does. This class inherits
+from the super class ~object%~, which is why it is calling the super class's constructor =super-new= at the end.
+
+As mentioned earlier, fields will be /one/ of the type of objects that we want to deserialize, when deserializing a Table entity. But what about the
+Schema? This hash-map maps names to entities, such as tables:
+
+#+begin_src racket
+(define table%
+  (class* entity% (serializable<%>)
+    (init-field [row-id 0]
+                [fields (make-hash (list))])
+    (define/public (serialize) (does-something))
+    (define/public (deserialize byte-stream) (does-something))
+    (super-new)))
+#+end_src
+
+A table is an object that inherits from the super class ~entity%~, implements the contract established with the ~serializable<%>~ interface, and has
+two fields, one called =row-id= and another one called =fields=, initialized with 0 and an empty hash-map respectively.
+
+Now, let's repharase the problem again with this additional context: how are we suppose to make something that works for both objects while maintaining the
+enforcement of the serializable constraint?
+
+* Our solution
+
+I will not advocate that our solution is the best or even the only solution available to solve this type of problem. I will attempt to explain our thought
+process and our conclusions based on it.
+
+The first part of the problem is on how to make something generic/reusable. For us, this is solved in OOP via inheritance. We need some class that will be
+the parent for both classes ~field%~ and ~entity%~ at the same time. Such class will implement ~deserealize-hash-list~ and the subclasses will be allowed to use
+it. Here's a first sketch:
+
+#+begin_src racket
+(define hashable%
+  (class object% 
+    (define/public (deserialize-hash-list byte-stream accumulator) (does-something))
+    (super-new)))
+#+end_src
+
+Next, we will enforce the contraint via the serializable interface. It would be wrong, but a good first attempt, the following:
+
+#+begin_src racket
+(define hashable%
+  (class* object% (serializable<%>)
+    (define/public (deserialize-hash-list byte-stream accumulator) (does-something))
+    (define/public (serialize) (does-something))
+    (define/public (deserialize byte-stream) (does-something))
+    (super-new)))
+#+end_src
+
+This implementation is incorrect because the super class ~hashable%~ does not have anything to do with the serialization process aside from forcing its
+existence, i.e., we care that you have it because we will use it, but we don't care how you have implemented. In fact, how does it gonna know if this object is an entity or a field
+or something else? The subclasses themselves need to be the ones to decide how they will be read and written from and to the disk. From the point of view of ~hashable%~,
+this is not its problem at all. That realization is the final piece of the puzzle:
+
+#+begin_src racket
+(define hashable%
+  (class* object% (serializable<%>)
+    (abstract serialize)
+    (abstract deserialize)
+    (define/public (deserialize-hash-list byte-stream accumulator) (does-something))
+    (super-new)))
+#+end_src
+
+By making the serialize and deserialize methods abstract, we lose the ability to instantiate an object of the class ~hashable%~. However, we solve
+the problem of making an enforcement in one level of abstract and forcing its implementation to be done in a layer below. In this way, the subclasses
+will be able to use ~deserialize-hash-list~ and, because they will inherit from ~hashable%~, they will have to implement the serialization methods of the
+serializable interface. Here's a sketch on how the final implementation of the class ~field%~ will look like:
+
+#+begin_src racket
+(define field%
+  (class hashable
+    (init-field [position null]
+                [type null])
+    (define/override (serialize) (does-something))
+    (define/override (deserialize byte-stream) (does-something))
+    (super-new)))
+#+end_src
+
+* Conclusion
+
+This experiment gave me some insight about the types of relationships that I can expect when programming in OOP. My intuition tells me now that by locking
+the relationships with inheritance, I'm forced to use a top-down approach, i.e., reusability and generics need to come from above. A super class is now needed
+because this is the way to provide reusability. Individual responsabilities need to be addressed via static or abstract methods until they cascade to their owners,
+i.e., the ones that will addressed it.
+
+In contrast with languages like Haskell, Rust, and SML, this is addressed directly between the ones that will use the reusable piece of code and the required constraints.
+There is no need to mess around with new classes and redirecting responsabilities because in such languages there is no sense of hierarchy and only the must-have parts
+participate on the contract being established. In this sense, there isn't a need to follow a flow, such as the top-down from OOP, because the connections between this "graph"
+of abstractions is composed out of undirected edges.
+
+In OOP, your mind needs to always keep track where in the river of abstractions you are and, if necessary, start over from the top because this may be the only way due to
+the imposed flow by the paradigm.
+
+
