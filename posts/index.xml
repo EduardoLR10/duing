@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Duing Dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 17 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OOP-style Typeclasses</title>
+      <link>https://duing.dev/posts/ooptypeclasses/</link>
+      <pubDate>Mon, 21 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://duing.dev/posts/ooptypeclasses/</guid>
+      <description>The main benefit of exploring different programming paradigms is to learn how to build bridges. You have your preferences and by playing with the competitors, you are able to see where your preferences fall apart and vice-versa. Eventually, the mastery of both sides will allow you to syntatically and semantically connect the same concepts across different worlds of programming.
+The story goes as follows: suppose you have a function that is generic enough in order to be worth it to generalize it to other types of structures, given that some contraints on it will be guaranteed.</description>
+    </item>
+    
     <item>
       <title>Don&#39;t be a Hero, join a League</title>
       <link>https://duing.dev/posts/runtime/</link>

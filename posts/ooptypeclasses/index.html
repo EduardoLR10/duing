@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html class="" lang="en"><head>
+    
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+
+    <link
+    rel="icon"
+    href='/favicon.png'
+/>
+<link
+    rel="shortcut icon"
+    href='/favicon.ico'
+    type="image/x-icon"
+/>
+<link
+    rel="apple-touch-icon"
+    href='/apple-touch-icon.png'
+/>
+
+    <link
+        rel="icon"
+        href='/logo.svg'
+        type="image/svg+xml"
+    />
+
+<title>
+        
+            OOP-style Typeclasses  &ndash;
+        
+        Duing Dev
+    </title>
+
+    
+    <link href="/symbols-nerd-font/symbols-nerd-font.css" rel="stylesheet" integrity="sha512-lydow8GLOLlYNOtHlksNCmGWWCBsbIEtikXpHzfWqx78HLlyQZHOzyLwPpKol4Th6aCwLUXOfODVYgwrd3nwKQ=="/>
+    <link href="/jetbrains-mono/jetbrains-mono.css" rel="stylesheet" integrity="sha512-tJxlgL6v1Y7kFf+qB8SloaAMKnOAw6WouknxXtIjkBux9Y/9aX81EUWOJO8c/3l98DmjG8brr4to7zaez606Fg=="/>
+
+    
+    
+    <link type="text/css" rel="stylesheet" href=https://duing.dev/css/styles.6f7510796ff02c7dabd794e74edd5fe8768c226a0caad05f3838da994c532544d6915ce65b106ca5a210796f2936429e8446811360103cd082ad0dc245016d71.css integrity="sha512-b3UQeW/wLH2r15TnTt1f6HaMImoMqtBfODjamUxTJUTWkVzmWxBspaIQeW8pNkKehEaBE2AQPNCCrQ3CRQFtcQ==" />
+<meta name="author" content="Eduardo Lemos Rocha" />
+
+    
+        <meta name="keywords" content='technical' />
+    
+    
+        <meta name="description" content="exploring different programming paradigms is to learn how to build bridges. You have your preferences and by playing with the competitors, you are able to see where your preferences fall apart and vice-versa. Eventually, the mastery of both sides will allow you to syntatically and semantically connect the same concepts across different worlds of programming.
+The story goes as follows: suppose you have a function that is generic enough in order to be worth it to generalize it to other types of structures, given that some contraints on it will be guaranteed." />
+    
+
+<meta property="og:site_name"
+    content='Duing Dev' />
+
+    <meta property="og:title" content="OOP-style Typeclasses" />
+    <meta property="og:type" content="article" />
+    
+    <meta
+        property="article:author" content="Eduardo Lemos Rocha" />
+    <meta
+        property="article:published_time"
+        content='2023-08-21T00:00:00Z&#43;0000' />
+    
+        
+            <meta property="article:tag" content="technical" />
+        
+    
+    <meta property="og:url" content="https://duing.dev/posts/ooptypeclasses/" />
+    
+    
+    <meta property="og:image"
+        content="https://duing.dev/img/icon.svg" />
+    
+        <meta property="og:description" content="The main benefit of exploring different programming paradigms is to learn how to build bridges. You have your preferences and by playing with the competitors, y" />
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain"
+      content='duing.dev'
+/>
+<meta property="twitter:url" content="https://duing.dev/posts/ooptypeclasses/" />
+
+
+    <meta name="twitter:title" content="OOP-style Typeclasses" />
+    
+    
+    
+    <meta name="twitter:image"
+        content="https://duing.dev/img/icon.svg" />
+    
+        <meta name="twitter:description" content="The main benefit of exploring different programming paradigms is to learn how to build bridges. You have your preferences and by playing with the competitors, y" />
+    
+
+<link rel="manifest" href="/manifest/index.json" />
+</head>
+
+
+<body>
+        <div id="baseContainer"><header class="">
+<div class="titleAndSearchContainer">
+        <div id="titleContainer">
+            
+                <a class="unstyledLink" href="/">
+                    <img src='/logo.svg' alt='Logo'/>
+                </a>
+            
+            <div class="rightOfLogo">
+                <div class="titleAndHamburger">
+                    <h1>
+                        <a class="unstyledLink" href="/">Duing Dev</a>
+                        
+                    </h1>
+                    
+                </div>
+                <div id="wide_nav"><nav>
+    
+    <ul id="main-nav">
+        <li><a href="/">Home</a></li>
+        
+            <li><a href="/posts">Posts</a></li>
+        
+        
+        
+        
+        
+            <li><a href="https://duing.dev/about/">
+                About
+            </a></li>
+        
+            <li><a href="https://duing.dev/publications/">
+                Publications
+            </a></li>
+        
+        
+        
+            <li><a href="/tags">Tags</a></li>
+        
+        
+    </ul>
+</nav>
+</div>
+            </div>
+        </div>
+        
+    </div>
+    <div id="links">
+        
+        
+        <a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="mailto:dudulr10@gmail.com">
+    
+    
+        &#xf6ed;
+    
+    <span>
+        Email
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://github.com/EduardoLR10">
+    
+    
+        &#xf09b;
+    
+    <span>
+        GitHub
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://discordapp.com/users/246675375877390337">
+    
+    
+        &#xfb6e;
+    
+    <span>
+        Discord
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://www.linkedin.com/in/eduardo-lemos-rocha-3198a5149/">
+    
+    
+        &#xf0e1;
+    
+    <span>
+        Linkedin
+    </span>
+</a>
+<a
+    
+        rel="noreferrer"
+    
+    target="_blank"
+    class="nerdlink"
+    href="https://www.youtube.com/channel/UCMyzdYsPiBU3xoqaOeahr6Q">
+    
+    
+        &#xf16a;
+    
+    <span>
+        Dr.Nekoma
+    </span>
+</a>
+
+    </div>
+    
+
+</header>
+<div id="contentContainer">
+                <div id="content">
+                    <main>
+<article class="card single">
+    
+        <h1>OOP-style Typeclasses</h1>
+    
+    
+        <p class="date">
+            <span title='Date'> </span>
+    2023-08-21
+
+</p>
+    
+    
+    
+    
+    <div><p>The main benefit of exploring different programming paradigms is to learn how to build bridges.
+You have your preferences and by playing with the competitors, you are able to see where your preferences
+fall apart and vice-versa. Eventually, the mastery of both sides will allow you to syntatically and semantically
+connect the same concepts across different worlds of programming.</p>
+<p>The story goes as follows: suppose you have a function that is generic enough in order to be worth it to generalize it
+to other <em>types</em> of structures, given that some contraints on it will be guaranteed. A lot of whispers will go around the room:
+typeclasses, traits, SML modules. In languages with features, it is not only easy to implement such function, but also natural.
+The mindset that the language wants you to have takes place. But, what if you want to treat the same problem in a paradigm you are
+not used to?</p>
+<h2 id="context">Context</h2>
+<p>The aforementioned problem was the one that I encountered with my friend Magueta, while we were modeling <a href="https://github.com/Dr-Nekoma/RackeTowerDB">RacketowerDB</a>, our Dr.Nekoma project
+focused on the development of a relational database. As the name implies, we are using Racket, one of many lisp flavors. However, we decided
+to not go with the natural route (at least for us) of using functional programming (FP) abstractions to model our domain. We decided to go with the
+Object Oriented-Programming (OOP) path.</p>
+<p>For me, this decision brings great points to the table: first it will allow us to understand better a paradigm that competes of FP, and second it will
+force us to think outside of our biased-box and solve problem using the tools that we have at-hand. Further, we will be able to pinpoint where the OOP
+modeling will do a better or worse job of solving a problem in comparison with how we would solve it using FP. Such exercise allows us to drop the abstract
+ideological debates, which do have value in themselves, and materialize such problems in a concrete manner.</p>
+<h2 id="the-problem">The Problem</h2>
+<p>Our problem could be drafted via the following Haskell sketch:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#a6e22e">deserializeHashList</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Serializable</span> a <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">ByteString</span> <span style="color:#f92672">-&gt;</span> [(<span style="color:#66d9ef">Text</span>, a)] <span style="color:#f92672">-&gt;</span> [(<span style="color:#66d9ef">Text</span>, a)]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">deserializeHashList</span> byteStream accumulator <span style="color:#f92672">=</span> undefined
+</span></span></code></pre></div><p>The main purpose of this function is to deserialize pairs. This is useful because we use some hash-maps in our application in more than one place and all hash-maps
+could be deserialized with a single function. The Table object, for instance, contains the metadata about <strong>fields</strong>, which maps each column name of a given table with
+its type and column position. The relational schema, by being a map between names and entities, also uses a hash-map to be modeled. In regard to the above draft, notice
+that the only connection being expressed between the function and whatever you want to deserialize is there is a contraint forces you that this value must have
+implemented the typeclass <code>Serializable</code>.</p>
+<p>We don&rsquo;t have this sort of freedom to relate types and contraints. We only have objects that look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-racket" data-lang="racket"><span style="display:flex;"><span>(<span style="color:#66d9ef">define</span> field%
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">class*</span> object% (serializable&lt;%&gt;)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">init-field</span> [position null]
+</span></span><span style="display:flex;"><span>                [type null])
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define/public</span> (serialize) (does-something))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define/public</span> (deserialize byte-stream) (does-something))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">super-new</span>)))
+</span></span></code></pre></div><p>For those non-initiated with Racket&rsquo;s syntax, let me break it down for you what we have above: the definition of the class <code>field%</code> is composed
+out of two fields, both initialized with <code>null</code>, and also promises to implement the interface <code>serializable&lt;%&gt;</code>, which it does. This class inherits
+from the super class <code>object%</code>, which is why it is calling the super class&rsquo;s constructor <code>super-new</code> at the end.</p>
+<p>As mentioned earlier, fields will be <em>one</em> of the type of objects that we want to deserialize, when deserializing a Table entity. But what about the
+Schema? This hash-map maps names to entities, such as tables:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-racket" data-lang="racket"><span style="display:flex;"><span>(<span style="color:#66d9ef">define</span> table%
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">class*</span> entity% (serializable&lt;%&gt;)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">init-field</span> [row-id <span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>                [fields (make-hash (list))])
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define/public</span> (serialize) (does-something))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define/public</span> (deserialize byte-stream) (does-something))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">super-new</span>)))
+</span></span></code></pre></div><p>A table is an object that inherits from the super class <code>entity%</code>, implements the contract established with the <code>serializable&lt;%&gt;</code> interface, and has
+two fields, one called <code>row-id</code> and another one called <code>fields</code>, initialized with 0 and an empty hash-map respectively.</p>
+<p>Now, let&rsquo;s repharase the problem again with this additional context: how are we suppose to make something that works for both objects while maintaining the
+enforcement of the serializable constraint?</p>
+<h2 id="our-solution">Our solution</h2>
+<p>I will not advocate that our solution is the best or even the only solution available to solve this type of problem. I will attempt to explain our thought
+process and our conclusions based on it.</p>
+<p>The first part of the problem is on how to make something generic/reusable. For us, this is solved in OOP via inheritance. We need some class that will be
+the parent for both classes <code>field%</code> and <code>entity%</code> at the same time. Such class will implement <code>deserealize-hash-list</code> and the subclasses will be allowed to use
+it. Here&rsquo;s a first sketch:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-racket" data-lang="racket"><span style="display:flex;"><span>(<span style="color:#66d9ef">define</span> hashable%
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">class</span> object%
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define/public</span> (deserialize-hash-list byte-stream accumulator) (does-something))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">super-new</span>)))
+</span></span></code></pre></div><p>Next, we will enforce the contraint via the serializable interface. It would be wrong, but a good first attempt, the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-racket" data-lang="racket"><span style="display:flex;"><span>(<span style="color:#66d9ef">define</span> hashable%
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">class*</span> object% (serializable&lt;%&gt;)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define/public</span> (deserialize-hash-list byte-stream accumulator) (does-something))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define/public</span> (serialize) (does-something))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define/public</span> (deserialize byte-stream) (does-something))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">super-new</span>)))
+</span></span></code></pre></div><p>This implementation is incorrect because the super class <code>hashable%</code> does not have anything to do with the serialization process aside from forcing its
+existence, i.e., we care that you have it because we will use it, but we don&rsquo;t care how you have implemented. In fact, how does it gonna know if this object is an entity or a field
+or something else? The subclasses themselves need to be the ones to decide how they will be read and written from and to the disk. From the point of view of <code>hashable%</code>,
+this is not its problem at all. That realization is the final piece of the puzzle:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-racket" data-lang="racket"><span style="display:flex;"><span>(<span style="color:#66d9ef">define</span> hashable%
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">class*</span> object% (serializable&lt;%&gt;)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">abstract</span> serialize)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">abstract</span> deserialize)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define/public</span> (deserialize-hash-list byte-stream accumulator) (does-something))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">super-new</span>)))
+</span></span></code></pre></div><p>By making the serialize and deserialize methods abstract, we lose the ability to instantiate an object of the class <code>hashable%</code>. However, we solve
+the problem of making an enforcement in one level of abstract and forcing its implementation to be done in a layer below. In this way, the subclasses
+will be able to use <code>deserialize-hash-list</code> and, because they will inherit from <code>hashable%</code>, they will have to implement the serialization methods of the
+serializable interface. Here&rsquo;s a sketch on how the final implementation of the class <code>field%</code> will look like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-racket" data-lang="racket"><span style="display:flex;"><span>(<span style="color:#66d9ef">define</span> field%
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">class</span> hashable
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">init-field</span> [position null]
+</span></span><span style="display:flex;"><span>                [type null])
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define/override</span> (serialize) (does-something))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define/override</span> (deserialize byte-stream) (does-something))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">super-new</span>)))
+</span></span></code></pre></div><h2 id="conclusion">Conclusion</h2>
+<p>This experiment gave me some insight about the types of relationships that I can expect when programming in OOP. My intuition tells me now that by locking
+the relationships with inheritance, I&rsquo;m forced to use a top-down approach, i.e., reusability and generics need to come from above. A super class is now needed
+because this is the way to provide reusability. Individual responsabilities need to be addressed via static or abstract methods until they cascade to their owners,
+i.e., the ones that will addressed it.</p>
+<p>In contrast with languages like Haskell, Rust, and SML, this is addressed directly between the ones that will use the reusable piece of code and the required constraints.
+There is no need to mess around with new classes and redirecting responsabilities because in such languages there is no sense of hierarchy and only the must-have parts
+participate on the contract being established. In this sense, there isn&rsquo;t a need to follow a flow, such as the top-down from OOP, because the connections between this &ldquo;graph&rdquo;
+of abstractions is composed out of undirected edges.</p>
+<p>In OOP, your mind needs to always keep track where in the river of abstractions you are and, if necessary, start over from the top because this may be the only way due to
+the imposed flow by the paradigm.</p>
+</div>
+</article>
+
+    <hr />
+    <p class="articleTagsContainer">
+        <span> </span>
+        <strong>Tags:</strong>
+        
+            <a
+                
+                href="/tags/technical">#technical</a>
+        
+    </p>
+
+
+
+
+
+
+                    </main><footer>
+    <hr />
+
+<p><small>
+        2023 &copy; 
+    </small></p>
+    <p><small>
+        <a href='https://gitlab.com/gabmus/hugo-ficurinia'>Ficurinia theme</a> for <a href='https://gohugo.io'>Hugo</a> by <a href='https://gabmus.org'>Gabriele Musco</a>. Licensed under <a href='https://www.gnu.org/licenses/agpl-3.0.html'>GNU AGPLv3</a>.
+    </small></p>
+</footer>
+</div>
+            </div>
+        </div>
+
+
+</body>
+</html>
