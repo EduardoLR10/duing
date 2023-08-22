@@ -41,7 +41,7 @@ deserializeHashList byteStream accumulator = undefined
 The main purpose of this function is to deserialize pairs. This is useful because we use some hash-maps in our application in more than one place and all hash-maps
 could be deserialized with a single function. The Table object, for instance, contains the metadata about *fields*, which maps each column name of a given table with
 its type and column position. The relational schema, by being a map between names and entities, also uses a hash-map to be modeled. In regard to the above draft, notice
-that the only connection being expressed between the function and whatever you want to deserialize is there is a contraint forces you that this value must have
+that the only connection being expressed between the function and whatever you want to deserialize is a contraint which forces you that this value must have
 implemented the typeclass =Serializable=.
 
 We don't have this sort of freedom to relate types and contraints. We only have objects that look like this:
