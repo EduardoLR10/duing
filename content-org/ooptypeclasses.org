@@ -24,7 +24,7 @@ focused on the development of a relational database. As the name implies, we are
 to not go with the natural route (at least for us) of using functional programming (FP) abstractions to model our domain. We decided to go with the
 Object Oriented-Programming (OOP) path.
 
-For me, this decision brings great points to the table: first it will allow us to understand better a paradigm that competes with FP, and second it will
+To me, this decision brings great points to the table: first it will allow us to understand better a paradigm that competes with FP, and second it will
 force us to think outside of our biased-box and solve problem using the tools that we have at-hand. Further, we will be able to pinpoint where the OOP
 modeling will do a better or worse job of solving a problem in comparison with how we would solve it using FP. Such exercise allows us to drop the abstract
 ideological debates, which do have value in themselves, and materialize such problems in a concrete manner.
