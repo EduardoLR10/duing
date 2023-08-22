@@ -268,7 +268,7 @@ ideological debates, which do have value in themselves, and materialize such pro
 </span></span></code></pre></div><p>The main purpose of this function is to deserialize pairs. This is useful because we use some hash-maps in our application in more than one place and all hash-maps
 could be deserialized with a single function. The Table object, for instance, contains the metadata about <strong>fields</strong>, which maps each column name of a given table with
 its type and column position. The relational schema, by being a map between names and entities, also uses a hash-map to be modeled. In regard to the above draft, notice
-that the only connection being expressed between the function and whatever you want to deserialize is there is a contraint forces you that this value must have
+that the only connection being expressed between the function and whatever you want to deserialize is a contraint which forces you that this value must have
 implemented the typeclass <code>Serializable</code>.</p>
 <p>We don&rsquo;t have this sort of freedom to relate types and contraints. We only have objects that look like this:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-racket" data-lang="racket"><span style="display:flex;"><span>(<span style="color:#66d9ef">define</span> field%
