@@ -12,7 +12,7 @@ fall apart and vice-versa. Eventually, the mastery of both sides will allow you 
 connect the same concepts across different worlds of programming.
 
 The story goes as follows: suppose you have a function that is generic enough in order to be worth it to generalize it
-to other /types/ of structures, given that some contraints on it will be guaranteed. A lot of whispers will go around the room:
+to other /types/ of structures, given that some constraints on it will be guaranteed. A lot of whispers will go around the room:
 typeclasses, traits, SML modules. In languages with such features, it is not only easy to implement such function, but also natural.
 The mindset that the language wants you to have takes place. But, what if you want to treat the same problem in a paradigm you are
 not used to?
@@ -41,10 +41,10 @@ deserializeHashList byteStream accumulator = undefined
 The main purpose of this function is to deserialize pairs. This is useful because we use some hash-maps in our application in more than one place and all hash-maps
 could be deserialized with a single function. The Table object, for instance, contains the metadata about *fields*, which maps each column name of a given table with
 its type and column position. The relational schema, by being a map between names and entities, also uses a hash-map to be modeled. In regard to the above draft, notice
-that the only connection being expressed between the function and whatever you want to deserialize is a contraint which forces you that this value must have
+that the only connection being expressed between the function and whatever you want to deserialize is a constraint which forces you that this value must have
 implemented the typeclass =Serializable=.
 
-We don't have this sort of freedom to relate types and contraints. We only have objects that look like this:
+We don't have this sort of freedom to relate types and constraints. We only have objects that look like this:
 
 #+begin_src racket
 (define field%
@@ -95,7 +95,7 @@ it. Here's a first sketch:
     (super-new)))
 #+end_src
 
-Next, we will enforce the contraint via the serializable interface. It would be wrong, but a good first attempt, the following:
+Next, we will enforce the constraint via the serializable interface. It would be wrong, but a good first attempt, the following:
 
 #+begin_src racket
 (define hashable%
