@@ -6,7 +6,16 @@
     <description>Recent content in lesson on Duing Dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 17 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/lesson/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/lesson/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Teaching is Fun</title>
+      <link>https://duing.dev/posts/teaching/</link>
+      <pubDate>Fri, 01 Sep 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://duing.dev/posts/teaching/</guid>
+      <description>During my vacation time from University, my mentor Edil proposed I teach undergraduate students in the following semester. He would be doing the third edition of his Functional Programming (FP) with Haskell course &amp;ndash; the one that introduced me to FP in 2021. The idea was that he would give me some guidelines and I would have the freedom to create my own material and teaching strategy for the first 2 classes of the course.</description>
+    </item>
+    
     <item>
       <title>Don&#39;t be a Hero, join a League</title>
       <link>https://duing.dev/posts/runtime/</link>
