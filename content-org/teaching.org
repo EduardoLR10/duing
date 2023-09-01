@@ -1,0 +1,79 @@
+#+hugo_base_dir: ../
+#+hugo_tags: lesson
+
+#+title: Teaching is Fun
+
+#+date: 2023-09-01
+#+author: Eduardo Lemos
+
+During my vacation time from University, my mentor Edil proposed I teach undergraduate students in the following semester.
+He would be doing the third edition of his Functional Programming (FP) with Haskell course -- the one that introduced me to FP
+in 2021. The idea was that he would give me some guidelines and I would have the freedom to create my own material and
+teaching strategy for the first 2 classes of the course. In other words, the milestones would be settled, but the journey
+would be in my control.
+
+From a pragmatic point of view, teaching is a great way to develop soft skills, especially when teaching more than 1 person at the same time. You are
+forced to find a common ground in which different levels of expertise and interpretations can converge in terms of understanding of the
+subject. This, however, was not the main reason I accepted Edil's offer: I thought it would be fun.
+
+* Strategy
+
+My plan was simple: introduce FP and then go to Haskell's specifics. There is a difference in priority here, however: students need to be attracted
+to this new paradigm for them, and, if they fell in love with Haskell along the way, that would be a nice bonus. Why was that the goal? Because
+absorbing the paradigm gives the student a new set of *abstract* tools, i.e., ideas that go way beyond matters of implementation. Once the deep
+understanding of an idea is achieved, the implementation of it in the real world is a much lesser burden. Hence, the same ideas would be visualized
+in a myriad of different implementations, i.e., you would see the same thing regardless if it is Haskell, OCaml or F#. When you master the plain of
+*abstractions* the plain of implementation scares you significantly less.
+
+After establishing that FP is the big fish the course will teach them to catch, I would dive into Haskell's specific features, such as the type system and
+the distinct effect system. The former would describe how Haskell tackles the problem of describing *what* things are, going in contrast with other languages
+that describe *how* to implement it, whilst the latter would separate programming into two worlds: effect-free and effectful computations.
+
+For the first phase of the mission, I've separated explanations for FP's mindset, notions of functions, and combining forms. For the Haskell phase, I would
+dedicate time to pattern matching, laziness, and simple types.
+
+* Experience
+
+Enough from past planning, it is about time to talk about how the experience was. Shortly: it was amazing!
+
+** Presentation Structure
+
+The structure that I chose for my slides was solely based on this principle: attention is a scarce resource. This means that whatever is on the screen has the
+potential to deviate the attention from what I really want them to pay attention to. Hence, I had the least amount of information in my slides: title of the topic
+(not always), the least amount of content that I need in order to explain the topic, the number of slide. The first two pieces gives the student notion of where we
+are in the map; which topic is this again? Is this topic related to which piece of content? The latter serves the purpose of adding an address for questions since
+you have a number to hold and go exactly to the place where your question arose.
+
+This minimalistic approach was incentivized by Edil during my final project presentation during my graduation. It is still my go-to presentation-wise.
+
+** Speaking
+
+Your presentation is only half of the battle. It is not the presentation that defines a good lesson, it is the presenter. The presentation serves as an anchor for
+the speech.
+
+I tried to use the least amount of fancy terms as possible during the lesson. Also, when I noticed that a new term needed to be introduced (partial application,
+immutability, partial functions, side-effects, etc), I made it very clear to the students that they should remember that new word and its meaning, ideally in their
+physical notes.
+
+** Questions
+
+The sign of a good lesson can be measured by the amount of interactions that happen during the lesson. The presence of questions means that some of the knowledge made
+its way into the mind of the student, got processed, and holes were identified. If the environment of the class and the aura of the presenter allow, the student will feel
+comfortable enough in order to raise a hand and ask a question.
+
+The first day of class was very hot in this sense. A lot of questions happened, and, even better, they were getting more interesting with time. This, however, is a double-edged
+sword: you want questions to exist, but you need to control the flow if too many start to arise. A 2-hour class is a limited amount of time to fill all the boxes of my plan. So,
+when I identified that a question was taking too much time, I decided to postpone its answer or propose that we could solve it at another time. Sadly, I was not able to be fully
+optimal in this topic, I have to be more severe in my time management and not allow myself to get carried away by the excitement of the student making a question.
+
+** Honesty
+
+Some students started to be skeptical of not only Haskell but also FP. In my opinion, there is no way around it: don't be a fanboy, just tell the truth. Explain your arguments,
+and revisit them in another way if necessary. Instead of trying to push them to the wall with your personal preferences, calm down and just let your mind gather the objective reasons why
+being in the course is a great decision. There should not be a problem doing this if the teacher understands the topic in a deep manner.
+
+* Conclusion
+
+Overall, I pretty much enjoyed the experience. It was so satisfactory to see the eyes of some of the students shine due to their personal Eureka moments. It is so pleasing to witness someone
+truly understand something that they probably didn't even know existed before. When that happens, it means two things: a new piece of knowledge was shared with a newcomer and you did
+a great job -- your teaching strategy made that happen.
