@@ -20,7 +20,7 @@ subject. This, however, was not the main reason I accepted Edil's offer: I thoug
 
 My plan was simple: introduce FP and then go to Haskell's specifics. There is a difference in priority here, however: students need to be attracted
 to this new paradigm for them, and, if they fell in love with Haskell along the way, that would be a nice bonus. Why was that the goal? Because
-absorbing the paradigm gives the student a new set of *abstract* tools, i.e., ideas that go way beyond matters of implementation. Once the deep
+absorbing the paradigm gives the student a new set of *abstract* tools, i.e., ideas that go way beyond matters of implementation. Once a deep
 understanding of an idea is achieved, the implementation of it in the real world is a much lesser burden. Hence, the same ideas would be visualized
 in a myriad of different implementations, i.e., you would see the same thing regardless if it is Haskell, OCaml or F#. When you master the plain of
 *abstractions* the plain of implementation scares you significantly less.
