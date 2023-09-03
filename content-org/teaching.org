@@ -40,7 +40,7 @@ Enough from past planning, it is about time to talk about how the experience was
 
 The structure that I chose for my slides was solely based on this principle: attention is a scarce resource. This means that whatever is on the screen has the
 potential to deviate the attention from what I really want them to pay attention to. Hence, I had the least amount of information in my slides: title of the topic
-(not always), the least amount of content that I need in order to explain the topic, the number of slide. The first two pieces gives the student notion of where we
+(not always), the least amount of content that I need in order to explain the topic, the number of the slide. The first two pieces gives the student notion of where we
 are in the map; which topic is this again? Is this topic related to which piece of content? The latter serves the purpose of adding an address for questions since
 you have a number to hold and go exactly to the place where your question arose.
 
