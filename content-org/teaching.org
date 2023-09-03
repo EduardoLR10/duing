@@ -70,7 +70,7 @@ optimal in this topic, I have to be more severe in my time management and not al
 
 Some students started to be skeptical of not only Haskell but also FP. In my opinion, there is no way around it: don't be a fanboy, just tell the truth. Explain your arguments,
 and revisit them in another way if necessary. Instead of trying to push them to the wall with your personal preferences, calm down and just let your mind gather the objective reasons why
-being in the course is a great decision. There should not be a problem doing this if the teacher understands the topic in a deep manner.
+being in the course is a great decision. This should not be a problem doing this if the teacher understands the topic in a deep manner.
 
 * Conclusion
 
