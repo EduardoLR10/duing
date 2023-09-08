@@ -36,7 +36,7 @@ dedicate time to pattern matching, laziness, and simple types.
 
 Enough from past planning, it is about time to talk about how the experience was. Shortly: it was amazing!
 
-** Presentation Structure
+** Slide Deck Structure
 
 The structure that I chose for my slides was solely based on this principle: attention is a scarce resource. This means that whatever is on the screen has the
 potential to deviate the attention from what I really want them to pay attention to. Hence, I had the least amount of information in my slides: title of the topic
