@@ -22,7 +22,7 @@ not used to?
 The aforementioned problem was the one that I encountered with my friend Magueta, while we were modeling [[https://github.com/Dr-Nekoma/RackeTowerDB][RacketowerDB]], our Dr.Nekoma project
 focused on the development of a relational database. As the name implies, we are using Racket, one of many lisp flavors. However, we decided
 to not go with the natural route (at least for us) of using functional programming (FP) abstractions to model our domain. We decided to go with the
-Object Oriented-Programming (OOP) path.
+the modern Object Oriented-Programming (OOP) path.
 
 To me, this decision brings great points to the table: first it will allow us to understand better a paradigm that competes with FP, and second it will
 force us to think outside of our biased-box and solve problem using the tools that we have at-hand. Further, we will be able to pinpoint where the OOP
@@ -147,7 +147,7 @@ There is no need to mess around with new classes and redirecting responsabilitie
 participate on the contract being established. In this sense, there isn't a need to follow a flow, such as the top-down one from OOP, because the connections between this "graph"
 of abstractions is composed out of undirected edges.
 
-In OOP, your mind needs to always keep track where in the river of abstractions you are and, if necessary, start over from the top because this may be the only way due to
+In modern OOP, your mind needs to always keep track where in the river of abstractions you are and, if necessary, start over from the top because this may be the only way due to
 the imposed flow by the paradigm.
 
 
