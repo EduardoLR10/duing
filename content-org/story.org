@@ -40,7 +40,7 @@ Miller's main argument is based on how humans engage with any piece of content. 
 frame will catch our attention. Miller identified that such structure is the concept of the [[https://en.wikipedia.org/wiki/Hero%27s_journey][hero's journey]]. From his point of view, your marketing is as good as you are able
 to tell a story that the customers are interested in listening to. And, as in fiction, you lose engagement if you add noise that nobody cares about in your story.
 
-#+attr_html: :width 60%
+#+attr_html: :width 45%
 [[/img/story/heroJourney.png]]
 
 * The Main Plot
