@@ -106,7 +106,7 @@ But you would be at least trying to be better. You will not be trapped into the 
 necessarily more practical and/or pragmatic. Rather than popularity, use something much better: reason. Rationally understand if this is truly more practical
 considering the life span of the project and if it improves the bridge between /what/ we want to solve and /how/ we will solve it.
  
-* Innovation
+* Inovation
 
 One of the threats that this simplification of practicality poses is a direct threat to innovation. When a new tool or idea comes around, conservative developers will be
 the first ones to point fingers at it and just blast it with unfounded accusations of being fancy for the sake of being fancy and adding no value to real-world applications.
