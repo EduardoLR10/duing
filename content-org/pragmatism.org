@@ -138,7 +138,7 @@ constraints polluting the application layer, and global state machines managed c
 This unilateral take on practicality, viewing it as a short-time investment heavily based on legacy, is a trend that hurts everybody. Computer science students study old solutions
 during university and later suffer a technology crisis when they join the industry world. Experienced developers are locked into old tools, purposely
 blinding themselves to potentially better solutions because they are afraid of "theoretical" things and abstract ideas. Long-term companies are losing money
-because their professionals are not thinking about in future proofing the company in its totality.
+because their professionals are not thinking about future proofing the company in its totality.
 
 And there is no way around it: we gotta fight this twisted view on pragmatism and practicality. We can join the debates and explain to those that are willing to listen to the reasons
 why this new solution is the real pragmatic take on it. But that won't be enough. The ultimatum will be to become the real and total pragmatists. Let us all make companies
