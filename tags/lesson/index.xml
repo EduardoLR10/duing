@@ -6,7 +6,17 @@
     <description>Recent content in lesson on Duing Dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 30 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/lesson/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 16 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/lesson/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Let us all be Pragmatists</title>
+      <link>https://duing.dev/posts/pragmatism/</link>
+      <pubDate>Mon, 16 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://duing.dev/posts/pragmatism/</guid>
+      <description>Every once in a while, I hear people talking about high-level languages as a way to not be practical and/or pragmatic. They see the added abstractions as a way to add fanciness for the sake of fanciness into your project, without any logical practical reason for doing so.
+Ever since I understood why programmers left assembly languages behind, I understood that this popular take is nothing more than just a misconception on why we seek new concepts.</description>
+    </item>
+    
     <item>
       <title>Is it all about the Story?</title>
       <link>https://duing.dev/posts/story/</link>
