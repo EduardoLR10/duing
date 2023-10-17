@@ -131,7 +131,7 @@ better with this?" or "How much better this will be to maintain for the next dec
 Technologies such as functional programming, static type systems, databases based on a relational model, borrow checker, etc, are examples of options that promise you
 better ways to express your intention/model, especially if it involves constraints along the way (most of the time it does), alongside better maintainability.
 Their selling point is to capture people who see more practical not having to deal with underwhelming denotational semantics, run-time errors/bugs,
-constraints polluting the application layer, and global state machines managed chaotically.
+constraints polluting the application layer, and state machines managed chaotically.
 
 * Conclusions
 
