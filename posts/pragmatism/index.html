@@ -277,6 +277,10 @@ hence the notion of practicality also <em>depends</em> on the complete time wind
 <figure><img src="/img/pragmatism/longTerm.png" width="45%"/>
 </figure>
 
+<p>In fact, the relationship between time and practicality is so strong that you pay twice if you don&rsquo;t respect it. You pay once when your current impractical decision
+impacts the foreseeable future implementations and you pay once again when you change your mind. If you notice the bad decision in time before the product&rsquo;s demise, you will have to
+retroactively pay for refactoring the existent artifact. Such a daunting conclusion can make turning around into better more practical tools impractical, due to the potentially
+astronomical amount of time that the snowball effect will demand to get things back on track.</p>
 <h2 id="expressiveness">Expressiveness</h2>
 <p>Aside from projects getting longer and more complicated with time, there is another reason why we decided to level up our programming
 languages: they provide us more <em>expressiveness</em>, i.e., they provided us better ways to express our problems in a way that better maps the
@@ -285,12 +289,15 @@ problem with our understanding of its solution.</p>
 required to map that to C when using pointers. You gotta map the <em>denotational semantics</em> of your solution, which is the <strong>meaning</strong> of the solution,
 to its <em>operational semantics</em>, which is <strong>how</strong> the tool that you are using executes such abstract concepts in its feature set. This process can
 not only be tiresome due to the difference between those two types of semantics, but it is also one of the greatest sources of bugs in software.
-It is not always trivial to see how can we map a pure idea to be adequately represented in our tool of choice and its mechanisms.</p>
+It is not always trivial to see how can we map a pure idea to be adequately represented in our tool of choice and its mechanisms. This was the majority
+of the nightmare of using assembly languages for complex applications: the amount of mapping was completely out of question and error-prone due to how
+far apart the solutions were from the level of expressiveness assembly language provide.</p>
 <p>What we want is a tool that reduces the gap between those two, in order for us to spend as little time and effort as possible on this mapping
 and have available resources to tackle more problems or refine our solution. Every single second spent in mapping one onto the other has nothing to do
 with the actual solution but with tooling limitations and/or performance concerns.</p>
 <p>Hence, the pinnacle of practicality is having a 1:1 correspondence between the universe of solutions, abstract and usually mathematical ideas, and the
-universe of tooling, which we use to materialize such ideas.</p>
+universe of tooling, which we use to materialize such ideas. Thus, the creation of high-level languages was a big deal precisely because their proposal was
+to make this mapping closer to the ideal scenario in contrast with their counterparts, e.g., assembly languages.</p>
 <h2 id="legacy">Legacy</h2>
 <p>Given those reasons, it may be intriguing to answer the question: why do so many people see high-level stuff as just perfume that adds no value? The reason is
 simple: legacy cannot be ignored.</p>
@@ -332,6 +339,10 @@ power difference between such tools, because all of them have been proved to be 
 bring to the table?</p>
 <p>When a new technology is brought to the market the question should not be: &ldquo;What it can do that the others can&rsquo;t?&rdquo;. The question should rather be: &ldquo;Will I be able to express my needs
 better with this?&rdquo; or &ldquo;How much better this will be to maintain for the next decade?&rdquo;.</p>
+<p>Technologies such as functional programming, static type systems, databases based on a relational model, borrow checker, etc, are examples of options that promise you
+better ways to express your intention/model, especially if it involves constraints along the way (most of the time it does), alongside better maintainability.
+Their selling point is to capture people who see more practical not having to deal with underwhelming denotational semantics, run-time errors/bugs,
+constraints polluting the application layer, and global state machines managed chaotically.</p>
 <h2 id="conclusions">Conclusions</h2>
 <p>This unilateral take on practicality, viewing it as a short-time investment heavily based on legacy, is a trend that hurts everybody. Computer science students study old solutions
 during university and later suffer a technology crisis when they join the industry world. Experienced developers are locked into old tools, purposely
