@@ -62,9 +62,9 @@ The classic example is messing with pointers in C. When you contemplate the solu
 required to map that to C when using pointers. You gotta map the /denotational semantics/ of your solution, which is the *meaning* of the solution,
 to its /operational semantics/, which is *how* the tool that you are using executes such abstract concepts in its feature set. This process can
 not only be tiresome due to the difference between those two types of semantics, but it is also one of the greatest sources of bugs in software.
-It is not always trivial to see how can we map a pure idea to be adequately represented in our tool of choice and its mechanisms. This was the majority
-of the nightmare of using assembly languages for complex applications: the amount of mapping was completely out of question and error-prone due to how
-far apart the solutions were from the level of expressiveness assembly language provide.
+It is not always trivial to see how can we map a pure idea to be adequately represented in our tool of choice and its mechanisms. This was the major
+nightmare when using assembly languages for complex applications: the amount of mapping was completely out of question and error-prone due to how
+far apart the solution and its implementation were.
 
 What we want is a tool that reduces the gap between those two, in order for us to spend as little time and effort as possible on this mapping
 and have available resources to tackle more problems or refine our solution. Every single second spent in mapping one onto the other has nothing to do
