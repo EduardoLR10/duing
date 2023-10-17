@@ -22,6 +22,9 @@ Let us start by settling on a definition of what it means to be *pragmatic* and 
 \\
  #+BEGIN_QUOTE
  Pragmatic: dealing with things sensibly and realistically in a way that is based on practical rather than theoretical considerations.
+ #+END_QUOTE
+\\
+ #+BEGIN_QUOTE
  Practical: of or concerned with the actual doing or use of something rather than with theory and ideas
  #+END_QUOTE
 
