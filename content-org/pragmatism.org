@@ -13,7 +13,7 @@ of fanciness into your project, without any logical practical reason for doing s
 Ever since I understood why programmers left assembly languages behind, I understood that this popular
 take is nothing more than just a misconception on why we seek new concepts. In fact, this has a lot to do
 with one of my previous posts, [[file:../runtime/][Don't be a Hero, join a League]], because there I am proposing indirectly that having
-a new tool as a partner for development is more practical. In this post, I will go further by showing that
+those new tools as a partner for development is more practical. In this post, I will go further by showing that
 it is exactly /because/ we want to be more practical that we add new layers of /abstractions/.
 
 * Definitions
