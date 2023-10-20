@@ -53,9 +53,6 @@ impacts the foreseeable future implementations and you pay once again when you c
 retroactively pay for refactoring the existent artifact. Such a daunting conclusion can make turning around into better more practical tools impractical, due to the potentially
 astronomical amount of time that the snowball effect will demand to get things back on track.
 
-#+attr_html: :width 45%
-[[/img/pragmatism/practicality.jpg]]
-
 * Expressiveness
 
 Aside from projects getting longer and more complicated with time, there is another reason why we decided to level up our programming
@@ -99,6 +96,9 @@ Mr. Churchill's quote, once again, explains the situation perfectly:
  We shape our buildings, thereafter they shape us.
  #+END_QUOTE
 
+#+attr_html: :width 45%
+[[/img/pragmatism/practicality.jpg]]
+ 
 * Education
 
 The answer to combat Churchill's conclusion is to educate ourselves. Let us not be fooled by our comfort zone and think that "If it works, it is enough" and
