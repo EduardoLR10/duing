@@ -7,14 +7,15 @@
 #+author: Eduardo Lemos
 
 Every once in a while, I hear people talking about high-level languages as a way to not be
-practical and/or pragmatic. They see the added abstractions as a way to add fanciness for the sake
+practical and/or pragmatic. As an example, this week such situation incarnated when I heard someone saying something along those lines about Haskell.
+They see the added abstractions as a way to add fanciness for the sake
 of fanciness into your project, without any logical practical reason for doing so.
 
 Ever since I understood why programmers left assembly languages behind, I understood that this popular
 take is nothing more than just a misconception on why we seek new concepts. In fact, this has a lot to do
 with one of my previous posts, [[file:../runtime/][Don't be a Hero, join a League]], because there I am proposing indirectly that having
 those new tools as a partner for development is more practical. In this post, I will go further by showing that
-it is exactly /because/ we want to be more practical that we add new layers of /abstractions/.
+it is exactly /because/ we want to be more practical that we seek new layers of /abstractions/.
 
 * Definitions
 
@@ -51,6 +52,9 @@ In fact, the relationship between time and practicality is so strong that you pa
 impacts the foreseeable future implementations and you pay once again when you change your mind. If you notice the bad decision in time before the product's demise, you will have to
 retroactively pay for refactoring the existent artifact. Such a daunting conclusion can make turning around into better more practical tools impractical, due to the potentially
 astronomical amount of time that the snowball effect will demand to get things back on track.
+
+#+attr_html: :width 45%
+[[/img/pragmatism/practicality.jpg]]
 
 * Expressiveness
 
@@ -89,7 +93,7 @@ This, however, can lead to a problematic semantical situation: practical/pragmat
 in a way you are already accustomed to, rather than being practical in its totality. You will try to argue that doing what you have done a thousand times will /always/ be more
 practical than actually being open-minded to even more practical solutions.
 
-Mr.Churchill's quote, once again, explains the situation perfectly:
+Mr. Churchill's quote, once again, explains the situation perfectly:
 \\
  #+BEGIN_QUOTE
  We shape our buildings, thereafter they shape us.
@@ -98,7 +102,7 @@ Mr.Churchill's quote, once again, explains the situation perfectly:
 * Education
 
 The answer to combat Churchill's conclusion is to educate ourselves. Let us not be fooled by our comfort zone and think that "If it works, it is enough" and
-"I have done this a billion times, it must be the best". The process of improvement necessarily involves touching a chaotic plain of existence. Quoting Jordan
+"I have done this a billion times, it must be the best". The process of improvement necessarily involves touching a chaotic plane of existence. Quoting Jordan
 Peterson:
 \\
  #+BEGIN_QUOTE
@@ -111,9 +115,16 @@ I'm not saying this is an easy task. Allowing yourself to breathe a different ai
 better than what you already know involves humility. Such virtues are hard to acquire and require a lot of effort to be truly mastered.
 
 But you would be at least trying to be better. You will not be trapped into the idea that because something is "set in the industry's stone" it is
-necessarily more practical and/or pragmatic. Rather than popularity, use something much better: reason. Rationally understand if this is truly more practical
-considering the life span of the project and if it improves the bridge between /what/ we want to solve and /how/ we will solve it.
- 
+necessarily more practical and/or pragmatic. Rather than popularity, use something much better: reason. It is by reason that the fanciness for the sake of fanciness
+is reaped and purposeful choices are made. Rationally understand if this is truly more practical
+considering the life span of the project and if it improves the bridge between what we want to solve and how we will solve it.
+
+Having the ability to judge if exploring something different/new is worth it during a specific time window given a certain deadline is usually mastered when reaching
+seniority level. Maybe something from the 80s, which would be unforeseen to you and the team, can be the most practical solution.
+Only after you understand that what is trending usually does not fall into the aforementioned notion of practicality that your eyes start to open to both directions
+of history. You start to look forward to both /old/ and /recent/ solutions because both can be categorized as new based on your experience and knowledge,
+hence they have the potential to better accommodate your needs.
+
 * Innovation
 
 One of the threats that this simplification of practicality poses is a direct threat to innovation. When a new tool or idea comes around, conservative developers will be
@@ -125,15 +136,20 @@ time, nobody is talking about being able to do something that the others can't. 
 power difference between such tools, because all of them have been proved to be equivalent in power. New tools propose a much better question: how much extra /practicality/ do they
 bring to the table?
 
-When a new technology is brought to the market the question should not be: "What it can do that the others can't?". The question should rather be: "Will I be able to express my needs
-better with this?" or "How much better this will be to maintain for the next decade?".
+When a new technology is brought to the market the question should not be: "What can it do that the others can't?". The question should rather be: "Will I be able to accomodate/express
+my needs better with this?" or "How much better will this be to maintain for the next decade?".
 
 Technologies such as functional programming, static type systems, databases based on a relational model, borrow checker, etc, are examples of options that promise you
 better ways to express your intention/model, especially if it involves constraints along the way (most of the time it does), alongside better maintainability.
-Their selling point is to capture people who see more practical not having to deal with underwhelming denotational semantics, run-time errors/bugs,
+Their selling point is to capture people who see as more practical not having to deal with underwhelming denotational semantics, run-time errors/bugs,
 constraints polluting the application layer, and state machines managed chaotically.
 
-* Conclusions
+It starts hard to get foggy to assess practicality when the dimension in which a tool claims to be more practical is different than the dimension of a competing tool.
+Both can fulfill your goal to some degree, but they may do that in different axes of interest. You may have better semantics to describe your problem, but that may
+come with a penalty in readability which implies a penalty in maintainability. So, when a situation involves /trade-offs/, it is up for the developer/team to indicate priorities
+to each axis in order to properly evaluate which aspect will carry more weight when judging practicality.
+
+* Conclusion
 
 This unilateral take on practicality, viewing it as a short-time investment heavily based on legacy, is a trend that hurts everybody. Computer science students study old solutions
 during university and later suffer a technology crisis when they join the industry world. Experienced developers are locked into old tools, purposely
@@ -142,6 +158,6 @@ because their professionals are not thinking about future proofing the company i
 
 And there is no way around it: we gotta fight this twisted view on pragmatism and practicality. We can join the debates and explain to those that are willing to listen to the reasons
 why this new solution is the real pragmatic take on it. But that won't be enough. The ultimatum will be to become the real and total pragmatists. Let us all make companies
-thrive with what better fits the future of the project and does a better connection between our elegant, mathematical, and theoretical solutions and our
+thrive with what better fits the future of the project and makes a better connection between our elegant, mathematical, and theoretical solutions and our
 mundane, material, and technology-based tools.
  
