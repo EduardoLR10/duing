@@ -90,15 +90,15 @@ This, however, can lead to a problematic semantical situation: practical/pragmat
 in a way you are already accustomed to, rather than being practical in its totality. You will try to argue that doing what you have done a thousand times will /always/ be more
 practical than actually being open-minded to even more practical solutions.
 
+#+attr_html: :width 45%
+[[/img/pragmatism/practicality.jpg]]
+
 Mr. Churchill's quote, once again, explains the situation perfectly:
 \\
  #+BEGIN_QUOTE
  We shape our buildings, thereafter they shape us.
  #+END_QUOTE
 
-#+attr_html: :width 45%
-[[/img/pragmatism/practicality.jpg]]
- 
 * Education
 
 The answer to combat Churchill's conclusion is to educate ourselves. Let us not be fooled by our comfort zone and think that "If it works, it is enough" and
