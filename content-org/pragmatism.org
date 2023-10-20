@@ -7,7 +7,7 @@
 #+author: Eduardo Lemos
 
 Every once in a while, I hear people talking about high-level languages as a way to not be
-practical and/or pragmatic. As an example, this week such situation incarnated when I heard someone saying something along those lines about Haskell.
+practical and/or pragmatic. As an example, this week such a situation occurred --- I heard someone saying something along those lines about Haskell.
 They see the added abstractions as a way to add fanciness for the sake
 of fanciness into your project, without any logical practical reason for doing so.
 
