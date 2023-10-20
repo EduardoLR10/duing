@@ -33,7 +33,7 @@ The popular take from this is that if there is a breach between what the theory 
 relational theory, etc, and what we /can/ do to deliver something by /acting/ or /doing/, executing the latter would be called a pragmatic or practical act.
 The oversight in such an evaluation comes from the absence of the consideration of /time/ being spent in its entirety.
 
-When dealing with projects, there are deadlines that need to be met. Hence, there is a time constraint in how much time we
+When dealing with projects, there are deadlines that need to be met. Hence, there is a constraint in how much time we
 have at our disposal in order to deliver our artifact. Such requirement dictates what and how we classify as practical/pragmatic or
 not. You may ask yourself: "Does the judgment change depending on how much time we have available?". The answer is an enormous *YES*.
 
