@@ -11,9 +11,9 @@
 I'm *Eduardo Lemos*, a software developer based in *Brasília,
 Brazil*. I've graduated in computer engineering in 2022 at University of Brasília.
 
-I've started programming by changing IDs of itens and blocks in Minecraft mods
-back in the day. Later on, at the final stretch at university, I've discovered myself
-as an addicted person to computer science.
+I've started programming by changing IDs of items and blocks in Minecraft mods
+back in the day. Later on, at the final stretch at university, I discovered that
+computer science is addicting.
 
 After such discovery, I've started to slowly increase the number of personal projects.
 At the current moment, I actively participate in the study group [[https://github.com/Dr-Nekoma][Dr.Nekoma]]. In parallel,
@@ -30,4 +30,4 @@ philosophical thoughts and life lessons based on personal experience.
 
 **** Credits
 
-  I'm grateful for [[https://github.com/ratsclub][Victor Freire]] for helping me putting this blog up and running.
+  I'd also like to thank [[https://github.com/ratsclub][Victor Freire]] for helping me to get this blog up and running.
