@@ -1,0 +1,116 @@
+#+hugo_base_dir: ../
+#+hugo_tags: lesson
+
+#+title: Circumstantial Leadership
+
+#+date: 2024-02-27
+#+author: Eduardo Lemos
+
+In the last three weeks, I've been experiencing my first time playing a leader role, some would
+even call it a "Tech Lead" role. It was temporary and circumstantial, but I learned quite a few things about it.
+
+* Context
+
+The client had an urgent (sorta of) demand that would need to be
+delivered in about 3 weeks. Our team for development would be composed of myself and 3 other teammates (all from
+my employer's company). The client would provide 2 to 3 people from their side in other to answer questions about
+business rules and do reviews for the PRs that we would dispatch.
+
+From the get-go, I was a little bit concerned about the amount of unanswered questions that we got from the first meeting.
+I was certain that we would have a hard time extracting enough information to complete the entire pipeline. My initial
+impression was that it was doable, but maybe we would lose some sleeping hours, which spoiler-alert, it happened.
+
+For the final piece of context, one week before the meeting I had a 1:1 with my boss and he told me that from that point onwards,
+I should embrace more the role of consultancy and be more critical of what the client asks me; replacing the previous rule
+of "just implement what they asked you" with something more like "you gotta guide them to reach what they want" sort of mentality. He
+trusted that I was ready to receive an upgrade in terms of responsibility.
+
+* Lessons
+
+As the project developed, I naturally started to lean toward some sort of leadership position in my team, since I felt like someone to blame and
+delegate would be necessary in order to make a suitable strategy to finish by the deadline.
+
+I'm not gonna go into all the details that happened during this period, but I will describe the lessons that I learned during this phase.
+
+** Responsibility
+
+Since the start, I have always a little hesitant to delegate things to other people. Not because I was concerned with the quality of the final product --- I was
+fortunate enough to have *amazing* teammates. My concern was always in regards to them questioning if they should or should not follow my lead, considering that
+no formal leader was designated from someone upper in the hierarchy. To my surprise, they followed my suggestions.
+
+The lesson is that learning fast what are the main strengths of each developer in my team is mandatory for success. The ability to efficiently understand this is rewarded with
+the best overall quality of the delivered product in the least amount of time. So, if developer X seems to have a better grip on the language we are using to communicate
+(English in our case), this person should be allocated to refinement phases, in which tasks are described well enough for the executors to understand it fully and implement it without
+further instructions. Great mastery of the natural language removes time spent on questions and ambiguity.
+
+In contrast, if developer Y is better at coding, maybe zooming in a little further may tell you which /set/ of tasks this developer should tackle. When codebases start
+to get big, specialization in sections of the code or sections of the architecture happens quite often. By allocating the developer to what he better understands, you save
+time in reviewing his work later since experience with the code base and with certain areas of the pipeline have already refined the developer to a mastery level.
+
+** Refinement
+
+Probably half of my time was spent doing reviews and the other half refining tasks, which is a fancy name for /creating/ tasks or /improving/ tasks that were already present
+on the board. The quality of these tasks depends heavily on your knowledge on hand, as well as your understanding of the domain you are dealing with.
+
+In case you don't have the former, try searching your surroundings. Are there any teammates (from your team or your organization) that did something similar? If yes, could you
+send them a text or schedule a meeting with them? Is there any piece of code from previous implementations that you could absorb the main ideas? Couldn't you write a message to the
+client asking for more knowledge in simple words in a text chat? All of these are options that you can do before asking for a meeting and potentially save the client's time at the same time that
+it improves your reputation since you proactively searched for your answer.
+
+In the case of the latter problem, domain's understanding, your better option /should/ be documentation on /how/ the thing should be done (ideally) or at least on /what/ should be done.
+Of course, having both is even better. All the previous steps listed may also apply to acquire this type of knowledge, especially with more senior developers who have more time
+soaked in the domain. They may even help you find holes you have not seen before. Be humble and ask them.
+
+** Reviews
+
+I spent a lot of my time reviewing everybody else's work. My first take from it is: that as you dispatch more and more code for the client, you gotta
+absorb what the client values and which types of things trigger their eyes when reading your team's code. As the absorption happens, less and less code keeps coming back for extra
+refactoring, since you have trained your developers to obey the rules of the rulers of PRs.
+
+Further, when communicating to your devs about a suggestion in a pull request, it really matters to detail why you thought of that and why you think such addition or removal will improve
+what already has been done. If the developer implementing the feature feels like he/she should just obey your rules without deeper understanding. Not only this has the chance of
+happening again, hence slowing down future tasks, but such constant friction may destroy the chemistry between the parts during the review. The outcome of this is destruction, less productivity,
+and worse code being delivered. Promote the exchange of arguments and evidence about what is being discussed. Do not allow it to go into a tangent. If necessary join a voice call and
+start sharing your screen to completely show your points with illustrations, code, and drawings. If the team members involved are reasonable, and both want to send the best possible piece
+of code doable, given the tooling and time constraints, I guarantee this will come to fruition with both sides agreeing on the solution.
+
+** Meetings
+
+From time to time, it happens that something is vague to the point of requiring a new meeting with the client. Your team is blocked or going into that state shortly if you don't
+solve the business rules puzzle quickly. My lesson is about prediction. You have the board in front of you. You know what is about to be done and what are the next steps. As soon as a black
+hole is 2 days away from you, you send a message to the client asking for an extraordinary meeting.
+
+When the meeting happens, ask someone (or do it yourself) to make notes about what is being said, and ideally somewhere public, so everybody in the team will be able to check that later.
+Do not depend on your memory. The details will start to pile up and /all/ of them should be added to existing tasks or used as raw material to make new ones. Taking some sort of notes is
+paramount to well-described tasks and better visualization of what needs to be done.
+
+** Deadlines
+
+Sometimes, the client will ask about how it is going and even use special tools (Figma, Miro) to make boards on the status of the mission. This, of course, is done so they can
+measure the amount of work that was already done and how much of it is still yet to be done. With these two pieces of information, they can assess what they should report to their superiors
+about this task, *and* what they should report about the performance of the consultancy company.
+
+My way to handle this is simple. I measure my team's capabilities and estimate how much steam we have left (getting intimate with your teammates will provide you with better information on
+their work ethic and individual capabilities) and I smash that with the amount of work we have left on the board. That gives me a solid estimation of how much we can do until the deadline.
+I use that to guess a percentage of the chance of us succeding. I throw that number out loud. I understand that this may put you in a bad situation with the client if the number is not as high
+as they expect. But, if you doing this since the beginning and you are demonstrating that you care, they may provide you more resources (developers, documentation, meetings) to increase
+your chances, since it is their product on the line at the end of the day. You do *not* want to throw a bad surprise out of nothing in a meeting. *Only* the good surprises are allowed.
+If you go there and say that it is not going to fly 2 days before the deadline (and saying good to neutral things the days before), they will lose trust in you
+and the game is practically over.
+
+** Feedback
+
+As someone in the leader position, I felt *obligated* to publicly state feedback to teammates, especially compliments. Not only this will have a psychological effect on them, boosting their
+self-esteem, hence reinforcing their behavior that they saw brought positive outcomes, but also puts them in a better mood to do even more for the project. Maybe they will try to investigate
+a task even further because the requirements were not well described, maybe they will be more pedantic when helping review a PR. When you are honest and transparent with your team, especially
+when they did great, is when reinforcement learning is being applied and the gears of the team are being oiled.
+
+If you happen to have a critique of sorts, try your best to make it professional. You are saying that so that the person can grow from it. You gain nothing by making personal attacks
+or making the other person feel useless for the team. Being able to say critiques constructively is the best measurement of the natural language's domain since you mastered the language
+enough to distill what really matters.
+
+* Conclusion
+
+I have no idea if this leadership position will ever happen again to me soon, but I gotta say: this was /fun/! Not because you are in the commander's chair and being a "ruler", but
+because you are in the cockpit of the plane built on top of your team. And you are one of the first ones to see it land safely with the product on hand, within the deadline,
+and with the client happy to see it working. I would like to play in this position again!
