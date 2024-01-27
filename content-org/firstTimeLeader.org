@@ -3,7 +3,7 @@
 
 #+title: Circumstantial Leadership
 
-#+date: 2024-02-27
+#+date: 2024-01-27
 #+author: Eduardo Lemos
 
 In the last three weeks, I've been experiencing my first time playing a leader role, some would
