@@ -6,35 +6,35 @@
 #+date: 2024-01-27
 #+author: Eduardo Lemos
 
-In the last three weeks, I've been experiencing my first time playing a leader role, some would
+In the past three weeks, I led a team of developers, some would
 even call it a "Tech Lead" role. It was temporary and circumstantial, but I learned quite a few things about it.
 
 * Context
 
 The client had an urgent (sorta of) demand that would need to be
 delivered in about 3 weeks. Our team for development would be composed of myself and 3 other teammates (all from
-my employer's company). The client would provide 2 to 3 people from their side in other to answer questions about
+my employer's company). The client would provide 2 to 3 people from their side in order to answer questions about
 business rules and do reviews for the PRs that we would dispatch.
 
 From the get-go, I was a little bit concerned about the amount of unanswered questions that we got from the first meeting.
 I was certain that we would have a hard time extracting enough information to complete the entire pipeline. My initial
 impression was that it was doable, but maybe we would lose some sleeping hours, which spoiler-alert, it happened.
 
-For the final piece of context, one week before the meeting I had a 1:1 with my boss and he told me that from that point onwards,
-I should embrace more the role of consultancy and be more critical of what the client asks me; replacing the previous rule
+For the final piece of context, one week before the meeting I had a 1:1 meeting with my boss and he told me that from that point onwards,
+I should embrace more the role of consultancy and be more critical about what the client asks me; replacing the previous rule
 of "just implement what they asked you" with something more like "you gotta guide them to reach what they want" sort of mentality. He
-trusted that I was ready to receive an upgrade in terms of responsibility.
+trusted me --- he believed I was ready to receive an upgrade in terms of responsibility.
 
 * Lessons
 
-As the project developed, I naturally started to lean toward some sort of leadership position in my team, since I felt like someone to blame and
-delegate would be necessary in order to make a suitable strategy to finish by the deadline.
+As the project developed, I naturally started to lean toward some sort of leadership position in my team, since I felt like having somebody to blame and
+delegate would be necessary in order to finish by the deadline.
 
 I'm not gonna go into all the details that happened during this period, but I will describe the lessons that I learned during this phase.
 
 ** Responsibility
 
-Since the start, I have always a little hesitant to delegate things to other people. Not because I was concerned with the quality of the final product --- I was
+Since the start, I was always a little hesitant to delegate things to other people. Not because I was concerned with the quality of the final product --- I was
 fortunate enough to have *amazing* teammates. My concern was always in regards to them questioning if they should or should not follow my lead, considering that
 no formal leader was designated from someone upper in the hierarchy. To my surprise, they followed my suggestions.
 
@@ -68,7 +68,7 @@ absorb what the client values and which types of things trigger their eyes when 
 refactoring, since you have trained your developers to obey the rules of the rulers of PRs.
 
 Further, when communicating to your devs about a suggestion in a pull request, it really matters to detail why you thought of that and why you think such addition or removal will improve
-what already has been done. If the developer implementing the feature feels like he/she should just obey your rules without deeper understanding. Not only this has the chance of
+what already has been done. If the developer implementing the feature feels like he/she should just obey your rules without deeper understanding, not only this has the chance of
 happening again, hence slowing down future tasks, but such constant friction may destroy the chemistry between the parts during the review. The outcome of this is destruction, less productivity,
 and worse code being delivered. Promote the exchange of arguments and evidence about what is being discussed. Do not allow it to go into a tangent. If necessary join a voice call and
 start sharing your screen to completely show your points with illustrations, code, and drawings. If the team members involved are reasonable, and both want to send the best possible piece
@@ -90,7 +90,7 @@ Sometimes, the client will ask about how it is going and even use special tools 
 measure the amount of work that was already done and how much of it is still yet to be done. With these two pieces of information, they can assess what they should report to their superiors
 about this task, *and* what they should report about the performance of the consultancy company.
 
-My way to handle this is simple. I measure my team's capabilities and estimate how much steam we have left (getting intimate with your teammates will provide you with better information on
+My way to handle this is simple. I measure my team's capabilities and estimate how much steam we have left (getting intimate with your teammates will provide you better information on
 their work ethic and individual capabilities) and I smash that with the amount of work we have left on the board. That gives me a solid estimation of how much we can do until the deadline.
 I use that to guess a percentage of the chance of us succeding. I throw that number out loud. I understand that this may put you in a bad situation with the client if the number is not as high
 as they expect. But, if you doing this since the beginning and you are demonstrating that you care, they may provide you more resources (developers, documentation, meetings) to increase
@@ -103,7 +103,7 @@ and the game is practically over.
 As someone in the leader position, I felt *obligated* to publicly state feedback to teammates, especially compliments. Not only this will have a psychological effect on them, boosting their
 self-esteem, hence reinforcing their behavior that they saw brought positive outcomes, but also puts them in a better mood to do even more for the project. Maybe they will try to investigate
 a task even further because the requirements were not well described, maybe they will be more pedantic when helping review a PR. When you are honest and transparent with your team, especially
-when they did great, is when reinforcement learning is being applied and the gears of the team are being oiled.
+when they did great, reinforcement learning is being applied and the gears of the team are being oiled.
 
 If you happen to have a critique of sorts, try your best to make it professional. You are saying that so that the person can grow from it. You gain nothing by making personal attacks
 or making the other person feel useless for the team. Being able to say critiques constructively is the best measurement of the natural language's domain since you mastered the language
