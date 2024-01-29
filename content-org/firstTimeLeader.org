@@ -98,6 +98,16 @@ your chances, since it is their product on the line at the end of the day. You d
 If you go there and say that it is not going to fly 2 days before the deadline (and saying good to neutral things the days before), they will lose trust in you
 and the game is practically over.
 
+** Awareness
+
+Sometimes, when the task is near its completion, it may happen that a huge change needs to be applied and everybody on the team agrees on that. However, due to time constraints, it may be
+better to ship this less-great version first in order to finish in time for proper testing of the entire pipeline.
+
+When this happens, do *not* let that pass silently. Create tech debts with these improvements so then your team knows what we left behind, and the client knows that we care to the point of
+taking notes on what we need to address first after the initial version has been deployed. Do *not* trust your memory, type it down. Put the same amount of effort into the details of those
+tasks that you did with the main ones; descriptive to the point executors can do them without questioning. This awareness gives your team the sense of knowing every little piece of the
+process, hence making it less likely bad surprises will appear.
+
 ** Feedback
 
 As someone in the leader position, I felt *obligated* to publicly state feedback to teammates, especially compliments. Not only this will have a psychological effect on them, boosting their
