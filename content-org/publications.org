@@ -1,10 +1,10 @@
 #+HUGO_BASE_DIR: ../
 #+HUGO_SECTION: .
 #+HUGO_WEIGHT: 2
-#+DATE: 2023-01-15
 #+AUTHOR: Eduardo Lemos
 
 #+title: Publications
 
-- J. C. Amorim, E. L. Rocha, L. Minardi, V. Alves, E. P. de Freitas, T. Castro, M. Amrani, J. Ortiz, P.-Y. Schobbens, and G. Perrouin, “Providing command and control agility: A software product line approach,” Expert Systems with Applications, vol. 216, p. 119473, 2023. [Online]. Available: https://www.sciencedirect.com/science/article/pii/S0957417422024927
+- J. C. Amorim, E. L. Rocha, L. Minardi, V. Alves, E. P. de Freitas, T. Castro, M. Amrani, J. Ortiz, P.-Y. Schobbens, and G. Perrouin, “Providing command and control agility: A software product line approach,” Expert Systems with Applications, vol. 216, p. 119473, 2023. [Online]. Available at: https://www.sciencedirect.com/science/article/pii/S0957417422024927
 
+- E. Medeiros, E. Peixoto and E. Lemos, "FACT: A Domain-Specific Language Based on a Functional Algebra for Continuous Time Modeling," 2023 Winter Simulation Conference (WSC), San Antonio, TX, USA, 2023, pp. 2650-2661. Available at: https://doi.org/10.1109/WSC60868.2023.10408703.

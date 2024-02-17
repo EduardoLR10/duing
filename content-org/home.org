@@ -16,5 +16,5 @@ End the pain. A quick email or chat will do.
 \\
 \\
  #+BEGIN_QUOTE
- Life is a DIY project -- Zack Nelson
+ It's a slow but steady effort -- Ishigami, Senku
  #+END_QUOTE
