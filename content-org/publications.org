@@ -1,6 +1,7 @@
 #+HUGO_BASE_DIR: ../
 #+HUGO_SECTION: .
 #+HUGO_WEIGHT: 2
+#+DATE: 2024-02-17
 #+AUTHOR: Eduardo Lemos
 
 #+title: Publications
