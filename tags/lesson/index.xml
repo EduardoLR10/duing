@@ -6,7 +6,17 @@
     <description>Recent content in lesson on Duing Dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 27 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/lesson/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/lesson/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Defaults are not Dogmas</title>
+      <link>https://duing.dev/posts/defaultsarenotdogmas/</link>
+      <pubDate>Wed, 19 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://duing.dev/posts/defaultsarenotdogmas/</guid>
+      <description>The ability to understand and study language-agnostic concepts is invaluable. Although most of the time when programming we are interacting with language-specific features, some ideas that float beyond any palpable implementation.
+Thus, it is important to not only distinguish those apart, but also to identify which ones we should use to create defaults when approaching other technologies. This, however, isn&amp;rsquo;t to say we will be unconditionally married with them &amp;ndash; effectively transforming them into dogmas.</description>
+    </item>
+    
     <item>
       <title>Circumstantial Leadership</title>
       <link>https://duing.dev/posts/firsttimeleader/</link>
