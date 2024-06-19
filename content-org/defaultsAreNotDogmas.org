@@ -84,9 +84,11 @@ abstractions to deal with it, and great organization of the code base.
 One would be a fool to believe that after studying the concepts mentioned, or any other concept, the next move
 should be to make them dogmas one should follow -- you strictly follow them blindly without being open to discussion
 and you are willing to fight over them in all possible scenarios. Solid foundations give you the luxury of having
-a solid set of defaults.
+a solid set of defaults. Sometimes, however, these defaults need to be exchanged by another important factor -- and
+we call this situation "making a /trade-off/".
 
-A very common threat to both concepts, relational model and immutability, is /performance/. Some applications
+Among all the common trade-offs one usually face, e.g., deadlines, costs, a very common threat to both concepts,
+relational model and immutability, is /performance/. Some applications
 have performance as a mandatory requirement in order to solve the problems they target. It may be the case that
 any use of immutable code will imply that you can't deliver the project following its performance criteria. When
 such an event happens, then it comes the time to change your default behavior: you take an educated trade, being aware
