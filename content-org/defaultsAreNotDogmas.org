@@ -138,5 +138,5 @@ The endless process of studying and honing our craft will give us the epiphany o
    
 1. Tennent, R. D. (1991). Semantics of Programming Languages. Prentice Hall. https://books.google.com.br/books?id=K7N7QgAACAAJ   
 2. Joseph E. Stoy. 1977. Denotational Semantics: The Scott-Strachey Approach to Programming Language Theory. MIT Press, Cambridge, MA, USA.
-3. John Backus. 1978. Can programming be liberated from the von Neumann style? a functional style and its algebra of programs. Commun. ACM 21, 8 (Aug. 1978), 613–641. https://doi.org/10.1145/359576.359579
+3. John Backus. 1978. Can programming be liberated from the von Neumann style?. Commun. ACM 21, 8 (Aug. 1978), 613–641. https://doi.org/10.1145/359576.359579
 4. Milewski, B. (2018). Category Theory for Programmers. Blurb, Incorporated. https://books.google.com.br/books?id=ZaP-swEACAAJ   
