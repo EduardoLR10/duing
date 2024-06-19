@@ -62,7 +62,7 @@ don't support this process [4] with the following C snippet:
  int counter() {
    static int c = 0;
    return c++;
-  }
+ }
   
  double y = square(counter());
 #+end_src
