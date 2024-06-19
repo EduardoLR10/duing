@@ -1,0 +1,140 @@
+#+hugo_base_dir: ../
+#+hugo_tags: lesson
+
+#+title: Defaults are not Dogmas
+
+#+date: 2024-06-19
+#+author: Eduardo Lemos
+
+The ability to understand and study language-agnostic concepts is invaluable.
+Although most of the time when programming we are interacting with language-specific
+features, some ideas that float beyond any palpable implementation.
+
+Thus, it is important to not only distinguish those apart, but also to identify which ones
+we should use to create /defaults/ when approaching other technologies. This, however, isn't
+to say we will be unconditionally married with them -- effectively transforming them
+into /dogmas/. Allowing that to happen causes a myriad of bad outcomes, and I want to explore this
+dilemma in this post.
+
+* Ideas
+
+As almost always when talking to engineers, the most effective way to explain something abstract is
+to show an example or instance of the general idea. For this post, I think the relational model and
+immutability in programming languages are the perfect candidates. Those two topics have something
+in common: their discussions of trade-offs do not happen, or rather /should/ not happen, in the
+realm of implementation.
+
+** Relational Model
+
+The relational model, the one that we are suppose to use as the *foundation* for relational databases,
+is about guaranteeing data's correctness; established relations in the model are representing real facts
+that we are interested in. Such model works as a logical layer when designing a system and, more importantly,
+doing so put abtract ideas to orbit around us. We touch the mathematical understanding of what is a relation,
+and we start seeing them ontologically, i.e., what are the relations that actually *exist* in the domain
+we are studying/modeling.
+
+All this baggage comes before any sort of code is written and it can, or maybe even
+/should/, be studied and understood on its own before the implementation starts. With that done, we can
+later assess the value of the properties we are gaining by following the model. This matters because a situation
+may come, as we will talk about later, that a trade must happen, and we can't properly trade anything without having
+at least an educated guess on /what/ exactly we are trading; what is on the table?
+
+** Immutability
+
+It has been a while since the programming domain started flirting with the domain of mathematics [1, 2, 3].
+Ideally, the former is suppose to absorb the lessons learned from the latter. One of those lessons is about
+the use of /immutability/ when programming.
+
+Using mutability in code makes it difficult for us to use /equational reasoning/ [1, 4].
+Here's the intuition on why this technique is valuable: it allows us to swap names/labels with their definitions without
+breaking anything, but only when dealing with functions and structures in a mathematical sense.
+A function that takes a mutable reference to a structure may be affected by /something else/ that also
+has access to this reference, hence equational reasoning is at risk of not being possible.
+
+In terms of code, Bartosz showed an example of why functions with side-effects
+don't support this process [4] with the following C snippet:
+
+#+begin_src c
+  int square(int x) {
+    return x * x;
+  }
+
+  int counter() {
+    static int c = 0;
+    return c++;
+  }
+  
+  double y = square(counter());
+#+end_src
+
+Because effects are happening, the following use of equational reasoning won't produce the same result as before:
+
+#+begin_src c
+  double y = counter() * counter();
+#+end_src
+
+Finally, we can evaluate what this means more broadly: mutability introduces an extra need for understanding
+more code in your application, especially if concurrency is being used. There may be code spatially very far from
+the original function that can interact with it, and now a new moving piece has been added to the /context/ that
+we need to care about. There are ways to mitigate this cost, such as having a smart enough compiler, specific
+abstractions to deal with it and great organization of the code base.
+
+* Trade-Offs
+
+One would be a fool to believe that after studying the concepts mentioned, or any other concept, the next move
+should be to make them dogmas one should follow -- you strictly follow them blindly without being open to discussion
+and you are willing to fight over them in all possible scenarios. Solid foundations gives you the luxuary of having
+a solid set of defaults.
+
+A very common threat to both concepts, relational model and immutability, is /performance/. Some applications
+have performance as a mandatory requirement in order to solve the problems they target. It may be the case that
+any use of immutable code will imply that you can't deliver the project following its performance criteria. When
+such event happens, then it comes the time to change your default behavior: you take an educated trade, being aware
+of what you are losing. I would be completely happy in losing equational reasoning in my application if that means
+I will be able to deliver what we promised with the product in the best possible way. If writing mutable code poses
+a good fight against my default, I'm more than satisfied in using it to solve engineering problems.
+
+** Lyceum
+
+As an example of this practice, I would like to share a case I had when working in [[https://github.com/Dr-Nekoma/lyceum][Lyceum]], a game I'm developing with
+my friends recently. This online game uses Zig as the client/frontend language and Erlang as the server language.
+
+The client side will leverage [[https://github.com/raysan5/raylib][raylib]] as the library to make the graphics of the game. This being originally a C library,
+it tangles pure and impure computations very deeply, and we discussed if we should use it the way was intended to be used.
+On that meeting we discussed how/what we should have to do to make that happen and what would be problems that we would
+cause ourselves in each approach. After the deliberation, all designs we were able to come up with caused serious pain
+when drawing elements on the screen, to the point that we explicitly traded equational reasoning.
+
+As it turned out, we made the right choice. The final design of the frontend code turned out great, way beyond our
+expectations. Part of the reason it ended up great was writing raylib code the way an immutability purist would never
+allow: there's a heavy mix of effectful and effect-free computations.
+
+* Culture
+
+As a final point of interest, there is the conversation about the culture a community portraits.
+It usually goes like this: "Nobody using X does that, they all do Y" and they discourage you from
+using language-agnostic defaults by the get go, rather than convincing you that there are better reasons
+you should drop your initial approach.
+
+Instead of following this recommendation blindly, the ideal reaction is to ask why the community decided
+to make such a convention. There may be good reasons for that: maybe X is /only/ used in a context where
+performance matters, hence it is set Y as the default. But there may be also questionable or even
+bad reasons: matters of taste, presence of biased approaches, lack of or misunderstanding of alternative approaches.
+Not surprisingly, educating ourselves further with reliable sources will give us insights and maybe even change
+our set of defaults, either generally or for specific techonologies, in an unexpected manner.
+
+* Conclusion
+
+Only with an unstoppable process of educating ourselves we will reach good default choices. We need to
+be open to have our minds changed if we see reasoning on the justification; we can't let dogmas infiltrate.
+Even if face nothing of substance to change our defaults, we should always be humble and be willing to listen
+and accept that we can be wrong.
+There certainly will be situations in which whatever default we use will be the wrong tool for the job.
+The endless process of studying and honing our craft will give us the epiphany of finding the correct one.
+
+* References
+   
+1. Tennent, R. D. (1991). Semantics of Programming Languages. Prentice Hall. https://books.google.com.br/books?id=K7N7QgAACAAJ   
+2. Joseph E. Stoy. 1977. Denotational Semantics: The Scott-Strachey Approach to Programming Language Theory. MIT Press, Cambridge, MA, USA.
+3. John Backus. 1978. Can programming be liberated from the von Neumann style? a functional style and its algebra of programs. Commun. ACM 21, 8 (Aug. 1978), 613–641. https://doi.org/10.1145/359576.359579
+4. Milewski, B. (2018). Category Theory for Programmers. Blurb, Incorporated. https://books.google.com.br/books?id=ZaP-swEACAAJ   
