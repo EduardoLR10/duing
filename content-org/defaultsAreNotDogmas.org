@@ -113,7 +113,7 @@ allow: there's a heavy mix of effectful and effect-free computations.
 
 As a final point of interest, there is the conversation about the culture the community portraits.
 It usually goes like this: "Nobody using X does that, they all do Y" and they discourage you from
-using language-agnostic defaults by the get-go, rather than convincing you that there are better reasons
+using language-agnostic defaults from the get-go, rather than convincing you that there are better reasons
 you should drop your initial approach.
 
 Instead of following this recommendation blindly, the ideal reaction is to ask why the community decided
