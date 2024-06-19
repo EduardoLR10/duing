@@ -280,18 +280,18 @@ A function that takes a mutable reference to a structure may be affected by <em>
 has access to this reference, hence equational reasoning is at risk of not being possible.</p>
 <p>In terms of code, Bartosz showed an example of why functions with side-effects
 don&rsquo;t support this process [4] with the following C snippet:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">square</span>(<span style="color:#66d9ef">int</span> x) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x <span style="color:#f92672">*</span> x;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">square</span>(<span style="color:#66d9ef">int</span> x) {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> x <span style="color:#f92672">*</span> x;
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">counter</span>() {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> c<span style="color:#f92672">++</span>;
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">counter</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> c<span style="color:#f92672">++</span>;
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">double</span> y <span style="color:#f92672">=</span> square(counter());
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">double</span> y <span style="color:#f92672">=</span> square(counter());
 </span></span></code></pre></div><p>Because effects are happening, the following use of equational reasoning won&rsquo;t produce the same result as before:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>  <span style="color:#66d9ef">double</span> y <span style="color:#f92672">=</span> counter() <span style="color:#f92672">*</span> counter();
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span> <span style="color:#66d9ef">double</span> y <span style="color:#f92672">=</span> counter() <span style="color:#f92672">*</span> counter();
 </span></span></code></pre></div><p>Finally, we can evaluate what this means more broadly: mutability introduces an extra need for understanding
 more code in your application, especially if concurrency is being used. There may be code spatially very far from
 the original function that can interact with it, and now a new moving piece has been added to the <em>context</em> that
