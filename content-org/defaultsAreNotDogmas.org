@@ -55,22 +55,22 @@ In terms of code, Bartosz showed an example of why functions with side-effects
 don't support this process [4] with the following C snippet:
 
 #+begin_src c
-  int square(int x) {
-    return x * x;
-  }
+ int square(int x) {
+   return x * x;
+ }
 
-  int counter() {
-    static int c = 0;
-    return c++;
+ int counter() {
+   static int c = 0;
+   return c++;
   }
   
-  double y = square(counter());
+ double y = square(counter());
 #+end_src
 
 Because effects are happening, the following use of equational reasoning won't produce the same result as before:
 
 #+begin_src c
-  double y = counter() * counter();
+ double y = counter() * counter();
 #+end_src
 
 Finally, we can evaluate what this means more broadly: mutability introduces an extra need for understanding
