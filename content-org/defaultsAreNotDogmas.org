@@ -8,9 +8,9 @@
 
 The ability to understand and study language-agnostic concepts is invaluable.
 Although most of the time when programming we are interacting with language-specific
-features, some ideas that float beyond any palpable implementation.
+features, some ideas float beyond any palpable implementation.
 
-Thus, it is important to not only distinguish those apart but also to identify which ones
+Thus, it is important to not only distinguish those but also to identify which ones
 we should use to create /defaults/ when approaching other technologies. This, however, isn't
 to say we will be unconditionally married to them -- effectively transforming them
 into /dogmas/. Allowing that to happen causes a myriad of bad outcomes, and I want to explore this
@@ -30,7 +30,7 @@ The relational model, the one that we are supposed to use as the *foundation* fo
 is about guaranteeing data's correctness; established relations in the model represent real facts
 that we are interested in. Such a model works as a logical layer when designing a system and, more importantly,
 doing so puts abstract ideas to orbit around us. We touch on the mathematical understanding of what is a relation,
-and we start seeing them ontologically, i.e., what are the relations that actually *exist* in the domain
+and we start seeing it ontologically, i.e., what are the relations that actually *exist* in the domain
 we are studying/modeling.
 
 All this baggage comes before any sort of code is written and it can, or maybe even
@@ -49,7 +49,7 @@ Using mutability in code makes it difficult for us to use /equational reasoning/
 Here's the intuition on why this technique is valuable: it allows us to swap names/labels with their definitions without
 breaking anything, but only when dealing with functions and structures in a mathematical sense.
 A function that takes a mutable reference to a structure may be affected by /something else/ that also
-has access to this reference, hence equational reasoning is at risk of not being possible.
+has access to this reference, hence equational reasoning is at risk.
 
 In terms of code, Bartosz showed an example of why functions with side-effects
 don't support this process [4] with the following C snippet:
@@ -67,7 +67,7 @@ don't support this process [4] with the following C snippet:
  double y = square(counter());
 #+end_src
 
-Because effects are happening, the following use of equational reasoning won't produce the same result as before:
+Because effects are happening, the following rewrite won't produce the same result as before:
 
 #+begin_src c
  double y = counter() * counter();
@@ -87,13 +87,13 @@ and you are willing to fight over them in all possible scenarios. Solid foundati
 a solid set of defaults. Sometimes, however, these defaults need to be exchanged by another important factor -- and
 we call this situation "making a /trade-off/".
 
-Among all the common trade-offs one usually face, e.g., deadlines, costs, a very common threat to both concepts,
+Among all the common trade-offs one usually faces, e.g., deadlines, costs, a very common threat to both concepts,
 relational model and immutability, is /performance/. Some applications
 have performance as a mandatory requirement in order to solve the problems they target. It may be the case that
 any use of immutable code will imply that you can't deliver the project following its performance criteria. When
-such an event happens, then it comes the time to change your default behavior: you take an educated trade, being aware
+such an event happens, then it is time to change your default behavior: you take an educated trade, being aware
 of what you are losing. I would be completely happy to lose equational reasoning in my application if that means
-I will be able to deliver what we promised with the product in the best possible way. If writing mutable code poses
+I will be able to deliver what we promised with the product in the best possible way. If mutable code poses
 a good fight against my default, I'm more than satisfied with using it to solve engineering problems.
 
 ** Lyceum
@@ -113,21 +113,21 @@ allow: there's a heavy mix of effectful and effect-free computations.
 
 * Culture
 
-As a final point of interest, there is the conversation about the culture the community portraits.
+As a final point of interest, there is the conversation about the culture the community portrays.
 It usually goes like this: "Nobody using X does that, they all do Y" and they discourage you from
 using language-agnostic defaults from the get-go, rather than convincing you that there are better reasons
 you should drop your initial approach.
 
 Instead of following this recommendation blindly, the ideal reaction is to ask why the community decided
 to make such a convention. There may be good reasons for that: maybe X is /only/ used in a context where
-performance matters, hence it is set Y as the default. But there may be also questionable or even
+performance matters, hence it has set Y as the default. But there may also be questionable or even
 bad reasons: matters of taste, the presence of biased approaches, the lack of or misunderstanding of alternative approaches.
 Not surprisingly, educating ourselves further with reliable sources will give us insights and maybe even change
 our set of defaults, either generally or for specific technologies, in an unexpected manner.
 
 * Conclusion
 
-Only with an unstoppable process of educating ourselves, we will reach good default choices. We need to
+Only with an unstoppable process of educating ourselves we will reach good default choices. We need to
 be open to having our minds changed if we see the reasoning on the justification; we can't let dogmas infiltrate.
 Even if we face nothing of substance to change our defaults, we should always be humble and be willing to listen
 and accept that we can be wrong.
