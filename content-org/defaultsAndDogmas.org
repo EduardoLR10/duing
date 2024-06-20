@@ -1,7 +1,7 @@
 #+hugo_base_dir: ../
 #+hugo_tags: lesson
 
-#+title: Defaults are not Dogmas
+#+title: Don't make all defaults Dogmas
 
 #+date: 2024-06-19
 #+author: Eduardo Lemos
@@ -128,7 +128,7 @@ our set of defaults, either generally or for specific technologies, in an unexpe
 * Conclusion
 
 Only with an unstoppable process of educating ourselves we will reach good default choices. We need to
-be open to having our minds changed if we see the reasoning on the justification; we can't let dogmas infiltrate.
+be open to having our minds changed if we see the reasoning on the justification; we can't let potential baseless dogmas infiltrate.
 Even if we face nothing of substance to change our defaults, we should always be humble and be willing to listen
 and accept that we can be wrong.
 There certainly will be situations in which whatever default we use will be the wrong tool for the job.
