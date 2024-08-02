@@ -1,5 +1,5 @@
 #+hugo_base_dir: ../
-#+hugo_tags: lesson recommendation
+#+hugo_tags: lesson
 
 #+title: Zigging out of Lambdas
 

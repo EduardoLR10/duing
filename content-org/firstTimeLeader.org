@@ -3,7 +3,7 @@
 
 #+title: Circumstantial Leadership
 
-#+date: 2024-01-27
+#+date: 2024-02-27
 #+author: Eduardo Lemos
 
 In the past three weeks, I led a team of developers, some would
