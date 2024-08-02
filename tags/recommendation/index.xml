@@ -6,16 +6,7 @@
     <description>Recent content in recommendation on Duing Dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 01 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/recommendation/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Zigging out of Lambdas</title>
-      <link>https://duing.dev/posts/zigginglambdas/</link>
-      <pubDate>Thu, 01 Aug 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://duing.dev/posts/zigginglambdas/</guid>
-      <description>You envision a generic way to implement a particular functionality. In the process of implementing it, however, you notice that some pieces of the code really bother you. Not because they are wrong, stuff works and all, but because it feels like you had to bend the tool you are using to get the result. It is not the most pleasant type of hacking. This post is about an experience of this phenomena.</description>
-    </item>
-    
+    <lastBuildDate>Sat, 30 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/recommendation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Is it all about the Story?</title>
       <link>https://duing.dev/posts/story/</link>
