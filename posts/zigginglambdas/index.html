@@ -261,111 +261,110 @@ the experience nice for the caller of the function, we will prefix the provided 
 so then if the assets&rsquo; folder moves to somewhere else in the file system, only the loading functions for assets need to change, nothing else.</p>
 <h2 id="first-implementation">First Implementation</h2>
 <p>Let&rsquo;s decide that the first draft will be for image loading. We come up with this as our first attempt:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> rl <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;raylib&#34;</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> std <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;std&#34;</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> rl <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;raylib&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> std <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;std&#34;</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> base_filepath <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./assets/&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> base_filepath <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./assets/&#34;</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">fn</span> checkExtension(filePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>, extensions<span style="color:#f92672">:</span> []<span style="color:#66d9ef">const</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#66d9ef">bool</span> {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> fileExtension <span style="color:#f92672">=</span> std.fs.path.extension(filePath);
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> (extensions) <span style="color:#f92672">|</span>extension<span style="color:#f92672">|</span> {
-</span></span><span style="display:flex;"><span>	  <span style="color:#66d9ef">if</span> (std.mem.eql(<span style="color:#66d9ef">u8</span>, fileExtension, extension)) {
-</span></span><span style="display:flex;"><span>	      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
-</span></span><span style="display:flex;"><span>	  }
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
-</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> checkExtension(filePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>, extensions<span style="color:#f92672">:</span> []<span style="color:#66d9ef">const</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#66d9ef">bool</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> fileExtension <span style="color:#f92672">=</span> std.fs.path.extension(filePath);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (extensions) <span style="color:#f92672">|</span>extension<span style="color:#f92672">|</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (std.mem.eql(<span style="color:#66d9ef">u8</span>, fileExtension, extension)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> image(imageFilePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#f92672">!</span>rl.Image {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> allocator<span style="color:#f92672">:</span> std.mem.Allocator <span style="color:#f92672">=</span> std.heap.c_allocator;
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> fullFilePath <span style="color:#f92672">=</span> <span style="color:#66d9ef">try</span> std.fs.path.joinZ(allocator, <span style="color:#f92672">&amp;</span>.{ base_filepath, imageFilePath });
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">defer</span> allocator.free(fullFilePath);
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (checkExtension(imageFilePath, <span style="color:#f92672">&amp;</span>.{ <span style="color:#e6db74">&#34;.png&#34;</span>, <span style="color:#e6db74">&#34;.jpg&#34;</span> })) {
-</span></span><span style="display:flex;"><span>	  <span style="color:#66d9ef">return</span> rl.loadImage(fullFilePath);
-</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>	  std.debug.print(<span style="color:#e6db74">&#34;Error trying to load image: .{s}&#34;</span>, .{fullFilePath});
-</span></span><span style="display:flex;"><span>	  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">error</span>.could_not_load_image;
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> image(imageFilePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#f92672">!</span>rl.Image {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> allocator<span style="color:#f92672">:</span> std.mem.Allocator <span style="color:#f92672">=</span> std.heap.c_allocator;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> fullFilePath <span style="color:#f92672">=</span> <span style="color:#66d9ef">try</span> std.fs.path.joinZ(allocator, <span style="color:#f92672">&amp;</span>.{ base_filepath, imageFilePath });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">defer</span> allocator.free(fullFilePath);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (checkExtension(imageFilePath, <span style="color:#f92672">&amp;</span>.{ <span style="color:#e6db74">&#34;.png&#34;</span>, <span style="color:#e6db74">&#34;.jpg&#34;</span> })) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> rl.loadImage(fullFilePath);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        std.debug.print(<span style="color:#e6db74">&#34;Error trying to load image: .{s}&#34;</span>, .{fullFilePath});
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">error</span>.could_not_load_image;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>With the image&rsquo;s file path on hand, we first instantiate an <code>allocator</code>. We&rsquo;ll use it to create the full file path of the
 asset, i.e., add the prefix <code>base_filepath</code>. This string will have no use after we load the image, hence we <code>defer</code> to free it.
 Just before we load the asset, we do a naive check of the provided file. Only files with the extension <code>&quot;.png&quot;</code> or <code>&quot;.jpg&quot;</code>
 will have a chance to be loaded as an image. Otherwise, we just fail logging an error message for debugging purposes. When calling the function <code>image</code>,
 within the Struct <code>assets</code> (files in Zig behave like Structs), the user will just call <code>assets.image(&quot;my_image.png&quot;);</code> and the job is done.</p>
 <p>Now, imagine that you don&rsquo;t want to only have images: what about models? And textures? Well&hellip;</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span>  <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> model(modelFilePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#f92672">!</span>rl.Model {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> allocator<span style="color:#f92672">:</span> std.mem.Allocator <span style="color:#f92672">=</span> std.heap.c_allocator;
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> fullFilePath <span style="color:#f92672">=</span> <span style="color:#66d9ef">try</span> std.fs.path.joinZ(allocator, <span style="color:#f92672">&amp;</span>.{ base_filepath, modelFilePath });
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">defer</span> allocator.free(fullFilePath);
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (checkExtension(modelFilePath, <span style="color:#f92672">&amp;</span>.{ <span style="color:#e6db74">&#34;.glb&#34;</span>, <span style="color:#e6db74">&#34;.obj&#34;</span> })) {
-</span></span><span style="display:flex;"><span>	  <span style="color:#66d9ef">return</span> rl.loadModel(fullFilePath);
-</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>	  std.debug.print(<span style="color:#e6db74">&#34;Error trying to load model: .{s}&#34;</span>, .{fullFilePath});
-</span></span><span style="display:flex;"><span>	  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">error</span>.could_not_load_model;
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>  }
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> model(modelFilePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#f92672">!</span>rl.Model {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> allocator<span style="color:#f92672">:</span> std.mem.Allocator <span style="color:#f92672">=</span> std.heap.c_allocator;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> fullFilePath <span style="color:#f92672">=</span> <span style="color:#66d9ef">try</span> std.fs.path.joinZ(allocator, <span style="color:#f92672">&amp;</span>.{ base_filepath, modelFilePath });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">defer</span> allocator.free(fullFilePath);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (checkExtension(modelFilePath, <span style="color:#f92672">&amp;</span>.{ <span style="color:#e6db74">&#34;.glb&#34;</span>, <span style="color:#e6db74">&#34;.obj&#34;</span> })) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> rl.loadModel(fullFilePath);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        std.debug.print(<span style="color:#e6db74">&#34;Error trying to load model: .{s}&#34;</span>, .{fullFilePath});
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">error</span>.could_not_load_model;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> texture(textureFilePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#f92672">!</span>rl.Texture2D {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> allocator<span style="color:#f92672">:</span> std.mem.Allocator <span style="color:#f92672">=</span> std.heap.c_allocator;
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> fullFilePath <span style="color:#f92672">=</span> <span style="color:#66d9ef">try</span> std.fs.path.joinZ(allocator, <span style="color:#f92672">&amp;</span>.{ base_filepath, textureFilePath });
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">defer</span> allocator.free(fullFilePath);
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (checkExtension(textureFilePath, <span style="color:#f92672">&amp;</span>.{ <span style="color:#e6db74">&#34;.png&#34;</span>, <span style="color:#e6db74">&#34;.jpg&#34;</span> })) {
-</span></span><span style="display:flex;"><span>	  <span style="color:#66d9ef">return</span> rl.loadTexture(fullFilePath);
-</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>	  std.debug.print(<span style="color:#e6db74">&#34;Error trying to load texture: .{s}&#34;</span>, .{fullFilePath});
-</span></span><span style="display:flex;"><span>	  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">error</span>.could_not_load_texture;
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> texture(textureFilePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#f92672">!</span>rl.Texture2D {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> allocator<span style="color:#f92672">:</span> std.mem.Allocator <span style="color:#f92672">=</span> std.heap.c_allocator;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> fullFilePath <span style="color:#f92672">=</span> <span style="color:#66d9ef">try</span> std.fs.path.joinZ(allocator, <span style="color:#f92672">&amp;</span>.{ base_filepath, textureFilePath });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">defer</span> allocator.free(fullFilePath);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (checkExtension(textureFilePath, <span style="color:#f92672">&amp;</span>.{ <span style="color:#e6db74">&#34;.png&#34;</span>, <span style="color:#e6db74">&#34;.jpg&#34;</span> })) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> rl.loadTexture(fullFilePath);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        std.debug.print(<span style="color:#e6db74">&#34;Error trying to load texture: .{s}&#34;</span>, .{fullFilePath});
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">error</span>.could_not_load_texture;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Underwhelming, isn&rsquo;t it? We have <strong>three</strong> functions that have more similarities than differences. In fact,
 most of the bodies of these functions are identical. The boilerplate is palpable. What can we do to improve this?</p>
 <h2 id="different-mindset">Different Mindset</h2>
 <p>You, being a Functional Programming (FP) fan, had an idea. What if we use the powers of lambdas and type programming to make things
 more generic? After some thinking, you ended up with this draft:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> rl <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;raylib&#34;</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> std <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;std&#34;</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> rl <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;raylib&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> std <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;std&#34;</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> base_filepath <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./assets/&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> base_filepath <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./assets/&#34;</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">fn</span> load(<span style="color:#66d9ef">comptime</span> filePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>, <span style="color:#66d9ef">comptime</span> T<span style="color:#f92672">:</span> <span style="color:#66d9ef">type</span>, loader<span style="color:#f92672">:</span> <span style="color:#66d9ef">fn</span> ([<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) T, predicate<span style="color:#f92672">:</span> <span style="color:#66d9ef">fn</span> ([<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#66d9ef">bool</span>) <span style="color:#f92672">!</span>T {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> allocator<span style="color:#f92672">:</span> std.mem.Allocator <span style="color:#f92672">=</span> std.heap.c_allocator;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> load(<span style="color:#66d9ef">comptime</span> filePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>, <span style="color:#66d9ef">comptime</span> T<span style="color:#f92672">:</span> <span style="color:#66d9ef">type</span>, loader<span style="color:#f92672">:</span> <span style="color:#66d9ef">fn</span> ([<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) T, predicate<span style="color:#f92672">:</span> <span style="color:#66d9ef">fn</span> ([<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#66d9ef">bool</span>) <span style="color:#f92672">!</span>T {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> allocator<span style="color:#f92672">:</span> std.mem.Allocator <span style="color:#f92672">=</span> std.heap.c_allocator;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> fullFilePath <span style="color:#f92672">=</span> <span style="color:#66d9ef">try</span> std.fs.path.joinZ(allocator, <span style="color:#f92672">&amp;</span>.{ base_filepath, filePath });
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">defer</span> allocator.free(fullFilePath);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> fullFilePath <span style="color:#f92672">=</span> <span style="color:#66d9ef">try</span> std.fs.path.joinZ(allocator, <span style="color:#f92672">&amp;</span>.{ base_filepath, filePath });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">defer</span> allocator.free(fullFilePath);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (predicate(fullFilePath)) {
-</span></span><span style="display:flex;"><span>	  <span style="color:#66d9ef">return</span> loader(fullFilePath);
-</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>	  std.debug.print(<span style="color:#e6db74">&#34;Error trying to load file: .{s}&#34;</span>, .{fullFilePath});
-</span></span><span style="display:flex;"><span>	  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">error</span>.could_not_load_asset;
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (predicate(fullFilePath)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> loader(fullFilePath);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        std.debug.print(<span style="color:#e6db74">&#34;Error trying to load file: .{s}&#34;</span>, .{fullFilePath});
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">error</span>.could_not_load_asset;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">fn</span> checkExtension(extensions<span style="color:#f92672">:</span> []<span style="color:#66d9ef">const</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) (<span style="color:#66d9ef">fn</span> ([<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#66d9ef">bool</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">struct</span> {
-</span></span><span style="display:flex;"><span>	  <span style="color:#66d9ef">fn</span> check(filePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#66d9ef">bool</span> {
-</span></span><span style="display:flex;"><span>	      <span style="color:#66d9ef">const</span> fileExtension <span style="color:#f92672">=</span> std.fs.path.extension(filePath);
-</span></span><span style="display:flex;"><span>	      <span style="color:#66d9ef">for</span> (extensions) <span style="color:#f92672">|</span>extension<span style="color:#f92672">|</span> {
-</span></span><span style="display:flex;"><span>		  <span style="color:#66d9ef">if</span> (std.mem.eql(<span style="color:#66d9ef">u8</span>, fileExtension, extension)) {
-</span></span><span style="display:flex;"><span>		      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
-</span></span><span style="display:flex;"><span>		  }
-</span></span><span style="display:flex;"><span>	      }
-</span></span><span style="display:flex;"><span>	      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
-</span></span><span style="display:flex;"><span>	  }
-</span></span><span style="display:flex;"><span>      }.check;
-</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> checkExtension(extensions<span style="color:#f92672">:</span> []<span style="color:#66d9ef">const</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) (<span style="color:#66d9ef">fn</span> ([<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#66d9ef">bool</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">fn</span> check(filePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#66d9ef">bool</span> {
+</span></span><span style="display:flex;"><span>	    <span style="color:#66d9ef">const</span> fileExtension <span style="color:#f92672">=</span> std.fs.path.extension(filePath);
+</span></span><span style="display:flex;"><span>	    <span style="color:#66d9ef">for</span> (extensions) <span style="color:#f92672">|</span>extension<span style="color:#f92672">|</span> {
+</span></span><span style="display:flex;"><span>	        <span style="color:#66d9ef">if</span> (std.mem.eql(<span style="color:#66d9ef">u8</span>, fileExtension, extension)) {
+</span></span><span style="display:flex;"><span>		    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>	        }
+</span></span><span style="display:flex;"><span>	    }
+</span></span><span style="display:flex;"><span>	    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>    }.check;
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> image(<span style="color:#66d9ef">comptime</span> imageFilePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#f92672">!</span>rl.Image {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> load(imageFilePath, rl.Image, rl.loadImage, checkExtension(<span style="color:#f92672">&amp;</span>.{ <span style="color:#e6db74">&#34;.png&#34;</span>, <span style="color:#e6db74">&#34;.jpg&#34;</span> }));
-</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> image(<span style="color:#66d9ef">comptime</span> imageFilePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#f92672">!</span>rl.Image {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> load(imageFilePath, rl.Image, rl.loadImage, checkExtension(<span style="color:#f92672">&amp;</span>.{ <span style="color:#e6db74">&#34;.png&#34;</span>, <span style="color:#e6db74">&#34;.jpg&#34;</span> }));
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> model(<span style="color:#66d9ef">comptime</span> modelFilePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#f92672">!</span>rl.Model {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> load(modelFilePath, rl.Model, rl.loadModel, checkExtension(<span style="color:#f92672">&amp;</span>.{ <span style="color:#e6db74">&#34;.glb&#34;</span>, <span style="color:#e6db74">&#34;.obj&#34;</span> }));
-</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> model(<span style="color:#66d9ef">comptime</span> modelFilePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#f92672">!</span>rl.Model {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> load(modelFilePath, rl.Model, rl.loadModel, checkExtension(<span style="color:#f92672">&amp;</span>.{ <span style="color:#e6db74">&#34;.glb&#34;</span>, <span style="color:#e6db74">&#34;.obj&#34;</span> }));
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> texture(<span style="color:#66d9ef">comptime</span> textureFilePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#f92672">!</span>rl.Texture2D {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> load(textureFilePath, rl.Texture2D, rl.loadTexture, checkExtension(<span style="color:#f92672">&amp;</span>.{ <span style="color:#e6db74">&#34;.png&#34;</span>, <span style="color:#e6db74">&#34;jpg&#34;</span> }));
-</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> texture(<span style="color:#66d9ef">comptime</span> textureFilePath<span style="color:#f92672">:</span> [<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>]<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#f92672">!</span>rl.Texture2D {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> load(textureFilePath, rl.Texture2D, rl.loadTexture, checkExtension(<span style="color:#f92672">&amp;</span>.{ <span style="color:#e6db74">&#34;.png&#34;</span>, <span style="color:#e6db74">&#34;jpg&#34;</span> }));
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Although a little different than primary FP languages, we managed to shrink a lot code, basically eliminating
 the previous boilerplate. This didn&rsquo;t come for <em>free</em> though, as we are about to see later on.</p>
 <p>Most of the functionality now lives under a function called <code>load</code>, which is not being exposed for the user. This function
