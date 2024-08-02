@@ -30,33 +30,32 @@ so then if the assets' folder moves to somewhere else in the file system, only t
 Let's decide that the first draft will be for image loading. We come up with this as our first attempt:
 
 #+begin_src zig
-  const rl = @import("raylib");
-  const std = @import("std");
+const rl = @import("raylib");
+const std = @import("std");
 
-  const base_filepath = "./assets/";
+const base_filepath = "./assets/";
 
-  fn checkExtension(filePath: [:0]const u8, extensions: []const [:0]const u8) bool {
-      const fileExtension = std.fs.path.extension(filePath);
-      for (extensions) |extension| {
-	  if (std.mem.eql(u8, fileExtension, extension)) {
-	      return true;
-	  }
-      }
-      return false;
-  }
+fn checkExtension(filePath: [:0]const u8, extensions: []const [:0]const u8) bool {
+    const fileExtension = std.fs.path.extension(filePath);
+    for (extensions) |extension| {
+        if (std.mem.eql(u8, fileExtension, extension)) {
+            return true;
+        }
+    }
+    return false;
+}
 
-
-  pub fn image(imageFilePath: [:0]const u8) !rl.Image {
-      const allocator: std.mem.Allocator = std.heap.c_allocator;
-      const fullFilePath = try std.fs.path.joinZ(allocator, &.{ base_filepath, imageFilePath });
-      defer allocator.free(fullFilePath);
-      if (checkExtension(imageFilePath, &.{ ".png", ".jpg" })) {
-	  return rl.loadImage(fullFilePath);
-      } else {
-	  std.debug.print("Error trying to load image: .{s}", .{fullFilePath});
-	  return error.could_not_load_image;
-      }
-  }
+pub fn image(imageFilePath: [:0]const u8) !rl.Image {
+    const allocator: std.mem.Allocator = std.heap.c_allocator;
+    const fullFilePath = try std.fs.path.joinZ(allocator, &.{ base_filepath, imageFilePath });
+    defer allocator.free(fullFilePath);
+    if (checkExtension(imageFilePath, &.{ ".png", ".jpg" })) {
+        return rl.loadImage(fullFilePath);
+    } else {
+        std.debug.print("Error trying to load image: .{s}", .{fullFilePath});
+        return error.could_not_load_image;
+    }
+}
 #+end_src
 
 With the image's file path on hand, we first instantiate an ~allocator~. We'll use it to create the full file path of the
@@ -68,29 +67,29 @@ within the Struct ~assets~ (files in Zig behave like Structs), the user will jus
 Now, imagine that you don't want to only have images: what about models? And textures? Well...
 
 #+begin_src zig
-  pub fn model(modelFilePath: [:0]const u8) !rl.Model {
-      const allocator: std.mem.Allocator = std.heap.c_allocator;
-      const fullFilePath = try std.fs.path.joinZ(allocator, &.{ base_filepath, modelFilePath });
-      defer allocator.free(fullFilePath);
-      if (checkExtension(modelFilePath, &.{ ".glb", ".obj" })) {
-	  return rl.loadModel(fullFilePath);
-      } else {
-	  std.debug.print("Error trying to load model: .{s}", .{fullFilePath});
-	  return error.could_not_load_model;
-      }
-  }
+pub fn model(modelFilePath: [:0]const u8) !rl.Model {
+    const allocator: std.mem.Allocator = std.heap.c_allocator;
+    const fullFilePath = try std.fs.path.joinZ(allocator, &.{ base_filepath, modelFilePath });
+    defer allocator.free(fullFilePath);
+    if (checkExtension(modelFilePath, &.{ ".glb", ".obj" })) {
+        return rl.loadModel(fullFilePath);
+    } else {
+        std.debug.print("Error trying to load model: .{s}", .{fullFilePath});
+	return error.could_not_load_model;
+    }
+}
 
-  pub fn texture(textureFilePath: [:0]const u8) !rl.Texture2D {
-      const allocator: std.mem.Allocator = std.heap.c_allocator;
-      const fullFilePath = try std.fs.path.joinZ(allocator, &.{ base_filepath, textureFilePath });
-      defer allocator.free(fullFilePath);
-      if (checkExtension(textureFilePath, &.{ ".png", ".jpg" })) {
-	  return rl.loadTexture(fullFilePath);
-      } else {
-	  std.debug.print("Error trying to load texture: .{s}", .{fullFilePath});
-	  return error.could_not_load_texture;
-      }
-  }
+pub fn texture(textureFilePath: [:0]const u8) !rl.Texture2D {
+    const allocator: std.mem.Allocator = std.heap.c_allocator;
+    const fullFilePath = try std.fs.path.joinZ(allocator, &.{ base_filepath, textureFilePath });
+    defer allocator.free(fullFilePath);
+    if (checkExtension(textureFilePath, &.{ ".png", ".jpg" })) {
+        return rl.loadTexture(fullFilePath);
+    } else {
+        std.debug.print("Error trying to load texture: .{s}", .{fullFilePath});
+	return error.could_not_load_texture;
+    }
+}
 #+end_src
 
 Underwhelming, isn't it? We have *three* functions that have more similarities than differences. In fact,
@@ -102,50 +101,50 @@ You, being a Functional Programming (FP) fan, had an idea. What if we use the po
 more generic? After some thinking, you ended up with this draft:
 
 #+begin_src zig
-  const rl = @import("raylib");
-  const std = @import("std");
+const rl = @import("raylib");
+const std = @import("std");
 
-  const base_filepath = "./assets/";
+const base_filepath = "./assets/";
 
-  fn load(comptime filePath: [:0]const u8, comptime T: type, loader: fn ([:0]const u8) T, predicate: fn ([:0]const u8) bool) !T {
-      const allocator: std.mem.Allocator = std.heap.c_allocator;
+fn load(comptime filePath: [:0]const u8, comptime T: type, loader: fn ([:0]const u8) T, predicate: fn ([:0]const u8) bool) !T {
+    const allocator: std.mem.Allocator = std.heap.c_allocator;
 
-      const fullFilePath = try std.fs.path.joinZ(allocator, &.{ base_filepath, filePath });
-      defer allocator.free(fullFilePath);
+    const fullFilePath = try std.fs.path.joinZ(allocator, &.{ base_filepath, filePath });
+    defer allocator.free(fullFilePath);
 
-      if (predicate(fullFilePath)) {
-	  return loader(fullFilePath);
-      } else {
-	  std.debug.print("Error trying to load file: .{s}", .{fullFilePath});
-	  return error.could_not_load_asset;
-      }
-  }
+    if (predicate(fullFilePath)) {
+        return loader(fullFilePath);
+    } else {
+        std.debug.print("Error trying to load file: .{s}", .{fullFilePath});
+        return error.could_not_load_asset;
+    }
+}
 
-  fn checkExtension(extensions: []const [:0]const u8) (fn ([:0]const u8) bool) {
-      return struct {
-	  fn check(filePath: [:0]const u8) bool {
-	      const fileExtension = std.fs.path.extension(filePath);
-	      for (extensions) |extension| {
-		  if (std.mem.eql(u8, fileExtension, extension)) {
-		      return true;
-		  }
-	      }
-	      return false;
-	  }
-      }.check;
-  }
+fn checkExtension(extensions: []const [:0]const u8) (fn ([:0]const u8) bool) {
+    return struct {
+        fn check(filePath: [:0]const u8) bool {
+	    const fileExtension = std.fs.path.extension(filePath);
+	    for (extensions) |extension| {
+	        if (std.mem.eql(u8, fileExtension, extension)) {
+		    return true;
+	        }
+	    }
+	    return false;
+	}
+    }.check;
+}
   
-  pub fn image(comptime imageFilePath: [:0]const u8) !rl.Image {
-      return load(imageFilePath, rl.Image, rl.loadImage, checkExtension(&.{ ".png", ".jpg" }));
-  }
+pub fn image(comptime imageFilePath: [:0]const u8) !rl.Image {
+    return load(imageFilePath, rl.Image, rl.loadImage, checkExtension(&.{ ".png", ".jpg" }));
+}
 
-  pub fn model(comptime modelFilePath: [:0]const u8) !rl.Model {
-      return load(modelFilePath, rl.Model, rl.loadModel, checkExtension(&.{ ".glb", ".obj" }));
-  }
+pub fn model(comptime modelFilePath: [:0]const u8) !rl.Model {
+    return load(modelFilePath, rl.Model, rl.loadModel, checkExtension(&.{ ".glb", ".obj" }));
+}
 
-  pub fn texture(comptime textureFilePath: [:0]const u8) !rl.Texture2D {
-      return load(textureFilePath, rl.Texture2D, rl.loadTexture, checkExtension(&.{ ".png", "jpg" }));
-  }
+pub fn texture(comptime textureFilePath: [:0]const u8) !rl.Texture2D {
+    return load(textureFilePath, rl.Texture2D, rl.loadTexture, checkExtension(&.{ ".png", "jpg" }));
+}
 #+end_src
 
 Although a little different than primary FP languages, we managed to shrink a lot code, basically eliminating
