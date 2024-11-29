@@ -10,7 +10,7 @@ Today I will dive into a recent experience I had when playing with [[https://git
 library that adds a set of syntax extensions to the language. In particular, it adds a more-less
 Haskell's /do-notation/ equivalent in Erlang.
 
-With the purpose of re-iterating the message from [[file:../defaultsAreNotDogmas/][Don't make all defaults Dogmas]], I'm here to show another computer science
+With the purpose of re-iterating the message from [[file:../defaultsarenotdogmas/][Don't make all defaults Dogmas]], I'm here to show another computer science
 abstraction that goes beyond a particular community or programming language ecosystem: *monads*. Despite
 its negative popularity (a lot of the time undeserved), monads in some degree and/or scope can heavily
 improve your code's maintanability and readability, assuming everyone involved and any future hires will know
