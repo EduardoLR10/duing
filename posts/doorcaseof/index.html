@@ -263,10 +263,11 @@ instance. A lot of the time we want to do multiple queries into the database and
 sending it only if everything did not fail. An initial naive approach would be to just:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span>  character_map(Pid, Credentials, Connection) <span style="color:#f92672">-&gt;</span>
 </span></span><span style="display:flex;"><span>      Result <span style="color:#f92672">=</span> <span style="color:#66d9ef">case</span> database:<span style="color:#a6e22e">retrieve_character</span>(Credentials, Connection) <span style="color:#66d9ef">of</span>
-</span></span><span style="display:flex;"><span>		   {ok, Character} <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">case</span> database:<span style="color:#a6e22e">retrieve_map</span>(Character, Connection) <span style="color:#66d9ef">of</span>
-</span></span><span style="display:flex;"><span>					  {ok, Map} <span style="color:#f92672">-&gt;</span> {ok, {Character, Map}};
-</span></span><span style="display:flex;"><span>					  {error, Reason} <span style="color:#f92672">-&gt;</span> {error, Reason}
-</span></span><span style="display:flex;"><span>				      <span style="color:#66d9ef">end</span>;
+</span></span><span style="display:flex;"><span>		   {ok, Character} <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>		       <span style="color:#66d9ef">case</span> database:<span style="color:#a6e22e">retrieve_map</span>(Character, Connection) <span style="color:#66d9ef">of</span>
+</span></span><span style="display:flex;"><span>			   {ok, Map} <span style="color:#f92672">-&gt;</span> {ok, {Character, Map}};
+</span></span><span style="display:flex;"><span>			   {error, Reason} <span style="color:#f92672">-&gt;</span> {error, Reason}
+</span></span><span style="display:flex;"><span>		       <span style="color:#66d9ef">end</span>;
 </span></span><span style="display:flex;"><span>		   {error, Reason} <span style="color:#f92672">-&gt;</span> {error, Reason}
 </span></span><span style="display:flex;"><span>	       <span style="color:#66d9ef">end</span>,
 </span></span><span style="display:flex;"><span>      Pid <span style="color:#f92672">!</span> Result.
@@ -383,7 +384,7 @@ one example of using it:</p>
 worse and even more complicated. Then, it begs the question: what is the cause of this? Is it us trying to use the wrong abstraction?
 Are monads that evil? Are we just jamming it into our program to feel some empty pride about ourselves because we are using a fancy
 thing that most nerds don&rsquo;t know about?</p>
-<p>I don&rsquo;t think so, at all, actually. The reason we got into situation is not because the abstraction is not expressing what we want, but
+<p>I don&rsquo;t think so, at all, actually. The reason we got into this situation is not because the abstraction is not expressing what we want, but
 rather that the host language, Erlang in this case, makes it terse for us to express the idea that fits our problem&rsquo;s description. We are
 quite literally fighting its syntax and there are consequences.</p>
 <p>Now, if it is the case that this is an unavoidable problem and the end of the road, we shall consider dropping the entire idea and going back to
