@@ -14,7 +14,7 @@
       
       <guid>https://duing.dev/posts/doorcaseof/</guid>
       <description>Today I will dive into a recent experience I had when playing with erlando &amp;ndash; an Erlang library that adds a set of syntax extensions to the language. In particular, it adds a more-less Haskell&amp;rsquo;s do-notation equivalent in Erlang.
-In a way to re-iterate the message from Don&amp;rsquo;t make all defaults Dogmas, I&amp;rsquo;m here to show another computer science abstraction that goes beyond a particular community or programming language ecosystem: monads.</description>
+With the purpose of re-iterating the message from Don&amp;rsquo;t make all defaults Dogmas, I&amp;rsquo;m here to show another computer science abstraction that goes beyond a particular community or programming language ecosystem: monads.</description>
     </item>
     
     <item>
