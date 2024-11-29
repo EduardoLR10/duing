@@ -54,19 +54,19 @@ When I realized this, I felt sad. At the time, I was not aware of any better way
 to help me alleviate the burden -- at least at first glance. First up, I've made ~process_postgres_result~:
 
 #+begin_src erlang
-process_postgres_result({ok, FullColumns, Values}, select, Fun) ->
-    Fun(FullColumns, Values);
-process_postgres_result({ok, Count}, update, Fun) ->
-    Fun(Count);
-process_postgres_result({ok, Count}, delete, Fun) ->
-    Fun(Count);
-process_postgres_result({ok, Count}, insert, Fun) ->
-    Fun(Count);
-process_postgres_result({ok, _, _, _}, insert, _) ->
-    {error, "Unexpected use of Insert on Server side"};
-process_postgres_result({error, Error}, Tag, _) ->
-    io:format("Tag: ~p\nError: ~p\n", [Error, Tag]),
-    {error, "Unexpected error (operation or PSQL) on Server side"}.
+  process_postgres_result({ok, FullColumns, Values}, select, Fun) ->
+      Fun(FullColumns, Values);
+  process_postgres_result({ok, Count}, update, Fun) ->
+      Fun(Count);
+  process_postgres_result({ok, Count}, delete, Fun) ->
+      Fun(Count);
+  process_postgres_result({ok, Count}, insert, Fun) ->
+      Fun(Count);
+  process_postgres_result({ok, _, _, _}, insert, _) ->
+      {error, "Unexpected use of Insert on Server side"};
+  process_postgres_result({error, Error}, Tag, _) ->
+      io:format("Tag: ~p\nError: ~p\n", [Error, Tag]),
+      {error, "Unexpected error (operation or PSQL) on Server side"}.
 #+end_src
 
 The goal of this function was to better handle internal uses of ~epgsql~. The library changes its output depending on the /kind/ of
