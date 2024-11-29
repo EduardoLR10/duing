@@ -32,10 +32,11 @@ sending it only if everything did not fail. An initial naive approach would be t
 #+begin_src erlang
   character_map(Pid, Credentials, Connection) ->
       Result = case database:retrieve_character(Credentials, Connection) of
-		   {ok, Character} -> case database:retrieve_map(Character, Connection) of
-					  {ok, Map} -> {ok, {Character, Map}};
-					  {error, Reason} -> {error, Reason}
-				      end;
+		   {ok, Character} ->
+		       case database:retrieve_map(Character, Connection) of
+			   {ok, Map} -> {ok, {Character, Map}};
+			   {error, Reason} -> {error, Reason}
+		       end;
 		   {error, Reason} -> {error, Reason}
 	       end,
       Pid ! Result.
@@ -180,7 +181,7 @@ worse and even more complicated. Then, it begs the question: what is the cause o
 Are monads that evil? Are we just jamming it into our program to feel some empty pride about ourselves because we are using a fancy
 thing that most nerds don't know about?
 
-I don't think so, at all, actually. The reason we got into situation is not because the abstraction is not expressing what we want, but
+I don't think so, at all, actually. The reason we got into this situation is not because the abstraction is not expressing what we want, but
 rather that the host language, Erlang in this case, makes it terse for us to express the idea that fits our problem's description. We are
 quite literally fighting its syntax and there are consequences.
 
