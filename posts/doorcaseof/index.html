@@ -278,19 +278,19 @@ as we keep hitting <code>ok~s, and if we find ~error</code> the entire thing sto
 <h2 id="attack-of-functions">Attack of Functions</h2>
 <p>When I realized this, I felt sad. At the time, I was not aware of any better way to handle this problem than to make auxiliary functions
 to help me alleviate the burden &ndash; at least at first glance. First up, I&rsquo;ve made <code>process_postgres_result</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span><span style="color:#a6e22e">process_postgres_result</span>({ok, FullColumns, Values}, select, Fun) <span style="color:#f92672">-&gt;</span>
-</span></span><span style="display:flex;"><span>    Fun(FullColumns, Values);
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">process_postgres_result</span>({ok, Count}, update, Fun) <span style="color:#f92672">-&gt;</span>
-</span></span><span style="display:flex;"><span>    Fun(Count);
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">process_postgres_result</span>({ok, Count}, delete, Fun) <span style="color:#f92672">-&gt;</span>
-</span></span><span style="display:flex;"><span>    Fun(Count);
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">process_postgres_result</span>({ok, Count}, insert, Fun) <span style="color:#f92672">-&gt;</span>
-</span></span><span style="display:flex;"><span>    Fun(Count);
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">process_postgres_result</span>({ok, _, _, _}, insert, _) <span style="color:#f92672">-&gt;</span>
-</span></span><span style="display:flex;"><span>    {error, <span style="color:#e6db74">&#34;Unexpected use of Insert on Server side&#34;</span>};
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">process_postgres_result</span>({error, Error}, Tag, _) <span style="color:#f92672">-&gt;</span>
-</span></span><span style="display:flex;"><span>    io:<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;Tag: </span><span style="color:#e6db74">~p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Error: </span><span style="color:#e6db74">~p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, [Error, Tag]),
-</span></span><span style="display:flex;"><span>    {error, <span style="color:#e6db74">&#34;Unexpected error (operation or PSQL) on Server side&#34;</span>}.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span>  process_postgres_result({ok, FullColumns, Values}, select, Fun) <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      Fun(FullColumns, Values);
+</span></span><span style="display:flex;"><span>  process_postgres_result({ok, Count}, update, Fun) <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      Fun(Count);
+</span></span><span style="display:flex;"><span>  process_postgres_result({ok, Count}, delete, Fun) <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      Fun(Count);
+</span></span><span style="display:flex;"><span>  process_postgres_result({ok, Count}, insert, Fun) <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      Fun(Count);
+</span></span><span style="display:flex;"><span>  process_postgres_result({ok, _, _, _}, insert, _) <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      {error, <span style="color:#e6db74">&#34;Unexpected use of Insert on Server side&#34;</span>};
+</span></span><span style="display:flex;"><span>  process_postgres_result({error, Error}, Tag, _) <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      io:<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;Tag: </span><span style="color:#e6db74">~p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Error: </span><span style="color:#e6db74">~p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, [Error, Tag]),
+</span></span><span style="display:flex;"><span>      {error, <span style="color:#e6db74">&#34;Unexpected error (operation or PSQL) on Server side&#34;</span>}.
 </span></span></code></pre></div><p>The goal of this function was to better handle internal uses of <code>epgsql</code>. The library changes its output depending on the <em>kind</em> of
 query you are executing, e.g., selects, updates, deletes, inserts, etc. So the idea would be that you call the library with your query and
 immediately call this process result function informing which type of query you did and what type of treatment you want to apply with its
