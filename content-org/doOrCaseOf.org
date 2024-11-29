@@ -306,8 +306,8 @@ sand, raised by a bad experience with a vendor/language/hardware.
 The ability to separate abstractions and their gains/loses (by themselves) from their implementation counterparts is getting extinct.
 Monads are way bigger than what Haskell offers it -- we just saw it being done in Erlang, and further you can see all the way from
 hints to full behavior of Monads in various degrees in other languages, e.g., Erlang, Clojure, F#, OCaml, Rust just to name a few. After thinking
-for a while, one starts to get signs of Monads being a generalization of [[https://en.wikipedia.org/wiki/Continuation-passing_style][CPS]]; something that opens your mind and completely debunk the idea
-that it is tied to Haskell and it should be treated as a Haskell-exclusive-thing. There is a difference between a community having a heavier stance on an
+for a while, one starts to get signs of Monads being a generalization of [[https://en.wikipedia.org/wiki/Continuation-passing_style][CPS]]; something that opens your mind and completely debunks the idea
+that it is tied to Haskell and it should be treated as a Haskell-exclusive thing. There is a difference between a community having a heavier stance on an
 abstraction and talking more about it, and it being owned by that community. Just like it does not matter how much the PGSQL/SQLite/Oracle communities
 talk about DBMSs, none of them will ever own the idea of the Relational Model, Haskellers can have decades of monadic conversations and it won't make the
 abstraction theirs.
