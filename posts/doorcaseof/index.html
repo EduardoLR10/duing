@@ -316,7 +316,7 @@ data if we happen to succeed with the query? Finally, we call <code>process_post
 our lambda <code>Fun</code> are familiar: they are the same as we saw in the previous section. And, as we make more of those queries, we plan to follow
 a pattern to have reasonable expectations when calling those functions in the main program, i.e., we shall expect that all of them will respect
 <code>ok</code> with the correct value or <code>error</code> with the reason for failure. There may be a few exceptions, but the rule should be clear.</p>
-<h2 id="revenge-of-the-monads">Revenge of The monads</h2>
+<h2 id="revenge-of-the-monad">Revenge of The Monad</h2>
 <p>Our function <code>process_postgres_result</code> allows us to more conveniently get our values; those that remind us of Haskell&rsquo;s <code>Either</code> or F#&rsquo;s <code>Result</code>.
 Now it comes the question: how are we suppose to combine them? Initially, my naive previous self thought we could improve things a bit by
 starting to use <code>psql_bind</code>:</p>
