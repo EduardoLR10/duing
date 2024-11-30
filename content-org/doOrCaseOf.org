@@ -51,7 +51,7 @@ After doing that type of code enough times (or if you are used to that type of s
 about monads show images or diagrams to illustrate short-circuit behavior. And the intuition is simple for that particular monad: we proceed
 as we keep hitting ~ok~, and if we find ~error~ the entire thing stops and we just bubble that up to whoever called the entire process.
 
-* Attack of Functions
+* Attack of The Functions
 
 When I realized this, I felt sad. At the time, I was not aware of any better way to handle this problem than to make auxiliary functions
 to help me alleviate the burden -- at least at first glance. First up, I've made ~process_postgres_result~:
