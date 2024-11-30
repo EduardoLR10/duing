@@ -316,7 +316,7 @@ perspective, we can't say that the /implementation/ of monads in Erlang using ~e
 
 Achieving perfection, however, was never my intention. My goal was to demonstrate how an abstraction can fullfil requirements even if some annoyance
 appears and make its use inconvenient. The understanding of the problem *and* the abstraction (monads in this case) was the key factor for me to pursue
-with this solution, regardless of how ugly it was. Fortunately, in this case, there was a way to get around the barrier of use (~erlando~ save our day)
+with this solution, regardless of how ugly it was. Fortunately, in this case, there was a way to get around the barrier of use (~erlando~ saved our day)
 and now using the chosen abstraction does not culminate in a heavy trade-off on readability.
 
 Even more attentive Erlang enthusiasts may point out that the original version of ~erlando~ supported /monad transformers/ -- something that is
