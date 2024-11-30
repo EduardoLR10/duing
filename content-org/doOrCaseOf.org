@@ -350,7 +350,7 @@ abstraction theirs.
 This journey not only improved my Erlang code, but it solidified the notion that an idea may be the appropriate one but you may be limited
 by the available technologies your ecosystem provides, and thus you may have to surrender the /better/ idea just because of that limiting factor. The trade-offs may be
 too heavy to bear, and it is necessary to properly let go of it knowing what is being left on the table. You are /choosing/ to not persue it for
-various reasons (cost reasons, efficiency reasons, staff reasons, etc) being aware of the consequences of doing so.
-
+various reasons (cost reasons, efficiency reasons, staff reasons, etc) being aware of the consequences of doing so. Lyceum's case was the one in which the abstraction
+that solves the problem was reinvigorated because of a library diminishing one of the trade-offs; namely readability.
 
  
