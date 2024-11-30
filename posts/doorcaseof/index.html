@@ -278,7 +278,7 @@ back to the client with an error explaining why we failed.</p>
 <p>After doing that type of code enough times (or if you are used to that type of situation), a pattern starts to emerge. Many tutorials
 about monads show images or diagrams to illustrate short-circuit behavior. And the intuition is simple for that particular monad: we proceed
 as we keep hitting <code>ok</code>, and if we find <code>error</code> the entire thing stops and we just bubble that up to whoever called the entire process.</p>
-<h2 id="attack-of-functions">Attack of Functions</h2>
+<h2 id="attack-of-the-functions">Attack of The Functions</h2>
 <p>When I realized this, I felt sad. At the time, I was not aware of any better way to handle this problem than to make auxiliary functions
 to help me alleviate the burden &ndash; at least at first glance. First up, I&rsquo;ve made <code>process_postgres_result</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span>  process_postgres_result({ok, FullColumns, Values}, select, Fun) <span style="color:#f92672">-&gt;</span>
