@@ -99,7 +99,7 @@ our lambda ~Fun~ are familiar: they are the same as we saw in the previous secti
 a pattern to have reasonable expectations when calling those functions in the main program, i.e., we shall expect that all of them will respect
 ~ok~ with the correct value or ~error~ with the reason for failure. There may be a few exceptions, but the rule should be clear.
 
-* Revenge of The monads
+* Revenge of The Monad
 
 Our function ~process_postgres_result~ allows us to more conveniently get our values; those that remind us of Haskell's ~Either~ or F#'s ~Result~.
 Now it comes the question: how are we suppose to combine them? Initially, my naive previous self thought we could improve things a bit by
