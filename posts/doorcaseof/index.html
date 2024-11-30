@@ -254,17 +254,17 @@ how to deal with them.</p>
 <p>A great sign that an abstraction is not exclusive to a particular implementation or ecosystem is if it can be
 represented without any type of programming jargon; a mere drawing does the job just fine &ndash; sometimes even
 simple enough that people outside of our programming or mathematical bubbles can understand. And I do believe this is the
-case for Monads; you can find hints of them in many places. Hopefully at the end of this post, you will agree
+case for monads; you can find hints of them in many places. Hopefully at the end of this post, you will agree
 that its idea is useful regardless of any specific implementation, and however many problems the implementations introduce.</p>
 <h2 id="case-menace">Case Menace</h2>
 <p>Our story begins with me unsatisfied with particular parts of a project of mine. The project is <a href="https://github.com/Dr-Nekoma/lyceum">Lyceum</a> &ndash; an MMO I&rsquo;ve
 been developing with close friends. In there, we use a PGSQL library for Erlang, <a href="https://github.com/epgsql/epgsql">epgsql</a>, to interact with our database
 instance. A lot of the time we want to do multiple queries into the database and compose our payload and dispatch it to the client;
 sending it only if everything did not fail. An initial naive approach would be to just:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span>  character_map(Pid, Credentials, Connection) <span style="color:#f92672">-&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span>  character_map(Pid, MapName, Credentials, Connection) <span style="color:#f92672">-&gt;</span>
 </span></span><span style="display:flex;"><span>      Result <span style="color:#f92672">=</span> <span style="color:#66d9ef">case</span> database:<span style="color:#a6e22e">retrieve_character</span>(Credentials, Connection) <span style="color:#66d9ef">of</span>
 </span></span><span style="display:flex;"><span>		   {ok, Character} <span style="color:#f92672">-&gt;</span>
-</span></span><span style="display:flex;"><span>		       <span style="color:#66d9ef">case</span> database:<span style="color:#a6e22e">retrieve_map</span>(Character, Connection) <span style="color:#66d9ef">of</span>
+</span></span><span style="display:flex;"><span>		       <span style="color:#66d9ef">case</span> database:<span style="color:#a6e22e">retrieve_map</span>(MapName, Connection) <span style="color:#66d9ef">of</span>
 </span></span><span style="display:flex;"><span>			   {ok, Map} <span style="color:#f92672">-&gt;</span> {ok, {Character, Map}};
 </span></span><span style="display:flex;"><span>			   {error, Reason} <span style="color:#f92672">-&gt;</span> {error, Reason}
 </span></span><span style="display:flex;"><span>		       <span style="color:#66d9ef">end</span>;
@@ -316,12 +316,12 @@ data if we happen to succeed with the query? Finally, we call <code>process_post
 our lambda <code>Fun</code> are familiar: they are the same as we saw in the previous section. And, as we make more of those queries, we plan to follow
 a pattern to have reasonable expectations when calling those functions in the main program, i.e., we shall expect that all of them will respect
 <code>ok</code> with the correct value or <code>error</code> with the reason for failure. There may be a few exceptions, but the rule should be clear.</p>
-<h2 id="revenge-of-the-monads">Revenge of The Monads</h2>
+<h2 id="revenge-of-the-monads">Revenge of The monads</h2>
 <p>Our function <code>process_postgres_result</code> allows us to more conveniently get our values; those that remind us of Haskell&rsquo;s <code>Either</code> or F#&rsquo;s <code>Result</code>.
 Now it comes the question: how are we suppose to combine them? Initially, my naive previous self thought we could improve things a bit by
 starting to use <code>psql_bind</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span>  psql_bind(MonadicValue, []) <span style="color:#f92672">-&gt;</span>
-</span></span><span style="display:flex;"><span>      MonadicValue;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span>  psql_bind(monadicValue, []) <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      monadicValue;
 </span></span><span style="display:flex;"><span>  psql_bind(ok, _) <span style="color:#f92672">-&gt;</span>
 </span></span><span style="display:flex;"><span>      ok;
 </span></span><span style="display:flex;"><span>  psql_bind({ok, Result}, [Fun | Tail]) <span style="color:#f92672">-&gt;</span>
@@ -334,13 +334,13 @@ starting to use <code>psql_bind</code>:</p>
 unwrap those values for us and pipe it to the next available function or stop immediately if an error occurred. Given that we plan to use this with our
 previous function, <code>process_postgres_result</code>, these two are suppose to have some chemistry together. Sadly, I was not satisfied with the end result. Here&rsquo;s
 one example of using it:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span>  character_map(Pid, Credentials, Connection) <span style="color:#f92672">-&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span>  character_map(Pid, MapName, Credentials, Connection) <span style="color:#f92672">-&gt;</span>
 </span></span><span style="display:flex;"><span>      Result <span style="color:#f92672">=</span>
 </span></span><span style="display:flex;"><span>	  database:<span style="color:#a6e22e">psql_bind</span>(
 </span></span><span style="display:flex;"><span>	    database:<span style="color:#a6e22e">retrieve_character</span>(Credentials, Connection),
 </span></span><span style="display:flex;"><span>	    [<span style="color:#66d9ef">fun</span>(Character) <span style="color:#f92672">-&gt;</span>
 </span></span><span style="display:flex;"><span>		     database:<span style="color:#a6e22e">psql_bind</span>(
-</span></span><span style="display:flex;"><span>		       database:<span style="color:#a6e22e">retrieve_map</span>(Character, Connection),
+</span></span><span style="display:flex;"><span>		       database:<span style="color:#a6e22e">retrieve_map</span>(MapName, Connection),
 </span></span><span style="display:flex;"><span>		       [<span style="color:#66d9ef">fun</span>(Map) <span style="color:#f92672">-&gt;</span> {ok, {Character, Map}} <span style="color:#66d9ef">end</span>])
 </span></span><span style="display:flex;"><span>	     <span style="color:#66d9ef">end</span>]),
 </span></span><span style="display:flex;"><span>      Pid <span style="color:#f92672">!</span> Result.
@@ -399,11 +399,11 @@ in the comment that you <em>can</em> actually make new syntax in Erlang, listing
 I was having; I want to have nicer syntax to express PGSQL queries in a monadic way. After some digging, I&rsquo;ve found <a href="https://github.com/egobrain/erlando">a fork of the original library</a> as a package
 in <code>hex</code>, something that I can use in Erlang.</p>
 <p>And when looking at the <code>README</code> of <code>erlando</code>, this is the first thing I read:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span>  do([Monad ||
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span>  do([monad ||
 </span></span><span style="display:flex;"><span>      A <span style="color:#f92672">&lt;-</span> foo(),
 </span></span><span style="display:flex;"><span>      B <span style="color:#f92672">&lt;-</span> bar(A, dog),
 </span></span><span style="display:flex;"><span>      ok]).
-</span></span></code></pre></div><p>Are you telling me that I can not only make a <code>Monad</code>, but also that there is a dedicated syntax <code>erlando</code> provides me to nicely chain operations together in
+</span></span></code></pre></div><p>Are you telling me that I can not only make a <code>monad</code>, but also that there is a dedicated syntax <code>erlando</code> provides me to nicely chain operations together in
 a sequence? Sounds too good to be true. And let me share with you the good news: it is true.</p>
 <h2 id="the-bind-strikes-back">The Bind Strikes Back</h2>
 <p>Erlando provides 3 particular syntax extensions for Erlang, one of which is a Haskell-like <code>do-notation</code>. Further, it provides some common monads that you usually
@@ -438,7 +438,7 @@ of this new added syntax:</p>
 The final piece of the puzzle is to understand how can we get this power for our custom problem. How to make it interact with <code>epgsql</code>? Can <code>erlando</code>&rsquo;s do-notation
 be combined with it somehow? How to get there?</p>
 <h2 id="return-of-the-do">Return of the Do</h2>
-<p>The answer to this quest is the ability to make a custom <code>Monad</code>. Fortunately, this is something supported by <code>erlando</code>. Hence, behold <code>postgres_m</code>! Our custom
+<p>The answer to this quest is the ability to make a custom <code>monad</code>. Fortunately, this is something supported by <code>erlando</code>. Hence, behold <code>postgres_m</code>! Our custom
 monad can now give another flavor to our registry check function:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span>  check_user(Username, Password, Connection) <span style="color:#f92672">-&gt;</span>
 </span></span><span style="display:flex;"><span>    Query <span style="color:#f92672">=</span>
@@ -451,8 +451,14 @@ monad can now give another flavor to our registry check function:</p>
 </span></span><span style="display:flex;"><span>	       [UserData | _] <span style="color:#f92672">-&gt;</span> return(maps:get(e_mail, UserData))
 </span></span><span style="display:flex;"><span>	   <span style="color:#66d9ef">end</span>]).
 </span></span></code></pre></div><p>The gains on this function are not that incredible; but at least it looks nicer in my opinion. The flow of data can be more easily understood and the nesting of operations
-is under control. On the contrary, our previous <code>mess</code> function got immeasurable gains:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span>  mess(..., Connection) <span style="color:#f92672">-&gt;</span>
+is under control. On the contrary, our previous <code>character_map</code> and <code>mess</code> functions got great to immeasurable gains:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span>  character_map(Pid, MapName, Credentials, Connection) <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>      Result <span style="color:#f92672">=</span> do([error_m ||
+</span></span><span style="display:flex;"><span>		      Character <span style="color:#f92672">&lt;-</span> database:<span style="color:#a6e22e">retrieve_character</span>(Credentials, Connection),
+</span></span><span style="display:flex;"><span>		      Map <span style="color:#f92672">&lt;-</span> database:<span style="color:#a6e22e">retrieve_map</span>(MapName, Connection),
+</span></span><span style="display:flex;"><span>		      return({Character, Map})]),
+</span></span><span style="display:flex;"><span>      Pid <span style="color:#f92672">!</span> Result.
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-erlang" data-lang="erlang"><span style="display:flex;"><span>  mess(..., Connection) <span style="color:#f92672">-&gt;</span>
 </span></span><span style="display:flex;"><span>      do([postgres_m ||
 </span></span><span style="display:flex;"><span>	     UnprocessedMap <span style="color:#f92672">&lt;-</span> {Dimensions, select},
 </span></span><span style="display:flex;"><span>	     {ok, {Width, Height}} <span style="color:#f92672">=</span> check_dimensions(UnprocessedMap),
@@ -470,16 +476,35 @@ is under control. On the contrary, our previous <code>mess</code> function got i
 </span></span><span style="display:flex;"><span>		     fail(<span style="color:#e6db74">&#34;Map can&#39;t be instantiated!&#34;</span>);
 </span></span><span style="display:flex;"><span>		true <span style="color:#f92672">-&gt;</span> fail(<span style="color:#e6db74">&#34;Mismatch between dimensions, tiles and objects!&#34;</span>)
 </span></span><span style="display:flex;"><span>	     <span style="color:#66d9ef">end</span>]).
-</span></span></code></pre></div><h2 id="conclusions">Conclusions</h2>
+</span></span></code></pre></div><h2 id="the-trade-off-awakens">The Trade-Off Awakens</h2>
+<p>Curious readers may go to the source code and undercover the secrets behind these transformations. Let me tell you upfront that non-ideal code
+was necessary to make this happen given Erlang&rsquo;s constraints and how <code>erlando</code> works.</p>
+<p>The implementation of the <code>postgres_m</code> monad is rather unsafe and totally exploits the fact that this is a <em>parser extension</em> <strong>and</strong> that this is
+a dynamically typed language. The final result is a monad that <em>can</em> blow up and definitely should trigger most Haskellers out there. From a Haskell
+perspective, we can&rsquo;t say that the <em>implementation</em> of monads in Erlang using <code>erlando</code> is feature-equivalent with Haskell&rsquo;s &ndash; a judgement that I share.</p>
+<p>Achieving perfection, however, was never my intention. My goal was to demonstrate how an abstraction can fullfil requirements even if some annoyance
+appears and make its use inconvenient. The understanding of the problem <strong>and</strong> the abstraction (monads in this case) was the key factor for me to pursue
+with this solution, regardless of how ugly it was. Fortunately, in this case, there was a way to get around the barrier of use (<code>erlando</code> save our day)
+and now using the chosen abstraction does not culminate in a heavy trade-off on readability.</p>
+<p>Even more attentive Erlang enthusiasts may point out that the original version of <code>erlando</code> supported <em>monad transformers</em> &ndash; something that is
+absent from Lyceum at the moment of writing this post. Usually, this is one of the main complaints when using monads: their composition via
+transformers is for sure non-ideal, to say the least. Solutions to this problem ended up producing <a href="https://tech.fpcomplete.com/haskell/library/rio/">RIO</a> and <a href="https://en.wikipedia.org/wiki/Effect_system">effect systems</a>.</p>
+<p>The counter to this concern is twofold: this is <strong>not</strong> Haskell and we <strong>don&rsquo;t</strong> have to use transformers. Because we are using Erlang, the idea that we are
+&ldquo;locked in a monad and need to go back and forth using lifts&rdquo; is a non-issue, something that, for better or for worse, is due to the way we are achiving
+monads in the code (parser extension + dynamic typing). Hence, this allows us to use do-notation <strong>only</strong> where it makes a huge different, keeping everything
+else untouched. Identifying where to use it is something that practice can refine, alongside establishing some common conventions, e.g., you should <em>always</em>
+use it when doing a sequence of PGSQL queries in Lyceum, etc. Even if someday we ended up adding transformers to our backend code, the same rules apply: Erlang
+is not Haskell and we gotta choose wisely when to use it.</p>
+<h2 id="conclusions">Conclusions</h2>
 <p>A common mistake people commit in our industry is to conflate an abstraction or idea with its implementation. They notice
 that a particular implementation is problematic and generalize it to not only other alternative implementations (usually without
 the proper research) but then the craziness goes all the way up to the idea itself. Wrong or underperforming implementations tints
 the entire abstraction under a negative light. That is the recipe for a long-lasting trauma, that routes itself on a kingdom of
 sand, raised by a bad experience with a vendor/language/hardware.</p>
 <p>The ability to separate abstractions and their gains/loses (by themselves) from their implementation counterparts is getting extinct.
-Monads are way bigger than what Haskell offers it &ndash; we just saw it being done in Erlang, and further you can see all the way from
-hints to full behavior of Monads in various degrees in other languages, e.g., Erlang, Clojure, F#, OCaml, Rust just to name a few. After thinking
-for a while, one starts to get signs of Monads being a generalization of <a href="https://en.wikipedia.org/wiki/Continuation-passing_style">CPS</a>; something that opens your mind and completely debunks the idea
+monads are way bigger than what Haskell offers it &ndash; we just saw it being done in Erlang, and further you can see all the way from
+hints to full behavior of monads in various degrees in other languages, e.g., Erlang, Clojure, F#, OCaml, Rust just to name a few. After thinking
+for a while, one starts to get signs of monads being a generalization of <a href="https://en.wikipedia.org/wiki/Continuation-passing_style">CPS</a>; something that opens your mind and completely debunks the idea
 that it is tied to Haskell and it should be treated as a Haskell-exclusive thing. There is a difference between a community having a heavier stance on an
 abstraction and talking more about it, and it being owned by that community. Just like it does not matter how much the PGSQL/SQLite/Oracle communities
 talk about DBMSs, none of them will ever own the idea of the Relational Model, Haskellers can have decades of monadic conversations and it won&rsquo;t make the
