@@ -33,7 +33,7 @@ abstractions used as models for these artifacts start to become apparent. As you
 the core of its role/functionality/purpose, the essence of a new building block has been added to your library.
 
 The second part of the hypothesis is about speed and achieving the title of specialist. The reason the first part is a must to achieve the second part
-relies on the fact that a specialist /must/ also acquire the fundamental blocks the generalist has mostly acquired through his initial, but deep enough, exploration.
+relies on the fact that a specialist /must/ also acquire the fundamental blocks the generalist has acquired through his initial, but deep enough, exploration.
 
 #+BEGIN_QUOTE
 The specialist is the one who possess great understanding of a particular series or group of fundamental building blocks and the blocks orbitting
