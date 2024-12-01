@@ -1,0 +1,132 @@
+#+hugo_base_dir: ../
+#+hugo_tags: lesson
+
+#+title: The Generalist is the greatest Specialist
+
+#+date: 2024-12-01
+#+author: Eduardo Lemos
+
+The title of this post is a thesis -- an idea that I'm not really sure it is true for certain but I
+want to have a record of its details written somewhere.
+
+It has been a while since I have these thoughts floating around in my head. It pops up every once in
+a while, specially when I see other programmers defend the idea that to reach success your duty is
+to become a specialist in a particular technology/language/database. They argue that it is more valuable
+to have a deep understanding of something rather than a broad and shallow one.
+
+My attempt is to argue that such conclusion is not the case or, at least, it is not perfectly accurate.
+
+* Foundation
+
+The main thesis is the following:
+
+#+BEGIN_QUOTE
+The generalist, the one who possess vast amount of knowledge about the essence of fundamental building blocks, is the
+one that more rapidly becomes the greatest specialist.
+#+END_QUOTE
+
+Let us go by parts, piece by piece, to understand this thesis. The first part mentions that a /generalist/ is someone that
+has acquired the /essence/ of multiple /fundamental building blocks/, i.e., someone who has understood what [[https://marcosmagueta.com/blog/2024/method-worship/][it means for something to be]], its
+essence, of pieces of knowledge that foundational to build more complicated pieces (you can even say that they /compose/ a greater piece).
+How to achieve such goal? The answer resides in specific technologies/languages/databases. By exploring one of those deep /enough/, fundamental
+abstractions used to build these artifacts start to become apparent. As you move from artifact to artifact and play with it for enough time to grasp
+the core of its role/functionality/purpose, a new building block has been added to your library.
+
+The second part of the hypothesis is about speed and achieving the title of specialist. The reason the first part is a must to achieve the second part
+relies on the fact that a specialist /must/ also acquire the fundamental blocks the generalist has mostly acquired through his initial, but deep enough, exploration.
+However, as the stack of nuances and abstractions grow during the dive into an artifact, the higher the chances are that the generalist phase of your learning
+did not caught it. At first glance, it seems that this is where the foundation falls apart.
+
+* Patterns
+
+The main thesis is supported by an auxiliary premise:
+
+#+BEGIN_QUOTE
+The essence of fundamental building blocks tend to repeat themselves, regardless of the domain.
+#+END_QUOTE
+
+The purpose of the second premise is to establish that the set of building blocks discovered by the generalist when studying domain A has high
+chances of appearing again when swapping to domain B. Hence, the understanding of a previous explored set can be /shared/ or /transported/ to
+the exploration of a different domain.
+
+Another detail to consider is that because our premises mention the essence of such blocks, chances are that between domain A and B, the blocks are not
+strictly equal, but rather /isomorphic/, i.e., there is some sort of [[https://en.wikipedia.org/wiki/Isomorphism][mapping or transformation]] that when used can lead from the first to the second. The generalist's bag
+of tricks is full of essences, not of individual instances or implementations. Hence, it is expected from the generalist that, if both premises follow,
+that the variety of trips and discoveries will ultimately pay off at end, given that at some point the cost of diving into a new area will be heavily
+diminished by the accumulated essences. Only minor specific details will remain to be learned.
+
+* Practice
+
+This brainstorm establishes that the problem that we face with the dilemma between generalist versus specialist is not of choice, but rather that one
+can work as mean to achieve the other. There are, however, questions that were left unanswered: how does one know they played with something "deep enough"?
+Or rather, how do you know you stumbled upon an "essence"? I propose that one should pay attention to [[https://marcosmagueta.com/blog/2024/method-worship/][what stays across multiple changes]]. Let me break
+down what I mean.
+
+In order to find an essence, we must get rid of specific instance/implementation aspects and go further to what remains there regardless of those details.
+Let us pick a coffee machine as an example. An electrical engineer may /implement/ such idea in C, C++, Rust or Zig. All those programming languages are /enconding/
+a way to express the same fundamental idea. One developing such a project may go further and identify that a coffe machine is not the end of the road; you later
+come to the conclusion that such a machine is an instance of a [[https://en.wikipedia.org/wiki/Automaton][automaton]], which then can be refined further as an instance of a [[https://en.wikipedia.org/wiki/Abstract_state_machine][state machine]]. For example,
+[[https://en.wikipedia.org/wiki/Distillation][the distillation process]] of such an exploration can create a grap that goes as follows (example for illustration purposes):
+
+#+BEGIN_QUOTE
+Zig -> Statement-based -> State Machine -> Turing Machine -> Turing Completeness
+Zig -> Mutability -> Memory -> Tape -> Turing Machine -> Turing Completeness
+
+Coffee Machine -> Automaton -> State Machine
+Semaphore -> Automaton -> State Machine
+#+END_QUOTE
+
+Our electrical engineer, being a primal example of a generalist, chose to change gears and went the explore [[https://www.haskell.org/][Haskell land]]. When playing with it, he decided to
+implement the same coffee machine as he did in Zig:
+
+#+BEGIN_QUOTE
+Haskell -> Expression-based -> Substitutions -> Lambda Calculus
+Haskell -> Immutability -> Equational Reasoning -> Lambda Calculus
+
+Coffee Machine -> Automaton -> State Machine
+Semaphore -> Automaton -> State Machine
+#+END_QUOTE
+
+Driven by his intuition that Turing Machines and Lambda Calculus had some sort of connection, our engineer found himself looking for the [[https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis][Church-Turing thesis]] and so on
+and so forth; the journey never stops. The generalist's goal is to build a [[https://en.wikipedia.org/wiki/Zettelkasten][graph of fundamental building blocks of knowledge]] in which the arrows always go from something
+to its essence. Practice has shown that as the graph grows, faster it is to find yourself home with something you already know, but wearing a different set of clothes. It is
+almost like you have been using glasses that progressively improve and you can more easily see the /real/ face of something; the makeup may be completely and utterly different
+from time to time but the essence is intact.
+
+* Programming
+
+Programmers face in their daily jobs artifacts that were built by many layers of other concepts. Hence, it is usually not immediate that one identifies what in
+that stack of ideas is really essence-worthy. This implies that, in onion-peel fashion, we should go as further as we can -- we can't accept anything as a black box
+that just works, or at least, not keep it as completely black. Revealing the internals of something gets us closer to whatever pattern we may have seen before
+and, if we haven't, we for sure will encounter
+something worth remembering for later. The best part of this process is that as we progress and our graph becomes fuller and fuller, more frequently we will find
+ourselves rapidly getting up to speed with something untouched before.
+
+Of course, it is not the case that only the /fundamental/ or /deepest/ building blocks will provide help. Those ones give you the /most/ amount of help -- multiple
+previous understanding can be loaded from your "cache". So, it may be the case that an intermediary node in the graph can already give some support. For instance, maybe
+after suffering days with Rust's borrow checker, that ~Segmentation Fault~ in your C++ code finally makes sense. A particular implementation in C was ugly no matter
+what you tried, and after doing some higher-order functions in Haskell, now you came up with a better design. After swallowing all that spaguetti open-source code of PostgreSQL,
+now you may have a new hypothesis on why your SQL Server query is so slow. All that heavy work that you did learning Prolog or Mercury finally paid off: now relational
+databases make way more sense to you. You don't regret anymore listening to your friend explaining Bitcoin and blockchain now that you realized that
+he gave you an idea on how to enhance the security of your system with a new cryptographic function.
+
+Thus, we just identified another bonus that is particularly useful for programmers: intermediary steps towards the essence of the concepts /also/ give you gains when
+switching areas. The generalist mindset provides /cumulative/ gains as the graph evolves. The previous effort in evolving the web of blocks has a gain that is not /linear/,
+but rather /exponential/.
+
+* Conclusions
+
+This thesis came to be as a continuation of my two previous posts, [[file:../doorcaseof/][Do or Case Of; there is no Try]] and [[file:../defaultsarenotdogmas/][Don't make all defaults Dogmas]]. In those posts, I push the idea
+that there are abstractions that are beyond a specific implementation or instance; the relational model abstraction is not PostgreSQL nor SQL Server nor Oracle. And the reason
+that is the case is because those abstractions are closer to being essences -- nodes very deep in the graph of fundamental building blocks. Also described in those posts is
+my frustration on people making confusions on the abstraction and its specific implemetation; conflating nodes that are leaves on the graph with the ones that are deeply in the
+graph.
+
+It seems to me that the so-called /specialist/ in our industry is not the one that goes deeper in the chain of knowledge and reach the core abstraction of something. Instead, it is the one
+that knows piles upon piles of details about leaf nodes. They don't go to lenghts in order to reach the relational model from SQL Server, but to know every single and
+minor detail about Microsoft's database and its internal functionality. They don't explore the intricacies of what a web module bundler actually does, but rather memorize
+what to do when facing a problem with webpack. They call themselves pragmatics when they clearly are not picking [[file:../pragmatism/][the long-term practical solution]] of gathering fundamental
+building blocks. They feel proud about themselves by murdering the [[file:../beyondhackers/][tinkerer and enthusiastic spirit of the generalist mindset, the foundation of what it means to be a programmer]].
+
+Let us stop overevaluting the importance of leaf nodes. Let us start to contemplate the graph in all its glory. Let us push further,
+beyond the realms of implementation and be fascinated with what is waiting for us on the most arrow-dense areas of human knowledge. 
