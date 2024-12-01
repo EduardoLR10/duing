@@ -68,24 +68,24 @@ a way to express the same fundamental idea. One developing such a project may go
 come to the conclusion that such a machine is an instance of a [[https://en.wikipedia.org/wiki/Automaton][automaton]], which then can be refined further as an instance of a [[https://en.wikipedia.org/wiki/Abstract_state_machine][state machine]]. For example,
 [[https://en.wikipedia.org/wiki/Distillation][the distillation process]] of such an exploration can create a grap that goes as follows (example for illustration purposes):
 
-#+BEGIN_QUOTE
+#+BEGIN_CODE
 Zig -> Statement-based -> State Machine -> Turing Machine -> Turing Completeness
 Zig -> Mutability -> Memory -> Tape -> Turing Machine -> Turing Completeness
-
+#+END_CODE
 Coffee Machine -> Automaton -> State Machine
 Semaphore -> Automaton -> State Machine
-#+END_QUOTE
+#+END_CODE
 
 Our electrical engineer, being a primal example of a generalist, chose to change gears and went the explore [[https://www.haskell.org/][Haskell land]]. When playing with it, he decided to
 implement the same coffee machine as he did in Zig:
 
-#+BEGIN_QUOTE
+#+BEGIN_CODE
 Haskell -> Expression-based -> Substitutions -> Lambda Calculus
 Haskell -> Immutability -> Equational Reasoning -> Lambda Calculus
 
 Coffee Machine -> Automaton -> State Machine
 Semaphore -> Automaton -> State Machine
-#+END_QUOTE
+#+END_CODE
 
 Driven by his intuition that Turing Machines and Lambda Calculus had some sort of connection, our engineer found himself looking for the [[https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis][Church-Turing thesis]] and so on
 and so forth; the journey never stops. The generalist's goal is to build a [[https://en.wikipedia.org/wiki/Zettelkasten][graph of fundamental building blocks of knowledge]] in which the arrows always go from something
@@ -117,7 +117,7 @@ but rather /exponential/.
 * Conclusions
 
 This thesis came to be as a continuation of my two previous posts, [[file:../doorcaseof/][Do or Case Of; there is no Try]] and [[file:../defaultsarenotdogmas/][Don't make all defaults Dogmas]]. In those posts, I push the idea
-that there are abstractions that are beyond a specific implementation or instance; the relational model abstraction is not PostgreSQL nor SQL Server nor Oracle. And the reason
+that there are abstractions that are beyond a specific implementation or instance, e.g., the relational model abstraction is not PostgreSQL nor SQL Server nor Oracle. And the reason
 that is the case is because those abstractions are closer to being essences -- nodes very deep in the graph of fundamental building blocks. Also described in those posts is
 my frustration on people making confusions on the abstraction and its specific implemetation; conflating nodes that are leaves on the graph with the ones that are deeply in the
 graph.
