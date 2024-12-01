@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Duing Dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 28 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Generalist is the greatest Specialist</title>
+      <link>https://duing.dev/posts/generalistspecialist/</link>
+      <pubDate>Sun, 01 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://duing.dev/posts/generalistspecialist/</guid>
+      <description>The title of this post is a thesis &amp;ndash; an idea that I&amp;rsquo;m not really sure it is true for certain but I want to have a record of its details written somewhere.
+It has been a while since I have these thoughts floating around in my head. It pops up every once in a while, specially when I see other programmers defend the idea that to reach success your duty is to become a specialist in a particular technology/language/database.</description>
+    </item>
+    
     <item>
       <title>Do or Case of; there is no Try</title>
       <link>https://duing.dev/posts/doorcaseof/</link>

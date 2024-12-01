@@ -12,8 +12,12 @@
         
         
     
-    "articles": [{"date":"2021-07-30","image":"","imageAlt":"","link":"https://duing.dev/posts/circularprogramming/","summary":"Disclaimer I created this post during the make of my graduation project more than one and half years ago. This post served as training of a topic I had the intention of talking about in the final thesis \u0026ndash; something that ended up not happening. I\u0026rsquo;ve made a presentation on Dr.Nekoma about the topic, given how interesting it is. The following is the original post.\nIntroduction Here I present a very descriptive explanation of a solution to a simple example problem.","tags":["technical"],"title":"Circular Programming or Corecursion"}],
-    "test": "Publications   About   Do or Case of; there is no Try   Don't make all defaults Dogmas   Circumstantial Leadership   Let us all be Pragmatists   Is it all about the Story?   Teaching is Fun   OOP-style Typeclasses   Don't be a Hero, join a League   Beyond Hackers   Why Masters?   Do we still care about Art?   My best idea of 2022   Fixing Recursion   Circular Programming or Corecursion   ",
+        
+        
+        
+    
+    "articles": [{"date":"2021-09-11","image":"","imageAlt":"","link":"https://duing.dev/posts/fixingrecursion/","summary":"Disclaimer I created this post during the make of my graduation project more than one and half years ago. This post served as training of a topic I had the intention of talking about in the final thesis \u0026ndash; something that ended up not happening. You know that when math comes into programming something special is going to happen!\nIntroduction Recursion is a common way to solve a wide range of problems.","tags":["technical"],"title":"Fixing Recursion"},{"date":"2021-07-30","image":"","imageAlt":"","link":"https://duing.dev/posts/circularprogramming/","summary":"Disclaimer I created this post during the make of my graduation project more than one and half years ago. This post served as training of a topic I had the intention of talking about in the final thesis \u0026ndash; something that ended up not happening. I\u0026rsquo;ve made a presentation on Dr.Nekoma about the topic, given how interesting it is. The following is the original post.\nIntroduction Here I present a very descriptive explanation of a solution to a simple example problem.","tags":["technical"],"title":"Circular Programming or Corecursion"}],
+    "test": "Publications   About   The Generalist is the greatest Specialist   Do or Case of; there is no Try   Don't make all defaults Dogmas   Circumstantial Leadership   Let us all be Pragmatists   Is it all about the Story?   Teaching is Fun   OOP-style Typeclasses   Don't be a Hero, join a League   Beyond Hackers   Why Masters?   Do we still care about Art?   My best idea of 2022   Fixing Recursion   Circular Programming or Corecursion   ",
     "page": "4",
     "next": ""
 }
