@@ -85,7 +85,6 @@ Zig -> Statement-based -> State Machine -> Turing Machine -> Turing Completeness
 Zig -> Mutability -> Memory -> Tape -> Turing Machine -> Turing Completeness
 
 Coffee Machine -> Automaton -> State Machine
-Semaphore -> Automaton -> State Machine
 #+END_SRC
 
 Our electrical engineer, being a primal example of a generalist, chose to change gears and went to the explore [[https://www.haskell.org/][Haskell land]]. When playing with it, he decided to
@@ -96,7 +95,6 @@ Haskell -> Expression-based -> Substitutions -> Lambda Calculus
 Haskell -> Immutability -> Equational Reasoning -> Lambda Calculus
 
 Coffee Machine -> Automaton -> State Machine
-Semaphore -> Automaton -> State Machine
 #+END_SRC
 
 Driven by his intuition that Turing Machines and Lambda Calculus had some sort of connection, our engineer found himself looking for the [[https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis][Church-Turing thesis]] and so on
