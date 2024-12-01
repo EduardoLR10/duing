@@ -289,20 +289,21 @@ Let us pick a coffee machine as an example. An electrical engineer may <em>imple
 a way to express the same fundamental idea. One developing such a project may go further and identify that a coffe machine is not the end of the road; you later
 come to the conclusion that such a machine is an instance of a <a href="https://en.wikipedia.org/wiki/Automaton">automaton</a>, which then can be refined further as an instance of a <a href="https://en.wikipedia.org/wiki/Abstract_state_machine">state machine</a>. For example,
 <a href="https://en.wikipedia.org/wiki/Distillation">the distillation process</a> of such an exploration can create a grap that goes as follows (example for illustration purposes):</p>
-<blockquote>
+<div class="CODE">
 <p>Zig -&gt; Statement-based -&gt; State Machine -&gt; Turing Machine -&gt; Turing Completeness
 Zig -&gt; Mutability -&gt; Memory -&gt; Tape -&gt; Turing Machine -&gt; Turing Completeness</p>
+</div>
 <p>Coffee Machine -&gt; Automaton -&gt; State Machine
-Semaphore -&gt; Automaton -&gt; State Machine</p>
-</blockquote>
+Semaphore -&gt; Automaton -&gt; State Machine
+#+END_CODE</p>
 <p>Our electrical engineer, being a primal example of a generalist, chose to change gears and went the explore <a href="https://www.haskell.org/">Haskell land</a>. When playing with it, he decided to
 implement the same coffee machine as he did in Zig:</p>
-<blockquote>
+<div class="CODE">
 <p>Haskell -&gt; Expression-based -&gt; Substitutions -&gt; Lambda Calculus
 Haskell -&gt; Immutability -&gt; Equational Reasoning -&gt; Lambda Calculus</p>
 <p>Coffee Machine -&gt; Automaton -&gt; State Machine
 Semaphore -&gt; Automaton -&gt; State Machine</p>
-</blockquote>
+</div>
 <p>Driven by his intuition that Turing Machines and Lambda Calculus had some sort of connection, our engineer found himself looking for the <a href="https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis">Church-Turing thesis</a> and so on
 and so forth; the journey never stops. The generalist&rsquo;s goal is to build a <a href="https://en.wikipedia.org/wiki/Zettelkasten">graph of fundamental building blocks of knowledge</a> in which the arrows always go from something
 to its essence. Practice has shown that as the graph grows, faster it is to find yourself home with something you already know, but wearing a different set of clothes. It is
@@ -327,7 +328,7 @@ switching areas. The generalist mindset provides <em>cumulative</em> gains as th
 but rather <em>exponential</em>.</p>
 <h2 id="conclusions">Conclusions</h2>
 <p>This thesis came to be as a continuation of my two previous posts, <a href="../doorcaseof/">Do or Case Of; there is no Try</a> and <a href="../defaultsarenotdogmas/">Don&rsquo;t make all defaults Dogmas</a>. In those posts, I push the idea
-that there are abstractions that are beyond a specific implementation or instance; the relational model abstraction is not PostgreSQL nor SQL Server nor Oracle. And the reason
+that there are abstractions that are beyond a specific implementation or instance, e.g., the relational model abstraction is not PostgreSQL nor SQL Server nor Oracle. And the reason
 that is the case is because those abstractions are closer to being essences &ndash; nodes very deep in the graph of fundamental building blocks. Also described in those posts is
 my frustration on people making confusions on the abstraction and its specific implemetation; conflating nodes that are leaves on the graph with the ones that are deeply in the
 graph.</p>
