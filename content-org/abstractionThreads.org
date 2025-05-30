@@ -1,7 +1,7 @@
 #+hugo_base_dir: ../
 #+hugo_tags: technical lesson
 
-#+title: Hopeful Abstractions
+#+title: Threads of Abstraction
 
 #+date: 2025-05-26
 #+author: Eduardo Lemos
@@ -17,8 +17,8 @@ There are many theories on why this is the case, but I would like to talk [[http
 is based on the idea that we, the human race, keep reliving the cycle of forgetting important pieces
 of knowledge, which causes the collapse of the entire civilization eventually. In summary, the thesis
 puts great emphasis on blaming [[https://en.wikipedia.org/wiki/Abstraction_(computer_science)][abstraction]] as the root cause of the entire process. Although I agree with his
-main thesis, I would like to provoke some counter ideas to his example of "what we are forgetting" and why
-abstraction seems to be the problem, then share some related ideas.
+main thesis, I would like to expose related ideas to and why, in my opinion,
+abstraction is the wrong target to solve the problem.
 
 * We should go Down
 
@@ -28,15 +28,16 @@ resulting on those inventions being lost to time, just for later to be rediscove
 is palpable, and it is good that we managed to rediscover something, but it would have been way better if
 we haven't lost it in the first place. His point is that he feels we are about to do the same with software.
 
-The argument is made as an onion, in which getting further from the core is getting further from actually
+The argument is made in onion-fashion, in which getting further from the core is getting further from actual
 problem-solving. First, there are the overcomplications: extra steps to fundamentally do what we used to do
 decades ago and overuse of newer/hotter standards to solve simple problems, e.g., LSP being a server just to
 lookup a label definition. These complications not only made life harder for little gain, but also had some
-secondary effects, such as being harder for everyone to fully grasp an entire scenario, due to the extra space
+secondary effects, such as being harder for everyone to fully grasp an entire scenario. The extra space
 required to remember all the extra steps (which competes for space with actual useful information), but also
 makes it harder to research problems with the avalanche of noise that certainly will come. The cherry on top is that
 this process being harder, even though seemly for the sake of it, raises the bar for who will be able to properly
-understand it, hence fewer useful resources will be available.
+understand it, hence fewer useful resources will be available. Some may say we are already witnessing this effect
+with our browser queries being less useful overall.
 
 After that, we have the problem with levels of abstraction. As we add more and more layers of abstraction, we are
 getting further away from the actual hardware, regardless if we like it or not the physical computer is what we
@@ -60,8 +61,8 @@ for your lisp machine.
 One of the points brought by Gabriel is the authorship of an abstraction, meaning that there is a certain amount of craft that goes into making
 the best abstractions; a particular craft can only be mastered by a few. Not everybody creates great
 abstractions, neither all current available abstractions are great ones (especially ad-hoc ones), hence Gabriel proposes experts should
-be the ones dedicated to create and refine abstractions. He goes as far to say that the centralization of the
-ownerships of abstractions, implying that most programmers would be creating small and localized ones, would
+be the ones dedicated to create and refine abstractions. He goes as far as to say that the centralization of the
+ownerships of great abstractions, implying that most programmers would be creating small and localized ones, would
 make the programming community lack a sense of purpose, due to the majority of us just "being merely cogs in
 someone else's machine".
 
@@ -70,13 +71,14 @@ may influence our vision to make everything fit within its boundaries, regardles
 up being. Familiarity with a particular abstraction seduces us into a silver-bullet-like mentality, in which
 everything looks like a nail for our hammer --- Churchil's [[https://hansard.parliament.uk/commons/1943-10-28/debates/4388c736-7e25-4a7e-92d8-eccb751c4f56/HouseOfCommonsRebuilding]["We shape our buildings and afterwards our buildings shape us"]] strikes again.
 In contrast, if you try to combat the temptation, then you run
-the risk of actually not leveraging what could be a useful abstraction. 
+the risk of actually not leveraging what could be a useful abstraction. Such tug of war makes us more suspicious about abstractions, and
+we are not certain when to apply it.
 
-Other points are raised, such as the enlargement of vocabulary necessary when creating new abstractions; after all
-having labels for things help with communication; and having niche abstractions being less useful to broader
-communities (what some people may identify as Monads being an example), hence provoking the feeling a bloated
+Other points are raised, such as the enlargement of vocabulary necessary when creating new abstractions. After all,
+meaningful labels for things help with communication, and niche abstractions being less useful to broader
+communities (what some people may identify as Monads being an example), provoke the feeling a bloated
 environment is being created for no apparent reason. Its side-effect is what Gabriel coined as /unhabitable/ software;
-software that is really hard to live within and grow alongside it --- it just does not feel like home.
+software that is really hard to live within and grow alongside it --- it just does not /feel like home/.
 
 * We should go Up
 
@@ -87,7 +89,7 @@ gives the feeling that he took Churchil's conclusion of legacy's tremendous weig
 When talking about the so-famous /von Neumann bottleneck/, Backus is not only talking about a hardware bottleneck (in the physical sense of the
 word), but is also talking about a mental botteneck: the legacy of imperative languages molding our way of thinking, with the programmer melting upon
 the heat of what currently exists, what you can touch, what the computer actually does in front of you. Once solidified, our creativity may crumble, due
-to the fixed and static nature of what the physical computer imposed in our brains; we bows before what we currently are limited to and trade whatever
+to the fixed and static nature of what the physical computer imposed in our brains; we bow before what we currently are limited to and trade whatever
 abstract thought power may be useful to better solve problems. Backus's solution? A mental war to propel a shift in how we think, with economy following along
 after the reverberating victory of those liberated from the bottleneck. In Backus' paper, **functional abstractions** are foretold to win this battle. Sadly,
 it is fair to say that since 1978, if this battle is still ongoing, the applicative style of programming is far from the top dogs when it comes to winning programmers' hearts.
@@ -96,8 +98,8 @@ As we know, [[https://www.dreamsongs.com/RiseOfWorseIsBetter.html][a much darker
 from preaching ~void *~ all the way to a conflation on what something /is/ and /how/ something is implemented. Winners said there is no need to have more powerful types; everything is just
 a bunch of bits in the computer when it comes down to it. They said there is no need to verify something as pedantically as possible; scripting languages have faster development
 cycles. They said /being/ and /doing/ are one in the same; nobody needs [[http://conal.net/talks/denotational-design-lambdajam-2015.pdf][denotational design]]. They said that we better stop raising the levels of abstraction, since the computer still
-works mostly as an imperative machine, and until that changes, your abstract ideas are just fluff to make you sound smart! The human mind is not the medium in which problems are
-meant to be solved, but the tangible computer is all there is to be.
+works mostly as an imperative machine, and until that changes, your abstract ideas are just fluff to make you sound smartter! They claim the human mind is not the medium in which
+problems are meant to be solved, but the tangible computer is all there is to be. The machine should dictate us.
 
 ** Relational Theory
 
@@ -108,22 +110,30 @@ storage makes it way into debates on how one should organize your data. Properti
 one might go into when perfecting a system to properly model the business it was intended to mimic.
 
 The disconnect between those fronts [[https://dl.acm.org/doi/10.5555/2361846][is nothing new]] but myths of this relationship can still be heard. Instead of the abstractions provided by the relational theory prevailing, once again
-we are faced with the same "simplicity" principle of getting rid of anything mathematical/abstract/formal because of physical concerns of the computer that has nothing to do with what are trying to
+we are faced with the same "simplicity" principle of getting rid of anything mathematical/abstract/formal because of physical concerns of the computer.
+Remember that this has nothing to do with what are trying to
 achieve: solve problems with the proper mental images, with the proper abstractions in mind, that can hold the test of time for being solid, even though they require to be materialized via
-current generation's computers. Once the [[https://github.com/Dr-Nekoma/karuta][ability to express constraints]] separated from the [[https://github.com/dont-rely-on-nulls/relational-engine][actual storage]] becomes common sense, we /may/ see light at the end of this tunnel. However, just as Backus said,
-we gotta win the minds and the hearts of everyone, so later the market can follow along.
+current generation's computers. Once the [[https://github.com/Dr-Nekoma/karuta][ability to express constraints]] separated from the [[https://github.com/dont-rely-on-nulls/relational-engine][actual storage]] becomes common sense, we /may/ see light at the end of this tunnel.
+However, just as Backus said, we gotta win the minds and the hearts of everyone, so later the market can follow along.
 
 * Conclusions
 
-The "simplicity"-above-all folks have a point we can't dismiss: if we forget what we are grounded to, we may be doomed into a collapse in which no one knows anything anymore. And they have evidence; [[https://en.wikipedia.org/wiki/Vibe_coding][vibe coding]] is
+The "simplicity"-above-all folks have a point we can't dismiss: if we forget what we are grounded to, we may be doomed into a collapse in which no one knows anything anymore.
+And they have evidence; [[https://en.wikipedia.org/wiki/Vibe_coding][vibe coding]] is
 now the most primal example of how far down we can go without knowing what is actually happening. Worse than high-level languages like Python and Javascript is the actual absense of programming itself,
 just pick one of the most imprecise ways to describe something, informal natural language, and make code out of it! If anything, this trend is here to accelerate Blow's fears.
-The solution, however, is not to get rid of abstractions, but rather to emphasize that to go up, **one needs to start from the ground up**. If we aim to reach the levels of productivity of Ken Thompson, and actually
+The solution, however, is not to get rid of abstractions, but rather to emphasize that to go up, **one needs to start from the ground up**.
+Being able to properly leverage abstractions does not imply being forgetful about the transistors under the hood; we should be educated in both fronts.
+If we aim to reach the levels of productivity of Ken Thompson, and actually
 be able to [[https://youtu.be/ZSRHeXYDLko?t=2093][code Unix in three weeks]], there is a need to know what you are doing, even /within/ the abstractions you are already employing. Even better, knowing the intricacies on how something work, gives you
 better insight on /which abstractions/ are better to increase productivity levels, hence solving Gabriel's concerns that only experts may be able to propertly incur into this endeavor.
+You keep peeling the onion; you keep traversing the abstraction tower; from the most mathematical things on the highest point until you reach the electrons and circuits that live on the ground.
 
 Sadly, it seems to me that the willigness to go into those deep waters requires /passion/. Passion about the craft of programming that [[file:../beyondhackers/][goes beyond]] a financial interest.
-Something that may be [[https://dl.acm.org/doi/10.5555/553267][a few lightyears in the past]], where the ones dealing with computer science were unreiling a new scientific thread at the time. It may be the case that we, as a software community, may never
-be able to decouple ourselves from these conflations on levels of abstractions, but there is no doubt in my mind that in the perfect world the computer is just a tool that we try to accomodate solutions
-that live **in our minds**, as imperfect as the computer may be for the job, it is the best we currently have. Worse than fighting for this future, how frustrating it may be, it is to just accept that
+Something that may be [[https://dl.acm.org/doi/10.5555/553267][a few lightyears in the past]], where the ones dealing with computer science were unreiling a new scientific thread at the time.
+It may be the case that we, as a software community, may never
+be able to decouple ourselves from these conflations on levels of abstractions. There is no doubt in my mind, however, that in the perfect world the computer is just a tool
+that we try to accomodate solutions
+that live **in our minds**. As imperfect as the computer may be for the job, it is the best we currently have.
+Fighting for this dreamland future, as frustrating as it may be, is better than to just accept that
 either the only way out is to bend ourselves to the hardware /or/ that [[https://youtu.be/CgdKYBqe6QA?t=241][there is nothing that can be done]] and we are doomed to be miserable until the dawn of time.
