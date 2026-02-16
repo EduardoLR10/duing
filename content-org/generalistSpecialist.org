@@ -26,7 +26,7 @@ one that more rapidly becomes the greatest specialist.
 #+END_QUOTE
 
 Let us go by parts, piece by piece, to understand this thesis. The first part mentions that a /generalist/ is someone that
-has acquired the /essence/ of multiple /building blocks/, i.e., someone who has understood what [[https://marcosmagueta.com/blog/2024/method-worship/][it means for something to be]], its
+has acquired the /essence/ of multiple /building blocks/, i.e., someone who has understood what [[https://marcosmagueta.com/blog/method-worship/][it means for something to be]] its
 essence. Those pieces of knowledge are foundational to build more complicated ones (you can even say that they /compose/ a greater piece).
 How to achieve such goal? The answer resides in specific technologies/languages/databases. By exploring one of those deep /enough/, fundamental
 abstractions used as models for these artifacts start to become apparent. As you move from artifact to artifact and play with it for enough time to grasp
@@ -71,7 +71,7 @@ remaining to be learned.
 
 This brainstorm establishes that the problem that we face with the dilemma between generalist versus specialist is not of choice, but rather that one
 can work as mean to achieve the other. There are, however, questions that were left unanswered: how does one know they played with something "deep enough"?
-Or rather, how do you know you stumbled upon an "essence"? I propose that one should pay attention to [[https://marcosmagueta.com/blog/2024/method-worship/][what stays across multiple changes]]. Let me break
+Or rather, how do you know you stumbled upon an "essence"? I propose that one should pay attention to [[https://marcosmagueta.com/blog/method-worship/][what stays across multiple changes]]. Let me break
 down what I mean.
 
 In order to find an essence, we must get rid of specific instance/implementation aspects and go further to what remains there regardless of those details.
