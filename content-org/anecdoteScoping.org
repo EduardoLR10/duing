@@ -48,7 +48,7 @@ use it under the premise that it is the language that "keeps things simple". Of 
 understand that the [[file:../runtime/][correct abstractions]] for the correct problems are [[file:../pragmatism/][the actual source of simplicity]],
 the lack of expressiveness of C starts to fall apart, and its simplicity turns into scarcity.
 The workarounds start to feel like patch-ups due to the limitations on expressing one's will; after all
-[[file:../abstractionThreads/][it is the computer's job to encode the solutions of the mind]] and not the other way around.
+[[file:../abstractionthreads/][it is the computer's job to encode the solutions of the mind]] and not the other way around.
 
 Still, there is something in there, in those C programs, that if done right, and the problem arranged in a way
 that the limitations are distant from your sight, it /just clicks/. And you know it. I know it. You and I
