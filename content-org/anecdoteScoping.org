@@ -8,7 +8,7 @@
 
 One of the most amazing things about figuring out the [[https://marcosmagueta.com/blog/method-worship/][essence of something]],
 the thing that is constant regardless of the instance you are currently
-holding, is to discover it in an unexpected place. Everything else changed, all
+holding, is to [[file:../generalistspecialist/][discover it in an unexpected place]]. Everything else changed, all
 the details, but the permanence within change is still there. The web of instances can
 then be combined in a single explanation to get your point across.
 
