@@ -101,10 +101,10 @@ words, here's a slightly changed quote from a favorite movie of mine that perfec
  #+BEGIN_QUOTE
  This ain't no dead piece of text.
  Code's a living breathing thing.
- She's alive. You can feel her
+ She's alive. You feel her
  talking to you, telling you what
- she wants, what she needs. You
- just gotta listen.
+ she wants, what she needs. All you
+ gotta do is listen.
  #+END_QUOTE
 
 And we tried to listen. We stopped writing and started looking at the code, line by line. Our brains
