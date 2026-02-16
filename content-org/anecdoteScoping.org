@@ -119,7 +119,7 @@ As frustrating as it is, this usually leads to the best solutions to problems in
 
 One could say: "just copy paste the code, and try your best to make the common parts common functions",
 which was an option. But thinking of using that solution felt like a crime. Something without honor.
-Something that does seem right. Something that does not /feel/ right. Yes, more vague words. And the craziest
+Something that does not seem right. Something that does not /feel/ right. Yes, more vague words. And the craziest
 part: it was mutual. Both Marinho and I felt it, even though we would not be able to explain it
 to a stranger.
 
