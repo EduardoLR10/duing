@@ -1,0 +1,159 @@
+#+hugo_base_dir: ../
+#+hugo_tags: lesson 
+
+#+title: An anecdote about Scoping and Art
+
+#+date: 2026-02-16
+#+author: Eduardo Lemos
+
+One of the most amazing things about figuring out the [[https://marcosmagueta.com/blog/method-worship/][essence of something]],
+the thing that is constant regardless of the instance you are currently
+holding, is to discover it in an unexpected place. Everything else changed, all
+the details, but the permanence within change is still there. The web of instances can
+then be combined in a single explanation to get your point across.
+
+Better yet is to be able to tell a short story of the abstract and generic
+phenomena materializing itself in front of you. Today, I would like to share
+something of this nature.
+
+* The Quality Without a Name
+
+One of the most striking things about the book [[https://www.dreamsongs.com/Files/PatternsOfSoftware.pdf][Patterns of Software]] is its hypothesis for the first
+half of the piece.
+[[https://en.wikipedia.org/wiki/Richard_P._Gabriel][Gabriel]] got in touch with the literature of [[https://en.wikipedia.org/wiki/Christopher_Alexander][Christopher Alexander]], someone from the architecture
+realm. The lisper then identified that the property Alexander was seeking to define and to
+explore, the so-called quality without a name, is something relatable in software as well.
+
+The story the book describes is one of investigation. Gabriel, by dissecting Alexander's work,
+aims to explore and detail this mysterious property whilst making parallels with software development.
+If Alexander wanted all his buildings to have this precious property,
+our software would also benefit from having it.
+The problem, however, is that this property is so vague and foggy that we have a hard time defining
+it in precise terms. Alexander's goal,
+with an attempt to define it, was to find a mechanical process or recipe that would guarantee the final
+product to have it. At the time, for this particular goal, they failed (both Alexander and Gabriel),
+although [[https://en.wikipedia.org/wiki/The_Nature_of_Order][more steps to this story have been made since then]]. But, for the purposes of this post, any recent
+developments on this inquiry are not necessary.
+
+The quality without a name's major quirk is peculiar. Some people claim they are able to /identify/ it,
+even though they can't define it. This selective group of people uses a bunch of vague terms to talk about it,
+such as "elegant", "divine", "it just clicks", or "simple". In fact, one could argue that the entire
+pursuit of simplicity is a major cover-up to actually mean the quality without a name instead. Simplicity,
+by being such a vague and imprecise term as the quality without a name, fits the bill just nicely.
+
+* Craftsmanship
+
+Think about it. Everyone understands the problems C programs make you undertake, yet many people
+use it under the premise that it is the language that "keeps things simple". Of course, once you
+understand that the [[file:../runtime/][correct abstractions]] for the correct problems are [[file:../pragmatism/][the actual source of simplicity]],
+the lack of expressiveness of C starts to fall apart, and its simplicity turns into scarcity.
+The workarounds start to feel like patch-ups due to the limitations on expressing one's will; after all
+[[file:../abstractionThreads/][it is the computer's job to encode the solutions of the mind]] and not the other way around.
+
+Still, there is something in there, in those C programs, that if done right, and the problem arranged in a way
+that the limitations are distant from your sight, it /just clicks/. And you know it. I know it. You and I
+look at the same code snippet, and a current of satisfaction sparkles. Sadly, even though
+our eyes are shining with joy, our Javascript friend thinks we are going crazy. We are lunatics. And worse,
+we think the same of him, but for a different reason.
+
+A follow-up hypothesis of mine, this one more speculative, is that one's level of blindness about this quality
+is at least related to one's experience writing software and caring about what is being written. The variety
+of principles and techniques learned throughout your career starts to build in you some sort
+of /craftsmanship/. This polishing process starts to add to you a sense of taste and caring,
+which leads to the development of expertise. Experts are great at judging products of their realm quickly,
+especially when identifying the great ones.
+
+#+attr_html: :width 80%
+[[/img/anecdoteScoping/craftsmanship.png]]
+
+Even more speculative, I would even say that for some people, the expertise gained is just a consequence, not the target.
+The real effect of the acquired taste is the pursuit of something /worthwhile/. Something /beautiful/.
+Something /meaningful/. Something words cannot describe. Yes, more vague words. Thus, it is not a
+coincidence that little cracks here and there start to bother those people. This explains why
+popularity or hot trends in software are of no interest to those people for the sake of being popular:
+they seek the right tool for the job, regardless of whether it has 5 or 50 years of age. Big tech companies using
+such something also means nothing: usually real art is made on an individual basis, not on big corporate
+conglomerates. It should be a surprise to no one that something with a bigger craftsmanship
+spirit, similar to the descriptions in [[https://dl.acm.org/doi/10.5555/553267][Dealers of Lightning]] and [[https://dl.acm.org/doi/10.5555/539452][The Soul of a New Machine]], is the kind of place
+where big innovations are made. If you aim for greatness, money comes as a consequence if rightfully managed.
+The other way around does not work by principle; the rule of thumb becomes stagnation and bad designs. Exceptions to
+this latter rule are made by cheating the game somehow.
+
+* Scoping
+
+Here I was on a Friday night, 02/13/2026, doing some pair programming with my friend [[https://www.linkedin.com/in/mario-pinotti-jr/][Marinho]] on our hobby
+project, [[https://github.com/dont-rely-on-nulls/karuta][Karuta]]. We were implementing scoping for our ML-like module system. During
+this endeavor, we got stuck on a particular issue: refactoring.
+
+The code being refactored was centered around lookup functions for our signatures, modules, and predicates.
+Last time we touched that code, we created something capable of identifying if something is in scope to be
+used at that moment, and if not, errors would be reported to the user. That was it. Happy and productive code.
+
+However, on that particular night, we've decided we wanted to be able to return /where/ in the lookup process
+we stopped. This artifact would be of great use for us in other parts of the compiler. The sad part: the code
+was done in such a way that fulfilling this double functionality was not possible.
+Something would have to change. And it was not clear to us what it was and how we would accomplish this change.
+
+In hindsight, we were suffering due to the fact that /we care/ about the quality without a name. This is not
+something you actively care about; it starts to become natural to you after a while. To put it in
+words, here's a slightly changed quote from a favorite movie of mine that perfectly describes our situation:
+\\
+ #+BEGIN_QUOTE
+ This ain't no dead piece of text.
+ Code's a living breathing thing.
+ She's alive. You can feel her
+ talking to you, telling you what
+ she wants, what she needs. You
+ just gotta listen.
+ #+END_QUOTE
+
+And we tried to listen. We stopped writing and started looking at the code, line by line. Our brains
+were trying to identify what was needed in there that would not only solve the problem but /also/ solve it
+in a nice way, whatever that means. And it builds anxiety: you actually hear the code telling you something
+is wrong, but figuring out how to implement what it needs is tricky. Sometimes the language you are working
+on does not have the feature. Sometimes the solution can be found in an obscure code snippet another nerd made,
+but you may not be aware of it. Sometimes you just don't know, yet you know something /must/ exist to fix it.
+Some situations are so bad that the telling actually morphs into screaming, and you know in every inch of your being
+that something is fundamentally wrong with it, even though you can't really express or point to where and why.
+As frustrating as it is, this usually leads to the best solutions to problems in my experience.
+
+One could say: "just copy paste the code, and try your best to make the common parts common functions",
+which was an option. But thinking of using that solution felt like a crime. Something without honor.
+Something that does seem right. Something that does not /feel/ right. Yes, more vague words. And the craziest
+part: it was mutual. Both Marinho and I felt it, even though we would not be able to explain it
+to a stranger.
+
+This happened multiple times already with me, especially when doing hobby projects. And I am especially grateful
+Marinho is also able to identify it; otherwise nobody would understand the standards of nobody. Lo and behold,
+we were right: after looking at some versions of these functions, written just for the sake of comparison,
+something came out of it. Something that seemed to fit it nicely. Something we were proud of. Something we would
+like to hang on the wall. Yes, more vague words. A beautiful generic function using polymorphic variants that could
+perform double duty with a great and understandable API.
+
+* Conclusion
+
+One may look at this post and say I am crazy. Fair enough. I accept that possibility. But I don't think I am.
+Alexander noticed this in architecture, Gabriel in software, and so many movies lead us to believe that
+craftsmanship in many other areas has something special. Something that, at one point, we thought machines
+could reproduce. We were wrong. Everybody knows that a commodity does not have the same value as something
+hand-made by an artisan. Now we think [[https://en.wikipedia.org/wiki/Vibe_coding][AI can]]. Are we wrong on that one as well? Time will tell, I assure you
+of that.
+
+What I do know is that my expectations are clear: I am prepared to have conversations with my code more
+frequently as I progress into reading about code and writing more code. The more techniques I acquire, the more it will talk
+to me. The more egregious mistakes I see, the louder it will get. This unilateral communication sounds like
+a curse, but it isn't: there is nothing more satisfying than to see your craft come into fruition leveraging
+everything you know and everything you trained yourself to perfect. It is as if the entire quiet time you devoted
+yourself to your work actually paid off for once; even though you know the pursuit will never end. If you can hear it,
+you should be grateful. I know I am.
+\\
+ #+BEGIN_QUOTE
+ No? Well maybe you can't hear it
+ then. Maybe you ought to start
+ hitting those books.
+ #+END_QUOTE
+
+
+
+
+
