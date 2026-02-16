@@ -148,7 +148,7 @@ yourself to your work actually paid off for once; even though you know the pursu
 you should be grateful. I know I am.
 \\
  #+BEGIN_QUOTE
- No? Well maybe you can't hear it
+ No? Maybe you can't hear it
  then. Maybe you ought to start
  hitting those books.
  #+END_QUOTE
