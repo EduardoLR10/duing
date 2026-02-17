@@ -96,7 +96,7 @@ Something would have to change. And it was not clear to us what it was and how w
 
 In hindsight, we were suffering due to the fact that /we care/ about the quality without a name. This is not
 something you actively care about; it starts to become natural to you after a while. To put it in
-words, here's a slightly changed quote from a favorite movie of mine that perfectly describes our situation:
+words, here's a slightly changed quote from a [[file:../careaboutart/][favorite movie of mine]] that perfectly describes our situation:
 \\
  #+BEGIN_QUOTE
  This ain't no dead piece of text.
