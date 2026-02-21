@@ -134,7 +134,7 @@ perform double duty with a great and understandable API.
 One may look at this post and say I am crazy. Fair enough. I accept that possibility. But I don't think I am.
 Alexander noticed this in architecture, Gabriel in software, and so many movies lead us to believe that
 craftsmanship in many other areas has something special. Something that, at one point, we thought machines
-would automate its reproduction. We were wrong. Nowdays, the market of commodities does not care about little
+would automate its reproduction. We were wrong. The market of commodities does not care about little
 details artisans leverage in their hand-made craft. Now we think [[https://en.wikipedia.org/wiki/Vibe_coding][AI can]]. Are we wrong on that one as well? Time will tell, I assure you
 of that.
 
