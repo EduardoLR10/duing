@@ -7,7 +7,7 @@
 #+author: Eduardo Lemos
 
 One of the most amazing things about figuring out the [[https://marcosmagueta.com/blog/method-worship/][essence of something]],
-the thing that is constant regardless of the instance you are currently
+the thing that is the same regardless of the instance you are currently
 holding, is to [[file:../generalistspecialist/][discover it in an unexpected place]]. Everything else changed, all
 the details, but the permanence within change is still there. The web of instances can
 then be combined in a single explanation to get your point across.
@@ -35,11 +35,11 @@ product to have it. At the time, for this particular goal, they failed (both Ale
 although [[https://en.wikipedia.org/wiki/The_Nature_of_Order][more steps to this story have been made since then]]. But, for the purposes of this post, any recent
 developments on this inquiry are not necessary.
 
-The quality without a name's major quirk is peculiar. Some people claim they are able to /identify/ it,
+The qualit- without-a-name's major quirk is peculiar. Some people claim they are able to /identify/ it,
 even though they can't define it. This selective group of people uses a bunch of vague terms to talk about it,
 such as "elegant", "divine", "it just clicks", or "simple". In fact, one could argue that the entire
 pursuit of simplicity is a major cover-up to actually mean the quality without a name instead. Simplicity,
-by being such a vague and imprecise term as the quality without a name, fits the bill just nicely.
+by being such a vague and imprecise term as the quality-without-a-name, fits the bill just nicely.
 
 * Craftsmanship
 
@@ -58,7 +58,7 @@ we think the same of him, but for a different reason.
 
 A follow-up hypothesis of mine, this one more speculative, is that one's level of blindness about this quality
 is at least related to one's experience writing software and caring about what is being written. The variety
-of principles and techniques learned throughout your career starts to build in you some sort
+of principles and techniques learned throughout your career start to build in you some sort
 of /craftsmanship/. This polishing process starts to add to you a sense of taste and caring,
 which leads to the development of expertise. Experts are great at judging products of their realm quickly,
 especially when identifying the great ones.
@@ -109,7 +109,7 @@ words, here's a slightly changed quote from a [[file:../careaboutart/][favorite 
 
 And we tried to listen. We stopped writing and started looking at the code, line by line. Our brains
 were trying to identify what was needed in there that would not only solve the problem but /also/ solve it
-in a nice way, whatever that means. And it builds anxiety: you actually hear the code telling you something
+in a /nice way/, whatever that means. And it builds anxiety: you actually hear the code telling you something
 is wrong, but figuring out how to implement what it needs is tricky. Sometimes the language you are working
 on does not have the feature. Sometimes the solution can be found in an [[https://okmij.org/ftp/Computation/dynamic-binding.html#implementation][obscure code snippet another nerd made]],
 but you may not be aware of it. Sometimes you just don't know, yet you know something /must/ exist to fix it.
@@ -135,8 +135,8 @@ perform double duty with a great and understandable API.
 One may look at this post and say I am crazy. Fair enough. I accept that possibility. But I don't think I am.
 Alexander noticed this in architecture, Gabriel in software, and so many movies lead us to believe that
 craftsmanship in many other areas has something special. Something that, at one point, we thought machines
-could reproduce. We were wrong. Everybody knows that a commodity does not have the same value as something
-hand-made by an artisan. Now we think [[https://en.wikipedia.org/wiki/Vibe_coding][AI can]]. Are we wrong on that one as well? Time will tell, I assure you
+would automate its reproduction. We were wrong. Nowdays, the market of commodities does not care about little
+details artisans leverage in their hand-made craft. Now we think [[https://en.wikipedia.org/wiki/Vibe_coding][AI can]]. Are we wrong on that one as well? Time will tell, I assure you
 of that.
 
 What I do know is that my expectations are clear: I am prepared to have conversations with my code more
