@@ -6,15 +6,14 @@
 #+date: 2026-02-16
 #+author: Eduardo Lemos
 
-One of the most amazing things about figuring out the [[https://marcosmagueta.com/blog/method-worship/][essence of something]],
-the thing that is the same regardless of the instance you are currently
-holding, is to [[file:../generalistspecialist/][discover it in an unexpected place]]. Everything else changed, all
+One of the most amazing things about figuring out the [[https://marcosmagueta.com/blog/method-worship/][essence of something]] is
+to [[file:../generalistspecialist/][discover it in an unexpected place]]. Everything else changed, all
 the details, but the permanence within change is still there. The web of instances can
 then be combined in a single explanation to get your point across.
 
 Better yet is to be able to tell a short story of the abstract and generic
-phenomena materializing itself in front of you. Today, I would like to share
-something of this nature.
+phenomena materializing itself in front of you. Today, we will go over something
+of that nature in order to bridge /intuition/ and technical abilities.
 
 * The Quality Without a Name
 
