@@ -6,7 +6,17 @@
     <description>Recent content in lesson on Duing Dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 05 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/lesson/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://duing.dev/tags/lesson/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blazein over Burnout</title>
+      <link>https://duing.dev/posts/blazein/</link>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://duing.dev/posts/blazein/</guid>
+      <description>The burnout phenomena is very well documented and very popular nowdays. Many people talk a lot about it and seem to suffer from it. I&amp;rsquo;m here to introduce the approach I use, which I see as its counterpart: blazein, as I like to call it.
+The main goal of this post is to describe it, which overall strategy I use, hence it is easier to explain to people when they ask me details about it.</description>
+    </item>
+    
     <item>
       <title>My Crime against Writing</title>
       <link>https://duing.dev/posts/writingerror/</link>
