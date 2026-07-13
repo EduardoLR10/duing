@@ -1,0 +1,118 @@
+#+hugo_base_dir: ../
+#+hugo_tags: lesson
+
+#+title: Blazein over Burnout
+
+#+date: 2026-07-13
+#+author: Eduardo Lemos
+
+The ~burnout~ phenomena is very well documented and very popular nowdays.
+Many people talk a lot about it and seem to suffer from it.
+I'm here to introduce the approach I use, which I see as its counterpart: ~blazein~, as I like to call it.
+
+The main goal of this post is to describe it, which overall strategy I use, hence it is easier to
+explain to people when they ask me details about it.
+
+* Foundation
+
+Before talking about how ~blazein~ differs from ~burnout~, it is important to establish the common foundation both
+approaches share, e.g., what the common vocabulary means and which premises both hold.
+
+In both, the use of /flame/ or /burn/ allegories symbolize /effort/ or /energy applied onto some activity/,
+both of which are ways [[https://archive.org/details/fromstrengthtost00joweuoft/page/n7/mode/2up][the Will]] manifest.
+Both recognize that you can overshoot yourself and suffer damages because of it. After all, in both
+approaches you are putting yourself into a situation of great stress and effort.
+If you can't handle the consequences of doing that level of investment, punishment
+is severe and without mercy.
+
+You can understand such process in terms of an analogy: if you try to accomplish the life-style and goals of an
+Olympic athlete you won't able to sustain it (even if you can do it in the beginning), due to the health damages
+you would inflict onto yourself. You were not prepared and overdone yourself, thus countermeasures follow.
+
+* Differences
+
+First of all, many aspects of the description I am about to present will /look/ very similar to pre-stages
+of ~burnout~. And that is to be expected: both approaches are putting the individual as a resource that can
+be burnt. Both assume there are stages of such burning process.
+
+The crux of the matter relies on the understanding of the outcome: ~burnout~ understands the individual being burnt or /consumed/
+by the flames as a /bad/ outcome; the exhaustion that comes from it should be interrupted and a healing process is advised
+in order to recompose the ashes back into human form. ~blazein~, on the other hand, sees the burning, especially the /continuous/
+burning, as a sign of success; the ability to hold control over the flames you /produce/ is seen as a /good/ outcome.
+
+When suffering from ~burnout~, the flames onto the individual are coming from the effort from within himself, however the
+side-effect of the flames is /consumption/ of the body. It is an incineration process that /destroys/. The recommended
+healing comes from the understanding that you suffered damage beforehand.
+
+In the process of ~blazein~, the flames also come from within the individual's effort. However, the emphasis here is in the
+fire being /produced/ and no consumption follow-up process taking place. In fact, the individual /knows/ he is on fire and
+keeping that situation is his desire. Holding on to your flames without penalty is a sign of virtue: you know your limits,
+you are pushing towards increasing them in a wisely manner, and great effort is being poured into /something else/.
+
+* Meaning
+
+Lots of witnesses of ~burnout~ argue that /after/ the burning process has ended, in hindsight, they regret the effort they put
+into the activity, whatever it was. Their assessment is that they overdone themselves into something that was not worth /all/ of that
+energy. In their view, their investment didn't pay off due to the side-effects of reducing themselves to ashes, i.e., the tiredness and
+fatigue /must/ be replaced with resting and pleasure to keep things balanced. The so-called /metaphorical homeostasis/ taking place.
+It is simply not acceptable to continue on this manner because, they claim, it puts things off-balance.
+
+In contrast, the ~blazein~ process dictates that having flames on yourself is a sign that good effort is being put into
+/something meaningful/. If you are a serious religious person, or a denier of [[https://en.wikipedia.org/wiki/Nihilism][nihilism]], or a fellow [[https://en.wikipedia.org/wiki/Logotherapy][logotherapy follower]], or all of the above,
+you probably already have a solid notion of what /meaning/ means. It is worth more than ourselves, sometimes more costly than everything else, including
+our own lives. Family, intellectual life, art, volunteering, you name it. Although few, there are things that those people (including
+myself) see as meaningful. Exhaustion, tiredness, and fatigue are easy trades to make when you have meaning on the other end of the
+exchange. The ~blazein~ life-style ignores [[https://en.wikipedia.org/wiki/Hedonism][hedonism]]: the pain and stress are all worth it if it means you are getting closer to the meaningful goal,
+and followers of this approach will gladly do it. The smile in their faces represent satisfaction. Perhaps, they are indeed sufferring, but
+that nothing more than another form of investment into something greater.
+
+It is important to note that ~blazein~ /does not work/ if the meaning being pursued is not being pursued /honestly/. That means being assigned
+a meaningful goal by other people does not work for this approach. Either it is something that you truly believe in or just forget it. You will
+never be able to give your truly 110% onto something if you are doing because of what other people think. You may say that you believe and even
+act like you do, but only you will truly know your judgment on this matter. There is a reason why it is so much more impressive when we see someone
+doing /whatever demanding/ because they /want/ to do it versus if they are being /forced/ to do it.
+
+#+attr_html: :width 60%
+[[/img/blazein/example.gif]]
+
+* Steadiness
+
+An additional effect of ~blazein~ is the /continuous progression/. It is known that you cannot start progressing towards the goal by
+/bold/ steps immediately, otherwise you will indeed be consumed by the fire. You start small, day by day, with the amount of heat that
+you can handle. Enough to allow you to /survive/ at the same time as being /demanding/ for you to execute. By living on the edge of being
+too-much, you force yourself to slowly, but surely, extend your capacity to sustain the fire.
+
+It does not matter the /pacing/ in which you improve that resistance; it may be a day, a week, a month, a year, a decade, it really does not matter.
+This implies that the ~blazein~ approach requires a great deal of patience: immediatism is not tolerated. But this is really a non-issue; ~blazein~
+is the continuous act of handling the maximum amount of heat as a means to achieve a /meaningful/ goal. Meaningful goals are all /long-term/ goals.
+[[https://en.wikipedia.org/wiki/Man%27s_Search_for_Meaning][For Frankl]], caring for his /family/ was the cause propelling him to survive literal hell on Earth. For me, the /craft/ of programming and the pursue for /philosophy/ are
+enough to sustain all my years on Earth.
+
+Comparisons between other users of ~blazein~ are useful to the extent of knowing what is possible to achieve; just like you can understand what
+is possible in sports via the Olympic athletes. You can't expect to compete with them if you are starting /now/ and they are gaining steadiness
+for /multiple decades/. However harsh this may sound, it is the truth: you gotta have the humility to start small if you envision to become big.
+
+* Conclusion
+
+I would like to start the conclusion by stating that it is possible for someone committed to ~blazein~ to migrate into a ~burnout~. How?
+Simple: meaning got /lost/ during the activity. Throughout the execution, the individual stopped seeing how the activity is aligned with the
+meaningful goal or, a more extreme case, the individual decided to pursue a /completely different/ meaningful goal. It is important to highlight
+why it is recommended to stop the burning in this case: it is /not/ because you are buying into the equilibrium metaphor being argued, but because
+there is no more meaning justifying that energy being spent. In this situation, you are looking for /another cause/ to put your flames on (did you get it?).
+
+Finally, it is never to late to start looking for the activity that allows you to be closer to the purpose you carry. Nothing is more
+fulfilling than being tired over something that you see as worth it. It is exactly when you understand the needle is moving that all of that
+pain, stress, and fatigue become /all/ worth it.
+
+If I had to summarize the difference between ~burnout~ and ~blazein~, it would be this: in the former, the fire is the reason for despair and
+complete reconsideration, and in the latter it is something to be proud of, after all, you are able to sustain it as a means for a much greater end.
+\\
+ #+BEGIN_QUOTE
+  I may fail, I may fall
+  I may drift away like smoke
+  But you'll see my burning flames before I go
+  I will break every wall
+  Till I'm six feet under stone
+  You'll be calling out my name before I go
+ #+END_QUOTE
+
