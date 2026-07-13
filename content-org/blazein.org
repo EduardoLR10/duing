@@ -107,12 +107,12 @@ pain, stress, and fatigue become /all/ worth it.
 If I had to summarize the difference between ~burnout~ and ~blazein~, it would be this: in the former, the fire is the reason for despair and
 complete reconsideration, and in the latter it is something to be proud of, after all, you are able to sustain it as a means for a much greater end.
 \\
- #+BEGIN_QUOTE
+ #+BEGIN_VERSE
   I may fail, I may fall
   I may drift away like smoke
   But you'll see my burning flames before I go
   I will break every wall
   Till I'm six feet under stone
   You'll be calling out my name before I go
- #+END_QUOTE
+ #+END_VERSE
 
